@@ -17,7 +17,7 @@ description: >-
 ## Authority and paths
 
 Read the governing `$HOME/.agents/AGENTS.md` and
-`$HOME/.agents/doc-instructions.md`. This skill owns the operational-document
+`$HOME/.agents/doc-operations/doc-procedure.md`. This skill owns the operational-document
 lifecycle; it grants no approval, publication permission or host execution
 authority. The agent authors and may self-review. The requesting operator
 alone approves the exact snapshot, with target write authority established

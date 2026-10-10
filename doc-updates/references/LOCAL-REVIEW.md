@@ -1,6 +1,6 @@
 # Local documentation review product guide
 
-Guide revision 2; local lifecycle edition 1; new control-record schema 2
+Guide revision 3, replacing revision 2; local lifecycle edition 1; new control-record schema 2
 (reads retained schema 1). For authorized
 account operators and agents on Debian/Linux with Python 3.11+ and `fcntl`.
 No external client. Basis: `PRODUCT-GUIDE@core` in the separate specification
@@ -241,7 +241,8 @@ retained after publication. No competing ledger/database/board exists.
 For legacy installations, with **separately scoped maintenance authority**:
 
 1. Inspect the installed procedure/fragment/catalogs and skill against
-   doc-manager procedure revision 3 and this skill's lifecycle edition 1.
+   doc-manager procedure revision 4 at
+   `$HOME/.agents/doc-operations/doc-procedure.md` and this skill's lifecycle edition 1.
    Differing managed files are refused by the installer; preserve sources and
    receipts, reconcile changed managed files explicitly, then rerun the reviewed
    installer. Never reset live catalogs or histories.
