@@ -1,6 +1,6 @@
 # Local documentation review product guide
 
-Guide revision 4, replacing revision 3; local lifecycle edition 2; new control-record schema 2
+Guide revision 5, replacing revision 4; local lifecycle edition 2; new control-record schema 2
 (reads retained schema 1). For authorized
 account operators and agents on Debian/Linux with Python 3.11+ and `fcntl`.
 No external client. Basis: `PRODUCT-GUIDE@core` in the separate specification
@@ -10,10 +10,12 @@ No alternative publication method is designated.
 
 ## Installation and safety contract
 
-The doc-manager installer acquires this skill from its pinned remote repository
-and delivers its script, lifecycle procedure and this guide within
-`skills/doc-updates/` at the chosen documentation root. It does not activate host instructions, migrate
-live records or grant write authority. Manually integrate `dev-AGENTS.md` into
+The doc-manager dependency lock selects this package for delivery within
+`skills/doc-updates/` at the chosen documentation root. Its automated installer
+is retired; the current manual-copy procedure supports a new target only and
+supplies no receipt validation or deployment recovery. It does not activate
+host instructions, migrate live records or grant write authority.
+Manually integrate `dev-AGENTS.md` into
 the complete baseline only with separate authority. Keep installed guidance
 under `$HOME/.agents/`; never infer production targets from development.
 
@@ -24,9 +26,9 @@ the invoking account and not group/other writable. Ancestors must be directories
 without shared write permissions unless sticky (such as `/tmp`). Symlinks at
 any accessed component fail closed. Records are private (0600), new directories
 0700, output replacements 0600. Account-owned hard-linked input files are
-accepted (including installer staging links); replacement never edits their
-inode in place. An advisory root-directory lock serializes cooperating tool
-and installer operations; a competing lock fails immediately. Direct writers
+accepted; replacement never edits their inode in place. An advisory
+root-directory lock serializes cooperating controller operations; a competing
+lock fails immediately. Direct writers
 outside the lock remain outside this enforcement boundary.
 
 Paths are root-relative ASCII components using letters/digits/dot/underscore/
@@ -241,11 +243,13 @@ retained after publication. No competing ledger/database/board exists.
 For legacy installations, with **separately scoped maintenance authority**:
 
 1. Inspect the installed procedure/fragment/catalogs and skill against
-   doc-manager procedure revision 4 at
-   `$HOME/.agents/doc-operations/doc-procedure.md` and this skill's lifecycle edition 2.
-   Differing managed files are refused by the installer; preserve sources and
-   receipts, reconcile changed managed files explicitly, then rerun the reviewed
-   installer. Never reset live catalogs or histories.
+   doc-manager procedure revision 5 at
+   `$HOME/.agents/doc-operations/documentation/doc-procedure.md` and this skill's lifecycle edition 2.
+   Preserve installed sources, catalogs, histories and historical receipts.
+   Reconcile existing targets through separately authorized maintenance;
+   manual copying refuses populated targets and the retired installer supplies
+   no current receipt inspection or recovery. Relocating the installed procedure
+   requires explicit migration scope; development relocation does not move it.
 2. Add the empty generated section from the shipped updates template exactly
    once, preserving existing rows. Template deployment preserves populated
    live catalogs rather than overwriting them.
@@ -261,13 +265,13 @@ For legacy installations, with **separately scoped maintenance authority**:
    evidence, rework and repeat draft, preparation, review and operator approval.
    Finish already publishing outputs only under the original current approval;
    inspect partial outputs before any retry. Root-level legacy controller/guide
-   files are not installed or removed by the new installer. Stop using them
+   files are not part of current package delivery and are not removed. Stop using them
    after activation; archive or remove them only under scoped maintenance.
 6. Manually integrate the activation fragment into the complete baseline with
    authority. Installation, preparation and receipts approve no real candidate.
 
 No live migration/adoption occurs in development tests. Maintainer, retention
 interval and cadence remain unassigned until authorized. Review this skill's table,
-tool, tests, guide and doc-manager installer inventory together on schema/policy changes.
+tool, tests, guide and doc-manager dependency inventory together on schema/policy changes.
 Preserve dependency pins/licenses; report actual upstream conflicts rather
 than inventing overrides or editing installed skills.

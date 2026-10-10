@@ -156,8 +156,10 @@ An already closed exact result is a no-op; index interruption uses `reconcile`.
 Changing output to recover requires renewed review/approval. Withdrawal and
 supersession never authorize deletion; reversal is a new controlled change.
 
-Adoption is separately authorized. The installer preserves populated catalogs,
-candidates and histories and does not activate host instructions. Follow the
+Adoption is separately authorized. Manual delivery supports a new target only;
+existing catalogs, candidates and histories require separately scoped maintenance.
+The retired installer supplies no current deployment recovery. Delivery does
+not activate host instructions. Follow the
 migration steps in the tool guide: preserve legacy source/state, record present
 intake with explicit lifecycle gaps, add navigation markers only under scoped
 catalog maintenance, and complete missing gates before future publication.
