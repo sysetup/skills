@@ -34,8 +34,9 @@ rather than guessing from the title.
 
 ## Separate authoring from the surrounding workflow
 
-A new host operational document can be drafted and checked by `doc-specs`.
-Its prepared content then goes to `doc-updates` for saving and registration.
+A new host operational request first enters `doc-updates` for intake.
+`doc-specs` drafts and checks within that request, then returns content to
+`doc-updates` for mandatory draft registration and the remaining PR gates.
 Recommend carrying the actual contract identity, source basis, performed
 checks, and gaps in that handoff so the recipient can register supported
 facts. The required host destination comes from the governing instructions;

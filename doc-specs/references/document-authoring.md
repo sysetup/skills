@@ -23,8 +23,8 @@ material scope or input questions within their actual authority. A reviewer
 or receiving role participates only when assigned; authorship or review does
 not establish approval authority.
 
-`doc-updates` receives maintenance work and host-document saving and
-registration. The procedure's maintenance owner is not assigned by the
+`doc-updates` owns maintenance and the entire host operational-document PR
+lifecycle. Obtain its real intake before drafting host guidance. The procedure's maintenance owner is not assigned by the
 governing instructions. Record that gap when ownership matters; assignment
 requires an actual decision, not an inferred account-owner mandate.
 
@@ -50,12 +50,12 @@ to the actual recipient without executing the documented operation.
 
 | Step and entry | Action or decision | Output and next route |
 |---|---|---|
-| A1 — Document request or authoring-support request | Establish purpose, audience, subject, boundaries, and destination from the request and authorized sources. If adequate coverage already exists, reuse it; route changes to `doc-updates` and provide only requested authoring support. | Bounded authoring scope to A2; unresolved material classification questions to the requester. |
+| A1 — Document request or authoring-support request | Establish purpose, audience, subject, boundaries, and destination from the request and authorized sources. If adequate coverage already exists, reuse it; route changes to `doc-updates` and provide only requested authoring support. | Host operational scope to doc-updates intake before A3; contract selection to A2; unresolved material classification questions to the requester. |
 | A2 — Scope established | Select and read the contract using the selection rules below. | Contract identity and applicable obligations to A3; unavailable inputs or uncovered types to the abnormal routes. |
 | A3 — Contract and sufficient inputs available | Draft the requested content using the authoring rules below; expose gaps as the contract requires. | Document and factual basis to A4. |
 | A4 — Draft or content supplied by `doc-updates` | Apply the review rules below. Return defects to A2 for selection errors or A3 for content errors. | Checked content, actual results, and remaining gaps to A5. |
 | A5 — Checks recorded | Identify the applied specification ID and actual source, authorized destination, and any unresolved mandatory obligation. Do not claim full compliance while one remains. | Document and honest completion account to A6. |
-| A6 — Authoring support ready | Deliver a project document in its authorized context, or pass the prepared host document and its basis to `doc-updates` for required saving and registration. Return revision support to the requesting update workflow. | Authoring handoff complete; host-document delivery remains pending until saving and registration are confirmed, or their blocker is reported. |
+| A6 — Authoring support ready | Deliver a project document in its authorized context, or return host content and its basis to the owning `doc-updates` request for mandatory draft registration and the remaining PR gates. Return revision support to the requesting update workflow. | Authoring handoff complete; host-document delivery remains pending until saving and registration are confirmed, or their blocker is reported. |
 
 ### Selection rules
 
@@ -130,8 +130,8 @@ Authoring completes when requested content and its actual contract checks
 are delivered to the authorized recipient, with unresolved obligations
 visible. Report the specification ID and source, location or handoff, checks,
 results, gaps, and any authorized exception in the session or the task's
-existing evidence record. Host saving and registration remain the update
-workflow's completion responsibility. Do not invent signoffs or require
+existing evidence record. Host registration and PR progression remain exclusively the update
+workflow's responsibility. Do not invent signoffs or require
 additional logs, retention rules, or review roles absent from the task or
 selected contract.
 

@@ -1,92 +1,84 @@
 ---
 name: doc-updates
 description: >-
-  Maintain existing host or project documents and save and register prepared
-  host operational documents in $HOME/.agents/doc-updates/. Use whenever
-  revising, correcting, extending, reconciling, or updating documentation,
-  even without an explicit skill request, and when doc-specs hands off a new
-  host operational document for saving and registration. Preserve current
-  sources, revision identity, and affected references. Owns maintenance and
-  host-document saving and registration; doc-specs owns contract selection,
-  authoring, and content checks, and doc-operations owns documentation access
-  for task execution. Does not publish current operational guidance, maintain
-  specifications, or execute documented operations.
+  Own the local PR lifecycle for new or revised host operational documents and
+  instructions: intake, draft, prepare, open, review, operator approval,
+  authorized publication and verified closure. Use whenever creating,
+  revising, registering, reviewing or publishing guidance intended for
+  $HOME/.agents/doc-operations/, even without an explicit skill request.
+  Also maintain existing project and native documents in their authorized
+  contexts. Preserve sources, identity and references. doc-specs supplies
+  authoring contracts, drafting and content checks; doc-operations supplies
+  consultation. Does not maintain specifications or execute documented tasks.
 ---
 
-# Document maintenance, saving, and registration
+# Documentation maintenance and local PR control
 
 ## Authority and paths
 
-Read `$HOME/.agents/AGENTS.md` as the governing host instructions. This skill
-implements their document-update responsibility; it adds no document mode,
-preliminary work-document requirement, specification board, or publication
-authority.
+Read the governing `$HOME/.agents/AGENTS.md` and
+`$HOME/.agents/doc-instructions.md`. This skill owns the operational-document
+lifecycle; it grants no approval, publication permission or host execution
+authority. The agent authors and may self-review. The requesting operator
+alone approves the exact snapshot, with target write authority established
+separately. Agents never perform operator terminal decisions.
 
-| Installed location or context | Role in this workflow |
+| Installed path or context | Responsibility |
 |---|---|
-| `$HOME/.agents/doc-operations/INDEX.md` and its references | Read-only current operational sources. |
-| `$HOME/.agents/doc-updates/` | New and revised host operational documents prepared for review. |
-| `$HOME/.agents/doc-updates/INDEX.md` | Registration catalog and current registration guidance. |
-| `$HOME/.agents/doc-specs/INDEX.md` and its references | Read-only document authoring contracts. |
-| `$HOME/.agents/skills/doc-updates/` | This entrypoint and its bundled update procedure. |
-| Authorized project or native-artifact context | Existing project documents and artifacts governed by their native layout. |
+| `$HOME/.agents/doc-operations/` | Read current sources; write only exact approved publication through the controller. |
+| `$HOME/.agents/doc-updates/` | Candidates, packets, evidence and per-change records. |
+| `$HOME/.agents/doc-updates/INDEX.md` | Seven-field registration guidance and generated navigation. |
+| `$HOME/.agents/doc-specs/` | Read-only authoring contracts, separately installed. |
+| `$HOME/.agents/skills/doc-updates/` | This workflow, controller and bundled references. |
+| Authorized project or native-artifact context | Bounded maintenance in the owning context; no operational PR unless intended for `doc-operations/`. |
 
-Resolve `$HOME` for the adopting account. In an explicitly authorized
-development checkout, map `$HOME/.agents/` to that checkout for reads and
-checks, and installed `AGENTS.md` to `dev-AGENTS.md` when designated by the
-requester. This mapping does not expand write scope or identify the host
-being documented. Keep installed paths in authored instructions.
+Resolve the adopting account's actual `$HOME`. In an explicitly designated
+development workspace, map the installed documentation root to that workspace
+for reads/checks and `AGENTS.md` to `dev-AGENTS.md` when designated. Keep installed
+paths in host guidance; the mapping grants no installed-path access.
 
-Resolve catalog links relative to their catalog, document links relative to
-their containing document, and bundled links relative to this skill file.
-Check resolved targets, including symlinks, before access and mutation.
-Operational catalog targets stay within `doc-operations/`; specification
-targets stay within `doc-specs/`; working catalog targets stay within
-`doc-updates/`, except verified publication-history locators described by
-its index. Project and native-artifact targets require their actual
-authorized context. An escaping or unresolved target is a dependency gap,
-not permission to access another root.
+Resolve links from their containing document and check real path containment,
+including symlinks. Operational, candidate and specification catalog targets
+stay within their respective trees; verified publication-history links follow
+the updates index. Unavailable or escaping resources hold dependent work.
 
-## Workflow and handoffs
+## Route and load the procedure
 
-Read [the update procedure](references/host-document-update.md) before maintaining an
-existing document or saving and registering a host-document handoff. It
-owns revision preservation, reference reconciliation, registration checks,
-and failure handling.
+- **Host operational document or instruction:** Read
+  [the local lifecycle](references/local-lifecycle.md) before any drafting.
+  Register intake, then obtain selection/drafting/content checks through
+  `$HOME/.agents/skills/doc-specs/SKILL.md`. Save and register draft before
+  prepare. Retain ownership through PR, review, operator decision and authorized
+  publication; preparation is a stopping point only when that is the requested
+  outcome or a required decision remains pending.
+- **Existing project or native document:** Read
+  [the update procedure](references/host-document-update.md) for bounded
+  revision, source preservation and reference reconciliation. Its project
+  route does not publish into `doc-operations/`.
+- **CLI action, packet construction, recovery or legacy adoption:** Read
+  [the controller guide](references/LOCAL-REVIEW.md). Use
+  [the bundled controller](scripts/doc-control.py) with Python 3.11+ and an
+  explicit authorized documentation root. No external dependency or network
+  is needed for lifecycle commands.
+- **Operational execution:** Consult through
+  `$HOME/.agents/skills/doc-operations/SKILL.md` and use the task's independently
+  authorized execution workflow.
 
-- **Existing document:** Inspect the actual source and authorized change.
-  Request contract selection, affected authoring, and content checks through
-  `$HOME/.agents/skills/doc-specs/SKILL.md`; retain ownership of the update
-  workflow rather than duplicating the authoring method.
-- **New document:** Use `doc-specs` to author it. Receive a new host
-  operational document for required saving and registration; a new project
-  document stays with its authorized project context.
-- **Host operational document:** Consult the current registration guidance
-  in `$HOME/.agents/doc-updates/INDEX.md`. Save and register the new document
-  or changed copy there. Preserve the source in `doc-operations/`, which
-  remains read-only during this workflow.
-- **Project or explicitly requested native-artifact edit:** Classify by
-  actual purpose and apply the authorized revision in its established
-  context, preserving native requirements. Directory location alone does
-  not establish that purpose. Native format does not waive required host
-  operational document saving and registration or canonical read-only
-  boundaries.
-- **Operational task:** Use `$HOME/.agents/skills/doc-operations/SKILL.md`
-  for consultation and the task's own authorized workflow for execution.
-  Revision, saving, and registration grant no execution authority.
+Use the controller for transitions, registration and publication; generated
+navigation is derived from `doc-updates/changes/<id>.json`. Maintain the same
+request key and ID across retries. Changed reviewed bytes require rework and
+fresh review/approval, because decisions bind exact content. Retain valid
+history and inspect partial output before recovery.
 
-Use existing authorization for the requested bounded edit; ask only for
-material missing evidence, unresolved scope, or additional authority. A
-separate request to change `doc-operations/` or `doc-specs/` requires its own
-explicit scope and runtime permissions and is outside this skill's ordinary
-workflow. Report incompatible handoffs against the governing instructions;
-continue independent authorized work without repairing other skills.
+The controller serializes cooperating writers and verifies its own gates.
+Filesystem writers can bypass it; instructions and hashes do not authenticate
+the human or enforce host permissions. Root/sudo remains user-executed.
 
 ## Completion account
 
-Report the actual source and known edition, applied specification ID and
-source or uncovered native purpose, changed document location, host catalog
-registration when applicable, checks and results, and remaining gaps.
-Distinguish a prepared revision from current operational guidance, and
-preparation from approval, acceptance, publication, and performed operations.
-Saving without required registration is an incomplete host-document handoff.
+Report actual source/edition, authoring contract or uncovered purpose, saved
+locations, registration, retained lifecycle stage, checks/results and next
+permitted action. Publication additionally requires verified document/catalog
+bytes and closure evidence. Distinguish preparation, review, operator approval,
+publication and operational execution. Report refusals and exact missing
+prerequisites before continuing dependent work.

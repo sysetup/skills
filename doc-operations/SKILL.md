@@ -10,7 +10,7 @@ description: >-
   missing coverage when necessary. Owns documentation access and use, not
   document authoring, revision, saving, registration, or publication.
   doc-specs owns authoring contracts; doc-updates owns document maintenance
-  and host-document saving and registration.
+  and the complete host operational-document PR lifecycle.
 ---
 
 # Existing documentation access and use
@@ -75,8 +75,9 @@ unresolved target is unavailable, not permission to read outside the scope.
 - Use `$HOME/.agents/skills/doc-specs/SKILL.md` for selecting and applying
   document authoring contracts and creating documents.
 - Use `$HOME/.agents/skills/doc-updates/SKILL.md` for existing-document
-  maintenance and host-document saving in `$HOME/.agents/doc-updates/` and
-  registration in its `INDEX.md`. Project documents belong in their
+  maintenance and the full host operational-document PR lifecycle, starting
+  before drafting. It owns saving/registration in `$HOME/.agents/doc-updates/`
+  and authorized publication into `doc-operations/`. Project documents belong in their
   authorized project context.
 - Report documentation gaps in the session or the task's existing record.
   This skill does not create a board entry, revise documents, or publish

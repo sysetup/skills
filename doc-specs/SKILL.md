@@ -9,7 +9,7 @@ description: >-
   checks requested by doc-updates during a revision. Owns selection,
   authoring, and contract-based review; doc-operations owns documentation
   access for task execution, and doc-updates owns existing-document
-  maintenance and host-document saving and registration. Does not maintain
+  maintenance and the complete host operational-document PR lifecycle. Does not maintain
   the specification library or execute the operations described.
 ---
 
@@ -27,7 +27,7 @@ document mode, preliminary work-document requirement, or policy exemption.
 | `$HOME/.agents/doc-specs/` | Read-only specifications; never a finished-document destination. |
 | `$HOME/.agents/skills/doc-specs/` | This entrypoint and its bundled authoring resources. |
 | `$HOME/.agents/skills/doc-operations/SKILL.md` | Documentation consultation for authorized host or project work. |
-| `$HOME/.agents/skills/doc-updates/SKILL.md` | Document maintenance and host-document saving and registration. |
+| `$HOME/.agents/skills/doc-updates/SKILL.md` | Document maintenance and host operational-document PR ownership. |
 | `$HOME/.agents/doc-updates/` | Host operational documents prepared under the update workflow. |
 | Authorized project context | Documents about that specific project. |
 
@@ -55,11 +55,12 @@ or clarification of the handoffs.
   `$HOME/.agents/skills/doc-updates/SKILL.md`. Supply specification selection,
   requested content, and contract checks to that workflow without taking
   ownership of source preservation, revision management, or publication.
-- **Host operational document:** Pass the prepared document, actual
-  authoring basis, checks, and gaps to `doc-updates` for saving in
-  `$HOME/.agents/doc-updates/` and registration in its `INDEX.md`. The overall
-  request is incomplete until that required handoff is performed or its
-  specific blocker is reported. Do not deliver it into `doc-operations/`.
+- **Host operational document or instruction:** Route the request to
+  `doc-updates` before drafting so it registers intake. Supply contract
+  selection, drafting and content checks within that workflow; return content,
+  basis and gaps for its mandatory draft registration and preparation.
+  `doc-updates` alone owns all PR gates and authorized publication.
+  Do not directly deliver into `doc-operations/`.
 - **Project document:** Deliver in the authorized context of its owning
   project. Host registration does not apply merely because the project runs
   on this host.
