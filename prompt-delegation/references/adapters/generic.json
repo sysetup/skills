@@ -1,0 +1,80 @@
+{
+  "freshness_days": 90,
+  "id": "generic",
+  "product": "Vendor-neutral artifacts",
+  "provenance": [
+    {
+      "kind": "project",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Toolkit-owned neutral representations",
+      "url": "project:docs/ARCHITECTURE.md"
+    }
+  ],
+  "representations": [
+    {
+      "activation": [
+        "explicit"
+      ],
+      "activation_semantics": "Explicit use by the caller; no automatic invocation is promised.",
+      "authority_intents": [
+        "delegated"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "delegation-contract": "native",
+        "named-inputs": "instruction-only",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "delegation-message",
+      "max_characters": null,
+      "metadata_fields": {},
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": "{name}.md",
+      "resources": false,
+      "scope_kinds": [
+        "request",
+        "session",
+        "paths"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "markdown",
+      "surfaces": [
+        "delegation"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    }
+  ],
+  "schema_version": "1.0.0",
+  "support_scope": "Plain drafts, portable Agent Skills, prompt packs and runtime specifications; not an installed host.",
+  "unsupported_surfaces": [
+    "persistent",
+    "reusable_action",
+    "agent",
+    "task",
+    "api",
+    "runtime_policy"
+  ],
+  "warnings": [
+    "Generic artifacts do not install or enforce host discovery or privileges."
+  ]
+}

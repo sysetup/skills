@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "benchmark.json (aggregate_benchmark.py contract)",
+  "type": "object",
+  "required": ["metadata", "runs", "run_summary"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["skill_name"],
+      "properties": {
+        "skill_name": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["eval_id", "configuration", "result"],
+        "properties": {
+          "eval_id": {},
+          "configuration": {
+            "type": "string",
+            "enum": ["with_skill", "without_skill", "old_skill"]
+          },
+          "result": {
+            "type": "object",
+            "required": ["pass_rate", "passed", "total", "time_seconds", "tokens"],
+            "properties": {
+              "pass_rate": {
+                "type": "number"
+              },
+              "passed": {
+                "type": "integer"
+              },
+              "total": {
+                "type": "integer"
+              },
+              "time_seconds": {
+                "type": "number"
+              },
+              "tokens": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "run_summary": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

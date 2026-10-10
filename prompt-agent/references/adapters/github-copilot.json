@@ -1,0 +1,115 @@
+{
+  "freshness_days": 90,
+  "id": "github-copilot",
+  "product": "GitHub Copilot in VS Code",
+  "provenance": [
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "VS Code custom instructions",
+      "url": "https://code.visualstudio.com/docs/agent-customization/custom-instructions"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "VS Code prompt files",
+      "url": "https://code.visualstudio.com/docs/agent-customization/prompt-files"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "VS Code custom agents",
+      "url": "https://code.visualstudio.com/docs/agent-customization/custom-agents"
+    }
+  ],
+  "representations": [
+    {
+      "activation": [
+        "automatic",
+        "explicit"
+      ],
+      "activation_semantics": "VS Code custom agent definition; user-selected or delegated by host-supported orchestration.",
+      "authority_intents": [
+        "privileged"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "agent-definition": "native",
+        "approval-gates": "instruction-only",
+        "named-inputs": "instruction-only",
+        "privileged-instructions": "native",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "copilot-agent",
+      "max_characters": null,
+      "metadata_fields": {
+        "description": "objective",
+        "name": "artifact_name"
+      },
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tools": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": ".github/agents/{name}.agent.md",
+      "resources": false,
+      "scope_kinds": [
+        "workspace"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "frontmatter",
+      "surfaces": [
+        "agent"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    }
+  ],
+  "schema_version": "1.0.0",
+  "support_scope": "VS Code only, not GitHub.com or every Copilot surface.",
+  "unsupported_surfaces": [
+    "persistent",
+    "reusable_action",
+    "task",
+    "delegation",
+    "api",
+    "runtime_policy"
+  ],
+  "warnings": [
+    "The github-copilot adapter targets the VS Code variant; verify compatibility for other Copilot products."
+  ]
+}

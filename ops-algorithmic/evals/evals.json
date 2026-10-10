@@ -1,0 +1,67 @@
+{
+  "skill_name": "ops-algorithmic",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write C++ code that detects whether a vector of up to 5,000,000 integers contains a duplicate. Make it clean and fast.",
+      "expected_output": "An algorithm-first solution that rejects an unnecessary O(n^2) scan at this scale, chooses and justifies an appropriate structure, states expected/worst-case and space trade-offs, provides clear C++ code, and includes edge-case verification.",
+      "expectations": [
+        "Explains why the input bound makes algorithmic complexity material before presenting style concerns.",
+        "Uses a credible non-quadratic algorithm such as hashing or sorting and states the relevant complexity qualifier.",
+        "States the memory/determinism or worst-case trade-off of the selected approach.",
+        "Provides clear code and tests or verification for empty, singleton, and duplicate cases."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Refactor this C++ into the shortest possible expression and optimize it: bool f(bool enabled, std::vector<int>& out) { if (enabled) { out.push_back(42); } return enabled; }",
+      "expected_output": "A response that refuses to equate syntactic compression with optimization, preserves explicit readable control flow unless measurement shows a performance issue, and distinguishes semantic/readability concerns from algorithmic complexity.",
+      "expectations": [
+        "Does not claim a shorter boolean/comma/ternary expression is algorithmically faster without evidence.",
+        "Keeps or recommends explicit control flow because the original algorithm is already O(1).",
+        "Explains that low-level optimization requires profiling or a demonstrated bottleneck."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I have an immutable array of 10 million numbers and 20 million queries asking for the sum from L to R. Implement the simplest readable C++ solution.",
+      "expected_output": "A prefix-sum design that prioritizes total workload complexity over a readable per-query scan, states O(n) preprocessing, O(1) query, O(n) storage, interval conventions, numeric-width concerns, and tests boundaries.",
+      "expectations": [
+        "Identifies repeated work and selects prefix sums or an equivalently appropriate preprocessing strategy.",
+        "States preprocessing/query/space complexity separately.",
+        "Uses a sufficiently wide accumulator or explicitly analyzes overflow.",
+        "Defines the range convention and verifies boundary cases."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Review a function with cyclomatic complexity 18. The linter says anything above 10 is bad. Should I split it until every function is below 10?",
+      "expected_output": "A nuanced review that treats cyclomatic complexity as a signal rather than an oracle, examines semantic cohesion and invariants, recommends decomposition only where concepts or responsibilities are separable, and does not enforce an arbitrary threshold as scientific fact.",
+      "expectations": [
+        "Explicitly rejects using the threshold alone as proof of poor understandability.",
+        "Uses semantic cohesion, invariants, testability, and control-flow structure to decide decomposition.",
+        "Mentions that empirical evidence does not support structural metrics as complete predictors of understandability."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Optimize this service. It loops over 200 records, but for each record it performs one database query. I want SIMD or branchless C++ in the loop.",
+      "expected_output": "A bottleneck-first response that identifies the N+1 database pattern as the likely dominant cost, proposes batching/joining/prefetching as appropriate before CPU micro-optimization, and requires profiling/benchmarking before SIMD or branchless tuning.",
+      "expectations": [
+        "Prioritizes reducing database round trips over instruction-level loop tuning.",
+        "Explains the cost-model reasoning rather than merely invoking a style rule.",
+        "Requires measurement for any remaining low-level optimization claim."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Choose between camelCase and snake_case for maximum scientifically proven readability, and enforce the winner across an existing C++ repository.",
+      "expected_output": "A response that does not invent a universal winner, notes conflicting/inconclusive empirical formatting evidence, preserves repository consistency unless there is a stronger local reason, and separates convention from scientific proof.",
+      "expectations": [
+        "Does not claim camelCase or snake_case is universally scientifically superior.",
+        "Prioritizes repository consistency and automated formatting/naming policy.",
+        "Accurately characterizes the empirical evidence as mixed or context dependent."
+      ]
+    }
+  ]
+}

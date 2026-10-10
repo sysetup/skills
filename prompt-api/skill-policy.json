@@ -1,0 +1,25 @@
+{
+  "aliases": [],
+  "allowed_adapters": [
+    "generic",
+    "openai-api"
+  ],
+  "capabilities": [
+    "prompt-generation.api.v1"
+  ],
+  "commands": [
+    "scaffold",
+    "render",
+    "migrate",
+    "validate",
+    "check-contract"
+  ],
+  "host_representation": "openai",
+  "independent": true,
+  "name": "prompt-api",
+  "owned_surfaces": [
+    "api"
+  ],
+  "role": "generator",
+  "schema_version": "1.0.0"
+}

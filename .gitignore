@@ -1,0 +1,30 @@
+# Local agent state and credentials.
+/.agents/
+/.codex/
+/.aws/
+.env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.key
+
+# Generated artifacts; keep evaluation definitions and fixtures.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+node_modules/
+reports/
+*.zip
+*.skill
+
+# Editor and operating-system state.
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

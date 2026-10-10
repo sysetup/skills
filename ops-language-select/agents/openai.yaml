@@ -1,0 +1,3 @@
+interface:
+  display_name: "ops-language-select"
+  short_description: "Apply the bundled SOP to host language decisions"

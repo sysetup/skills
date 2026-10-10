@@ -1,0 +1,39 @@
+{
+  "skill_name": "doc-operations",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use only the assigned doc-operations skill and its bundled consultation resources, plus the explicitly permitted workspace files. Read the skill as supplied even if its metadata is invalid. Do not edit sources, execute operational steps, inspect any home installation, access the network, or read other skills. This is a consultation-only evaluation. Installation guidance uses $HOME/.agents/; the development source for installed AGENTS.md is dev-AGENTS.md in this workspace. Write a concise English consultation account to the assigned output directory, and a transcript of actual file reads/tool calls and decisions in its parent transcript.md. No additional work document is requested. Use the synthetic fixture skills/doc-operations/evals/workspace/fixtures/indexed as the installed host tree for operational reads and its project subdirectory as the authorized project. Read dev-AGENTS.md for governing responsibilities. Consult for five demo-tool 2 operations: inspection before project build, recovery, diagnosis, export, and import. target-evidence.md is authorized target evidence. Return selected guidance, unresolved dependencies, and possible next actions; no operation is authorized to execute. Catalog links do not authorize any file outside indexed/doc-operations; do not open such a target, including through symlinks.",
+      "expected_output": "Reads current inspection and recovery and project guidance; preserves order; holds recovery for unknown backup and permission, identifies broken/escaping/symlinked entries without opening targets; does not invent host facts or author/register/publish documents.",
+      "files": [
+        "../../dev-AGENTS.md",
+        "evals/workspace/fixtures/indexed"
+      ],
+      "expectations": [
+        "Consults current inspection and recovery documents and project instructions/build guide.",
+        "Preserves runbook step order and does not claim any operation ran.",
+        "Holds recovery for unknown backup and separate recovery authorization.",
+        "Reports missing.md as unavailable and rejects both the traversal and symlink targets without opening them.",
+        "Separates verified version 2 from unknown status, backup, and execution readiness.",
+        "Makes no document revision, registration, publication, or mandatory preliminary work document."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Use only the assigned doc-operations skill and its bundled consultation resources, plus the explicitly permitted workspace files. Read the skill as supplied even if its metadata is invalid. Do not edit sources, execute operational steps, inspect any home installation, access the network, or read other skills. This is a consultation-only evaluation. Installation guidance uses $HOME/.agents/; the development source for installed AGENTS.md is dev-AGENTS.md in this workspace. Write a concise English consultation account to the assigned output directory, and a transcript of actual file reads/tool calls and decisions in its parent transcript.md. No additional work document is requested. Consult the real doc-operations/INDEX.md and dev-AGENTS.md in this authorized development checkout for a basic read-only host task: explain the shell builtin pwd's available options without running pwd itself or disclosing the actual working directory. You may run the current Bash builtin help pwd as official local documentation and cite that exact source. No other documentation files are required or authorized. Report the consultation outcome and any local coverage gap.",
+      "expected_output": "Reads empty canonical catalog; consults builtin help pwd; reports no local coverage and precise official local source, does not infer empty host or require Context7, phantom policies, board entries, or new work documents.",
+      "files": [
+        "../../dev-AGENTS.md",
+        "../../doc-operations/INDEX.md"
+      ],
+      "expectations": [
+        "Reads canonical index and reports absent task-specific local coverage.",
+        "Actually consults Bash builtin help pwd and cites that specific source.",
+        "Explains options from consulted help while not running pwd or exposing working directory.",
+        "Does not infer empty host inventory from empty documentation catalog.",
+        "Does not require Context7, phantom indexed policies, new work documents, or a draft-board readiness gate.",
+        "Makes no changes outside assigned evaluation outputs."
+      ]
+    }
+  ]
+}

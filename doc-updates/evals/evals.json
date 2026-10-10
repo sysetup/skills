@@ -1,0 +1,52 @@
+{
+  "skill_name": "doc-updates",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "In this isolated test, treat the supplied fixture root as the installed $HOME/.agents/ tree. Prepare a revised copy of doc-operations/selection-guide.md, changing only the recommended review window from 30 to 60 seconds and setting the candidate local edition to 3. The current operational source has edition 2 and a relative link to related.md; preserve its identity, other content, and source traceability. Also receive the supplied new-guide.md from doc-specs and complete its host saving/registration handoff. Authoring basis for both is GUIDE@core; doc-specs already supplied content checks for the new document. The operational destination and maintainer are unassigned, and no approval, publication, or execution has occurred. Save the proposed installed subtree under your outputs/, including doc-updates/INDEX.md and the prepared documents. Preserve the read-only fixture source and both canonical catalogs. Write a short delivery note with actual checks and gaps.",
+      "expected_output": "Two prepared host documents and correct registrations, preserved operational sources, rebased relative links, honest unknowns and state, no publication or specification-board entry.",
+      "files": [
+        "evals/workspace/fixtures/host/dev-AGENTS.md",
+        "evals/workspace/fixtures/host/doc-updates/INDEX.md",
+        "evals/workspace/fixtures/host/doc-operations/selection-guide.md",
+        "evals/workspace/fixtures/host/doc-operations/related.md",
+        "evals/workspace/fixtures/host/new-guide.md"
+      ],
+      "expectations": [
+        "Both the revised and new host documents are saved under outputs/doc-updates/ and registered as actual documents.",
+        "The revision preserves DOC-DEMO identity and unchanged source content, identifies source edition 2, and distinguishes candidate edition 3.",
+        "The candidate's related-document link resolves to the unchanged operational related.md in the simulated installed layout.",
+        "Unknown destinations and owners stay explicit; checks and prepared status do not imply publication, approval, or execution.",
+        "The operational source and specification library remain unchanged, and no specification-development board is created."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Revise the supplied project/README.md by changing the synthetic retry recommendation from two to three attempts; preserve unrelated text. Also revise skills/example-native/SKILL.md by correcting 'exmaple' to 'example' in its description and preserve valid native frontmatter and layout. These are a project guide and a native skill artifact; neither is a host operational document. The user authorizes these exact edits. Save the corresponding proposed project/ and skills/ files under your outputs/ and a short delivery note. Use the actual specification catalog for applicable authoring support; report uncovered native scope without claiming unrelated contract compliance. Do not register either artifact in the host updates catalog or execute anything it describes.",
+      "expected_output": "Scoped project/native edits in their established layouts, preserved YAML, no host catalog registration or extra approval request, authoring/native basis stated.",
+      "files": [
+        "evals/workspace/fixtures/project/project/README.md",
+        "evals/workspace/fixtures/project/skills/example-native/SKILL.md"
+      ],
+      "expectations": [
+        "The project revision stays under outputs/project/ and changes only the authorized recommendation.",
+        "The skill revision stays under outputs/skills/example-native/SKILL.md with valid name/description YAML and corrected spelling.",
+        "Neither artifact is saved or registered as a host operational document.",
+        "The note distinguishes the project's GUIDE@core basis from the uncovered native skill format and avoids claiming full compliance with an unrelated type."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Give a bounded update decision for three independent conditions using doc-updates. (A) A readable specification catalog names an applicable contract, but that contract is unavailable; revise the dependent document without creating a replacement specification. (B) The proposed destination resolves through a symlink outside the authorized root; no broader access was granted. (C) The host candidate was saved but its required index registration failed, and the operational source changed after initial inspection; there is no established recovery method or publication approval. Also assess the request to publish the candidate merely because its intended destination is recorded. Use only these synthetic facts and the supplied skill. Do not perform filesystem mutations, follow symlinks, or execute commands. Save a concise decision note under outputs/ identifying holds, allowed independent work, resumption evidence, and actual incomplete state.",
+      "expected_output": "Separate dependent holds, no boundary escape or replacement contract, incomplete save/registration, source conflict reconciliation, no inferred publication or fabricated recovery.",
+      "files": [],
+      "expectations": [
+        "Unavailable applicable contract holds dependent authoring without inventing or substituting a specification.",
+        "Escaping symlink holds dependent access and mutation without inspecting the external target.",
+        "Successful candidate save plus failed registration is explicitly incomplete, and source changes require reconciliation before replacement.",
+        "An intended operational destination grants no publication authority; neither read-only canonical tree is mutated.",
+        "Recovery uses an established authorized method or a bounded correction decision; no broad reset, invented backup tree, or fabricated successful checks."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "skill_name": "ops-oop",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Design the OO model for an order checkout feature. Orders have items, inventory must be reserved, payment is authorized through an external gateway, and an order must never be persisted as placed unless both reservation and payment succeed. Use C++ examples.",
+      "expected_output": "A responsibility-driven design that derives objects from behavior and invariants rather than nouns, separates domain rules from external adapters, states ownership/contracts, and includes verification ideas.",
+      "expectations": [
+        "Identifies the invariant around reservation/payment/order placement.",
+        "Does not create a class for every noun or a god Manager object.",
+        "Uses C++23-style examples and explains ownership of collaborators.",
+        "Explains why any interface or polymorphism is introduced.",
+        "Includes tests or scenario-based verification tied to the invariant."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this C++ hierarchy conceptually: class Shape has a virtual area() but no virtual destructor; Circle derives from Shape; objects are stored as std::vector<Shape>; another function deletes Shape* values that may point to Circle. Explain the OO and C++ design defects and propose repairs.",
+      "expected_output": "A risk-ordered review identifying slicing, unsafe polymorphic destruction, and representation/ownership problems, with concrete C++ repairs and validation steps.",
+      "expectations": [
+        "Flags object slicing caused by storing derived objects as base values.",
+        "Flags deletion through a base without a virtual destructor.",
+        "Proposes references/smart pointers or a value-type alternative according to required semantics.",
+        "Discusses ownership rather than recommending raw owning pointers.",
+        "Orders semantic/lifetime defects ahead of style concerns."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We are building automotive safety-related software. The team asks for modern C++23 examples and says the project must comply with MISRA C++:2023 and ISO 26262. Create an implementation guidance note for an OO component using runtime polymorphism.",
+      "expected_output": "A regulated-profile response that separates the C++23 teaching baseline from the C++17 target of MISRA C++:2023, asks/records exact project applicability and evidence needs, treats runtime polymorphism as a design choice requiring profile-specific analysis, and avoids claiming compliance without evidence.",
+      "expectations": [
+        "States that MISRA C++:2023 targets C++17 and does not silently treat C++23 as compliant.",
+        "Identifies ISO 26262 software lifecycle/assurance context without inventing an ASIL.",
+        "Requires exact project tailoring/toolchain/evidence before a compliance conclusion.",
+        "Analyzes runtime polymorphism and ownership/lifetime as assurance concerns.",
+        "Does not claim certification or compliance from code inspection alone."
+      ]
+    }
+  ]
+}

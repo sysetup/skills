@@ -1,0 +1,121 @@
+{
+  "freshness_days": 90,
+  "id": "claude-code",
+  "product": "Claude Code",
+  "provenance": [
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Claude project memory",
+      "url": "https://code.claude.com/docs/en/memory"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Claude skills and command migration",
+      "url": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Claude subagent definitions",
+      "url": "https://code.claude.com/docs/en/sub-agents"
+    }
+  ],
+  "representations": [
+    {
+      "activation": [
+        "manual",
+        "model_selected"
+      ],
+      "activation_semantics": "Manual mode sets disable-model-invocation true; model-selected mode permits automatic discovery. Arguments are one aggregate string.",
+      "authority_intents": [
+        "guidance"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "manual-activation": "native",
+        "model-selection": "native",
+        "named-inputs": "instruction-only",
+        "resource-bundles": "native",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [
+        "!`"
+      ],
+      "id": "claude-skill",
+      "max_characters": null,
+      "metadata_fields": {
+        "description": "objective",
+        "disable-model-invocation": "manual_only",
+        "name": "artifact_name"
+      },
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          },
+          "disable-model-invocation": {
+            "type": "boolean"
+          },
+          "name": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "description"
+        ],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [
+        "Custom commands were merged into skills; existing .claude/commands files remain supported by the host, but new output uses skills."
+      ],
+      "path_template": ".claude/skills/{name}/SKILL.md",
+      "resources": true,
+      "scope_kinds": [
+        "workspace"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "frontmatter",
+      "surfaces": [
+        "reusable_action"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "aggregate",
+        "token": "$ARGUMENTS"
+      }
+    }
+  ],
+  "schema_version": "1.0.0",
+  "support_scope": "Project memory, skills, subagent definitions and task/delegation payloads.",
+  "unsupported_surfaces": [
+    "persistent",
+    "agent",
+    "task",
+    "delegation",
+    "api",
+    "runtime_policy"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,26 @@
+{
+  "aliases": [],
+  "allowed_adapters": [
+    "claude-code",
+    "generic",
+    "github-copilot"
+  ],
+  "capabilities": [
+    "prompt-generation.agent.v1"
+  ],
+  "commands": [
+    "scaffold",
+    "render",
+    "migrate",
+    "validate",
+    "check-contract"
+  ],
+  "host_representation": "openai",
+  "independent": true,
+  "name": "prompt-agent",
+  "owned_surfaces": [
+    "agent"
+  ],
+  "role": "generator",
+  "schema_version": "1.0.0"
+}

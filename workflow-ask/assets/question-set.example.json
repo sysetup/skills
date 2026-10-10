@@ -1,0 +1,69 @@
+{
+  "questions": [
+    {
+      "id": "scope",
+      "header": "Scope",
+      "text": "What is in scope for this change?",
+      "kind": "single-select",
+      "required": true,
+      "options": [
+        {
+          "label": "Named files only (Recommended)",
+          "description": "Edit only the paths already named in the request."
+        },
+        {
+          "label": "Whole component",
+          "description": "Touch every file in the named component."
+        },
+        {
+          "label": "Whole repository",
+          "description": "Allow cross-cutting edits across the workspace."
+        }
+      ],
+      "default": "Named files only (Recommended)",
+      "rationale": "Scope changes correctness and blast radius."
+    },
+    {
+      "id": "risk-posture",
+      "header": "Risks",
+      "text": "Which of these risk controls apply?",
+      "kind": "multi-select",
+      "required": false,
+      "options": [
+        {
+          "label": "Dry-run first (Recommended)",
+          "description": "Inspect and report; mutate nothing yet."
+        },
+        {
+          "label": "Write local files",
+          "description": "Allow workspace writes after answers land."
+        },
+        {
+          "label": "Network allowed",
+          "description": "Permit explicit outbound fetches with TLS."
+        }
+      ],
+      "default": "Dry-run first (Recommended)",
+      "rationale": "Risk posture is optional once a safe default exists."
+    },
+    {
+      "id": "proceed",
+      "header": "Proceed",
+      "text": "Start work after this card?",
+      "kind": "confirm",
+      "required": true,
+      "options": [
+        {
+          "label": "Proceed (Recommended)",
+          "description": "Apply answers and begin the task."
+        },
+        {
+          "label": "Stop",
+          "description": "Do not start work."
+        }
+      ],
+      "default": "Proceed (Recommended)",
+      "rationale": "Confirms the user wants work to start."
+    }
+  ]
+}

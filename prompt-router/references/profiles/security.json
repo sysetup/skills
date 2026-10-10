@@ -1,0 +1,15 @@
+{
+  "id": "security",
+  "version": "1.0.0",
+  "description": "Optional threat-modeling requirements, not broader permissions.",
+  "constraints": [
+    "Distinguish observed weaknesses from hypotheses and avoid unsupported exploitability claims.",
+    "Do not disclose credentials or execute exploitation without explicit authorization."
+  ],
+  "acceptance_criteria": [
+    "Map each finding to affected assets, trust boundaries, evidence and a bounded mitigation."
+  ],
+  "verification": [
+    "Check that safety boundaries and approval requirements survive compact rewrites."
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "freshness_days": 90,
+  "id": "cursor",
+  "product": "Cursor",
+  "provenance": [
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Cursor project rules",
+      "url": "https://cursor.com/docs/rules"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "representation_ids": [
+        "cursor-command"
+      ],
+      "status": "unverified",
+      "title": "Legacy Cursor project commands: current command-format provenance requires reverification",
+      "url": "https://docs.cursor.com/en/agent/chat/commands"
+    }
+  ],
+  "representations": [
+    {
+      "activation": [
+        "automatic"
+      ],
+      "activation_semantics": "Workspace-wide uses alwaysApply true. Path-scoped uses globs and alwaysApply false.",
+      "authority_intents": [
+        "guidance"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "named-inputs": "instruction-only",
+        "persistent-context": "native",
+        "runtime-enforcement": "unsupported",
+        "scoped-instructions": "native"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "cursor-rule",
+      "max_characters": null,
+      "metadata_fields": {
+        "alwaysApply": "workspace_scope",
+        "description": "objective",
+        "globs": "scope_globs"
+      },
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "alwaysApply": {
+            "type": "boolean"
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "globs": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "alwaysApply"
+        ],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [
+        "Migrate .cursorrules into explicit project-rule scope; do not silently preserve a deprecated path."
+      ],
+      "path_template": ".cursor/rules/{name}.mdc",
+      "resources": false,
+      "scope_kinds": [
+        "workspace",
+        "paths"
+      ],
+      "scope_semantics": "Project rules are rooted in .cursor/rules; glob activation is not filesystem access control.",
+      "serializer": "frontmatter",
+      "surfaces": [
+        "persistent"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    },
+    {
+      "activation": [
+        "manual"
+      ],
+      "activation_semantics": "Historical candidate: project command selected manually. Current discovery/execution contract is not verified.",
+      "authority_intents": [
+        "guidance"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "manual-activation": "native",
+        "named-inputs": "instruction-only",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "cursor-command",
+      "max_characters": null,
+      "metadata_fields": {},
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [
+        "Retained historical plain-Markdown .cursor/commands/{name}.md projection for compatibility testing only. Current command-format provenance requires reverification; current Skills migration documentation does not verify this exact contract."
+      ],
+      "path_template": ".cursor/commands/{name}.md",
+      "resources": false,
+      "scope_kinds": [
+        "workspace"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "markdown",
+      "surfaces": [
+        "reusable_action"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    },
+    {
+      "activation": [
+        "explicit"
+      ],
+      "activation_semantics": "Explicit use by the caller; no automatic invocation is promised.",
+      "authority_intents": [
+        "guidance"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "named-inputs": "instruction-only",
+        "one-shot-task": "native",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "task-message",
+      "max_characters": null,
+      "metadata_fields": {},
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": "{name}.md",
+      "resources": false,
+      "scope_kinds": [
+        "request",
+        "session"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "markdown",
+      "surfaces": [
+        "task"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    },
+    {
+      "activation": [
+        "explicit"
+      ],
+      "activation_semantics": "Explicit use by the caller; no automatic invocation is promised.",
+      "authority_intents": [
+        "delegated"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "delegation-contract": "native",
+        "named-inputs": "instruction-only",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "delegation-message",
+      "max_characters": null,
+      "metadata_fields": {},
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": "{name}.md",
+      "resources": false,
+      "scope_kinds": [
+        "request",
+        "session",
+        "paths"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "markdown",
+      "surfaces": [
+        "delegation"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    }
+  ],
+  "schema_version": "2.0.0",
+  "support_scope": "Project rules and task/delegation text; legacy project command projection retained provisionally, not currently verified for host execution.",
+  "unsupported_surfaces": [
+    "agent",
+    "api",
+    "runtime_policy"
+  ],
+  "warnings": [
+    "Cursor command documentation is mutable; verify the installed host before deployment."
+  ]
+}

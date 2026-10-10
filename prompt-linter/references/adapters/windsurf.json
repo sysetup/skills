@@ -1,0 +1,322 @@
+{
+  "freshness_days": 90,
+  "id": "windsurf",
+  "product": "Windsurf/Cascade compatibility",
+  "provenance": [
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Redirected Windsurf/Cascade rules documentation",
+      "url": "https://docs.devin.ai/desktop/cascade/memories"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Redirected Windsurf workflows documentation",
+      "url": "https://docs.devin.ai/desktop/cascade/workflows"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Redirected Windsurf skills documentation",
+      "url": "https://docs.devin.ai/desktop/cascade/skills"
+    }
+  ],
+  "representations": [
+    {
+      "activation": [
+        "automatic"
+      ],
+      "activation_semantics": "Workspace rule uses trigger always_on or glob.",
+      "authority_intents": [
+        "guidance"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "named-inputs": "instruction-only",
+        "persistent-context": "native",
+        "runtime-enforcement": "unsupported",
+        "scoped-instructions": "native"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "windsurf-rule",
+      "max_characters": 12000,
+      "metadata_fields": {
+        "globs": "scope_globs",
+        "trigger": "scope_trigger"
+      },
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "globs": {
+            "type": "string"
+          },
+          "trigger": {
+            "enum": [
+              "always_on",
+              "glob"
+            ]
+          }
+        },
+        "required": [
+          "trigger"
+        ],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": ".windsurf/rules/{name}.md",
+      "resources": false,
+      "scope_kinds": [
+        "workspace",
+        "paths"
+      ],
+      "scope_semantics": "Compatibility path .windsurf/rules; current redirected docs prefer .devin/rules. No automatic path migration without an explicit target-product decision.",
+      "serializer": "frontmatter",
+      "surfaces": [
+        "persistent"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    },
+    {
+      "activation": [
+        "manual"
+      ],
+      "activation_semantics": "Manual workflow invocation; Markdown objective and ordered steps.",
+      "authority_intents": [
+        "guidance"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "manual-activation": "native",
+        "named-inputs": "instruction-only",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "windsurf-workflow",
+      "max_characters": 12000,
+      "metadata_fields": {},
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": ".windsurf/workflows/{name}.md",
+      "resources": false,
+      "scope_kinds": [
+        "workspace"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "markdown",
+      "surfaces": [
+        "reusable_action"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    },
+    {
+      "activation": [
+        "model_selected"
+      ],
+      "activation_semantics": "The host discovers the name and description; the body and resources load on selection.",
+      "authority_intents": [
+        "guidance"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "model-selection": "native",
+        "named-inputs": "instruction-only",
+        "resource-bundles": "native",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "windsurf-skill",
+      "max_characters": null,
+      "metadata_fields": {
+        "description": "objective",
+        "name": "artifact_name"
+      },
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "description"
+        ],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": ".windsurf/skills/{name}/SKILL.md",
+      "resources": true,
+      "scope_kinds": [
+        "workspace"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "frontmatter",
+      "surfaces": [
+        "reusable_action"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    },
+    {
+      "activation": [
+        "explicit"
+      ],
+      "activation_semantics": "Explicit use by the caller; no automatic invocation is promised.",
+      "authority_intents": [
+        "guidance"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "named-inputs": "instruction-only",
+        "one-shot-task": "native",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "task-message",
+      "max_characters": null,
+      "metadata_fields": {},
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": "{name}.md",
+      "resources": false,
+      "scope_kinds": [
+        "request",
+        "session"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "markdown",
+      "surfaces": [
+        "task"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    },
+    {
+      "activation": [
+        "explicit"
+      ],
+      "activation_semantics": "Explicit use by the caller; no automatic invocation is promised.",
+      "authority_intents": [
+        "delegated"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "delegation-contract": "native",
+        "named-inputs": "instruction-only",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "delegation-message",
+      "max_characters": null,
+      "metadata_fields": {},
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": "{name}.md",
+      "resources": false,
+      "scope_kinds": [
+        "request",
+        "session",
+        "paths"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "markdown",
+      "surfaces": [
+        "delegation"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    }
+  ],
+  "schema_version": "1.0.0",
+  "support_scope": "Legacy Windsurf-compatible project paths documented by the redirected vendor docs.",
+  "unsupported_surfaces": [
+    "agent",
+    "api",
+    "runtime_policy"
+  ],
+  "warnings": [
+    "Vendor docs now redirect to Devin Desktop. Rules prefer .devin while workflows/skills still document .windsurf; this adapter intentionally emits the documented Windsurf compatibility paths and requires product/version review."
+  ]
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "ops-algorithmic"
+  short_description: "Algorithm-first design, implementation, optimization, and code quality"

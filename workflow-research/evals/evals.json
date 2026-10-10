@@ -1,0 +1,135 @@
+{
+  "skill_name": "workflow-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "haz una investigación sobre el teletrabajo",
+      "expected_output": "Gate 0 Clarification Mode only: the six slot questions in one pass, no protocol, no matrix, no findings, no chosen approach.",
+      "files": [],
+      "expectations": [
+        "Output asks all six Gate 0 slots (problem, purpose, approach, population/setting, central question, deliverable/constraints) in one pass",
+        "Output does not ship a filled research protocol, consistency matrix, instruments, or findings",
+        "Output does not lock an approach, named design, or worldview",
+        "Output does not invent participants, statistics, or bibliographic entries"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "investiga por qué falló el build de anoche en este repo. El log está en el workspace. Quiero saber la causa, no un protocolo de tesis.",
+      "expected_output": "Executed qualitative case study of the bounded incident: findings first, approach line, purpose, RQ, sources, no fabricated people or stats, not skipped as lookup.",
+      "files": [],
+      "expectations": [
+        "Output treats the prompt as inquiry and runs the loop rather than answering as a one-line lookup skip",
+        "Approach line names qualitative case study (not phenomenology unless lived experience is asked)",
+        "Output leads with findings that answer why the build failed, or an explicit pending-corpus limit if no log exists",
+        "Output includes a purpose statement, a central RQ, and an Assumptions block for inferred Gate 0 slots",
+        "Output does not fabricate participants, quotes, p-values, or bibliographic entries",
+        "Output does not ship a full thesis protocol as the primary deliverable (no empty 8-phase cronograma presented as the answer)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Does a 6-week structured GenAI-tutoring protocol improve end-of-term calculus exam scores among first-year engineering students at a public university compared with business-as-usual recitation? I need a study design I can run next semester. Random assignment by section is feasible.",
+      "expected_output": "Quantitative true experiment, hypotheses, purpose script, validity threats, no fake results.",
+      "files": [],
+      "expectations": [
+        "Approach line names quantitative experimental family and a true experiment (random assignment is feasible)",
+        "Worldview is postpositivist",
+        "Output includes a quantitative purpose statement and H0/H1 whose variables match the purpose",
+        "Output does not report invented p-values, means, or participant quotes as if data were collected",
+        "Causal verbs are tied to the experimental design rather than to a survey"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I need a phenomenological study of the lived experience of night-shift nurses who lost hours after a hospital introduced a generative-AI triage assistant. Help me write the methodology: purpose, questions, design, and trustworthiness. No interviews have been run yet.",
+      "expected_output": "Qualitative phenomenology, constructivist (or transformative if framed as labor harm), purpose script, no hypotheses, interview protocol drafts, no fake themes.",
+      "files": [],
+      "expectations": [
+        "Approach line names qualitative phenomenology",
+        "Worldview is constructivist or transformative, not postpositivist",
+        "Purpose statement follows the qualitative script (understand/explore/describe a central phenomenon for participants in a site)",
+        "Output has a central lived-experience question and no H0/H1",
+        "Output does not invent interview quotes, themes, or participant counts as completed data"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Necesito el estado del arte para el capítulo 2 de mi tesis sobre adopción de modelos de lenguaje en pymes manufactureras de Colombia 2019–2025. No voy a recoger entrevistas todavía; el entregable es la revisión.",
+      "expected_output": "Literature-review study with PRISMA-adapted counts, gap argument, not labeled mixed methods.",
+      "files": [],
+      "expectations": [
+        "Design is named as narrative, scoping, or systematic review — not mixed methods, not phenomenology, not an experiment",
+        "Output includes Identification / Screening / Eligibility / Inclusion counts or an explicit in-progress count table",
+        "Literature is clustered into a gap argument rather than an annotated dump only",
+        "Output does not fabricate bibliographic entries for papers that were not retrieved"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "what is mixed methods?",
+      "expected_output": "Short sourced definition. Does not enter Clarification Mode and does not run the eight-step loop.",
+      "files": [],
+      "expectations": [
+        "Output answers the definitional question without entering Gate 0 Clarification Mode",
+        "Output does not run or announce the eight-step research loop",
+        "Output does not ship a protocol, consistency matrix, or study findings"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "First measure how often warehouse pickers override the new routing algorithm, then interview high-override and low-override pickers to explain why. I need the study design, integration plan, and joint display. No data have been collected yet. Random assignment is not part of this study.",
+      "expected_output": "Mixed explanatory sequential (QUAN → qual), pragmatic worldview, integration question, joint display with pending cells, no invented numbers or quotes.",
+      "files": [],
+      "expectations": [
+        "Approach line names mixed methods and explanatory sequential (QUAN → qual), not convergent and not a single-strand survey",
+        "Worldview is pragmatic (or transformative only if justice is the mixing reason)",
+        "Output includes a quantitative question, a qualitative question, and an integration question that refers to explaining the quantitative results",
+        "Output includes a joint display (or equivalent merge table) whose result cells are empty or marked pending",
+        "Output does not invent override rates, p-values, interview quotes, or themes as collected data",
+        "Qualitative sample is described as connecting from the quantitative results (high/low override), not as a second population estimate"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Design and evaluate a method for detecting silent data corruption in object-storage replicas. Build the method far enough to demonstrate on a worked instance and name how you will evaluate it against objectives. This is design science, not a survey of operators and not a Creswell mixed-methods study.",
+      "expected_output": "DSRM track: named artifact type, objectives, demonstration distinct from evaluation, Hevner method, no fake benchmarks, not labeled Creswell mixed methods.",
+      "files": [],
+      "expectations": [
+        "Approach line names DSRM (Peffers/Hevner), not quantitative, qualitative, or mixed methods as the primary approach",
+        "Output names an artifact type (construct, model, method, or instantiation) and solution objectives",
+        "Demonstration (worked instance, tests, or walkthrough) is separate from evaluation against those objectives",
+        "A Hevner evaluation method is named (observational, analytical, experimental, testing, or descriptive) and residual user-side evaluation is listed if the agent cannot run it",
+        "Output does not invent runtime metrics, user counts, field deployments, or evaluation results that were not produced",
+        "Output does not label the study as Creswell mixed methods"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "I want a phenomenological study of whether a four-day work week improves software-team defect rates compared with a five-day week. Use phenomenology. Write the methodology.",
+      "expected_output": "Mismatch flagged: phenomenology cannot license a causal defect-rate claim. Propose quantitative experimental/quasi. Do not silently execute phenomenology as the answer to the causal RQ.",
+      "files": [],
+      "expectations": [
+        "Output flags a mismatch between the locked phenomenological design and the causal defect-rate question",
+        "Output proposes a Creswell-correct design in the quantitative experimental family (true or quasi) rather than obeying phenomenology as if it answered the causal RQ",
+        "Output states that a phenomenological study could claim lived experience of the four-day week, not a causal effect on defect rates",
+        "Output does not invent interview themes, essences, p-values, or defect-rate results as collected data",
+        "Output does not ship causal Findings under a phenomenology label"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Investiga si el emparejamiento por IA mejora la retención a 90 días de clientes de un SaaS B2B comparado con el emparejamiento manual. No tengo dataset ni puedo randomizar todavía. Quiero la respuesta ahora.",
+      "expected_output": "Experimental family named; no invented results; literature is not treated as the experiment; protocol + empty tables + pending fieldwork rather than a web synthesis as the causal answer.",
+      "files": [],
+      "expectations": [
+        "Approach line names the quantitative experimental family (true or quasi); it does not relabel the study as a literature review in order to answer anyway",
+        "Findings do not claim that AI matching improves (or does not improve) 90-day retention as this study's causal result",
+        "Output does not invent p-values, retention rates, assignment, or participant counts as if an experiment ran",
+        "Literature, if used, is confined to the gap argument or background and is not presented as the experiment",
+        "Output ships a protocol (or equivalent) with empty result tables and an explicit pending-fieldwork list for assignment and measures",
+        "Causal verbs in any recommendation or discussion are labeled as unlicensed by this study's data"
+      ]
+    }
+  ]
+}

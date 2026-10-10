@@ -1,0 +1,284 @@
+SYSTEMS ENGINEERING 1.2.0 - LOCAL VALIDATION RECORD
+Release date: 2026-09-14 (conversation date).
+Interpreter actually used: 3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]
+Platform: Linux-6.18.44-x86_64-with-glibc2.41
+Input archive SHA-256: 4f713bce2f3afc51605e1c94ce5afca8ab5d042ed89b861ab1c2b61c7bd36769
+
+SCOPE: Actual local executions of package/checker tests. These are not agent behavior
+trials, flights, product verification, independent certification, or host installation.
+All run/approval records inside regression mutations are explicitly synthetic test data.
+Both positive and negative tests run: a negative case passes only when its defect is rejected.
+The original package passes its 20 text-presence checks despite its documented defects.
+
+All 36 original paths are retained. Modified original files: 36.
+Unchanged original files: 0.
+12 references and 20 templates. New release manifest is added after this record is written.
+
+NOT RUN: repeated with/without-skill model evaluation, holdout evaluation, independent
+domain review, actual engineering tests/simulations, external host installation, full
+normative conformity assessment. See tests/behavioral-evaluation.md for the protocol.
+
+The artifact checker compares declared contracts, not arbitrary prose or original
+source meaning. It does not authenticate evidence/authority, infer unit equivalence,
+or certify feasibility. Default template scaffolds are exempt; --strict is for outputs.
+Seven UAV obligations have conditional draft plans; zero have actual product evidence.
+
+==============================================================================
+Original structural validator
+Working directory: /mnt/data/original/systems-engineering
+Command: python3 scripts/validate-skill.py
+Exit code: 0
+--- stdout ---
+VALIDATION PASSED
+root: /mnt/data/original/systems-engineering
+name: systems-engineering
+description_chars: 612
+skill_md_lines: 329
+references: 11
+templates: 18
+--- stderr ---
+(empty)
+
+==============================================================================
+Original documentation smoke tests
+Working directory: /mnt/data/original/systems-engineering
+Command: python3 scripts/test-capability-contract.py
+Exit code: 0
+--- stdout ---
+PASS  F2-01 requirements ingestion
+PASS  F2-02 architecture
+PASS  F2-03 trade study / Pugh
+PASS  F2-04 SysML BDD/IBD/req
+PASS  F2-05 V-model V&V
+PASS  F2-06 FMEA
+PASS  F2-07 ICD
+PASS  F2-08 traceability
+PASS  F2-09 SEMP / ConOps
+PASS  F3-empty
+PASS  F3-ambiguous
+PASS  F3-table
+PASS  F3-contradictory
+PASS  F3-impossible
+PASS  F3-out-of-scope
+PASS  F3-large-set
+PASS  F3-pdf-image
+PASS  F5-yangon novice
+PASS  F1-scope-exclusions
+PASS  F1-static-validator
+
+20 passed, 0 failed, 20 total
+--- stderr ---
+(empty)
+
+==============================================================================
+Corrected structural validator
+Working directory: /mnt/data/work/systems-engineering
+Command: python3 scripts/validate-skill.py
+Exit code: 0
+--- stdout ---
+VALIDATION PASSED (package structure, not engineering or agent behavior)
+root: /mnt/data/work/systems-engineering
+name: systems-engineering
+description_chars: 716
+skill_md_lines: 371
+references: 12
+templates: 20
+--- stderr ---
+(empty)
+
+==============================================================================
+Corrected documentation smoke tests
+Working directory: /mnt/data/work/systems-engineering
+Command: python3 scripts/test-capability-contract.py
+Exit code: 0
+--- stdout ---
+DOCUMENTATION SMOKE TESTS ONLY - no real agent or physical system executed
+PASS  F2-01 requirements ingestion
+PASS  F2-02 architecture
+PASS  F2-03 trade study / Pugh
+PASS  F2-04 SysML BDD/IBD/req
+PASS  F2-05 V-model V&V
+PASS  F2-06 FMEA
+PASS  F2-07 ICD
+PASS  F2-08 traceability
+PASS  F2-09 SEMP / ConOps
+PASS  F3-empty
+PASS  F3-ambiguous
+PASS  F3-table
+PASS  F3-contradictory
+PASS  F3-impossible
+PASS  F3-out-of-scope
+PASS  F3-large-set
+PASS  F3-pdf-image
+PASS  F5-yangon novice
+PASS  F1-scope-exclusions
+PASS  F1-static-validator
+
+20 passed, 0 failed, 20 total
+--- stderr ---
+(empty)
+
+==============================================================================
+Corrected selected artifact checks
+Working directory: /mnt/data/work/systems-engineering
+Command: python3 scripts/validate-artifacts.py --path .
+Exit code: 0
+--- stdout ---
+ARTIFACT CHECKS PASSED
+files: 38; errors: 0; warnings: 0
+checks: evidence_rows=7, fmea_rows=3, mandatory_gate_rows=3, pugh_matrices=1, tables=69, template_scaffolds=5, trace_rows=7, verification_contracts=1, weighted_score_matrices=1
+Declared table/number/coverage contracts only; no physical, evidentiary-authenticity, regulatory, or agent-behavior certification.
+--- stderr ---
+(empty)
+
+==============================================================================
+Corrected UAV strict artifact contract
+Working directory: /mnt/data/work/systems-engineering
+Command: python3 scripts/validate-artifacts.py --strict --path tests/e2e-delivery-uav.md
+Exit code: 0
+--- stdout ---
+ARTIFACT CHECKS PASSED
+files: 1; errors: 0; warnings: 0
+checks: evidence_rows=5, fmea_rows=2, mandatory_gate_rows=3, pugh_matrices=1, tables=13, trace_rows=7, verification_contracts=1
+Declared table/number/coverage contracts only; no physical, evidentiary-authenticity, regulatory, or agent-behavior certification.
+--- stderr ---
+(empty)
+
+==============================================================================
+Corrected executable regression suite
+Working directory: /mnt/data/work/systems-engineering
+Command: python3 scripts/test-regressions.py
+Exit code: 0
+--- stdout ---
+CHECKER REGRESSIONS ONLY - synthetic mutations, no real agent/flight/approval evaluation.
+--- stderr ---
+test_accepted_event_needs_authorized_decision (__main__.RegressionTests.test_accepted_event_needs_authorized_decision) ... ok
+test_all_twenty_templates_preserved_and_checked (__main__.RegressionTests.test_all_twenty_templates_preserved_and_checked) ... ok
+test_checked_event_needs_review (__main__.RegressionTests.test_checked_event_needs_review) ... ok
+test_cli_malformed_table_returns_nonzero (__main__.RegressionTests.test_cli_malformed_table_returns_nonzero) ... ok
+test_cli_missing_path_returns_nonzero (__main__.RegressionTests.test_cli_missing_path_returns_nonzero) ... ok
+test_cli_strict_mode_does_not_exempt_scaffolds (__main__.RegressionTests.test_cli_strict_mode_does_not_exempt_scaffolds) ... ok
+test_cli_success_and_json (__main__.RegressionTests.test_cli_success_and_json) ... ok
+test_cli_symlink_input_is_rejected (__main__.RegressionTests.test_cli_symlink_input_is_rejected) ... ok
+test_contract_mismatch_comparator (__main__.RegressionTests.test_contract_mismatch_comparator) ... ok
+test_contract_mismatch_conditions (__main__.RegressionTests.test_contract_mismatch_conditions) ... ok
+test_contract_mismatch_interface_id (__main__.RegressionTests.test_contract_mismatch_interface_id) ... ok
+test_contract_mismatch_limit (__main__.RegressionTests.test_contract_mismatch_limit) ... ok
+test_contract_mismatch_observable (__main__.RegressionTests.test_contract_mismatch_observable) ... ok
+test_contract_mismatch_trigger (__main__.RegressionTests.test_contract_mismatch_trigger) ... ok
+test_contract_mismatch_unit (__main__.RegressionTests.test_contract_mismatch_unit) ... ok
+test_contract_non_numeric_limit (__main__.RegressionTests.test_contract_non_numeric_limit) ... ok
+test_contract_wrong_event_declaration (__main__.RegressionTests.test_contract_wrong_event_declaration) ... ok
+test_corrected_uav_passes_declared_contract (__main__.RegressionTests.test_corrected_uav_passes_declared_contract) ... ok
+test_duplicate_event_contract (__main__.RegressionTests.test_duplicate_event_contract) ... ok
+test_duplicate_obligation (__main__.RegressionTests.test_duplicate_obligation) ... ok
+test_duplicate_requirement (__main__.RegressionTests.test_duplicate_requirement) ... ok
+test_duplicate_table_header (__main__.RegressionTests.test_duplicate_table_header) ... ok
+test_duplicate_trace (__main__.RegressionTests.test_duplicate_trace) ... ok
+test_escaped_pipe_stays_in_cell (__main__.RegressionTests.test_escaped_pipe_stays_in_cell) ... ok
+test_every_bundled_markdown_passes_selected_checks (__main__.RegressionTests.test_every_bundled_markdown_passes_selected_checks) ... ok
+test_evidence_without_contract_reports_unchecked_coverage (__main__.RegressionTests.test_evidence_without_contract_reports_unchecked_coverage) ... ok
+test_executed_event_needs_actual_evidence (__main__.RegressionTests.test_executed_event_needs_actual_evidence) ... ok
+test_executed_event_needs_run_metadata (__main__.RegressionTests.test_executed_event_needs_run_metadata) ... ok
+test_failed_execution_cannot_verify_requirement (__main__.RegressionTests.test_failed_execution_cannot_verify_requirement) ... ok
+test_failed_mandatory_gate_cannot_be_outweighed (__main__.RegressionTests.test_failed_mandatory_gate_cannot_be_outweighed) ... ok
+test_fenced_tables_are_not_parsed (__main__.RegressionTests.test_fenced_tables_are_not_parsed) ... ok
+test_fmea_demonstrated_without_actual_evidence (__main__.RegressionTests.test_fmea_demonstrated_without_actual_evidence) ... ok
+test_fmea_out_of_scale_and_fractional_ratings (__main__.RegressionTests.test_fmea_out_of_scale_and_fractional_ratings) ... ok
+test_fmea_reduced_severity_requires_effect_rationale (__main__.RegressionTests.test_fmea_reduced_severity_requires_effect_rationale) ... ok
+test_fmea_residual_without_factors (__main__.RegressionTests.test_fmea_residual_without_factors) ... ok
+test_fmea_wrong_initial_product (__main__.RegressionTests.test_fmea_wrong_initial_product) ... ok
+test_fmea_wrong_residual_product (__main__.RegressionTests.test_fmea_wrong_residual_product) ... ok
+test_gate_pass_needs_source (__main__.RegressionTests.test_gate_pass_needs_source) ... ok
+test_missing_architecture (__main__.RegressionTests.test_missing_architecture) ... ok
+test_missing_obligation (__main__.RegressionTests.test_missing_obligation) ... ok
+test_missing_parent (__main__.RegressionTests.test_missing_parent) ... ok
+test_missing_trace (__main__.RegressionTests.test_missing_trace) ... ok
+test_missing_trace_interface (__main__.RegressionTests.test_missing_trace_interface) ... ok
+test_original_hospital_actuator_link_error (__main__.RegressionTests.test_original_hospital_actuator_link_error) ... ok
+test_original_malformed_validation_row_is_detected (__main__.RegressionTests.test_original_malformed_validation_row_is_detected) ... ok
+test_original_new_development_negative_count (__main__.RegressionTests.test_original_new_development_negative_count) ... ok
+test_original_pugh_datum_error (__main__.RegressionTests.test_original_pugh_datum_error) ... ok
+test_parent_cycle (__main__.RegressionTests.test_parent_cycle) ... ok
+test_planned_event_cannot_claim_actual_evidence (__main__.RegressionTests.test_planned_event_cannot_claim_actual_evidence) ... ok
+test_planned_event_cannot_claim_pass (__main__.RegressionTests.test_planned_event_cannot_claim_pass) ... ok
+test_planned_event_needs_expected_artifact (__main__.RegressionTests.test_planned_event_needs_expected_artifact) ... ok
+test_planned_trace_cannot_claim_accepted (__main__.RegressionTests.test_planned_trace_cannot_claim_accepted) ... ok
+test_planned_trace_cannot_claim_verified (__main__.RegressionTests.test_planned_trace_cannot_claim_verified) ... ok
+test_pugh_duplicate_criterion (__main__.RegressionTests.test_pugh_duplicate_criterion) ... ok
+test_pugh_invalid_numeric_weights (__main__.RegressionTests.test_pugh_invalid_numeric_weights) ... ok
+test_pugh_invalid_rating (__main__.RegressionTests.test_pugh_invalid_rating) ... ok
+test_pugh_missing_total (__main__.RegressionTests.test_pugh_missing_total) ... ok
+test_pugh_wrong_weighted_total (__main__.RegressionTests.test_pugh_wrong_weighted_total) ... ok
+test_synthetic_accepted_record_passes_only_structural_gates (__main__.RegressionTests.test_synthetic_accepted_record_passes_only_structural_gates) ... ok
+test_synthetic_checked_record_passes_only_structural_gates (__main__.RegressionTests.test_synthetic_checked_record_passes_only_structural_gates) ... ok
+test_trace_wrong_method (__main__.RegressionTests.test_trace_wrong_method) ... ok
+test_unclosed_fence_is_reported (__main__.RegressionTests.test_unclosed_fence_is_reported) ... ok
+test_unknown_architecture (__main__.RegressionTests.test_unknown_architecture) ... ok
+test_unknown_contract_obligation (__main__.RegressionTests.test_unknown_contract_obligation) ... ok
+test_unknown_mandatory_gate_cannot_select (__main__.RegressionTests.test_unknown_mandatory_gate_cannot_select) ... ok
+test_unknown_parent (__main__.RegressionTests.test_unknown_parent) ... ok
+test_unknown_requirement_source (__main__.RegressionTests.test_unknown_requirement_source) ... ok
+test_unknown_trace_event (__main__.RegressionTests.test_unknown_trace_event) ... ok
+test_unknown_trace_need (__main__.RegressionTests.test_unknown_trace_need) ... ok
+test_weighted_score_out_of_range (__main__.RegressionTests.test_weighted_score_out_of_range) ... ok
+test_weighted_score_wrong_product (__main__.RegressionTests.test_weighted_score_wrong_product) ... ok
+test_weighted_score_wrong_total (__main__.RegressionTests.test_weighted_score_wrong_total) ... ok
+
+----------------------------------------------------------------------
+Ran 72 tests in 3.066s
+
+OK
+
+==============================================================================
+Modified original paths
+SKILL.md
+agents/openai.yaml
+assets/templates/business-needs-and-requirements-template.md
+assets/templates/configuration-baselines-template.md
+assets/templates/conops-template.md
+assets/templates/context-diagram-template.md
+assets/templates/design-review-checklist-template.md
+assets/templates/ffbd-template.md
+assets/templates/fmea-template.md
+assets/templates/icd-template.md
+assets/templates/requirements-breakdown-structure-template.md
+assets/templates/risk-register-template.md
+assets/templates/semp-outline-template.md
+assets/templates/stakeholder-requirements-specification-template.md
+assets/templates/sysml-model-template.md
+assets/templates/system-requirements-specification-template.md
+assets/templates/traceability-matrix-template.md
+assets/templates/trade-off-analysis-matrix-template.md
+assets/templates/vv-plan-template.md
+assets/templates/work-breakdown-structure-template.md
+references/01-systems-fundamentals.md
+references/02-se-discipline-framework.md
+references/03-needs-requirements.md
+references/04-requirements-engineering.md
+references/05-conceptual-design.md
+references/06-preliminary-detailed.md
+references/07-construction-utilization.md
+references/08-se-management.md
+references/09-standards-glossary.md
+references/10-decision-frameworks.md
+references/11-mbse-interfaces-vv.md
+scripts/test-capability-contract.py
+scripts/validate-skill.py
+tests/e2e-delivery-uav.md
+tests/e2e-edge-cases.md
+tests/e2e-yangon-flood.md
+
+Unchanged original paths
+
+Added paths (before manifest)
+CHANGELOG.md
+assets/templates/evidence-register-template.md
+assets/templates/standards-applicability-template.md
+references/12-evidence-and-assurance.md
+scripts/engineering_checks.py
+scripts/test-regressions.py
+scripts/validate-artifacts.py
+tests/behavioral-cases.json
+tests/behavioral-evaluation.md
+tests/validation-results.txt

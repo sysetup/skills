@@ -1,0 +1,3 @@
+node R1 router
+node SW1 switch
+link R1 SW1 layer2 stp=onn

@@ -1,0 +1,3 @@
+interface:
+  display_name: prompt-enhance
+  short_description: Improve existing prompts without changing intent or surface.

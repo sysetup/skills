@@ -1,0 +1,8 @@
+node R1 router
+node SW1 switch
+node SW2 switch
+node H1 host
+link R1 SW1 layer3
+link SW1 SW2 layer2 stp=on
+link SW2 H1 layer2
+subnet users 10.10.10.0/24 gateway=R1 vlan=10

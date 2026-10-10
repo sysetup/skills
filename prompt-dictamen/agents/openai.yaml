@@ -1,0 +1,7 @@
+interface:
+  display_name: prompt-dictamen
+  short_description: Prepare a settled Dictamen for a fresh execution agent
+  default_prompt: Use $prompt-dictamen to prepare the latest relevant Dictamen as
+    a self-contained execution prompt for a new agent.
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,1058 @@
+#!/bin/bash
+# shaguard: generate and verify SHA-256 checksums on local Linux files.
+#
+# Security model:
+# - Uses a fixed SHA-256 algorithm to avoid weak-algorithm selection.
+# - Does not require root and performs no network access.
+# - Manifest verification rejects absolute paths, parent traversal, and
+#   symlink components before reading any listed file.
+# - Directory manifests contain regular files only and never follow symlinks.
+
+set -Eeuo pipefail
+IFS=$'\n\t'
+umask 077
+LC_ALL=C
+export LC_ALL
+
+readonly APP_NAME="shaguard"
+readonly APP_VERSION="1.0.0"
+readonly ALGORITHM="SHA-256"
+hash_backend=""
+
+readonly EXIT_OK=0
+readonly EXIT_RUNTIME=1
+readonly EXIT_USAGE=2
+readonly EXIT_DEPENDENCY=3
+readonly EXIT_MISMATCH=4
+readonly EXIT_IO=5
+readonly EXIT_MANIFEST=6
+
+cleanup_paths=()
+
+# Prints an error and exits with a deterministic status.
+# Arguments:
+#   $1: message
+#   $2: exit status
+# Returns:
+#   Does not return.
+die() {
+  local message="$1"
+  local status="${2:-${EXIT_RUNTIME}}"
+
+  printf 'Error: %s\n' "$message" >&2
+  exit "$status"
+}
+
+# Prints a warning to stderr.
+# Arguments:
+#   $1: message
+# Returns:
+#   0 always.
+warn() {
+  printf 'Warning: %s\n' "$1" >&2
+}
+
+# Removes registered temporary files.
+# Returns:
+#   0 always.
+cleanup() {
+  local path
+
+  for path in "${cleanup_paths[@]:-}"; do
+    if [[ -n "$path" && -e "$path" ]]; then
+      rm -f -- "$path" || true
+    fi
+  done
+}
+
+trap cleanup EXIT
+trap 'exit 129' HUP
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+# Registers a temporary path for cleanup.
+# Arguments:
+#   $1: path
+# Returns:
+#   0 always.
+register_temp() {
+  cleanup_paths+=("$1")
+}
+
+# Checks a required executable.
+# Arguments:
+#   $1: command name
+# Returns:
+#   0 if present; exits otherwise.
+require_command() {
+  local command_name="$1"
+
+  command -v "$command_name" >/dev/null 2>&1 || {
+    die "Required command not found: ${command_name}" "$EXIT_DEPENDENCY"
+  }
+}
+
+# Selects a local SHA-256 backend.
+# Prefers sha256sum and falls back to the BusyBox applet.
+# Returns:
+#   0 on success; exits when no supported backend is available.
+detect_hash_backend() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    hash_backend="sha256sum"
+    return 0
+  fi
+
+  if command -v busybox >/dev/null 2>&1 \
+    && busybox sha256sum </dev/null >/dev/null 2>&1; then
+    hash_backend="busybox"
+    return 0
+  fi
+
+  die "No SHA-256 backend found (sha256sum or BusyBox)." \
+    "$EXIT_DEPENDENCY"
+}
+
+# Runs the selected SHA-256 backend on standard input.
+# Returns:
+#   Backend status.
+run_sha256() {
+  case "$hash_backend" in
+    sha256sum)
+      sha256sum
+      ;;
+    busybox)
+      busybox sha256sum
+      ;;
+    *)
+      die "SHA-256 backend was not initialized." "$EXIT_RUNTIME"
+      ;;
+  esac
+}
+
+# Checks the runtime dependencies used by operational commands.
+# Returns:
+#   0 if a SHA-256 backend is present; exits otherwise.
+require_base_dependencies() {
+  detect_hash_backend
+}
+
+# Checks dependencies used by recursive manifest generation.
+# Returns:
+#   0 if all dependencies are present; exits otherwise.
+require_manifest_dependencies() {
+  local command_name
+
+  for command_name in find sort mktemp mv dirname basename; do
+    require_command "$command_name"
+  done
+}
+
+# Resolves an existing directory to a physical absolute path.
+# Arguments:
+#   $1: directory
+# Outputs:
+#   Absolute path.
+# Returns:
+#   0 on success; exits otherwise.
+resolve_directory() {
+  local directory="$1"
+
+  [[ -d "$directory" ]] || {
+    die "Directory does not exist: ${directory}" "$EXIT_IO"
+  }
+
+  (
+    cd -- "$directory" || exit "$EXIT_IO"
+    pwd -P
+  ) || die "Cannot resolve directory: ${directory}" "$EXIT_IO"
+}
+
+# Resolves an existing regular file to a physical absolute path.
+# Arguments:
+#   $1: file
+# Outputs:
+#   Absolute path.
+# Returns:
+#   0 on success; exits otherwise.
+resolve_file() {
+  local file="$1"
+  local directory
+  local base
+
+  [[ -f "$file" ]] || die "Regular file not found: ${file}" "$EXIT_IO"
+
+  directory="$(dirname -- "$file")"
+  base="$(basename -- "$file")"
+  directory="$(resolve_directory "$directory")"
+  printf '%s/%s\n' "$directory" "$base"
+}
+
+# Computes a SHA-256 digest without exposing the filename to sha256sum.
+# Arguments:
+#   $1: regular file path
+# Outputs:
+#   Digest in global variable REPLY.
+# Returns:
+#   0 on success; 1 when the file cannot be read.
+compute_digest() {
+  local file="$1"
+  local output
+  local digest
+
+  [[ -f "$file" ]] || return 1
+
+  if ! output="$(run_sha256 <"$file")"; then
+    return 1
+  fi
+
+  digest="${output:0:64}"
+  [[ "$digest" =~ ^[0-9a-f]{64}$ ]] || {
+    die "Unexpected SHA-256 backend output." "$EXIT_RUNTIME"
+  }
+
+  REPLY="$digest"
+  return 0
+}
+
+# Computes a SHA-256 digest and prints only the hexadecimal digest.
+# Arguments:
+#   $1: regular file path
+# Outputs:
+#   64 lowercase hexadecimal characters.
+# Returns:
+#   0 on success; exits otherwise.
+digest_file() {
+  local file="$1"
+
+  compute_digest "$file" || {
+    die "Failed to hash regular file: ${file}" "$EXIT_IO"
+  }
+  printf '%s\n' "$REPLY"
+}
+
+# Prints a GNU sha256sum-compatible checksum record.
+# Arguments:
+#   $1: lowercase SHA-256 digest
+#   $2: filename to encode
+# Returns:
+#   0 always.
+print_checksum_record() {
+  local digest="$1"
+  local filename="$2"
+  local input="$filename"
+  local encoded=""
+  local character
+  local escaped=false
+
+  while [[ -n "$input" ]]; do
+    character="${input:0:1}"
+    input="${input:1}"
+
+    case "$character" in
+      \\)
+        encoded+="\\\\"
+        escaped=true
+        ;;
+      $'\n')
+        encoded+='\n'
+        escaped=true
+        ;;
+      $'\r')
+        encoded+='\r'
+        escaped=true
+        ;;
+      *)
+        encoded+="$character"
+        ;;
+    esac
+  done
+
+  if $escaped; then
+    printf '\\%s  %s\n' "$digest" "$encoded"
+  else
+    printf '%s  %s\n' "$digest" "$encoded"
+  fi
+}
+
+# Returns success when a relative path matches any exclusion pattern.
+# Arguments:
+#   $1: path without leading ./
+#   $2..: Bash glob patterns
+# Returns:
+#   0 on match; 1 otherwise.
+should_exclude() {
+  local path="$1"
+  shift
+  local pattern
+
+  for pattern in "$@"; do
+    # Match the caller's exclusion glob, not a literal string.
+    # shellcheck disable=SC2053
+    if [[ "$path" == $pattern ]]; then
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+# Reports whether sort supports NUL-delimited records.
+# Returns:
+#   0 when "sort -z" is supported; 1 otherwise.
+sort_supports_zero() {
+  printf '' | sort -z >/dev/null 2>&1
+}
+
+# Creates a NUL-delimited list of regular files below a root directory.
+# The walk stays on one filesystem and never follows symlinks.
+# Arguments:
+#   $1: absolute root directory
+#   $2: output list file
+# Returns:
+#   0 on success; exits otherwise.
+write_file_list() {
+  local root="$1"
+  local list_file="$2"
+
+  if sort_supports_zero; then
+    if ! (
+      cd -- "$root"
+      find . -xdev -type f -print0 | sort -z
+    ) >"$list_file"; then
+      die "Failed to enumerate files under: ${root}" "$EXIT_IO"
+    fi
+  else
+    warn "sort -z is unavailable; manifest order may be filesystem-dependent."
+    if ! (
+      cd -- "$root"
+      find . -xdev -type f -print0
+    ) >"$list_file"; then
+      die "Failed to enumerate files under: ${root}" "$EXIT_IO"
+    fi
+  fi
+}
+
+# Decodes GNU checksum filename escaping without eval.
+# Supported escapes are the ones emitted by GNU coreutils for line safety.
+# Arguments:
+#   $1: escaped filename field
+# Outputs:
+#   Decoded filename in global variable REPLY.
+# Returns:
+#   0 on success; 1 for malformed escaping.
+decode_gnu_filename() {
+  local input="$1"
+  local output=""
+  local character
+  local escape
+
+  while [[ -n "$input" ]]; do
+    character="${input:0:1}"
+    input="${input:1}"
+
+    if [[ "$character" != "\\" ]]; then
+      output+="$character"
+      continue
+    fi
+
+    [[ -n "$input" ]] || return 1
+    escape="${input:0:1}"
+    input="${input:1}"
+
+    case "$escape" in
+      \\)
+        output+="\\"
+        ;;
+      n)
+        output+=$'\n'
+        ;;
+      r)
+        output+=$'\r'
+        ;;
+      *)
+        return 1
+        ;;
+    esac
+  done
+
+  REPLY="$output"
+  return 0
+}
+
+# Normalizes a manifest path while preserving filename bytes.
+# Arguments:
+#   $1: decoded path
+# Outputs:
+#   Normalized relative path in global variable REPLY.
+# Returns:
+#   0 if syntactically safe; 1 otherwise.
+normalize_manifest_path() {
+  local path="$1"
+  local rest
+  local component
+  local normalized=""
+
+  while [[ "$path" == ./* ]]; do
+    path="${path:2}"
+  done
+
+  [[ -n "$path" ]] || return 1
+  [[ "$path" != /* ]] || return 1
+
+  rest="$path"
+  while :; do
+    if [[ "$rest" == */* ]]; then
+      component="${rest%%/*}"
+      rest="${rest#*/}"
+    else
+      component="$rest"
+      rest=""
+    fi
+
+    case "$component" in
+      "" | ".") ;;
+      "..")
+        return 1
+        ;;
+      *)
+        if [[ -n "$normalized" ]]; then
+          normalized+="/"
+        fi
+        normalized+="$component"
+        ;;
+    esac
+
+    [[ -n "$rest" ]] || break
+  done
+
+  [[ -n "$normalized" ]] || return 1
+  REPLY="$normalized"
+  return 0
+}
+
+# Rejects a path when any existing component is a symbolic link.
+# Arguments:
+#   $1: physical absolute root
+#   $2: normalized relative path
+# Returns:
+#   0 when no component is a symlink; 1 otherwise.
+path_has_no_symlink_component() {
+  local root="$1"
+  local path="$2"
+  local rest="$path"
+  local component
+  local current="$root"
+
+  while :; do
+    if [[ "$rest" == */* ]]; then
+      component="${rest%%/*}"
+      rest="${rest#*/}"
+    else
+      component="$rest"
+      rest=""
+    fi
+
+    current+="/${component}"
+    if [[ -L "$current" ]]; then
+      return 1
+    fi
+
+    [[ -n "$rest" ]] || break
+  done
+
+  return 0
+}
+
+# Parses one GNU sha256sum-compatible manifest record.
+# Arguments:
+#   $1: record line
+# Outputs:
+#   MANIFEST_HASH and MANIFEST_PATH globals.
+# Returns:
+#   0 on success; 1 if malformed.
+parse_manifest_record() {
+  local line="$1"
+  local escaped=false
+  local record
+  local separator
+  local mode
+  local filename
+
+  if [[ "$line" == \\* ]]; then
+    escaped=true
+    record="${line:1}"
+  else
+    record="$line"
+  fi
+
+  ((${#record} >= 67)) || return 1
+
+  MANIFEST_HASH="${record:0:64}"
+  separator="${record:64:1}"
+  mode="${record:65:1}"
+  filename="${record:66}"
+
+  [[ "$MANIFEST_HASH" =~ ^[0-9A-Fa-f]{64}$ ]] || return 1
+  [[ "$separator" == " " ]] || return 1
+  [[ "$mode" == " " || "$mode" == "*" ]] || return 1
+  [[ -n "$filename" ]] || return 1
+
+  if $escaped; then
+    decode_gnu_filename "$filename" || return 1
+    filename="$REPLY"
+  fi
+
+  normalize_manifest_path "$filename" || return 1
+  MANIFEST_PATH="$REPLY"
+  MANIFEST_HASH="${MANIFEST_HASH,,}"
+  return 0
+}
+
+# Prints the main usage guide.
+print_main_help() {
+  cat <<'HELP'
+Usage:
+  shaguard <command> [options] [arguments]
+
+Commands:
+  hash FILE...                  Print SHA-256 checksums for regular files.
+  stdin                         Hash standard input.
+  manifest [options] ROOT       Create a recursive SHA-256 manifest.
+  verify [options] MANIFEST     Verify a manifest against a root directory.
+  compare EXPECTED FILE         Compare one expected digest with one file.
+  selftest                      Run an internal SHA-256 known-answer test.
+  version                       Print program version.
+  help [COMMAND]                Show help for a command.
+
+Global behavior:
+  Algorithm: SHA-256 only.
+  Privileges: root is not required.
+  Network: no network access is performed.
+  Zero arguments: prints this usage guide and performs no action.
+
+Run "shaguard help COMMAND" for command-specific options.
+HELP
+}
+
+# Prints help for the manifest command.
+print_manifest_help() {
+  cat <<'HELP'
+Usage:
+  shaguard manifest [-f] [-n] [-o FILE] [-x GLOB]... ROOT
+
+Options:
+  -o FILE   Output manifest. Default: ROOT/SHA256SUMS
+  -x GLOB   Exclude a relative path using a Bash glob. Repeatable.
+  -f        Replace an existing output manifest atomically.
+  -n        Dry run: list selected relative paths; do not hash or write.
+  -h        Show this help.
+
+Notes:
+  - Only regular files are included.
+  - Symlinks are never followed.
+  - The walk stays on the root filesystem (-xdev).
+  - The output manifest is excluded automatically when it is inside ROOT.
+  - The format is compatible with GNU sha256sum checksum records.
+HELP
+}
+
+# Prints help for the verify command.
+print_verify_help() {
+  cat <<'HELP'
+Usage:
+  shaguard verify [-q] [-r ROOT] MANIFEST
+
+Options:
+  -r ROOT   Verification root. Default: directory containing MANIFEST.
+  -q        Quiet success output; failures are still reported.
+  -h        Show this help.
+
+Security policy:
+  - Absolute paths are rejected.
+  - Parent traversal (..) is rejected.
+  - A listed path with any symbolic-link component is rejected.
+  - Only regular files are read.
+
+Exit status:
+  0  All listed files match.
+  4  At least one listed file is missing, unreadable, or mismatched.
+  6  Manifest syntax or path policy is invalid.
+HELP
+}
+
+# Prints help for a named command.
+# Arguments:
+#   $1: command name
+# Returns:
+#   0 for a known command; exits for an unknown command.
+print_command_help() {
+  local command_name="$1"
+
+  case "$command_name" in
+    manifest)
+      print_manifest_help
+      ;;
+    verify)
+      print_verify_help
+      ;;
+    hash)
+      printf '%s\n' 'Usage: shaguard hash FILE...'
+      ;;
+    stdin)
+      printf '%s\n' 'Usage: shaguard stdin'
+      ;;
+    compare)
+      printf '%s\n' 'Usage: shaguard compare EXPECTED_SHA256 FILE'
+      ;;
+    selftest)
+      printf '%s\n' 'Usage: shaguard selftest'
+      ;;
+    version)
+      printf '%s\n' 'Usage: shaguard version'
+      ;;
+    help)
+      printf '%s\n' 'Usage: shaguard help [COMMAND]'
+      ;;
+    *)
+      die "Unknown command for help: ${command_name}" "$EXIT_USAGE"
+      ;;
+  esac
+}
+
+# Implements the hash command.
+# Arguments:
+#   FILE...
+# Returns:
+#   0 on success; exits otherwise.
+cmd_hash() {
+  local file
+
+  (($# > 0)) || die "hash requires at least one FILE." "$EXIT_USAGE"
+  require_base_dependencies
+
+  for file in "$@"; do
+    [[ -f "$file" ]] || die "Regular file not found: ${file}" "$EXIT_IO"
+    compute_digest "$file" || die "Failed to hash file: ${file}" "$EXIT_IO"
+    if [[ "$file" == "-" ]]; then
+      print_checksum_record "$REPLY" "./-"
+    else
+      print_checksum_record "$REPLY" "$file"
+    fi
+  done
+}
+
+# Implements the stdin command.
+# Returns:
+#   0 on success; exits otherwise.
+cmd_stdin() {
+  (($# == 0)) || die "stdin accepts no arguments." "$EXIT_USAGE"
+  require_base_dependencies
+  run_sha256 || die "Failed to hash standard input." "$EXIT_IO"
+}
+
+# Implements the compare command.
+# Arguments:
+#   $1: expected SHA-256 digest
+#   $2: regular file
+# Returns:
+#   0 on match; exits with EXIT_MISMATCH on mismatch.
+cmd_compare() {
+  local expected
+  local file
+  local actual
+
+  (($# == 2)) || {
+    die "compare requires EXPECTED_SHA256 and FILE." "$EXIT_USAGE"
+  }
+
+  require_base_dependencies
+  expected="${1,,}"
+  file="$2"
+
+  [[ "$expected" =~ ^[0-9a-f]{64}$ ]] || {
+    die "Expected digest must be exactly 64 hexadecimal characters." \
+      "$EXIT_USAGE"
+  }
+
+  actual="$(digest_file "$file")"
+  if [[ "$actual" == "$expected" ]]; then
+    printf 'OK  %q\n' "$file"
+    return "$EXIT_OK"
+  fi
+
+  printf 'FAILED  %q\n' "$file" >&2
+  printf 'Expected: %s\n' "$expected" >&2
+  printf 'Actual:   %s\n' "$actual" >&2
+  exit "$EXIT_MISMATCH"
+}
+
+# Implements the manifest command.
+# Arguments:
+#   Command-specific options and ROOT.
+# Returns:
+#   0 on success; exits otherwise.
+cmd_manifest() {
+  local output=""
+  local force=false
+  local dry_run=false
+  local -a excludes=()
+  local option
+  local root
+  local root_abs
+  local output_abs=""
+  local output_dir
+  local output_base
+  local list_tmp
+  local manifest_tmp=""
+  local path
+  local relative
+  local absolute
+  local count=0
+
+  if (($# == 1)) && [[ "$1" == "--help" ]]; then
+    print_manifest_help
+    return "$EXIT_OK"
+  fi
+
+  OPTIND=1
+  while getopts ':o:x:fnh' option; do
+    case "$option" in
+      o)
+        output="$OPTARG"
+        ;;
+      x)
+        excludes+=("$OPTARG")
+        ;;
+      f)
+        force=true
+        ;;
+      n)
+        dry_run=true
+        ;;
+      h)
+        print_manifest_help
+        return "$EXIT_OK"
+        ;;
+      :)
+        die "Option -${OPTARG} requires an argument." "$EXIT_USAGE"
+        ;;
+      \?)
+        die "Unknown manifest option: -${OPTARG}" "$EXIT_USAGE"
+        ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  (($# == 1)) || die "manifest requires exactly one ROOT." "$EXIT_USAGE"
+
+  require_base_dependencies
+  require_manifest_dependencies
+  root="$1"
+  root_abs="$(resolve_directory "$root")"
+
+  if [[ -z "$output" ]]; then
+    output="${root_abs}/SHA256SUMS"
+  fi
+
+  if ! $dry_run; then
+    output_dir="$(dirname -- "$output")"
+    output_base="$(basename -- "$output")"
+    output_dir="$(resolve_directory "$output_dir")"
+    output_abs="${output_dir}/${output_base}"
+
+    if [[ -e "$output_abs" || -L "$output_abs" ]] && ! $force; then
+      die "Output exists; use -f to replace it: ${output_abs}" "$EXIT_USAGE"
+    fi
+  fi
+
+  list_tmp="$(mktemp "${TMPDIR:-/tmp}/${APP_NAME}.files.XXXXXX")" || {
+    die "Cannot create temporary file list." "$EXIT_IO"
+  }
+  register_temp "$list_tmp"
+  write_file_list "$root_abs" "$list_tmp"
+
+  if $dry_run; then
+    while IFS= read -r -d '' path; do
+      relative="${path#./}"
+      if should_exclude "$relative" "${excludes[@]}"; then
+        continue
+      fi
+      printf '%q\n' "$relative"
+      count=$((count + 1))
+    done <"$list_tmp"
+
+    printf 'Selected files: %d\n' "$count" >&2
+    return "$EXIT_OK"
+  fi
+
+  manifest_tmp="$(mktemp "${output_dir}/.${output_base}.tmp.XXXXXX")" || {
+    die "Cannot create temporary manifest in: ${output_dir}" "$EXIT_IO"
+  }
+  register_temp "$manifest_tmp"
+
+  {
+    printf '# %s manifest v1\n' "$APP_NAME"
+    printf '# algorithm: %s\n' "$ALGORITHM"
+    printf '# records: GNU sha256sum compatible\n'
+    printf '%s\n' \
+      '# scope: regular files only; symlinks not followed; one filesystem'
+  } >"$manifest_tmp"
+
+  while IFS= read -r -d '' path; do
+    relative="${path#./}"
+    absolute="${root_abs}/${relative}"
+
+    if [[ "$absolute" == "$output_abs" ]]; then
+      continue
+    fi
+    if should_exclude "$relative" "${excludes[@]}"; then
+      continue
+    fi
+    if ! path_has_no_symlink_component "$root_abs" "$relative"; then
+      die "Path became a symlink during generation: ${relative}" \
+        "$EXIT_IO"
+    fi
+
+    if ! compute_digest "${root_abs}/${relative}"; then
+      die "Failed while hashing: ${relative}" "$EXIT_IO"
+    fi
+    print_checksum_record "$REPLY" "./${relative}" >>"$manifest_tmp"
+
+    if ! path_has_no_symlink_component "$root_abs" "$relative"; then
+      die "Path changed to a symlink during generation: ${relative}" \
+        "$EXIT_IO"
+    fi
+
+    count=$((count + 1))
+  done <"$list_tmp"
+
+  ((count > 0)) || die "No regular files selected for the manifest." \
+    "$EXIT_USAGE"
+
+  if ! mv -f -- "$manifest_tmp" "$output_abs"; then
+    die "Failed to install manifest: ${output_abs}" "$EXIT_IO"
+  fi
+  manifest_tmp=""
+
+  printf 'Manifest: %s\n' "$output_abs"
+  printf 'Algorithm: %s\n' "$ALGORITHM"
+  printf 'Files: %d\n' "$count"
+}
+
+# Implements the verify command.
+# Arguments:
+#   Command-specific options and MANIFEST.
+# Returns:
+#   0 if all listed files match; exits otherwise.
+cmd_verify() {
+  local root=""
+  local quiet=false
+  local option
+  local manifest
+  local manifest_abs
+  local root_abs
+  local line
+  local line_number=0
+  local record_count=0
+  local failure_count=0
+  local actual
+  local target
+  local rendered
+  local -A seen_paths=()
+
+  if (($# == 1)) && [[ "$1" == "--help" ]]; then
+    print_verify_help
+    return "$EXIT_OK"
+  fi
+
+  OPTIND=1
+  while getopts ':r:qh' option; do
+    case "$option" in
+      r)
+        root="$OPTARG"
+        ;;
+      q)
+        quiet=true
+        ;;
+      h)
+        print_verify_help
+        return "$EXIT_OK"
+        ;;
+      :)
+        die "Option -${OPTARG} requires an argument." "$EXIT_USAGE"
+        ;;
+      \?)
+        die "Unknown verify option: -${OPTARG}" "$EXIT_USAGE"
+        ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  (($# == 1)) || die "verify requires exactly one MANIFEST." "$EXIT_USAGE"
+
+  require_base_dependencies
+  require_command dirname
+  require_command basename
+
+  manifest="$1"
+  manifest_abs="$(resolve_file "$manifest")"
+
+  if [[ -z "$root" ]]; then
+    root="$(dirname -- "$manifest_abs")"
+  fi
+  root_abs="$(resolve_directory "$root")"
+
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    line_number=$((line_number + 1))
+
+    [[ -z "$line" || "$line" == \#* ]] && continue
+
+    if ! parse_manifest_record "$line"; then
+      die "Malformed or unsafe manifest record at line ${line_number}." \
+        "$EXIT_MANIFEST"
+    fi
+
+    if [[ -n "${seen_paths[$MANIFEST_PATH]+present}" ]]; then
+      printf 'REJECTED  %q (duplicate path)\n' "$MANIFEST_PATH" >&2
+      exit "$EXIT_MANIFEST"
+    fi
+    seen_paths["$MANIFEST_PATH"]=1
+
+    if ! path_has_no_symlink_component "$root_abs" "$MANIFEST_PATH"; then
+      printf 'REJECTED  %q (symlink component)\n' "$MANIFEST_PATH" >&2
+      exit "$EXIT_MANIFEST"
+    fi
+
+    target="${root_abs}/${MANIFEST_PATH}"
+    rendered="$(printf '%q' "$MANIFEST_PATH")"
+    record_count=$((record_count + 1))
+
+    if [[ ! -f "$target" ]]; then
+      printf 'MISSING  %s\n' "$rendered" >&2
+      failure_count=$((failure_count + 1))
+      continue
+    fi
+
+    if ! compute_digest "$target"; then
+      printf 'UNREADABLE  %s\n' "$rendered" >&2
+      failure_count=$((failure_count + 1))
+      continue
+    fi
+    actual="$REPLY"
+
+    if ! path_has_no_symlink_component "$root_abs" "$MANIFEST_PATH"; then
+      printf 'REJECTED  %s (symlink changed during read)\n' \
+        "$rendered" >&2
+      exit "$EXIT_MANIFEST"
+    fi
+
+    if [[ "$actual" == "$MANIFEST_HASH" ]]; then
+      if ! $quiet; then
+        printf 'OK  %s\n' "$rendered"
+      fi
+    else
+      printf 'FAILED  %s\n' "$rendered" >&2
+      printf '  Expected: %s\n' "$MANIFEST_HASH" >&2
+      printf '  Actual:   %s\n' "$actual" >&2
+      failure_count=$((failure_count + 1))
+    fi
+  done <"$manifest_abs"
+
+  ((record_count > 0)) || {
+    die "Manifest contains no checksum records." "$EXIT_MANIFEST"
+  }
+
+  if ((failure_count > 0)); then
+    printf 'Verification failed: %d of %d record(s).\n' \
+      "$failure_count" "$record_count" >&2
+    exit "$EXIT_MISMATCH"
+  fi
+
+  if ! $quiet; then
+    printf 'Verification OK: %d record(s).\n' "$record_count"
+  fi
+}
+
+# Implements the selftest command using a published SHA-256 test vector.
+# Returns:
+#   0 on success; exits otherwise.
+cmd_selftest() {
+  local expected
+  local actual
+
+  (($# == 0)) || die "selftest accepts no arguments." "$EXIT_USAGE"
+  require_base_dependencies
+
+  expected="ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+  actual="$(printf 'abc' | run_sha256)"
+  actual="${actual:0:64}"
+
+  if [[ "$actual" != "$expected" ]]; then
+    die "SHA-256 known-answer test failed." "$EXIT_RUNTIME"
+  fi
+
+  printf 'Self-test OK: %s known-answer vector matched.\n' "$ALGORITHM"
+}
+
+# Main command dispatcher.
+# Arguments:
+#   CLI arguments.
+# Returns:
+#   Command status.
+main() {
+  local command_name
+
+  if (($# == 0)); then
+    print_main_help
+    return "$EXIT_OK"
+  fi
+
+  if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+    print_main_help
+    return "$EXIT_OK"
+  fi
+
+  command_name="$1"
+  shift
+
+  case "$command_name" in
+    hash)
+      cmd_hash "$@"
+      ;;
+    stdin)
+      cmd_stdin "$@"
+      ;;
+    manifest)
+      cmd_manifest "$@"
+      ;;
+    verify)
+      cmd_verify "$@"
+      ;;
+    compare)
+      cmd_compare "$@"
+      ;;
+    selftest)
+      cmd_selftest "$@"
+      ;;
+    version | --version)
+      (($# == 0)) || die "version accepts no arguments." "$EXIT_USAGE"
+      printf '%s %s (%s)\n' "$APP_NAME" "$APP_VERSION" "$ALGORITHM"
+      ;;
+    help)
+      if (($# == 0)); then
+        print_main_help
+      elif (($# == 1)); then
+        print_command_help "$1"
+      else
+        die "help accepts at most one COMMAND." "$EXIT_USAGE"
+      fi
+      ;;
+    *)
+      die "Unknown command: ${command_name}" "$EXIT_USAGE"
+      ;;
+  esac
+}
+
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+  main "$@"
+fi

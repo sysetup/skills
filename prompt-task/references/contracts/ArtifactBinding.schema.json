@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:prompt-toolkit:ArtifactBinding:1.0.0",
+  "title": "ArtifactBinding",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "representation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "artifact_name": {
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+    },
+    "native_options": {
+      "type": "object"
+    },
+    "input_values": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "representation",
+    "artifact_name",
+    "native_options",
+    "input_values"
+  ]
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "ops-shaguard"
+  short_description: "SHA-256 integrity checks with the skill's bundled script."

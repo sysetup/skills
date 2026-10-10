@@ -1,0 +1,31 @@
+{
+  "aliases": [],
+  "allowed_adapters": [
+    "agents-md",
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini-cli",
+    "generic",
+    "github-copilot",
+    "windsurf"
+  ],
+  "capabilities": [
+    "prompt-generation.persistent.v1"
+  ],
+  "commands": [
+    "scaffold",
+    "render",
+    "migrate",
+    "validate",
+    "check-contract"
+  ],
+  "host_representation": "openai",
+  "independent": true,
+  "name": "prompt-persistent",
+  "owned_surfaces": [
+    "persistent"
+  ],
+  "role": "generator",
+  "schema_version": "1.0.0"
+}

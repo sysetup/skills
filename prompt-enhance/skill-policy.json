@@ -1,0 +1,14 @@
+{
+  "aliases": [],
+  "allowed_adapters": [],
+  "capabilities": [
+    "prompt-enhancement.v1"
+  ],
+  "commands": [],
+  "host_representation": "openai",
+  "independent": true,
+  "name": "prompt-enhance",
+  "owned_surfaces": [],
+  "role": "transformer",
+  "schema_version": "1.0.0"
+}

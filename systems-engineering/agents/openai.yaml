@@ -1,0 +1,5 @@
+interface:
+  display_name: "systems-engineering"
+  short_description: "Traceable systems engineering: needs, architecture, trades, interfaces, risk and evidence."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,14 @@
+{
+  "id": "testing",
+  "version": "1.0.0",
+  "description": "Optional test-design requirements, independent of prompt surface.",
+  "constraints": [
+    "Derive actual test commands from repository configuration; do not invent a runnable command."
+  ],
+  "acceptance_criteria": [
+    "Separate tests executed from test cases proposed and explain uncovered risk."
+  ],
+  "verification": [
+    "Include a normal case, a boundary case and a failure case relevant to the objective."
+  ]
+}

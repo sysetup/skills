@@ -1,0 +1,2 @@
+node R1 router
+subnet users 10.10.10.0/24 gateway=R1 vlan=5000

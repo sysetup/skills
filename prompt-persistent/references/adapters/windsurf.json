@@ -1,0 +1,111 @@
+{
+  "freshness_days": 90,
+  "id": "windsurf",
+  "product": "Windsurf/Cascade compatibility",
+  "provenance": [
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Redirected Windsurf/Cascade rules documentation",
+      "url": "https://docs.devin.ai/desktop/cascade/memories"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Redirected Windsurf workflows documentation",
+      "url": "https://docs.devin.ai/desktop/cascade/workflows"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Redirected Windsurf skills documentation",
+      "url": "https://docs.devin.ai/desktop/cascade/skills"
+    }
+  ],
+  "representations": [
+    {
+      "activation": [
+        "automatic"
+      ],
+      "activation_semantics": "Workspace rule uses trigger always_on or glob.",
+      "authority_intents": [
+        "guidance"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "named-inputs": "instruction-only",
+        "persistent-context": "native",
+        "runtime-enforcement": "unsupported",
+        "scoped-instructions": "native"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "windsurf-rule",
+      "max_characters": 12000,
+      "metadata_fields": {
+        "globs": "scope_globs",
+        "trigger": "scope_trigger"
+      },
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "globs": {
+            "type": "string"
+          },
+          "trigger": {
+            "enum": [
+              "always_on",
+              "glob"
+            ]
+          }
+        },
+        "required": [
+          "trigger"
+        ],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": ".windsurf/rules/{name}.md",
+      "resources": false,
+      "scope_kinds": [
+        "workspace",
+        "paths"
+      ],
+      "scope_semantics": "Compatibility path .windsurf/rules; current redirected docs prefer .devin/rules. No automatic path migration without an explicit target-product decision.",
+      "serializer": "frontmatter",
+      "surfaces": [
+        "persistent"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    }
+  ],
+  "schema_version": "1.0.0",
+  "support_scope": "Legacy Windsurf-compatible project paths documented by the redirected vendor docs.",
+  "unsupported_surfaces": [
+    "reusable_action",
+    "agent",
+    "task",
+    "delegation",
+    "api",
+    "runtime_policy"
+  ],
+  "warnings": [
+    "Vendor docs now redirect to Devin Desktop. Rules prefer .devin while workflows/skills still document .windsurf; this adapter intentionally emits the documented Windsurf compatibility paths and requires product/version review."
+  ]
+}

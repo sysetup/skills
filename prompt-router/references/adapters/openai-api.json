@@ -1,0 +1,97 @@
+{
+  "freshness_days": 90,
+  "id": "openai-api",
+  "product": "OpenAI Responses API",
+  "provenance": [
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "OpenAI text generation",
+      "url": "https://developers.openai.com/api/docs/guides/text"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Responses input and instructions fields",
+      "url": "https://developers.openai.com/api/reference/cli/resources/responses/methods/create"
+    }
+  ],
+  "representations": [
+    {
+      "activation": [
+        "programmatic"
+      ],
+      "activation_semantics": "Application supplies instructions and user input to Responses API. Output is a request fragment, not an API call.",
+      "authority_intents": [
+        "guidance",
+        "privileged"
+      ],
+      "authority_semantics": "Stable instructions are separate from user input. A request fragment does not grant platform or filesystem privileges.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "named-inputs": "instruction-only",
+        "privileged-instructions": "native",
+        "programmatic-prompt": "native",
+        "runtime-enforcement": "unsupported",
+        "structured-output": "instruction-only"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "responses-prompt-fragment",
+      "max_characters": null,
+      "metadata_fields": {},
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "model": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "store": {
+            "type": "boolean"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [
+        "No endpoint call or default model is embedded. Output-schema prose is not an enforced API schema; strict structured-output configuration is outside this minimal emitter."
+      ],
+      "path_template": "{name}.json",
+      "resources": false,
+      "scope_kinds": [
+        "request"
+      ],
+      "scope_semantics": "Per request. Application owns session state, retries, tool execution, approvals, secrets and model choice.",
+      "serializer": "api-fragment",
+      "surfaces": [
+        "api"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    }
+  ],
+  "schema_version": "1.0.0",
+  "support_scope": "Responses instructions/input request fragments; no SDK installation, live calls or strict output-schema wiring.",
+  "unsupported_surfaces": [
+    "persistent",
+    "reusable_action",
+    "agent",
+    "task",
+    "delegation",
+    "runtime_policy"
+  ],
+  "warnings": []
+}

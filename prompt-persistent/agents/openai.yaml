@@ -1,0 +1,3 @@
+interface:
+  display_name: prompt-persistent
+  short_description: Engineer persistent instructions with native host fidelity.

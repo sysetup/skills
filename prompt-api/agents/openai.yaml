@@ -1,0 +1,3 @@
+interface:
+  display_name: prompt-api
+  short_description: Engineer api instructions with native host fidelity.

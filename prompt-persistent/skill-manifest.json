@@ -1,0 +1,189 @@
+{
+  "capabilities": [
+    "prompt-generation.persistent.v1"
+  ],
+  "files": [
+    {
+      "path": "GENERATED.md",
+      "sha256": "3929ddbb717472eb8cd4c3a1a8d8730063fdf54ba6e21fdc334a12b7f4e58070",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "4fa778afea89d2e984e0c97c2d404dc8fa512fcfdd8514e7a8039e7c01134a80",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "4bea50d196ef568217c3201edad0434aea616013ac923cdb4aafced2bd146250",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/adapters.md",
+      "sha256": "51f994d0df29edb0d0935d9802487f41e8d1b466e066cbe8004aed29fb7b5023",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/adapters/agents-md.json",
+      "sha256": "7cbd8e6210b9f7daeb3ba91f442a812f7eac58558e04e16ede6e22a9d10c2418",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/adapters/claude-code.json",
+      "sha256": "ddb8d755c2de91ab1f813e5c566733dc3779bcfa3e339de7912523ab0e87755a",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/adapters/codex.json",
+      "sha256": "cf52efe85f63327aef4695fb9a3ca3ddad34380f4b37e91967c62317d5b82414",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/adapters/cursor.json",
+      "sha256": "f60b31995a19e49560aaa3288e25016919b37fd74a7d27fd1c455e9538288156",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/adapters/gemini-cli.json",
+      "sha256": "4b969db7ed1c853bc4b9cd28e7a5a05b5b2d801248a1a0f315c9977afff6c8b8",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/adapters/generic.json",
+      "sha256": "25ab06af1b9026debf1d660a278e138b13f5a3a1a60817711bd84f598828cd09",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/adapters/github-copilot.json",
+      "sha256": "7048783a75de954a84a852c9b92f59d325a85c7770da08d7551a298654772542",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/adapters/windsurf.json",
+      "sha256": "1a920592cecf9dac5fd0fb58066a5664ff333f58a51976e0f655d42e1401a308",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/authoring.md",
+      "sha256": "ed8a5730a5704737b8344f74aa91803f3b7adce91016a5a7cace27ed62d093e2",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/catalog.json",
+      "sha256": "1568866aa3c4d581176e008c4a06dddfd5754f7c61ea4a14fcca3832f0097095",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/cli.md",
+      "sha256": "46013e888b4978d76782f98e64e24a009e287cc9438a2a25f7576f8ebd667d21",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/contracts.md",
+      "sha256": "2a71ef0660f113bb0e4ec1690918c8cf02696f0d6c8af47fe4a596cfb0a3002b",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/contracts/AdapterManifest.schema.json",
+      "sha256": "42fad4d9e4db48c21db7f91cb797eb9d39e4addb85b7b2e3c2fb355d3e72bd25",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/contracts/ArtifactBinding.schema.json",
+      "sha256": "fde867db566b628df3ced35b0c2aa57cf5cd288a29373a02b9732f6733f1d9ae",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/contracts/ArtifactManifest.schema.json",
+      "sha256": "419a35b7e47c55392a0a041c3e85e6c231995caf63befffeae76fc852e9e119b",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/contracts/InstructionSpec.schema.json",
+      "sha256": "d5709e7a722801d0f74e31fda0641d8baeb74a7c911bc964949f619b34d6f607",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/contracts/RouteDecision.schema.json",
+      "sha256": "99013fd5ac723f7550eef7969c9d335b861baaa5054eafdc19f8ee8ab6a44cd1",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/contracts/ValidationResult.schema.json",
+      "sha256": "3988263a97b372f9bb93a429f629693dc93f60cd6477948312b11b2ce57a0965",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/fallback.md",
+      "sha256": "2414614171b918fe23681cc7145f540b3b982fa12243b5c6f6ea725cbd4baae0",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/operations.md",
+      "sha256": "f5e57d8ed53a89445df25319ad3bf161be152ac5f7221a84aa077118eaecf933",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/profiles.md",
+      "sha256": "736214ea8153784fd86c82e0ea6582709762c1e8d78bfc27c99004022ee6ab85",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/profiles/documentation.json",
+      "sha256": "81a69f782f8def13d35711cff3c41fb4cbd369111bb037f85df2fa522ab87b79",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/profiles/security.json",
+      "sha256": "a951b0c03d63c9c371b5d9775533f2de22be78b35ef904910f6dd9a14cdb4dc7",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/profiles/testing.json",
+      "sha256": "9e12700ce2a8fda477d88c020985bb609fb13b32446e42b167251fc1755d62d4",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/safety.md",
+      "sha256": "33f68864a127713c1bb7af369f082f5b1dff4e023a8a3f615da7c482c51d89ba",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/schema-index.md",
+      "sha256": "bbe4040aa4be6e3ecf783040a0a9ca8aeb54976767b3911a13f20efb014dc6ce",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/surface.md",
+      "sha256": "0672a48ee4a0fc1c2a7e208b70217eefa9fc4870beccee566194f4994a7f23e5",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "references/validation.md",
+      "sha256": "f852554f828d0d88c3763a01f7e2362a64888550546e46c8bfb70cfc417426a0",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "3375307e34f36806b45e1828142455053bc340d4dd238cdff07a990a8b5e0261",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "scripts/toolkit.py",
+      "sha256": "ba84ac0d7820be570d27b4852849d1cf6ae8fc44cedf476aa42eea0ab19bc645",
+      "source": "portable-refactor"
+    },
+    {
+      "path": "skill-policy.json",
+      "sha256": "078452270389ee9bdcb969cbe2ad370c6e603caaa67b31662b60c4918c55c9a4",
+      "source": "portable-refactor"
+    }
+  ],
+  "generated": false,
+  "host_representation": "openai",
+  "independent": true,
+  "name": "prompt-persistent",
+  "schema_version": "1.0.0",
+  "source_tree_sha256": "a2eae63f15bddfea9bb5132a84f1dbb3497fcfa5648d757102044993efa5d1c3",
+  "source_version": "3.0.1"
+}

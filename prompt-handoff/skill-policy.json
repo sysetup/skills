@@ -1,0 +1,16 @@
+{
+  "aliases": [
+    "handoff"
+  ],
+  "allowed_adapters": [],
+  "capabilities": [
+    "conversation-handoff.v1"
+  ],
+  "commands": [],
+  "host_representation": "openai",
+  "independent": true,
+  "name": "prompt-handoff",
+  "owned_surfaces": [],
+  "role": "utility",
+  "schema_version": "1.0.0"
+}

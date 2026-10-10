@@ -1,0 +1,93 @@
+{
+  "freshness_days": 90,
+  "id": "gemini-cli",
+  "product": "Gemini CLI",
+  "provenance": [
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Gemini project context",
+      "url": "https://geminicli.com/docs/cli/gemini-md/"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Gemini custom commands",
+      "url": "https://geminicli.com/docs/cli/custom-commands/"
+    },
+    {
+      "kind": "official",
+      "last_verified": "2026-09-15",
+      "product_version": "Documentation snapshot; installed binary/version not verified",
+      "status": "verified",
+      "title": "Gemini Agent Skills",
+      "url": "https://geminicli.com/docs/cli/skills/"
+    }
+  ],
+  "representations": [
+    {
+      "activation": [
+        "explicit"
+      ],
+      "activation_semantics": "Explicit use by the caller; no automatic invocation is promised.",
+      "authority_intents": [
+        "guidance"
+      ],
+      "authority_semantics": "Instructions cannot override higher-priority host policy or grant runtime permissions.",
+      "capabilities": {
+        "approval-gates": "instruction-only",
+        "named-inputs": "instruction-only",
+        "one-shot-task": "native",
+        "runtime-enforcement": "unsupported"
+      },
+      "companion_files": [],
+      "forbidden_sequences": [],
+      "id": "task-message",
+      "max_characters": null,
+      "metadata_fields": {},
+      "metadata_schema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "metadata_values": {},
+      "migration_notes": [],
+      "path_template": "{name}.md",
+      "resources": false,
+      "scope_kinds": [
+        "request",
+        "session"
+      ],
+      "scope_semantics": "The consuming host owns discovery and precedence. The body records requested scope.",
+      "serializer": "markdown",
+      "surfaces": [
+        "task"
+      ],
+      "unsupported_features": [],
+      "validation_rules": [
+        "No toolkit metadata in the native artifact.",
+        "No executable interpolation of untrusted source text."
+      ],
+      "variables": {
+        "mode": "request",
+        "token": ""
+      }
+    }
+  ],
+  "schema_version": "1.0.0",
+  "support_scope": "Project context, TOML manual commands, model-selectable skills, text task/delegation payloads.",
+  "unsupported_surfaces": [
+    "persistent",
+    "reusable_action",
+    "agent",
+    "delegation",
+    "api",
+    "runtime_policy"
+  ],
+  "warnings": []
+}

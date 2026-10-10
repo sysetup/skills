@@ -1,0 +1,12 @@
+interface:
+  display_name: "networking"
+  short_description: "Network engineering analysis and design skill"
+
+policy:
+  allow_implicit_invocation: true
+
+tools:
+  read: true
+  write: true
+  python: true
+  bash: true

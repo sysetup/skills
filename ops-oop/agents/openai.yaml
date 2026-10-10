@@ -1,0 +1,3 @@
+interface:
+  display_name: "ops-oop"
+  short_description: "Full-lifecycle OO design, C++23 implementation, review, refactoring"
