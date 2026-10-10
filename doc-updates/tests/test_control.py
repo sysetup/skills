@@ -40,20 +40,20 @@ class ControlTests(unittest.TestCase):
                    b"No operational documents are currently registered.\n\n"
                    b"| Document | Purpose and applicability | Local edition | Authoring contract |\n"
                    b"|---|---|---|---|\n")
-        self.write("doc-operations/detail.md", b"# Existing detail\n")
+        self.write("doc-operations/tooling/detail.md", b"# Existing detail\n")
         self.write("doc-specs/INDEX.md", b"# Synthetic readable catalog; no matching type\n")
         self.original_catalog = self.store.read("doc-operations/INDEX.md")
         self.packet = {"key": "request:one", "basis": "session:authorized new operational subject",
-                       "scope": "One synthetic offline guide", "destination": "doc-operations/a.md",
+                       "scope": "One synthetic offline guide", "destination": "doc-operations/tooling/a.md",
                        "source_edition": "absent (new subject)", "author": "test-author", "legacy": False}
         self.write("doc-updates/request.json", control.encoded(self.packet))
         self.change = self.call("intake", "--packet", "doc-updates/request.json")["change"]
-        self.write("doc-updates/candidate.md", b"# Guide\nEdition: 2\n[Detail](../doc-operations/detail.md)\n")
+        self.write("doc-updates/candidate.md", b"# Guide\nEdition: 2\n[Detail](../doc-operations/tooling/detail.md)\n")
         self.write("doc-updates/output.md", b"# Guide\nEdition: 2\n[Detail](detail.md)\n")
         catalog = self.original_catalog.decode()
         catalog = "".join(line for line in catalog.splitlines(True)
                           if not line.startswith("No operational documents are currently registered."))
-        catalog = catalog.replace("|---|---|---|---|\n", "|---|---|---|---|\n| [Guide](a.md) | Test subject | 2 | Uncovered native purpose |\n", 1)
+        catalog = catalog.replace("|---|---|---|---|\n", "|---|---|---|---|\n| [Guide](tooling/a.md) | Test subject | 2 | Uncovered native purpose |\n", 1)
         self.write("doc-updates/catalog.md", catalog.encode())
         self.write("doc-updates/checks.md", b"Observed: links, scope and native content checked; no open obligation\n")
         self.write("doc-updates/basis.md", b"Readable contract catalog; synthetic uncovered purpose; native Markdown\n")
@@ -130,7 +130,7 @@ class ControlTests(unittest.TestCase):
         self.assertEqual(code, 0, output.getvalue())
 
     def assert_unpublished(self):
-        self.assertIsNone(self.store.read("doc-operations/a.md"))
+        self.assertIsNone(self.store.read("doc-operations/tooling/a.md"))
         self.assertEqual(self.store.read("doc-operations/INDEX.md"), self.original_catalog)
 
     def test_complete_sequence_exact_output_links_and_ordered_evidence(self):
@@ -141,11 +141,140 @@ class ControlTests(unittest.TestCase):
         r = self.record()
         self.assertEqual([e["action"] for e in r["history"]],
                          ["intake", "draft", "prepare", "open", "review", "approve", "publish", "close"])
-        self.assertEqual(self.store.read("doc-operations/a.md"), self.store.read("doc-updates/output.md"))
+        self.assertEqual(self.store.read("doc-operations/tooling/a.md"), self.store.read("doc-updates/output.md"))
         self.assertEqual(self.store.read("doc-operations/INDEX.md"), self.store.read("doc-updates/catalog.md"))
-        self.assertIn(b"[Detail](detail.md)", self.store.read("doc-operations/a.md"))
+        self.assertIn(b"[Detail](detail.md)", self.store.read("doc-operations/tooling/a.md"))
         self.assertIn(b"[closed]", self.store.read("doc-updates/INDEX.md"))
         control.validate(r)
+
+    def request_destination(self, name):
+        """Build a classified request, or retained fixture under a mocked old policy."""
+        self.packet = dict(self.packet, key="placement:" + name, destination=name)
+        self.write("doc-updates/placement.json", control.encoded(self.packet))
+        self.change = self.call("intake", "--packet", "doc-updates/placement.json")["change"]
+        detail = os.path.relpath("doc-operations/tooling/detail.md", str(Path(name).parent))
+        self.write("doc-updates/output.md", ("# Guide\nEdition: 2\n[Detail](" + detail + ")\n").encode())
+        catalog = b"".join(line for line in self.original_catalog.splitlines(True)
+                           if not line.startswith(b"No operational documents are currently registered."))
+        row = "| [Guide](" + name[len("doc-operations/"):] + ") | Test subject | 2 | Uncovered native purpose |\n"
+        self.write("doc-updates/catalog.md", catalog + row.encode())
+
+    def test_new_intake_rejects_flat_catalog_wrappers_and_unsafe_paths(self):
+        before = self.store.records()
+        for name in ("doc-operations/flat.md", "doc-operations/INDEX.md",
+                     "doc-operations/subjects/a.md", "doc-operations/topics/nested/a.md",
+                     "doc-operations/components/a.md", "doc-operations/SUBJECTS/a.md",
+                     "doc-operations/../outside/a.md", "doc-operations/tooling/.git/a.md",
+                     "/doc-operations/tooling/a.md", "doc-updates/tooling/a.md"):
+            with self.subTest(name=name):
+                packet = dict(self.packet, key="invalid:" + name, destination=name, legacy=True)
+                self.write("doc-updates/invalid.json", control.encoded(packet))
+                self.call("intake", "--packet", "doc-updates/invalid.json", success=False)
+                self.assertEqual(self.store.records(), before)
+                self.assert_unpublished()
+
+    def test_open_classification_and_deeper_nesting_publish_with_coherent_links(self):
+        self.request_destination("doc-operations/interactive-search/shell/integration/a.md")
+        self.to_reviewed()
+        self.decide()
+        self.call("publish")
+        name = self.packet["destination"]
+        self.assertEqual(self.store.read(name), self.store.read("doc-updates/output.md"))
+        self.assertIn(b"](interactive-search/shell/integration/a.md)", self.store.read("doc-operations/INDEX.md"))
+        self.assertIn(name.encode(), self.store.read("doc-updates/INDEX.md"))
+        before = self.record()
+        self.call("publish")
+        self.assertEqual(self.record(), before)
+
+    def test_legacy_flat_intake_is_readable_but_new_draft_and_prepare_are_refused(self):
+        with patch.object(control, "operational_destination", side_effect=lambda name: name):
+            self.request_destination("doc-operations/flat.md")
+        before = self.record()
+        self.call("status")
+        self.call("validate")
+        self.call("intake", "--packet", "doc-updates/placement.json")
+        self.assertEqual(self.record(), before)
+        draft = {k: self.preparation[k] for k in
+                 ("candidate", "purpose", "edition", "contract", "source_edition")}
+        self.write("doc-updates/draft.json", control.encoded(draft))
+        for action, packet in (("draft", "doc-updates/draft.json"),
+                               ("prepare", "doc-updates/preparation.json")):
+            error = self.call(action, "--packet", packet, success=False)
+            self.assertIn("classification directory", error)
+            self.assertEqual(self.record()["stage"], "intake")
+            self.assertEqual(self.record()["history"][:len(before["history"])], before["history"])
+            self.assertIsNone(self.store.read("doc-operations/flat.md"))
+            self.assertEqual(self.store.read("doc-operations/INDEX.md"), self.original_catalog)
+
+    def test_retained_flat_and_wrapper_approvals_cannot_start_new_publication(self):
+        for schema in (1, 2):
+            for name in ("doc-operations/flat.md", "doc-operations/subjects/flat.md"):
+                with self.subTest(schema=schema, name=name):
+                    case = ControlTests("test_help_and_zero_args_are_safe")
+                    case.setUp()
+                    try:
+                        with patch.object(control, "operational_destination", side_effect=lambda path: path):
+                            case.request_destination(name)
+                            case.to_reviewed()
+                            case.decide()
+                        if schema == 1:
+                            case.legacy_without_draft()
+                        before = case.record()
+                        for action in ("status", "validate", "show"):
+                            case.call(action)
+                        self.assertEqual(case.record(), before)
+                        case.call("publish", success=False)
+                        self.assertEqual(case.record()["stage"], "approved")
+                        self.assertNotIn("publish", [e["action"] for e in case.record()["history"]])
+                        self.assertEqual(case.record()["history"][:len(before["history"])], before["history"])
+                        self.assertIsNone(case.store.read(name))
+                        self.assertEqual(case.store.read("doc-operations/INDEX.md"), case.original_catalog)
+                    finally:
+                        case.doCleanups()
+
+    def test_retained_flat_and_wrapper_inflight_recovery_preserves_original_approval(self):
+        for schema in (1, 2):
+            for name in ("doc-operations/flat.md", "doc-operations/subjects/flat.md"):
+                with self.subTest(schema=schema, name=name):
+                    case = ControlTests("test_help_and_zero_args_are_safe")
+                    case.setUp()
+                    try:
+                        original_write = control.Store.write
+                        def fail_catalog(store, path, data, before):
+                            if path == "doc-operations/INDEX.md":
+                                raise OSError("Retained publication interrupted")
+                            return original_write(store, path, data, before)
+                        with patch.object(control, "operational_destination", side_effect=lambda path: path):
+                            case.request_destination(name)
+                            case.to_reviewed()
+                            case.decide()
+                            with patch.object(control.Store, "write", fail_catalog):
+                                case.call("publish", success=False)
+                        self.assertEqual(case.record()["stage"], "publishing")
+                        if schema == 1:
+                            case.legacy_without_draft()
+                        before = case.record()
+                        case.call("show")
+                        case.call("validate")
+                        case.call("publish")
+                        self.assertEqual(case.record()["stage"], "closed")
+                        self.assertEqual(case.record()["history"][:len(before["history"])], before["history"])
+                        self.assertEqual(case.store.read(name), case.store.read("doc-updates/output.md"))
+                        self.assertEqual(sum(e["action"] == "approve" for e in case.record()["history"]), 1)
+                        closed = case.record()
+                        case.call("publish")
+                        self.assertEqual(case.record(), closed)
+                    finally:
+                        case.doCleanups()
+
+    def test_classification_symlink_refuses_intake_without_registering(self):
+        os.symlink("../doc-updates", self.root / "doc-operations/new-classification")
+        packet = dict(self.packet, key="symlink", destination="doc-operations/new-classification/a.md")
+        self.write("doc-updates/symlink.json", control.encoded(packet))
+        before = self.store.records()
+        self.call("intake", "--packet", "doc-updates/symlink.json", success=False)
+        self.assertEqual(self.store.records(), before)
+        self.assert_unpublished()
 
     def test_draft_registration_is_separate_and_retry_has_no_duplicate_event(self):
         packet = {k: self.preparation[k] for k in ("candidate", "purpose", "edition", "contract", "source_edition")}
@@ -258,7 +387,7 @@ class ControlTests(unittest.TestCase):
     def test_output_catalog_source_basis_and_review_changes_are_stale(self):
         for name in ("doc-updates/output.md", "doc-updates/catalog.md", "doc-updates/basis.md",
                      "doc-updates/checks.md", "doc-updates/review.json", "doc-operations/INDEX.md",
-                     "doc-operations/a.md", "doc-specs/INDEX.md"):
+                     "doc-operations/tooling/a.md", "doc-specs/INDEX.md"):
             with self.subTest(name=name):
                 # Each subcase starts a new fixture to avoid terminal/history reset.
                 case = ControlTests("test_help_and_zero_args_are_safe")
@@ -267,11 +396,11 @@ class ControlTests(unittest.TestCase):
                     case.to_reviewed()
                     case.decide()
                     case.write(name, b"Conflicting content\n")
-                    expected_doc = case.store.read("doc-operations/a.md")
+                    expected_doc = case.store.read("doc-operations/tooling/a.md")
                     expected_catalog = case.store.read("doc-operations/INDEX.md")
                     case.call("publish", success=False)
                     self.assertEqual(case.record()["stage"], "intake")
-                    self.assertEqual(case.store.read("doc-operations/a.md"), expected_doc)
+                    self.assertEqual(case.store.read("doc-operations/tooling/a.md"), expected_doc)
                     self.assertEqual(case.store.read("doc-operations/INDEX.md"), expected_catalog)
                 finally:
                     case.doCleanups()
@@ -303,7 +432,7 @@ class ControlTests(unittest.TestCase):
         self.assert_unpublished()
 
     def test_rejection_withdrawal_supersession_reopening_no_shortcuts(self):
-        packet = dict(self.packet, key="replacement", destination="doc-operations/replacement.md")
+        packet = dict(self.packet, key="replacement", destination="doc-operations/tooling/replacement.md")
         self.write("doc-updates/replacement.json", control.encoded(packet))
         self.replacement = self.call("intake", "--packet", "doc-updates/replacement.json")["change"]
         for action, terminal in (("reject", "rejected"), ("withdraw", "withdrawn"), ("supersede", "superseded")):
@@ -351,13 +480,13 @@ class ControlTests(unittest.TestCase):
         with patch.object(control.Store, "write", fail_closure):
             self.call("publish", success=False)
         self.assertEqual(self.record()["stage"], "publishing")
-        self.assertEqual(self.store.read("doc-operations/a.md"), self.store.read("doc-updates/output.md"))
+        self.assertEqual(self.store.read("doc-operations/tooling/a.md"), self.store.read("doc-updates/output.md"))
         self.assertEqual(self.store.read("doc-operations/INDEX.md"), self.store.read("doc-updates/catalog.md"))
         self.call("publish")
         self.assertEqual(self.record()["stage"], "closed")
 
     def test_intake_index_interruption_has_present_history_and_recovery(self):
-        packet = dict(self.packet, key="interrupted-intake", destination="doc-operations/interrupted.md")
+        packet = dict(self.packet, key="interrupted-intake", destination="doc-operations/tooling/interrupted.md")
         self.write("doc-updates/interrupted-request.json", control.encoded(packet))
         original_write = control.Store.write
         def fail_index(store, name, data, before):
@@ -372,14 +501,14 @@ class ControlTests(unittest.TestCase):
         self.assertEqual(self.call("intake", "--packet", "doc-updates/interrupted-request.json")["change"], self.change)
 
     def test_revision_preserves_baseline_and_other_catalog_rows(self):
-        self.write("doc-operations/revised.md", b"# Original edition\nEdition: 1\n")
-        old_row = b"| [Guide](revised.md) | Test subject | 1 | Uncovered native purpose |\n"
-        other_row = b"| [Other](detail.md) | Unrelated guidance | unspecified | Uncovered native purpose |\n"
+        self.write("doc-operations/tooling/revised.md", b"# Original edition\nEdition: 1\n")
+        old_row = b"| [Guide](tooling/revised.md) | Test subject | 1 | Uncovered native purpose |\n"
+        other_row = b"| [Other](tooling/detail.md) | Unrelated guidance | unspecified | Uncovered native purpose |\n"
         baseline = b"".join(line for line in self.original_catalog.splitlines(True)
                             if not line.startswith(b"No operational documents are currently registered."))
         baseline = baseline.replace(b"|---|---|---|---|\n", b"|---|---|---|---|\n" + old_row + other_row, 1)
         self.write("doc-operations/INDEX.md", baseline)
-        packet = dict(self.packet, key="revision", destination="doc-operations/revised.md", source_edition="1")
+        packet = dict(self.packet, key="revision", destination="doc-operations/tooling/revised.md", source_edition="1")
         self.write("doc-updates/revision-request.json", control.encoded(packet))
         self.change = self.call("intake", "--packet", "doc-updates/revision-request.json")["change"]
         self.preparation["source_edition"] = "1"
@@ -392,8 +521,8 @@ class ControlTests(unittest.TestCase):
         self.assertEqual(self.record()["request"]["source_hash"], control.sha(s["before"].encode()))
         self.decide()
         self.call("publish")
-        self.assertEqual(self.store.read("doc-operations/detail.md"), b"# Existing detail\n")
-        self.assertEqual(self.store.read("doc-operations/revised.md"), self.store.read("doc-updates/output.md"))
+        self.assertEqual(self.store.read("doc-operations/tooling/detail.md"), b"# Existing detail\n")
+        self.assertEqual(self.store.read("doc-operations/tooling/revised.md"), self.store.read("doc-updates/output.md"))
         self.assertIn(other_row, self.store.read("doc-operations/INDEX.md"))
 
     def test_hold_release_and_correction_keep_confirmed_stage(self):
@@ -417,7 +546,7 @@ class ControlTests(unittest.TestCase):
         with patch.object(control.Store, "write", fail_catalog):
             self.call("publish", success=False)
         self.assertEqual(self.record()["stage"], "publishing")
-        self.assertEqual(self.store.read("doc-operations/a.md"), self.store.read("doc-updates/output.md"))
+        self.assertEqual(self.store.read("doc-operations/tooling/a.md"), self.store.read("doc-updates/output.md"))
         self.assertEqual(self.store.read("doc-operations/INDEX.md"), self.original_catalog)
         self.call("publish")
         self.assertEqual(self.record()["stage"], "closed")
@@ -433,10 +562,10 @@ class ControlTests(unittest.TestCase):
             return original_write(store, name, data, before)
         with patch.object(control.Store, "write", fail_catalog):
             self.call("publish", success=False)
-        self.write("doc-operations/a.md", b"Other contributor's change\n")
+        self.write("doc-operations/tooling/a.md", b"Other contributor's change\n")
         self.call("publish", success=False)
         self.assertEqual(self.record()["stage"], "publishing")
-        self.assertEqual(self.store.read("doc-operations/a.md"), b"Other contributor's change\n")
+        self.assertEqual(self.store.read("doc-operations/tooling/a.md"), b"Other contributor's change\n")
         self.assertEqual(self.store.read("doc-operations/INDEX.md"), self.original_catalog)
 
     def test_conflict_between_gate_and_final_write_is_preserved(self):
@@ -446,14 +575,14 @@ class ControlTests(unittest.TestCase):
         def competing_read(store, name, private=False):
             # Simulate a writer outside the lock just before publication's final
             # conflict read, after snapshot validation returned successfully.
-            if name == "doc-operations/a.md" and inspect.currentframe().f_back.f_code.co_name == "publish":
+            if name == "doc-operations/tooling/a.md" and inspect.currentframe().f_back.f_code.co_name == "publish":
                 before = original_read(store, name, private)
                 original_write(store, name, b"Other contributor's bytes\n", before)
             return original_read(store, name, private)
         with patch.object(control.Store, "read", competing_read):
             self.call("publish", success=False)
         self.assertEqual(self.record()["stage"], "publishing")
-        self.assertEqual(self.store.read("doc-operations/a.md"), b"Other contributor's bytes\n")
+        self.assertEqual(self.store.read("doc-operations/tooling/a.md"), b"Other contributor's bytes\n")
         self.assertEqual(self.store.read("doc-operations/INDEX.md"), self.original_catalog)
 
     def test_interrupted_intake_or_closure_index_reconciliation(self):
@@ -504,7 +633,7 @@ class ControlTests(unittest.TestCase):
         self.write("doc-updates/request.json", control.encoded(self.packet))
         self.call("intake", "--packet", "doc-updates/request.json", success=False)
         self.assertEqual(len(self.store.records()), 1)
-        self.packet.update(key="legacy-key", destination="doc-operations/legacy.md", legacy=True)
+        self.packet.update(key="legacy-key", destination="doc-operations/tooling/legacy.md", legacy=True)
         self.write("doc-updates/request.json", control.encoded(self.packet))
         old_change = self.change
         self.change = self.call("intake", "--packet", "doc-updates/request.json")["change"]
@@ -516,7 +645,7 @@ class ControlTests(unittest.TestCase):
         self.change = old_change
 
     def test_id_collision_never_replaces_an_existing_master(self):
-        packet = dict(self.packet, key="unique-key", destination="doc-operations/other.md")
+        packet = dict(self.packet, key="unique-key", destination="doc-operations/tooling/other.md")
         self.write("doc-updates/other-request.json", control.encoded(packet))
         before = self.record()
         with patch.object(control.uuid, "uuid4", return_value=type("ID", (), {"hex": self.change})()):

@@ -1,8 +1,8 @@
 # Local operational-document lifecycle
 
 
-Local edition: 1; extracted from doc-manager procedure revision 2 and revised
-for mandatory draft registration. Authoring basis: `SOP@core` at
+Local edition: 2, replacing edition 1; retains mandatory draft registration
+and adds classified operational placement. Authoring basis: `SOP@core` at
 `$HOME/.agents/doc-specs/01-processes/sop--core.spec.md`. No external client.
 
 This procedure belongs exclusively to `doc-updates` and governs every new or
@@ -22,6 +22,47 @@ verifies it. No branches, GitHub, remote PRs, external service, or actual
 `git merge` are required. Repository commit obligations are separate.
 
 ## Authoritative transition table
+
+### Classification and intended placement
+
+Classify the operational subject before selecting its destination. Reuse a
+suitable existing classification or define a meaningful new immediate child
+of `doc-operations/`; safe additional nesting beneath it is permitted.
+Keep one canonical location and use operational-catalog guidance for
+alternative names. Resolve material placement ambiguity before intake or
+preparation rather than inventing a destination.
+
+Keep directory classification separate from operational domains,
+document family/contract, applicability, and component kind/provenance.
+Domains may be multiple and extensible: governance, system, network, security,
+runtimes, services, data, delivery, reliability, and additions such as tooling
+or media. These are selection dimensions, not a closed directory taxonomy.
+Consult the specification library's authoritative family registry through
+`doc-specs`; its numbered family trees belong only to that library.
+
+Ordinary destinations must be beneath a classification directory.
+`doc-operations/INDEX.md` is the root catalog placement exception and remains
+protected from ordinary destinations; update it only through the existing
+separate proposed-catalog mechanism. Do not use `subjects/` or another
+universal wrapper such as `topics/` or `components/`.
+
+The controller checks path structure at new intake, draft registration,
+preparation, and before new publication intent. Structural checks cannot prove
+that a classification is meaningful: preparation and snapshot review assess
+semantic placement, consistent candidate/intended destination, canonical
+location, and destination-relative links. Use the existing purpose,
+destination, checks, and review evidence; add no registry or publication layer.
+
+Retained schemas and history use the existing safe path parser. Identical
+intake retries and read-only inspection remain available for legacy paths.
+New draft, preparation, and publication from `approved` reject retired flat
+or wrapper destinations; remapping requires supersession and a classified
+intake. Already `publishing` transactions may finish only their original
+approved bytes under current original authority and all existing integrity,
+containment, link, conflict, and symlink checks. Closed exact retries remain
+no-ops. No installed document is migrated or deleted by this policy.
+
+### Transition requirements
 
 This is the single normative transition table; catalogs and the tool reference
 it. Stages map to the operator's ordered sequence. Each failed action retains

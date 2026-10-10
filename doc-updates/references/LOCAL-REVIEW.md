@@ -1,6 +1,6 @@
 # Local documentation review product guide
 
-Guide revision 3, replacing revision 2; local lifecycle edition 1; new control-record schema 2
+Guide revision 4, replacing revision 3; local lifecycle edition 2; new control-record schema 2
 (reads retained schema 1). For authorized
 account operators and agents on Debian/Linux with Python 3.11+ and `fcntl`.
 No external client. Basis: `PRODUCT-GUIDE@core` in the separate specification
@@ -54,7 +54,7 @@ Write an authorized intake packet in `doc-updates/` with exactly these fields:
 | `key` | Stable unique request reference, retained on retries. |
 | `basis` | Actual authorized request/evidence reference; no fabricated authority. |
 | `scope` | Bounded content change. |
-| `destination` | Exact document path under `doc-operations/`, excluding `INDEX.md`; mapping changes use supersession/new intake. |
+| `destination` | Exact ordinary document path beneath a direct classification child of `doc-operations/`; see [placement](local-lifecycle.md#classification-and-intended-placement). Safe deeper nesting is allowed; mapping changes use supersession/new intake. |
 | `source_edition` | Known current edition or `unspecified`; for confirmed new subject, `absent (new subject)`. |
 | `author` | Actually established role identifier, avoiding unnecessary personal data. |
 | `legacy` | Boolean; true denotes legacy work with missing lifecycle evidence. |
@@ -242,7 +242,7 @@ For legacy installations, with **separately scoped maintenance authority**:
 
 1. Inspect the installed procedure/fragment/catalogs and skill against
    doc-manager procedure revision 4 at
-   `$HOME/.agents/doc-operations/doc-procedure.md` and this skill's lifecycle edition 1.
+   `$HOME/.agents/doc-operations/doc-procedure.md` and this skill's lifecycle edition 2.
    Differing managed files are refused by the installer; preserve sources and
    receipts, reconcile changed managed files explicitly, then rerun the reviewed
    installer. Never reset live catalogs or histories.

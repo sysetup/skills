@@ -53,6 +53,10 @@ unresolved target is unavailable, not permission to read outside the scope.
    actual catalog purpose and applicability. An empty catalog means missing
    coverage; it says nothing about installed components. Do not invent
    entries or require a named policy or runbook absent from the catalog.
+   Use catalog guidance for alternative names to find the canonical classified
+   location. Directory classification does not determine domains, document
+   family, applicability, or component provenance. Consult retained guidance
+   at its cataloged path; a placement-policy change grants no migration authority.
 3. Read the complete applicable linked documents before executing their
    steps. Follow their established order, prerequisites, constraints,
    checks, and recovery instructions. For project work, also consult the

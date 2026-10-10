@@ -98,6 +98,16 @@ def check_stat(st, directory=False, private=False):
         require(st.st_size <= LIMIT, "Oversized file")
 
 
+def operational_destination(name):
+    """Admission policy only; retained paths still use path_name for replay."""
+    path_name(name, "doc-operations")
+    parts = name.split("/")
+    require(len(parts) >= 3, "Operational destination requires a classification directory")
+    require(parts[1].casefold() not in ("subjects", "topics", "components"),
+            "Universal wrapper is not an operational classification")
+    return name
+
+
 class Store:
     """Pinned, no-follow directory access; lock serializes cooperating tool users."""
 
@@ -627,6 +637,8 @@ def publish(store, record, records, actor):
     approval = latest(record, "approve")
     require(approval and approval["authority"], "Missing target publication authority; next: rework and obtain scoped approval")
     s = current(store, record, recovery=record["stage"] == "publishing")
+    if record["stage"] == "approved":
+        operational_destination(s["destination"])
     for name in (s["destination"], "doc-operations/INDEX.md"):
         store.writable(name)
     # Readable baselines in the immutable snapshot provide recovery evidence.
@@ -661,6 +673,7 @@ def run(store, args):
             require(all(existing["request"][k] == v for k, v in packet.items()), "Incompatible duplicate request key")
             coherent(store, records)
             return existing
+        operational_destination(packet["destination"])
         require(not any(r["request"]["destination"] == packet["destination"] and
                         r["stage"] not in ("closed", "rejected", "withdrawn", "superseded") for r in records),
                 "Compatible active request exists; inspect and reuse its ID")
@@ -695,6 +708,7 @@ def run(store, args):
             require(not hold_reason(record), "Unreleased hold; next: release with observed resumption evidence")
         if args.command == "draft":
             destination(record["stage"], "draft")
+            operational_destination(record["request"]["destination"])
             require(not hold_reason(record), "Unreleased hold; next: release with observed resumption evidence")
             p = parse(store.read(path_name(args.packet, "doc-updates")))
             fields(p, ("candidate", "purpose", "edition", "contract", "source_edition"))
@@ -709,6 +723,7 @@ def run(store, args):
                 return record
             event(record, "draft", args.actor, args.packet, data)
         elif args.command == "prepare":
+            operational_destination(record["request"]["destination"])
             p = parse(store.read(path_name(args.packet, "doc-updates")))
             fields(p, ("candidate", "output", "catalog", "edition", "source_edition", "purpose", "contract", "checks", "basis", "obligations"))
             require(p["obligations"] == [], "Unresolved mandatory authoring obligations")

@@ -71,6 +71,17 @@ and derive required inputs and content from it. A row or filename alone
 cannot supply the finished-document contract. Do not copy a fixed catalog
 inventory into this skill; it would become a competing selection source.
 
+Consult `$HOME/.agents/doc-specs/authoring/families.json` for the library's
+authoritative family responsibilities. Its `00-governance` through
+`05-evidence` directories organize specifications; do not reproduce those
+family trees beneath operational components. Select an operational
+classification before its intended destination using
+[doc-updates' placement contract](../../doc-updates/references/local-lifecycle.md#classification-and-intended-placement).
+Return that coherent destination and unresolved placement questions with
+the authoring handoff. Family/contract selection remains independent of
+directory placement; a specification-library incompatibility holds only
+dependent authoring and is reported without modifying that library.
+
 ### Authoring rules
 
 Apply the contract's finished-document obligations, content definitions,
