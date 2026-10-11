@@ -35,7 +35,7 @@ rather than guessing from the title.
 ## Separate authoring from the surrounding workflow
 
 A new host operational request first enters `doc-updates` for intake.
-`doc-specs` drafts and checks within that request, then returns content to
+`doc-author` drafts and checks within that request, then returns content to
 `doc-updates` for mandatory draft registration and the remaining PR gates.
 Recommend carrying the actual contract identity, source basis, performed
 checks, and gaps in that handoff so the recipient can register supported
@@ -48,9 +48,9 @@ host does not make it host operational documentation. For revisions, let
 here; repeating a separate maintenance workflow would risk competing source
 and publication decisions.
 
-For operational work, `doc-operations` consults current operational guidance.
+For operational work, `doc-consult` consults current operational guidance.
 Reading a specification to draft a document is part of authoring and does
-not turn `doc-specs` into the operational-document consumption skill. A
+not turn `doc-author` into the operational-document consumption skill. A
 document's commands remain instructions for an authorized reader; writing
 them is not evidence that they ran.
 

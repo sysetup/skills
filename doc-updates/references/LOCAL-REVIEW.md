@@ -10,7 +10,7 @@ No alternative publication method is designated.
 
 ## Installation and safety contract
 
-The doc-manager dependency lock selects this package for delivery within
+The doc-control dependency lock selects this package for delivery within
 `skills/doc-updates/` at the chosen documentation root. Its automated installer
 is retired; the current manual-copy procedure supports a new target only and
 supplies no receipt validation or deployment recovery. It does not activate
@@ -56,7 +56,7 @@ Write an authorized intake packet in `doc-updates/` with exactly these fields:
 | `key` | Stable unique request reference, retained on retries. |
 | `basis` | Actual authorized request/evidence reference; no fabricated authority. |
 | `scope` | Bounded content change. |
-| `destination` | Exact ordinary document path beneath a direct classification child of `doc-operations/`; see [placement](local-lifecycle.md#classification-and-intended-placement). Safe deeper nesting is allowed; mapping changes use supersession/new intake. |
+| `destination` | Exact ordinary document path beneath a direct classification child of `doc-consult/`; see [placement](local-lifecycle.md#classification-and-intended-placement). Safe deeper nesting is allowed; mapping changes use supersession/new intake. |
 | `source_edition` | Known current edition or `unspecified`; for confirmed new subject, `absent (new subject)`. |
 | `author` | Actually established role identifier, avoiding unnecessary personal data. |
 | `legacy` | Boolean; true denotes legacy work with missing lifecycle evidence. |
@@ -70,7 +70,7 @@ requires reuse or explicit supersession.
 
 ## Preparation and local PR
 
-`doc-updates` registers intake before requesting drafting through `doc-specs`,
+`doc-updates` registers intake before requesting drafting through `doc-author`,
 then owns saving, draft registration, preparation and the remaining PR gates.
 Select/read the actual contract or record the readable catalog's uncovered
 purpose. Record performed checks, obligations, source edition and reference
@@ -243,8 +243,8 @@ retained after publication. No competing ledger/database/board exists.
 For legacy installations, with **separately scoped maintenance authority**:
 
 1. Inspect the installed procedure/fragment/catalogs and skill against
-   doc-manager procedure revision 5 at
-   `$HOME/.agents/doc-operations/documentation/doc-procedure.md` and this skill's lifecycle edition 2.
+   doc-control procedure revision 5 at
+   `$HOME/.agents/doc-consult/documentation/doc-procedure.md` and this skill's lifecycle edition 2.
    Preserve installed sources, catalogs, histories and historical receipts.
    Reconcile existing targets through separately authorized maintenance;
    manual copying refuses populated targets and the retired installer supplies
@@ -272,6 +272,6 @@ For legacy installations, with **separately scoped maintenance authority**:
 
 No live migration/adoption occurs in development tests. Maintainer, retention
 interval and cadence remain unassigned until authorized. Review this skill's table,
-tool, tests, guide and doc-manager dependency inventory together on schema/policy changes.
+tool, tests, guide and doc-control dependency inventory together on schema/policy changes.
 Preserve dependency pins/licenses; report actual upstream conflicts rather
 than inventing overrides or editing installed skills.

@@ -1,15 +1,15 @@
 ---
-name: doc-operations
+name: doc-consult
 description: >-
   Find, read, and apply existing documentation for authorized host or project
   tasks. Use whenever preparing any basic task or complex host work, including
   commands, configuration, installed tools, shared services, runtimes, integrations,
   maintenance, and operational work inside a project, even without an
-  explicit documentation request. Consult $HOME/.agents/doc-operations/INDEX.md
+  explicit documentation request. Consult $HOME/.agents/doc-consult/INDEX.md
   and applicable current documents; use specific official sources and report
   missing coverage when necessary. Owns documentation access and use, not
   document authoring, revision, saving, registration, or publication.
-  doc-specs owns authoring contracts; doc-updates owns document maintenance
+  doc-author owns authoring contracts; doc-updates owns document maintenance
   and the complete host operational-document PR lifecycle.
 ---
 
@@ -24,12 +24,12 @@ execution permission and requires no preliminary work document.
 
 | Installed location or context | Consultation role |
 |---|---|
-| `$HOME/.agents/doc-operations/INDEX.md` | Catalog of current host operational coverage. |
-| `$HOME/.agents/doc-operations/` | Read-only current operational documents. |
+| `$HOME/.agents/doc-consult/INDEX.md` | Catalog of current host operational coverage. |
+| `$HOME/.agents/doc-consult/` | Read-only current operational documents. |
 | Authorized project context | Existing project instructions and documentation applicable to that project. |
 | `$HOME/.agents/doc-specs/INDEX.md` | Authoring contracts, not host state or operational coverage. |
 | `$HOME/.agents/doc-updates/` | Prepared host documents, not current operational guidance. |
-| `$HOME/.agents/skills/doc-operations/` | This consultation entrypoint and bundled guide. |
+| `$HOME/.agents/skills/doc-consult/` | This consultation entrypoint and bundled guide. |
 
 Resolve `$HOME` for the adopting account. In an explicitly authorized
 development checkout, map `$HOME/.agents/` to that checkout for reads and
@@ -37,10 +37,10 @@ checks, and installed `AGENTS.md` to `dev-AGENTS.md` when designated by the
 requester. Keep installed paths in instructions; the checkout does not
 identify the operational host.
 
-Resolve catalog links relative to `$HOME/.agents/doc-operations/`, project
+Resolve catalog links relative to `$HOME/.agents/doc-consult/`, project
 links relative to their containing document, and bundled links relative to
 this skill file. Check resolved targets, including symlinks, before opening
-them. Host operational catalog targets must remain inside `doc-operations/`;
+them. Host operational catalog targets must remain inside `doc-consult/`;
 project references require their actual authorized context. An escaping or
 unresolved target is unavailable, not permission to read outside the scope.
 
@@ -49,7 +49,7 @@ unresolved target is unavailable, not permission to read outside the scope.
 1. Establish the requested operation, actual host or project target,
    applicable versions, and authorized access from the request and available
    evidence. Keep unknown target facts explicit.
-2. Read `$HOME/.agents/doc-operations/INDEX.md` before the task. Select by
+2. Read `$HOME/.agents/doc-consult/INDEX.md` before the task. Select by
    actual catalog purpose and applicability. An empty catalog means missing
    coverage; it says nothing about installed components. Do not invent
    entries or require a named policy or runbook absent from the catalog.
@@ -76,12 +76,12 @@ unresolved target is unavailable, not permission to read outside the scope.
 
 ## Responsibility boundaries
 
-- Use `$HOME/.agents/skills/doc-specs/SKILL.md` for selecting and applying
+- Use `$HOME/.agents/skills/doc-author/SKILL.md` for selecting and applying
   document authoring contracts and creating documents.
 - Use `$HOME/.agents/skills/doc-updates/SKILL.md` for existing-document
   maintenance and the full host operational-document PR lifecycle, starting
   before drafting. It owns saving/registration in `$HOME/.agents/doc-updates/`
-  and authorized publication into `doc-operations/`. Project documents belong in their
+  and authorized publication into `doc-consult/`. Project documents belong in their
   authorized project context.
 - Report documentation gaps in the session or the task's existing record.
   This skill does not create a board entry, revise documents, or publish

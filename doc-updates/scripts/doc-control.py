@@ -100,7 +100,7 @@ def check_stat(st, directory=False, private=False):
 
 def operational_destination(name):
     """Admission policy only; retained paths still use path_name for replay."""
-    path_name(name, "doc-operations")
+    path_name(name, "doc-consult")
     parts = name.split("/")
     require(len(parts) >= 3, "Operational destination requires a classification directory")
     require(parts[1].casefold() not in ("subjects", "topics", "components"),
@@ -262,7 +262,7 @@ def snapshot_shape(s):
     path_name(s["candidate"], "doc-updates")
     path_name(s["output_resource"], "doc-updates")
     path_name(s["catalog_resource"], "doc-updates")
-    path_name(s["destination"], "doc-operations")
+    path_name(s["destination"], "doc-consult")
     for key in ("output", "catalog", "catalog_before"):
         require(type(s[key]) is str and bool(s[key].strip()), "Missing snapshot bytes")
     require(s["before"] is None or type(s["before"]) is str, "Invalid source baseline")
@@ -334,7 +334,7 @@ def validate(record):
     fields(q, ("key", "basis", "scope", "destination", "source_edition", "source_hash", "author", "legacy"))
     for key in ("key", "basis", "scope", "source_edition", "author"):
         text(q[key])
-    path_name(q["destination"], "doc-operations")
+    path_name(q["destination"], "doc-consult")
     require(type(q["legacy"]) is bool, "Invalid legacy evidence gap")
     require(q["source_hash"] is None or type(q["source_hash"]) is str and
             re.fullmatch(r"[0-9a-f]{64}", q["source_hash"]), "Invalid source digest")
@@ -411,7 +411,7 @@ def validate(record):
             require(type(d["authority"]) is bool, "Invalid authority")
             if action == "approve":
                 require(snapshot and reviewed and d["snapshot"] == snapshot["id"] and
-                        d["scope"] == q["destination"] + " + doc-operations/INDEX.md",
+                        d["scope"] == q["destination"] + " + doc-consult/INDEX.md",
                         "Missing reviewed decision scope")
                 authorized = d["authority"]
             else:
@@ -518,7 +518,7 @@ def links(store, content, location, outputs):
 
 def catalog_check(before, after, destination, edition):
     """One exact four-field row replacement/addition; preserve all unrelated bytes."""
-    name = destination[len("doc-operations/"):]
+    name = destination[len("doc-consult/"):]
     def row(line):
         return line.startswith("| ") and f"]({name})" in line
     old_rows = [line for line in before.splitlines(True) if row(line)]
@@ -573,7 +573,7 @@ def current(store, r, recovery=False, closed=False):
             fresh(store.evidence(data["evidence"]["path"]) == data["evidence"],
                     "Stale review evidence; next: rework")
     before = None if s["before"] is None else s["before"].encode()
-    document, catalog = store.read(s["destination"]), store.read("doc-operations/INDEX.md")
+    document, catalog = store.read(s["destination"]), store.read("doc-consult/INDEX.md")
     output, catalog_output = s["output"].encode(), s["catalog"].encode()
     if closed:
         require(document == output and catalog == catalog_output, "Closed publication no longer matches approved output")
@@ -584,9 +584,9 @@ def current(store, r, recovery=False, closed=False):
         fresh(document == before and catalog == s["catalog_before"].encode(), "Stale source or catalog baseline; next: rework")
     catalog_check(s["catalog_before"], s["catalog"], s["destination"], s["edition"])
     links(store, s["contract"], "doc-updates/INDEX.md", set())
-    outputs = {s["destination"], "doc-operations/INDEX.md"}
+    outputs = {s["destination"], "doc-consult/INDEX.md"}
     links(store, s["output"], s["destination"], outputs)
-    links(store, s["catalog"], "doc-operations/INDEX.md", outputs)
+    links(store, s["catalog"], "doc-consult/INDEX.md", outputs)
     return s
 
 
@@ -639,7 +639,7 @@ def publish(store, record, records, actor):
     s = current(store, record, recovery=record["stage"] == "publishing")
     if record["stage"] == "approved":
         operational_destination(s["destination"])
-    for name in (s["destination"], "doc-operations/INDEX.md"):
+    for name in (s["destination"], "doc-consult/INDEX.md"):
         store.writable(name)
     # Readable baselines in the immutable snapshot provide recovery evidence.
     if record["stage"] == "approved":
@@ -650,7 +650,7 @@ def publish(store, record, records, actor):
         save(store, record, records)  # durable intent precedes either operational write
     current(store, record, recovery=True)  # same gate immediately before writes
     for name, content in ((s["destination"], s["output"].encode()),
-                          ("doc-operations/INDEX.md", s["catalog"].encode())):
+                          ("doc-consult/INDEX.md", s["catalog"].encode())):
         current(store, record, recovery=True)
         before = store.read(name)
         baseline = (None if s["before"] is None else s["before"].encode()) if name == s["destination"] else s["catalog_before"].encode()
@@ -678,7 +678,7 @@ def run(store, args):
                         r["stage"] not in ("closed", "rejected", "withdrawn", "superseded") for r in records),
                 "Compatible active request exists; inspect and reuse its ID")
         coherent(store, records)
-        before = store.read(path_name(packet["destination"], "doc-operations"))
+        before = store.read(path_name(packet["destination"], "doc-consult"))
         require((before is not None) or packet["source_edition"] == "absent (new subject)", "Confirm new subject source absence")
         packet["source_hash"] = None if before is None else sha(before)
         record = {"schema": 2, "id": uuid.uuid4().hex, "request": packet, "stage": None, "history": []}
@@ -731,7 +731,7 @@ def run(store, args):
             output = store.read(path_name(p["output"], "doc-updates"))
             catalog = store.read(path_name(p["catalog"], "doc-updates"))
             before = store.read(record["request"]["destination"])
-            baseline = store.read("doc-operations/INDEX.md")
+            baseline = store.read("doc-consult/INDEX.md")
             require(candidate and output and catalog and baseline, "Missing candidate or publication resources")
             if not any(e["action"] in ("rework", "reopen") for e in record["history"]):
                 require((None if before is None else sha(before)) == record["request"]["source_hash"],
@@ -767,7 +767,7 @@ def run(store, args):
             if args.command == "approve":
                 draft_check(latest(record, "draft"), s)
             identity = s["id"] if s else record["id"]
-            scope = record["request"]["destination"] + " + doc-operations/INDEX.md"
+            scope = record["request"]["destination"] + " + doc-consult/INDEX.md"
             if args.command == "approve":
                 print("Use show to inspect exact publication diffs before deciding.")
             data = capture(args.command, identity, scope)

@@ -1,5 +1,5 @@
 ---
-name: doc-specs
+name: doc-author
 description: >-
   Select and apply the read-only document authoring specifications in
   $HOME/.agents/doc-specs/ to create host or project documents grounded in
@@ -7,7 +7,7 @@ description: >-
   runbook, guide, or structured documentary deliverable, even without an
   explicit skill request. Also use for specification selection and content
   checks requested by doc-updates during a revision. Owns selection,
-  authoring, and contract-based review; doc-operations owns documentation
+  authoring, and contract-based review; doc-consult owns documentation
   access for task execution, and doc-updates owns existing-document
   maintenance and the complete host operational-document PR lifecycle. Does not maintain
   the specification library or execute the operations described.
@@ -25,8 +25,8 @@ document mode, preliminary work-document requirement, or policy exemption.
 |---|---|
 | `$HOME/.agents/doc-specs/INDEX.md` | Current catalog for choosing an authoring contract. |
 | `$HOME/.agents/doc-specs/` | Read-only specifications; never a finished-document destination. |
-| `$HOME/.agents/skills/doc-specs/` | This entrypoint and its bundled authoring resources. |
-| `$HOME/.agents/skills/doc-operations/SKILL.md` | Documentation consultation for authorized host or project work. |
+| `$HOME/.agents/skills/doc-author/` | This entrypoint and its bundled authoring resources. |
+| `$HOME/.agents/skills/doc-consult/SKILL.md` | Documentation consultation for authorized host or project work. |
 | `$HOME/.agents/skills/doc-updates/SKILL.md` | Document maintenance and host operational-document PR ownership. |
 | `$HOME/.agents/doc-updates/` | Host operational documents prepared under the update workflow. |
 | Authorized project context | Documents about that specific project. |
@@ -60,11 +60,11 @@ or clarification of the handoffs.
   selection, drafting and content checks within that workflow; return content,
   basis and gaps for its mandatory draft registration and preparation.
   `doc-updates` alone owns all PR gates and authorized publication.
-  Do not directly deliver into `doc-operations/`.
+  Do not directly deliver into `doc-consult/`.
 - **Project document:** Deliver in the authorized context of its owning
   project. Host registration does not apply merely because the project runs
   on this host.
-- **Operational task:** Use `doc-operations` for documentation consultation
+- **Operational task:** Use `doc-consult` for documentation consultation
   and the task's own authorized workflow for execution. Authoring a runbook
   or plan does not authorize performing its steps.
 

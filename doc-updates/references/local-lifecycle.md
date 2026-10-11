@@ -7,13 +7,13 @@ and adds classified operational placement. Authoring basis: `SOP@core` at
 
 This procedure belongs exclusively to `doc-updates` and governs every new or
 revised host operational document or instruction intended for
-`doc-operations/`. Read the skill entrypoint for authority and path scope.
+`doc-consult/`. Read the skill entrypoint for authority and path scope.
 Consultation, project deliverables, native instruction maintenance and
 specification-library work retain their own scopes. Use
 [the bundled controller](../scripts/doc-control.py) for transitions and
 publication and [the CLI guide](LOCAL-REVIEW.md) for packets and recovery.
-`doc-specs` supplies authoring and contract checks within this workflow;
-`doc-operations` supplies consultation. Neither owns PR gates.
+`doc-author` supplies authoring and contract checks within this workflow;
+`doc-consult` supplies consultation. Neither owns PR gates.
 
 A **local pull request** is an explicit local review request for one change
 and immutable content snapshot, not a GitHub object. **Local merge/publication**
@@ -27,7 +27,7 @@ verifies it. No branches, GitHub, remote PRs, external service, or actual
 
 Classify the operational subject before selecting its destination. Reuse a
 suitable existing classification or define a meaningful new immediate child
-of `doc-operations/`; safe additional nesting beneath it is permitted.
+of `doc-consult/`; safe additional nesting beneath it is permitted.
 Keep one canonical location and use operational-catalog guidance for
 alternative names. Resolve material placement ambiguity before intake or
 preparation rather than inventing a destination.
@@ -41,7 +41,7 @@ Consult the specification library's authoritative family registry through
 `doc-specs`; its numbered family trees belong only to that library.
 
 Ordinary destinations must be beneath a classification directory.
-`doc-operations/INDEX.md` is the root catalog placement exception and remains
+`doc-consult/INDEX.md` is the root catalog placement exception and remains
 protected from ordinary destinations; update it only through the existing
 separate proposed-catalog mechanism. Do not use `subjects/` or another
 universal wrapper such as `topics/` or `components/`.
@@ -165,4 +165,4 @@ intake with explicit lifecycle gaps, add navigation markers only under scoped
 catalog maintenance, and complete missing gates before future publication.
 Installation does not retroactively review or approve documents. Maintenance
 ownership remains unassigned; establish it when needed and revise this skill's table,
-tool, tests and doc-manager delivery inventory together when requirements change.
+tool, tests and doc-control delivery inventory together when requirements change.

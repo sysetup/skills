@@ -7,12 +7,12 @@ no external client. Authoring basis: `SOP@core` at
 ## Scope, roles and readiness
 
 Use this route for existing project/native documents in their owning context.
-Every host operational document or instruction intended for `doc-operations/`
+Every host operational document or instruction intended for `doc-consult/`
 uses [the local lifecycle](local-lifecycle.md) instead, before drafting.
 The skill entrypoint defines authority and path resolution.
 
 The updating author preserves source identity, known edition, history and
-unrelated work; `doc-specs` supplies contract selection, affected drafting and
+unrelated work; `doc-author` supplies contract selection, affected drafting and
 content checks. The requester resolves material factual and scope gaps within
 their actual authority. Maintenance owner and review cadence remain unassigned;
 establish them when needed rather than inferring an account-owner mandate.
@@ -29,7 +29,7 @@ This procedure neither maintains specifications nor executes documented tasks.
 |---|---|
 | U1 | Classify by actual purpose. Host operational publication purpose exits to the local lifecycle; project/native scope continues to U2. Material classification gaps go to the requester. |
 | U2 | Inspect source/destination, identity, edition, references, consumer effects and overlapping work. Reuse compatible existing material; preserve unrelated edits. Resolve conflicts before U3. |
-| U3 | Use `doc-specs` for applicable contract selection, bounded authoring and content checks. Preserve native layout; a readable catalog with no matching type follows its uncovered-purpose route without a compliance claim. |
+| U3 | Use `doc-author` for applicable contract selection, bounded authoring and content checks. Preserve native layout; a readable catalog with no matching type follows its uncovered-purpose route without a compliance claim. |
 | U4 | Reconcile relative links from the actual destination and affected project discovery entries. Keep source and candidate locations distinguishable. |
 | U5 | Verify scope, facts, metadata, edition/history, path containment, references, performed content checks and required recovery readiness. Defects return to the affected step. |
 | U6 | Recheck for overlapping changes and current authority/runtime permission, then save the bounded revision through the permitted edit mechanism. |
@@ -48,7 +48,7 @@ change their meaning or use intended destinations as verified publication.
 |---|---|
 | Source, destination or link is unavailable or escapes scope | Hold dependent access/replacement; name the path and bounded access/correction required. Resume after verified availability. |
 | Facts, edition, classification or scope are unclear | Hold dependent claims and request the resolving evidence/decision. An unknown edition may remain `unspecified` when the contract permits it. |
-| Applicable authoring contract is unavailable | Follow `doc-specs` dependency handling; do not invent a replacement contract. |
+| Applicable authoring contract is unavailable | Follow `doc-author` dependency handling; do not invent a replacement contract. |
 | Source or destination changed after inspection | Preserve other edits, compare actual changes and establish a reconciled basis before saving. |
 | Check or save fails | Inspect actual partial state, correct only authorized affected content or use the established recovery method, then repeat affected checks. |
 | Permission, recovery or extra scope is missing | Stop the affected mutation; report the exact dependency. Root/sudo remains user-executed. |
