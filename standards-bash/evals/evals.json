@@ -1,0 +1,32 @@
+{
+  "skill_name": "standards-bash",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this Debian login module and propose the smallest correction. It is sourced by an interactive user's .bashrc: `export PATH=\"$HOME/bin:$PATH\"`. The user wants safe repeated sourcing and comments describing behavior. Do not operate on the actual host or create a documentation site. Return a scoped patch, context/authority analysis, and targeted validation plan.",
+      "expected_output": "Recognizes sourced startup context, preserves caller shell state, avoids duplicate PATH entries, changes only necessary code/comments, and uses isolated targeted checks without building a docs ecosystem.",
+      "files": [],
+      "expectations": [
+        "Recognizes sourced startup context and repeated-sourcing requirement.",
+        "Does not add global strict mode, IFS, exit, or main to the startup module.",
+        "Proposes a concrete fix that prevents repeated PATH insertion without discarding existing entries.",
+        "Keeps documentation inline and does not scaffold shdoc, MkDocs, ADRs, or CI.",
+        "Separates proposed tests from executed checks and avoids actual host operations."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Prepare a Debian Bash CLI to process `.txt` files under an explicitly supplied project directory and write a combined report to a supplied output path within that directory. Filenames may contain spaces and newlines. Require help and safe zero arguments. A dependency may be missing. Include a validation plan and an example user-run command for inspecting a root-only service log; do not execute it or access the network. Return code and an authority explanation, not a documentation site.",
+      "expected_output": "Defines a standalone CLI contract, validates arguments and resolved path containment before writing, uses filename-safe enumeration with checked errors, keeps dependency checks action-specific, and delegates privileged log inspection.",
+      "files": [],
+      "expectations": [
+        "Help and zero arguments finish safely before dependency checks or output writes.",
+        "Handles spaces and newlines in source filenames without whitespace enumeration.",
+        "Validates resolved output containment and symlink behavior before side effects.",
+        "Propagates required enumeration and generation errors and avoids partial final output.",
+        "Delegates root-only log inspection to the user without sudo or privileged execution.",
+        "Does not install dependencies, access the network, or scaffold a documentation ecosystem."
+      ]
+    }
+  ]
+}
