@@ -1,0 +1,27 @@
+{
+  "skill_name": "ops-man",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "The skill is installed at <skill-dir>, but my shell is in a different project directory. No other skills or documentation catalogs are available. Retrieve ls(1) with a budget of 100 using the installed skill. Give the exact invocation with its placeholder resolved at use, expected status, and relevant limits. Do not execute ls or install anything.",
+      "expected_output": "Use the absolute bundled script path from any working directory, without loading another skill or catalog; return local manual text and status 0, with approximate truncation acknowledged.",
+      "files": [],
+      "expectations": [
+        "Uses the absolute skill directory to invoke the bundled script without relying on the working directory.",
+        "Requires no sibling skill or documentation catalog.",
+        "Requests ls section 1 with budget 100 and does not execute the documented command."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Host policy requires printf(1p), but that page is absent from the installed manual database. A normal printf(1) page exists and Bash documents are staged under doc-operations/pull-request. Explain the lookup and next steps using this skill alone. No installation or host changes are authorized.",
+      "expected_output": "Request the exact POSIX section, report status 4 for the absent page and stop dependent work; do not silently substitute printf(1), adopt staging documents, install packages, or execute privileged commands.",
+      "files": [],
+      "expectations": [
+        "Requests section 1p explicitly and reports absence as status 4.",
+        "Stops dependent work without silently substituting another section or installing packages.",
+        "Does not promote proposal documents to operational authority or require another skill."
+      ]
+    }
+  ]
+}
