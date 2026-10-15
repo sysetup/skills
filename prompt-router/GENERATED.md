@@ -1,1 +1,0 @@
-Portable autonomous package snapshot. The uploaded bundle did not include its canonical build source, so this refactor was applied directly to the distributed package and its manifest was regenerated. No sibling Skill is required for core operation. See the suite README for cross-Skill composition.

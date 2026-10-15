@@ -1,3 +1,0 @@
-# Tested in the delivery environment. Install only for optional Python automation.
-jsonschema==4.26.0
-PyYAML==6.0.3

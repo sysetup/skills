@@ -1,7 +1,0 @@
-interface:
-  display_name: "prompt-style"
-  short_description: "Rewrite prompts or set a named response style for the current conversation."
-policy:
-  products:
-    - chatgpt
-  allow_implicit_invocation: true

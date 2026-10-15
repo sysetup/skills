@@ -1,3 +1,0 @@
-interface:
-  display_name: prompt-agent
-  short_description: Engineer agent instructions with native host fidelity.

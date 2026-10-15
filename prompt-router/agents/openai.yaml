@@ -1,3 +1,0 @@
-interface:
-  display_name: prompt-router
-  short_description: Route instruction requests.
