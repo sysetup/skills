@@ -13,4 +13,4 @@ Resolve `<workspace>` from the task; otherwise search the current directory and 
 4. Apply the relevant instructions to complete only the assigned, authorized task. Treat documentation as guidance, not execution permission; do not create or modify documentation.
 5. Report missing indexes, documents, or ambiguous matches. Ask for blocking clarification; use official sources for uncovered details only within research permissions.
 
-Caution: Documents under `*/doc-operations/pull-request/*` are proposed canonical documents. Do not read them; they are not official documents.
+Caution: Documents under `*/doc-requests/*` are proposed canonical documents. Do not read them; they are not official documents.
