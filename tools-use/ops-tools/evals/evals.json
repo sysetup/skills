@@ -1,0 +1,29 @@
+{
+  "skill_name": "ops-tools",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Using the supplied skill, provide an English command plan for a concrete local task: locate the literal text release-note in Markdown files inside the current authorized workspace. Existing rg is available. Read the skill and only references needed to explain the plan. Do not execute any command, create an inventory, inspect the real workspace, access the network, or install tools. Report the exact task command, necessary availability/documentation checks, and what remains unverified.",
+      "expected_output": "A task-scoped local command plan with explicit evidence limits and no mandatory broad inventory or task-text classification.",
+      "files": [],
+      "expectations": [
+        "Gives a concrete literal rg search limited to Markdown files in the current workspace.",
+        "Checks only task-relevant tooling; no mandatory broad inventory or task-text classification.",
+        "Uses doc-get for applicable approved operational guidance and distinguishes a missing source from a proposal.",
+        "Makes no claim that the task command or verification actually ran."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Using the supplied skill, provide an English command plan for a concrete local task that requires the external command ops-tools-unavailable-demo. Assume an availability probe returned missing. Explain how the agent should handle the task and any independent work. Read the skill and relevant references. Do not execute commands, install or replace the dependency, inspect host configuration, or access the network. Return a bounded plan and accurate status.",
+      "expected_output": "Reports the missing dependency, leaves its operation unrun, and allows only independent scoped work without broad discovery or connector setup.",
+      "files": [],
+      "expectations": [
+        "Explicitly reports the required command missing and its dependent operation blocked or not-run.",
+        "Does not install or silently replace the required command.",
+        "Does not require unrelated configuration discovery or a broad tool inventory.",
+        "Separates independent permitted work from the dependent operation."
+      ]
+    }
+  ]
+}

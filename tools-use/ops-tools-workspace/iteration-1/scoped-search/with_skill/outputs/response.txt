@@ -1,0 +1,13 @@
+Plan only; no workspace search or tool probe was executed.
+
+From the current authorized workspace directory, run:
+
+rg --no-config -n -F -g '*.md' -- 'release-note' .
+
+This searches case-sensitive literal text in lowercase .md files recursively and prints matching lines with filenames and line numbers. The explicit root is the current directory. Ripgrep's normal ignore and hidden-file rules apply; it does not follow directory symlinks by default. --no-config prevents user configuration from changing the intended behavior.
+
+Availability: rg is supplied as available, so no inventory is needed. If that fact needs reconfirmation at execution time, use command -v rg; use type -P rg only if an external executable specifically needs confirmation.
+
+Documentation: before execution, use rg --help to confirm the installed meanings of --no-config, -n, -F, -g, --, ignore rules, and symlink handling. The skill also calls for approved operational guidance through doc-get and local manuals through ops-man when needed. Loading other skills and inspecting operational documents are excluded from this evaluation, so those checks remain unresolved rather than being assumed satisfied.
+
+Unverified: installed option semantics, actual file coverage and matches, applicable operational documents, and runtime exit status. A later search should distinguish exit 0 (matches), 1 (no matches), and 2 (error), subject to installed documentation. Hidden and ignored Markdown files are outside this command's default coverage. If those must be included, confirm that scope before changing the search flags. No network access, installation, privileged action, or broader inspection is required.

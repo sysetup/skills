@@ -1,0 +1,57 @@
+{
+  "ops-tools": {
+    "stage": "preflight",
+    "status": "PASS",
+    "auditor_version": "2.0.0",
+    "findings": [
+      {
+        "id": "P102",
+        "severity": "ADVICE",
+        "message": "description has no WHEN/trigger signal; all when-to-use info belongs in the description",
+        "location": "ops-tools/SKILL.md:frontmatter:description",
+        "evidence": "Undertriggering is the canonical failure mode; add explicit 'use when...' contexts"
+      }
+    ],
+    "skill": {
+      "path": "/Software/Own/Ongoing/servers/ai-server/04-agents-skills-prompts/skills/created/01-skills-final-selected/own/tools-use/ops-tools/SKILL.md",
+      "name": "ops-tools",
+      "body_lines": 26,
+      "description_chars": 372,
+      "anatomy_dirs": [
+        "scripts",
+        "references",
+        "assets"
+      ],
+      "referenced_bundled_files": [
+        "../ops-man/SKILL.md",
+        "references/output-contract.md",
+        "references/safety.md",
+        "references/tool-selection.md",
+        "scripts/discover-host-tools.sh",
+        "scripts/load-skill.sh"
+      ]
+    }
+  },
+  "ops-man": {
+    "stage": "preflight",
+    "status": "FAIL",
+    "auditor_version": "2.0.0",
+    "findings": [
+      {
+        "id": "P001",
+        "severity": "FAIL",
+        "message": "Invalid YAML frontmatter: mapping values are not allowed here\n  in \"<unicode string>\", line 1, column 26:\n    name: ops-man description: >-\n                             ^",
+        "location": "ops-man/SKILL.md:1:1",
+        "evidence": "The canonical contract requires YAML frontmatter with name and description"
+      }
+    ],
+    "skill": {
+      "path": "ops-man/SKILL.md",
+      "name": null,
+      "body_lines": 89,
+      "description_chars": 0,
+      "anatomy_dirs": [],
+      "referenced_bundled_files": []
+    }
+  }
+}

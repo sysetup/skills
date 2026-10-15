@@ -1,0 +1,25 @@
+{
+  "stage": "preflight",
+  "status": "PASS",
+  "auditor_version": "2.0.0",
+  "findings": [],
+  "skill": {
+    "path": "/Software/Own/Ongoing/servers/ai-server/04-agents-skills-prompts/skills/created/01-skills-final-selected/own/tools-use/ops-tools/SKILL.md",
+    "name": "ops-tools",
+    "body_lines": 26,
+    "description_chars": 386,
+    "anatomy_dirs": [
+      "scripts",
+      "references",
+      "assets"
+    ],
+    "referenced_bundled_files": [
+      "../ops-man/SKILL.md",
+      "references/output-contract.md",
+      "references/safety.md",
+      "references/tool-selection.md",
+      "scripts/discover-host-tools.sh",
+      "scripts/load-skill.sh"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+1..13
+ok 1 diagnostic help succeeds before target inspection
+ok 2 zero arguments and unknown options fail safely
+ok 3 package check succeeds without external runtimes
+ok 4 package identity and empty end-of-options are rejected
+ok 5 named inventory records present and missing external tools
+ok 6 duplicate input preserves first-occurrence order
+ok 7 builtin-only names are not external executables
+ok 8 invalid names never publish a partial inventory
+ok 9 empty and comment operands fail rather than being ignored
+ok 10 catalog mode is explicit and cannot mix with names
+ok 11 missing catalog values and inaccessible catalogs are diagnosed
+ok 12 retired file-output options fail without writes
+ok 13 repeat probes have stable records for unchanged PATH

@@ -1,0 +1,43 @@
+# Allowlisted CLI names for discover-host-tools.sh
+# One command name per line. Lines starting with # are ignored.
+# Names must match: first char alphanumeric, then alnum / . _ + -
+
+git
+rg
+grep
+find
+node
+npm
+npx
+jq
+curl
+make
+bash
+shellcheck
+shfmt
+bats
+cargo
+rustc
+go
+docker
+podman
+kubectl
+terraform
+ssh
+rsync
+tar
+unzip
+openssl
+pandoc
+sqlite3
+psql
+systemctl
+ip
+ss
+dig
+man
+col
+prettier
+eslint
+tsc
+playwright
