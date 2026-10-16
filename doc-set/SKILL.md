@@ -23,7 +23,7 @@ For documentation related to the global host treat `$HOME/.agents/doc-operations
 ## New index template
 
 ```markdown
-# Document Index
+# INDEX.md <doc-requests>|<doc-operations>
 
 | Type | Document | Installed path | Purpose and applicability | Responsibility | Local edition | Use boundary | Authoring contract, specification used |
 | --- | --- | --- | --- | --- | --- | --- | --- |
