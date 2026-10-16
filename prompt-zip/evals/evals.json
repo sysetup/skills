@@ -1,0 +1,62 @@
+{
+  "skill_name": "prompt-zip",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "In a hypothetical delivery, guide/usage.md and reference/usage.md are authorized final files. An existing delivery.zip must be preserved. Describe the packaging path when no file-creation or attachment tool is available.",
+      "expected_output": "A truthful limitation and usable file mapping, without a claimed archive or invented link.",
+      "expectations": [
+        "Preserves both subdirectories, existing destination and originals.",
+        "States tool/attachment limitations and does not claim verification occurred.",
+        "Does not upload externally or guess a download URL."
+      ],
+      "coverage": [
+        "zip-delivery",
+        "unavailable-tools"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A hypothetical ZIP mapping contains /absolute.txt, ../escape.txt, two case-fold-colliding names and a source beneath a symlinked directory outside the authorized root. Assess readiness for delivery; do not create files.",
+      "expected_output": "Delivery blocked on unsafe sources and nonportable/colliding members.",
+      "expectations": [
+        "Rejects traversal, absolute names, portable-name collisions and symlinked components.",
+        "Does not omit invalid files silently or claim a verified complete archive.",
+        "Preserves originals and requires a safe explicit mapping before packing."
+      ],
+      "coverage": [
+        "zip-delivery",
+        "blocked"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Explain the verification needed before offering an archive created from a frozen authorized regular-file mapping. The candidate has duplicate members with the same name and one corrupted member.",
+      "expected_output": "Verification failure with candidate identified and prior verified archive preserved.",
+      "expectations": [
+        "Requires reopen, nonempty archive, integrity check and full member list/count/size/streamed-byte comparison.",
+        "Does not use set equality to miss duplicate members.",
+        "Does not offer a failed candidate as a verified download or repeat external effects."
+      ],
+      "coverage": [
+        "zip-delivery",
+        "verification-failure"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Only this skill package is available. All substantive work is complete: the final guide is the chat text 'Usage: read the supplied record; report missing fields.' Describe ZIP delivery for that guide when file-creation and attachment tools are unavailable. No external upload is authorized.",
+      "expected_output": "A bounded delivery limitation that identifies the chat-only guide to save and the missing creation and attachment capabilities.",
+      "expectations": [
+        "Handles packaging directly without invoking, citing, recommending or requiring another skill or authoring workflow.",
+        "Identifies the chat-only guide as the deliverable and preserves the no-external-upload boundary.",
+        "Does not claim an archive was created or verified and does not invent a download link."
+      ],
+      "files": [],
+      "coverage": [
+        "standalone",
+        "package-isolation"
+      ]
+    }
+  ]
+}

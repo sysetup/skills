@@ -1,0 +1,195 @@
+{
+  "skill_name": "prompt-style",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Make this Professional:\n\nCreate a report about our Q3 numbers. Keep it short and include risks.",
+      "expected_output": "Only a polished, structured rewrite of the prompt in Professional style.",
+      "expectations": [
+        "Preserves the task to create a report about Q3 numbers.",
+        "Preserves the requirement to keep the report short.",
+        "Preserves the requirement to include risks.",
+        "Uses polished, precise, businesslike wording and does not collapse into mere terseness.",
+        "Does not add critique, explanation, or new requirements."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Rewrite this prompt in Friendly style: Write a customer update. Say the launch is delayed by two weeks and ask customers for patience.",
+      "expected_output": "Only a warm, conversational rewrite of the prompt in Friendly style.",
+      "expectations": [
+        "Preserves the two-week delay.",
+        "Preserves the request to ask customers for patience.",
+        "Sounds approachable and natural without becoming whimsical.",
+        "Does not invent additional facts or requirements."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Make this more Candid: Review the proposal. Point out weak assumptions and suggest fixes. Do not be rude.",
+      "expected_output": "Only a direct, constructive rewrite in Candid style.",
+      "expectations": [
+        "Preserves review, weak-assumption identification, suggested fixes, and the no-rudeness constraint.",
+        "Reduces hedging and ceremony while remaining respectful.",
+        "Does not add generalized skepticism or sarcasm."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Use Quirky style for this prompt: Create an onboarding checklist for a new data analyst. Include access, tooling, and first-week meetings.",
+      "expected_output": "Only a playful but clear rewrite in Quirky style.",
+      "expectations": [
+        "Preserves the onboarding-checklist task and all three required areas: access, tooling, first-week meetings.",
+        "Uses imaginative or unexpected phrasing without obscuring execution.",
+        "Does not turn the prompt into Friendly-only small talk."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Hypothetical scenario; paths describe the supplied prompt, not bundled files. Convert this prompt to Efficient style:\n\nUpdate `/srv/app/config.yaml`. Keep the key `max_retries` exactly as written. Run `pytest -q`. Return exactly this JSON shape: {\"status\":\"ok|error\",\"changed_files\":[\"string\"]}. Do not add keys.",
+      "expected_output": "Only a compact rewrite in Efficient style with all technical literals and constraints unchanged.",
+      "expectations": [
+        "Preserves `/srv/app/config.yaml`, `max_retries`, and `pytest -q` exactly.",
+        "Preserves the exact JSON shape and the prohibition on extra keys.",
+        "Removes ceremony without dropping any requirement.",
+        "Does not restyle or rewrite machine-readable literals."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Rewrite this in Cynical style: Assess the vendor claims, cite supporting evidence, identify unsupported claims, and avoid insults.",
+      "expected_output": "Only a skeptical, dry but useful rewrite in Cynical style.",
+      "expectations": [
+        "Preserves assessment, evidence citation, unsupported-claim identification, and no-insults requirements.",
+        "May use dry skepticism or restrained sarcasm but remains readable and task-focused.",
+        "Does not become abusive, hostile, or less factually rigorous."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Rewrite this prompt in Default style: Summarize the incident in five bullets. Do not assign blame. End with next steps.",
+      "expected_output": "Only a normal-preset rewrite with no custom style overlay.",
+      "expectations": [
+        "Preserves five bullets, no-blame, and next-steps requirements.",
+        "May improve clarity and structure.",
+        "Does not introduce Professional, Friendly, Candid, Quirky, Efficient, or Cynical traits as an explicit custom personality."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Use Efficient style for the rest of this conversation.",
+      "expected_output": "A brief acknowledgement that Efficient is now the active session style.",
+      "expectations": [
+        "Treats the request as Session Style rather than transforming the sentence.",
+        "Acknowledges the change briefly.",
+        "Sets Efficient as the active style for subsequent assistant responses in the current conversation only."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Context: the active session style is Friendly. User says: Switch to Candid.",
+      "expected_output": "A brief acknowledgement that Candid replaces Friendly as the active session style.",
+      "expectations": [
+        "Interprets switch as a session-style change.",
+        "Replaces Friendly with Candid rather than stacking styles.",
+        "Does not rewrite prior user content."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Context: the active session style is Cynical. User says: Go back to Default.",
+      "expected_output": "A brief acknowledgement that the custom session style has been cleared and normal preset style is restored.",
+      "expectations": [
+        "Treats Default as a reset.",
+        "Clears Cynical rather than layering Default over it.",
+        "Does not claim persistence or changes outside the current conversation."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Context: the active session style is Friendly. User says: Rewrite this prompt using Cynical style: Check whether the plan assumes perfect execution. Flag contradictions and suggest mitigations.",
+      "expected_output": "Only a Cynical rewrite of the supplied prompt while the Friendly session style remains active afterward.",
+      "expectations": [
+        "Uses Prompt Transformation for the supplied prompt despite an active session style.",
+        "Preserves perfect-execution assumption check, contradiction flagging, and mitigation suggestions.",
+        "Does not replace the active Friendly session style with Cynical.",
+        "Keeps any necessary surrounding explanation Friendly, though no explanation is required by default."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Rewrite this prompt in Professional style without changing its language: Prepare a project summary. Include progress, risks and next steps. Maximum 200 words.",
+      "expected_output": "Only a Professional rewrite that preserves the source language.",
+      "expectations": [
+        "Preserves the source language in the transformed prompt.",
+        "Preserves progress, risks, next steps and the 200-word maximum.",
+        "Does not translate or add commentary."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Make it Professional.",
+      "expected_output": "One concise clarification question because there is no clear referent indicating prompt transformation versus session style.",
+      "expectations": [
+        "Does not guess the operating mode.",
+        "Asks only the clarification needed to distinguish restyling content from changing future responses."
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Use a different response style for the rest of this chat.",
+      "expected_output": "A concise request to choose one of the seven supported styles.",
+      "expectations": [
+        "Recognizes Session Style mode from future-conversation language.",
+        "Asks for the missing style rather than for the mode.",
+        "Offers exactly: Default, Professional, Friendly, Candid, Quirky, Efficient, Cynical."
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "Hypothetical scenario; paths describe the supplied prompt, not bundled files. Make this Professional but preserve the format exactly:\n\nTASK: Deploy service\nPATH: /opt/acme/service\nCOMMAND: systemctl restart acme-api\nOUTPUT: YAML with exactly keys status and message\nCONSTRAINT: message must be <= 80 characters",
+      "expected_output": "A Professional rewrite that keeps the execution-critical literals, exact key requirements, and length constraint unchanged.",
+      "expectations": [
+        "Preserves `/opt/acme/service` and `systemctl restart acme-api` exactly.",
+        "Preserves YAML with exactly keys status and message.",
+        "Preserves message <= 80 characters.",
+        "Does not add keys, commands, paths, or stronger/weaker constraints."
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Use Academic style for the rest of this chat.",
+      "expected_output": "A concise request to choose one of the seven supported styles, without silently mapping Academic.",
+      "expectations": [
+        "Recognizes Session Style mode.",
+        "Does not invent or silently approximate an eighth supported style.",
+        "Offers Default, Professional, Friendly, Candid, Quirky, Efficient and Cynical."
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Use Professional style.",
+      "expected_output": "A brief acknowledgement that Professional is active for the current conversation.",
+      "expectations": [
+        "Treats a named supported style without content to transform as Session Style.",
+        "Names Professional in the acknowledgement.",
+        "Does not claim cross-conversation persistence."
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "Only this skill package is available. Rewrite this prompt in Efficient style and return only the rewrite: 'Review {{document}} using only supplied evidence. Return JSON with exactly status and findings. Do not write files or contact anyone.'",
+      "expected_output": "A concise prompt rewrite preserving all semantic and literal requirements.",
+      "expectations": [
+        "Transforms the prompt directly without invoking, citing, recommending or requiring another skill.",
+        "Preserves {{document}}, status, findings, supplied-evidence-only review and both effect restrictions.",
+        "Returns only the prompt, does not review a document and does not change the session style."
+      ],
+      "files": [],
+      "coverage": [
+        "standalone",
+        "package-isolation"
+      ]
+    }
+  ]
+}

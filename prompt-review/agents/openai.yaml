@@ -1,0 +1,3 @@
+interface:
+  display_name: prompt-review
+  short_description: Assess prompts unchanged or produce a requested revision.

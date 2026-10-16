@@ -1,0 +1,3 @@
+interface:
+  display_name: prompt-stages
+  short_description: Write worker assignments or complete staged execution packs.

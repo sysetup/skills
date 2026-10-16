@@ -1,0 +1,62 @@
+{
+  "skill_name": "prompt-verdict",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Classify this request without carrying it out: Final decision: retain the API and replace polling with events; prepare its execution prompt.",
+      "expected_output": "Compilation of a settled verdict.",
+      "expectations": [
+        "Distinguishes settled-decision compilation from new architecture design or conversation compaction.",
+        "Does not implement, launch an agent or generate the classified prompt.",
+        "States material uncertainty only if it changes selection."
+      ],
+      "coverage": [
+        "verdict-selection",
+        "normal"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Compile the latest verdict. Context: Final decision: use events. Later: withdraw that verdict; the replacement is undecided.",
+      "expected_output": "A specific decision blocker with no speculative execution prompt.",
+      "expectations": [
+        "Does not revive the withdrawn decision.",
+        "Names the replacement decision as the prerequisite.",
+        "Does not run implementation or append a First Action for a speculative plan."
+      ],
+      "coverage": [
+        "verdict-selection",
+        "blocked"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Prepare the settled parser verdict for another session. Context: final parser decision is preserve public API and fix escaping; later storage discussion is tentative. A participant reports checks passed without logs.",
+      "expected_output": "Only a parser execution prompt preserving settled behavior, reported evidence and a concrete First Action.",
+      "expectations": [
+        "Selects parser and compatible constraints while excluding tentative storage advice.",
+        "Labels passing checks as reported and requires verification before reliance.",
+        "Ends with First Action containing exactly one concrete implementation-starting action; does not implement."
+      ],
+      "coverage": [
+        "verdict-selection",
+        "reported-evidence"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Only this skill package is available. Compile this settled technical decision into an execution prompt: preserve the public API, replace polling with events, and retain existing authorization checks. No files have been inspected and no checks have run. Repository paths and test commands must be discovered in the implementation session. Return only the prompt.",
+      "expected_output": "A complete execution prompt grounded in the supplied decision with verification limits and exactly one First Action.",
+      "expectations": [
+        "Compiles the prompt directly without invoking, citing, recommending or requiring another skill.",
+        "Preserves the API, events direction and authorization checks without inventing paths, commands or passing results.",
+        "Ends with First Action containing exactly one implementation-starting action and does not implement the decision."
+      ],
+      "files": [],
+      "coverage": [
+        "standalone",
+        "package-isolation"
+      ]
+    }
+  ]
+}

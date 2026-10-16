@@ -1,0 +1,60 @@
+{
+  "skill_name": "prompt-handoff",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hypothetical scenario; paths describe the supplied task, not bundled files. Prepare a continuation handoff. Context: objective is fix parser escaping; decision is preserve the public API; src/parser.py was edited but not committed; unit tests were proposed, never run; next action is inspect the diff and run the repository's configured checks.",
+      "expected_output": "A continuation document preserving current edits, settled compatibility, unexecuted tests and exact next action.",
+      "expectations": [
+        "Separates completed edits from proposed verification.",
+        "Does not invent a commit or passing results.",
+        "Allows a fresh session to continue without hidden chat references."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Prepare a handoff for the next session. The only copy of the accepted output format is in an attachment the next session cannot open. The format itself is not visible in this conversation.",
+      "expected_output": "A handoff that identifies the missing essential source and blocks dependent work until it is supplied.",
+      "expectations": [
+        "Does not invent the accepted format or claim the attachment transfers.",
+        "Preserves independently known state.",
+        "Names the specific prerequisite for continuation."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Compact this session for continuation: a deployment was prepared, not authorized or executed; the next session must review the plan before requesting any required approval. Credentials must come from the authorized secret store.",
+      "expected_output": "A handoff preserving preparation status, pending authority and secret references.",
+      "expectations": [
+        "Does not claim deployment or approval occurred.",
+        "Does not request or embed credential values.",
+        "Does not convert continuation into a new delegated assignment."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Classify this request without carrying it out: Summarize this conversation so it can continue in another session.",
+      "expected_output": "Conversation continuation handoff.",
+      "expectations": [
+        "Distinguishes continuation from a worker assignment.",
+        "Preserves current-state handoff as the requested work.",
+        "Does not treat an arbitrary mention of another session as a settled technical verdict."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Only this skill package is available. Prepare a continuation handoff from this context: the settled direction is preserve the API and fix escaping; an edit is prepared but not committed; tests have not run; the next step is inspect the diff. No deployment is authorized. The next session will have only your handoff.",
+      "expected_output": "A complete continuation document with the settled direction, actual work state, pending checks, authorization boundary and concrete next step.",
+      "expectations": [
+        "Builds the handoff directly without invoking, citing, recommending or requiring another skill.",
+        "Embeds the necessary chat-only context and distinguishes the prepared edit from a commit or verified result.",
+        "Preserves the no-deployment boundary and makes diff inspection the next step."
+      ],
+      "files": [],
+      "coverage": [
+        "standalone",
+        "package-isolation"
+      ]
+    }
+  ]
+}

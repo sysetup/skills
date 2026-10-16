@@ -1,0 +1,124 @@
+{
+  "skill_name": "prompt-stages",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hypothetical scenario; paths describe the supplied task, not bundled files. Write an assignment for a worker to update only docs/usage.md from the supplied CLI help. The parent will integrate it. No commands, network or redelegation are authorized. Return the changed path and evidence of matching the help.",
+      "expected_output": "A bounded assignment with explicit inputs, write ownership, parent integration, return evidence and stop conditions.",
+      "expectations": [
+        "Limits writes to docs/usage.md and preserves the stated tool restrictions.",
+        "Requires supplied help or stops for the missing input.",
+        "Does not dispatch the worker or grant redelegation."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Hypothetical scenario; paths describe the supplied task, not bundled files. Prepare two parallel assignments that both need to rewrite the same final report.md. They may return isolated drafts, and one parent can integrate them.",
+      "expected_output": "Assignments producing isolated drafts with a single integrator for report.md, or a justified serial sequence.",
+      "expectations": [
+        "Does not authorize concurrent writes to report.md.",
+        "States baseline, individual outputs and conflict handling.",
+        "Includes integration work and evidence rather than assuming drafts combine themselves."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Adapt a worker assignment for a resumed task after a timed-out file write. The prior worker may still be running.",
+      "expected_output": "A recovery-aware assignment blocked on establishing exclusive ownership before replacement writes.",
+      "expectations": [
+        "Does not treat a timeout as proof that the previous writer stopped.",
+        "Requires inspection of partial state and actual authority before retry.",
+        "States checkpoint, blocker evidence and next action."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Hypothetical scenario; paths describe the supplied task, not bundled files. Divide a documentation update into fresh-session tasks. Inputs are docs/a.md and docs/b.md, both read-only. Output is deliverable/guide.md. Preserve their technical rules, identify contradictions, and verify every rule against its source. Writes are authorized only under deliverable/. Use serial sessions and a compact single-file execution pack.",
+      "expected_output": "A filled compact pack with source coverage, bounded extraction and integration tasks, checks, state and recovery instructions.",
+      "expectations": [
+        "Uses one pack file with exact section locators and authorized output paths.",
+        "Includes an integration owner and a final source-coverage check.",
+        "Does not run the underlying documentation update or initialize checks as passed."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Plan parallel edits to one shared configuration file. Workers have no isolated workspaces, locking or reliable cancellation. Keep the final configuration consistent and recover after interruption.",
+      "expected_output": "A serial plan or an explicitly blocked parallel branch, with ownership and recovery rules.",
+      "expectations": [
+        "Does not infer safety from disjoint task IDs or prose locks.",
+        "Requires old writer termination or enforced fencing before reassignment.",
+        "Includes partial-state inspection, evidence and a bounded retry policy."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Split 'improve our platform' into executable stages. No outcome, acceptance criteria or authorized workspace is defined.",
+      "expected_output": "A targeted clarification or bounded research brief; dependent production contracts remain provisional.",
+      "expectations": [
+        "Does not invent product requirements, permissions or runnable production prompts.",
+        "States which missing decisions block partitioning.",
+        "Does not describe a roadmap placeholder as an executable task."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Write one worker assignment. B consumes A's output revision 1 while A prepares revision 2. B's output file is disjoint from A's. Keep the input current and define treatment of a late report from B's revoked attempt.",
+      "expected_output": "A revision-bound assignment with a frozen input or dependency wait and stale-result rejection.",
+      "expectations": [
+        "Does not infer independence from disjoint output files.",
+        "Binds task, attempt, generation and consumed input revision; freezes revision 1 or makes B wait.",
+        "Rejects the revoked report and invalidates dependent evidence when consumed revisions change."
+      ],
+      "coverage": [
+        "orchestrate-assignment",
+        "stale-input",
+        "blocked"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Prepare a complete execution pack for an authorized job that may publish an artifact later, with a required human gate. A crash after a prior publish intent left its outcome unknown. No repeat publication is currently authorized.",
+      "expected_output": "A whole-job pack with reconciliation before any retry, preserved gate, integration and final closure.",
+      "expectations": [
+        "Separates preparation, authorization and actuation and does not publish anything.",
+        "Requires an authorized read of authoritative state or supported verified idempotent reconciliation; otherwise blocks for a decision.",
+        "Preserves checkpoints, actual acceptance evidence, ownership, bounded retries and final integration."
+      ],
+      "coverage": [
+        "orchestrate-pack",
+        "uncertain-effect",
+        "blocked"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Create a compact serial execution pack to copy the supplied read-only table Alpha=2, Beta=3 into a new summary under the authorized deliverable directory and show total 5. Preserve every row and source locator. Do not execute the pack.",
+      "expected_output": "A filled pack with concrete source, production, integration and final comparison contracts.",
+      "expectations": [
+        "Selects a whole-job pack, includes dependencies, one owner per output and a final assembled check.",
+        "Embeds the needed table for a cold session, makes locators/output paths explicit and initializes evidence as not-run.",
+        "Includes recovery and closure without running the copy or claiming checks passed."
+      ],
+      "coverage": [
+        "orchestrate-pack",
+        "normal"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Only this skill package is available. Adapt this existing execution plan: two workers both write final-report.md. Replace the shared writes with isolated drafts and one integrator. The supplied source text is 'Alpha=2; Beta=3'. The only authorized output directory is deliverable/. No commands, network, dispatch or further delegation are authorized. Return the revised compact execution pack; do not execute it.",
+      "expected_output": "A self-contained revised pack with embedded input, isolated draft ownership, one final-report integrator and observable checks.",
+      "expectations": [
+        "Adapts the pack directly without invoking, citing, recommending or requiring another skill.",
+        "Keeps all outputs under deliverable/, embeds the supplied source, assigns isolated drafts and one writer for the final report.",
+        "Preserves all tool and dispatch restrictions, includes integration and recovery, and initializes future evidence as not-run."
+      ],
+      "files": [],
+      "coverage": [
+        "standalone",
+        "package-isolation"
+      ]
+    }
+  ]
+}

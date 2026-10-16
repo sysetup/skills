@@ -1,0 +1,7 @@
+interface:
+  display_name: prompt-verdict
+  short_description: Prepare a settled technical verdict for a fresh execution agent
+  default_prompt: Use $prompt-verdict to prepare the latest relevant technical verdict as
+    an execution prompt usable without prior conversation for a new agent.
+policy:
+  allow_implicit_invocation: true
