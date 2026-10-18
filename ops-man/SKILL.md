@@ -17,7 +17,7 @@ Retrieve installed manual pages as plain text with the local man database. Resol
 
 For a routine lookup, invoke `bash "<skill-dir>/scripts/man_page_lookup.sh" COMMAND [SECTION] [MAX_TOKENS]`. The command is a manual name, not a path. Apply the active user, host, project, and runtime instructions; a manual lookup does not authorize executing the documented operation.
 
-Keep this capability limited to local manual retrieval. General tool selection, host procedure retrieval, document authoring, and framework/API research remain separate task responsibilities. Documents under `doc-operations/pull-request/` are proposals, available for explicit review rather than ordinary operational authority; do not read them as a prerequisite for manual lookup.
+Keep this capability limited to local manual retrieval. General tool selection, host procedure retrieval, document authoring, and framework/API research remain separate task responsibilities.
 
 When host policy requires POSIX documentation, request the applicable installed POSIX section explicitly; the default search does not establish POSIX provenance. If the required entry is absent, report the gap and stop dependent work. Continue only independent work permitted by host policy. Dependency installation requires explicit user authorization; delegate every root or sudo operation to the user.
 
