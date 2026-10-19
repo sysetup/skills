@@ -2,6 +2,9 @@
 name: ops-language-select
 description: Select and justify implementation languages for host automation using the bundled language-selection SOP. Use whenever choosing, comparing, defending, or migrating among Bash, Python, Node.js/TypeScript, C++, and Rust for scripts, developer tooling, build/test infrastructure, CLIs, filesystem or process orchestration, structured data, network automation, local services, or native hot paths. Apply the SOP's ordered criteria, workload guidance, and conditional tie-breaks to the whole system before recommending a language or rewrite.
 compatibility: Requires read access to this skill's bundled references. No executable runtime dependency.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Host automation language selection

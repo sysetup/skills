@@ -1,6 +1,9 @@
 ---
 name: ops-markdown
 description: Create, edit, normalize, and review Markdown formatting. Use whenever a user or another agent assigns work on .md or .markdown files, including README files, technical guides and Markdown agent instructions.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Markdown formatting

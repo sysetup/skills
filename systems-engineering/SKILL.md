@@ -11,6 +11,9 @@ description: >-
   system-of-systems framing that must stay top-down and traceable from
   business need to physical solution. Do not use for unrelated tasks or isolated
   implementation/debugging without a system-of-interest frame.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # systems-engineering

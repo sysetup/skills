@@ -8,6 +8,7 @@ description: >-
 compatibility: Debian with Bash, GNU coreutils, man-db and col installed; no installation is performed.
 license: MIT
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   version: "1.2.2"
 ---
 

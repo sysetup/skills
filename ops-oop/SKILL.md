@@ -1,6 +1,9 @@
 ---
 name: ops-oop
 description: Engineer, design, implement, review, refactor, test, and evolve object-oriented software across the full lifecycle. Use whenever work involves object-oriented programming or design, classes and objects, responsibilities, encapsulation, invariants, interfaces, inheritance, subtyping, polymorphism, composition, SOLID or GRASP, UML/domain models, GoF patterns, DDD tactical design, OO architecture, legacy OO code, C++ object lifetime/ownership, or regulated C++ software. Apply language-agnostic reasoning with C++23 examples, and activate regulated profiles only when project context requires them.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # ops-oop

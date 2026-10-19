@@ -2,6 +2,9 @@
 name: ops-markdown-test
 description: Check existing Markdown, audit formatting compliance, and verify proposed formatting changes. Use whenever a user or another agent requests Markdown verification or a formatting audit, rather than document creation or editing. Report evidence and coverage limits without rewriting assessed files.
 compatibility: The bundled checker requires Linux and Python 3.10 or newer with its standard library only.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Markdown formatting verification

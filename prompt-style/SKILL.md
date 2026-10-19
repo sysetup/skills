@@ -1,6 +1,9 @@
 ---
 name: prompt-style
 description: Apply one of seven communication styles (Default, Professional, Friendly, Candid, Quirky, Efficient, or Cynical) to a supplied prompt or to assistant responses in the current conversation. Use when the user asks to restyle a prompt, use or switch response styles, reset to Default, or choose a conversation-wide style. Resolve missing or unsupported styles using these seven choices. General prose editing has a different scope.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # prompt-style

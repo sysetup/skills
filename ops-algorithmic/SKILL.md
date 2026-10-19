@@ -1,6 +1,9 @@
 ---
 name: ops-algorithmic
 description: "Design, implement, review, debug, refactor, and optimize algorithms and software with an algorithm-first quality hierarchy: prove semantic correctness, select algorithms and data structures that fit the workload, minimize asymptotic and real resource cost, then maximize clarity, comprehensibility, maintainability, and measured performance. Use for any task that creates or modifies source code, implements algorithms, chooses data structures, designs loops or state transitions, fixes performance, reviews code quality, reduces complexity, or translates requirements into executable software. Apply across programming languages and frameworks. Trigger especially when clean-looking code may conceal a poor algorithmic choice, or when optimization claims require proof, testing, profiling, or benchmarking."
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Algorithmic Software Engineering

@@ -3,6 +3,7 @@ name: dev-css-test
 description: Evaluate existing, saved CSS after implementation. Use when reviewing written stylesheets, checking CSS compliance before delivery, or performing a post-change audit. Report evidence without fixing files; authoring CSS or choosing conventions before implementation is outside this skill.
 license: MIT
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   short-description: Evaluate written CSS.
 ---
 

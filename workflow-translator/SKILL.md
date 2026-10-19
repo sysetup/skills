@@ -2,6 +2,9 @@
 name: workflow-translator
 description: >-
   Translate written text faithfully and naturally between languages, preserving meaning, tone, terminology, structure, and protected tokens. Use whenever the user asks to translate, back-translate, render a passage in another language, or produce bilingual or multilingual versions, including mixed-language sources and technical, scientific, academic, legal, medical, business, and literary text. Apply a requested target variety directly, without a required localization pass or cultural adaptation. Applying a supplied glossary does not request a glossary product. For compound requests, handle the translation component. Do not use for standalone translation review, glossary creation, localization of existing target-language text, transcreation, monolingual correction or rewriting, language tutoring, transcription, or transliteration alone.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Translate Text

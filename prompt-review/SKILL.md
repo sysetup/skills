@@ -1,6 +1,9 @@
 ---
 name: prompt-review
 description: Assess or improve existing prompts and instruction files while preserving their purpose, authority, permissions, and output contracts. Use when the user requests audits, linting, contradiction checks, native-format or portability assessment, or asks to enhance, optimize, refine, fix, harden, polish, refactor, or rewrite a prompt. Assessment without rewriting leaves the source unchanged; return a usable revision only when requested, including for agent and application-managed prompts.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # prompt-review

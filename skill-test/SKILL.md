@@ -7,6 +7,9 @@ description: >
   grading/timing validation, and benchmark validation. Use whenever the user
   asks to test, audit, certify, or run evals on a SKILL.md or skill package,
   or after a skill is drafted or improved.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # skill-test — canonical evaluation-loop harness

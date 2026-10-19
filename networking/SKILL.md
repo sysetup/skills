@@ -13,6 +13,7 @@ allowed-tools:
   - python
   - bash
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   short-description: "Network engineering analysis and design skill"
 compatibility: >
   Requires selective reading of Markdown files under references/ and optional

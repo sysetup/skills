@@ -1,6 +1,9 @@
 ---
 name: doc-set
 description: Create documents using doc-specs and register default outputs in doc-requests indexes. Use whenever a user or agent requests a document, report, proposal, runbook, guide, or other documentary deliverable, including an explicit output path.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # doc-set

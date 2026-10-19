@@ -2,6 +2,9 @@
 name: workflow-translator-localize
 description: >-
   Localize existing text already in the target language for a regional variety, audience, and channel while preserving facts, values, commitments, and protected syntax. Use whenever the user requests localization, regional adaptation, market-specific wording, or a locale change such as US to UK English or Spain to Mexican Spanish, including UI strings, websites, documentation, and professional communications. Apply only the localization stage of compound requests. Exclude translation between languages, bilingual translation review, standalone glossary creation, general proofreading without a localization objective, and creative transcreation.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Localize Text

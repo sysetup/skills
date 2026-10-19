@@ -2,6 +2,7 @@
 name: standards-css
 description: "Enforce CSS conventions via references/css-standards.md. Use for *.css changes, CSS lint/format, naming (kebab-case), selector specificity/!important, @import safety, theming/layout regressions, or when invoked as $standards-css."
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   short-description: CSS standards.
 license: MIT
 ---

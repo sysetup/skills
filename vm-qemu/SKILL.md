@@ -11,6 +11,9 @@ description: >
   "QEMU Monitor Protocol", "guest agent", "qemu-ga", "cpu model",
   "host passthrough", "SPICE", "VNC".
 user-invocable: true
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # vm-qemu

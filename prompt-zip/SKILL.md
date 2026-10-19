@@ -1,6 +1,9 @@
 ---
 name: prompt-zip
 description: Collect authorized task deliverables into a verified ZIP archive and provide its actual download link. Use when the user requests a downloadable bundle, delivery as a ZIP, or packaging all completed work. Confirm the deliverable set, then create and verify the archive using available local tools.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # prompt-zip

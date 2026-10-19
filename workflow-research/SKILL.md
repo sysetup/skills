@@ -16,6 +16,7 @@ description: >-
   checks.
 license: MIT
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   short-description: Creswell inquiry discipline for any investigation.
   framework: Creswell & Creswell Research Design 6th ed. (2022); Creswell Educational Research process (6 steps); Creswell & Poth Qualitative Inquiry 5th ed. (2024); Peffers et al. DSRM (2007); Hevner et al. MISQ (2004); PRISMA 2020
   version: "2.2"

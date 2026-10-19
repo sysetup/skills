@@ -1,8 +1,9 @@
 ---
 name: standards-javascript
 description: Enforce JavaScript standards for authoring/refactoring/reviewing `*.js` and JavaScript snippets in docs; optional Prettier/ESLint verification; stop on config conflicts.
-license: NOASSERTION
+license: MIT
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   short-description: JavaScript standards.
   version: "1.0.0"
 ---

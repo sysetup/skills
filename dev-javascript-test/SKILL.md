@@ -1,8 +1,9 @@
 ---
 name: dev-javascript-test
 description: Evaluate existing, saved JavaScript after implementation. Use when reviewing written modules or explicitly scoped snippets, checking compliance before delivery, or performing a post-change audit. Report evidence without authoring code, fixing files, or creating tool configuration.
-license: NOASSERTION
+license: MIT
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   short-description: Evaluate written JavaScript.
   version: "2.0.0"
 ---

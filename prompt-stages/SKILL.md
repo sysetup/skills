@@ -1,6 +1,9 @@
 ---
 name: prompt-stages
 description: Produce bounded worker assignments or complete execution packs for defined jobs across fresh sessions. Use when the user requests delegation, parallel work boundaries, phased or staged plans, dependencies, integration, checkpoints, recovery, reassignment, or return evidence. Select one assignment or a whole-job pack from the requested scope. Generate the instructions rather than dispatch workers or execute the underlying job.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # prompt-stages

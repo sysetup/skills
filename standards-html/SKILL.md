@@ -2,6 +2,7 @@
 name: standards-html
 description: "Enforce HTML standards when authoring/refactoring/reviewing *.html (keywords: html, *.html, a11y, accessibility, prettier, vnu) using the canonical ruleset in `references/html-standards.md`."
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   short-description: HTML standards
 license: MIT
 ---

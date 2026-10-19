@@ -4,6 +4,7 @@ description: Amplifies reasoning, creativity, and productivity with a frame→de
 allowed-tools: []
 license: MIT
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   version: "1.0.0"
   short-description: Structured reasoning, creativity, and delivery workflow.
   keywords: reasoning, decomposition, synthesis, creativity, prioritization, planning, verification, quality

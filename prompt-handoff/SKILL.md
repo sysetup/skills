@@ -1,6 +1,9 @@
 ---
 name: prompt-handoff
 description: Compact the current conversation into a continuation handoff for a fresh session or agent. Use when the user explicitly requests conversation continuation, preserving decisions, actual progress, references, unresolved questions, and next actions while redacting secrets.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # prompt-handoff

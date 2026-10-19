@@ -2,6 +2,9 @@
 name: workflow-translator-recreate
 description: >-
   Transcreate an existing message or supplied creative brief for a target audience, language, and communicative effect. Use whenever the user requests transcreation, creative translation, campaign or slogan adaptation, recreation of wordplay, or a message that should evoke a specified response rather than follow the original wording. Covers headlines, taglines, calls to action, brand copy, and other expressive text, across languages or within one language when creative recreation is explicit. Do not use for faithful translation alone, regional localization alone, proofreading, translation auditing, glossary building, or original copy without a supplied message or brief.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Text Transcreation

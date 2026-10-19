@@ -8,6 +8,9 @@ description: >
   shaguard results in local automation and CI. Resolve the bundled script
   from this skill; no system installation of shaguard is required.
 compatibility: Linux, Bash 4+, sha256sum or BusyBox; manifest operations also require find, sort, mktemp, mv, dirname, and basename.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Shaguard

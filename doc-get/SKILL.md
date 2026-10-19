@@ -1,6 +1,9 @@
 ---
 name: doc-get
 description: Find, read, and apply existing host or workspace documentation. Use whenever a user or agent requests existing documentation or a task requires guidance for commands, configuration, tools, services, runtimes, integrations, maintenance, or project work.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # doc-get

@@ -4,6 +4,8 @@ description: "Resolve current, version-specific library and framework documentat
 version: "2.0.0"
 allowed-tools: [read, glob, grep, web_search, "context7/*"]
 license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # doc-context7

@@ -3,6 +3,7 @@ name: dev-html-test
 description: Evaluate existing, saved HTML after implementation. Use when reviewing written markup or explicitly scoped templates, checking accessibility and validity before delivery, or performing a post-change audit. Report evidence without authoring or fixing markup.
 license: MIT
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   short-description: Evaluate written HTML.
 ---
 

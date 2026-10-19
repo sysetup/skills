@@ -1,6 +1,9 @@
 ---
 name: prompt-author
 description: Create, adapt, convert, migrate, or consolidate instructions as bounded task prompts, reusable actions and Agent Skills, agent definitions, or persistent repository and path rules. Use when the user needs paste-ready task requests, repeated procedures with activation and arguments, durable responsibilities and tools, or AGENTS.md-like guidance with discovery and precedence. Select the branch from intended use; preserve native format, authority, and source contracts.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # prompt-author

@@ -11,6 +11,9 @@ description: >-
   its original; excludes bilingual fidelity
   assessment, translation, regional localization, transcreation, original
   drafting, and substantial rewriting or restructuring.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Monolingual Copyediting

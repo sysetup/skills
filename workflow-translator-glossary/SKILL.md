@@ -2,6 +2,9 @@
 name: workflow-translator-glossary
 description: >-
   Build, extract, reconcile, and maintain contextual monolingual, bilingual, or multilingual glossaries and termbases. Use whenever the user requests a glossary, terminology extraction, preferred terms, acronym inventory, termbase cleanup, conflicting-term reconciliation, or standardizing terminology decisions across supplied texts, even without saying glossary. Applying a supplied glossary or maintaining terminology during translation or editing alone does not request this operation. Distinguish observed and supplied terms from proposals, unresolved decisions, and explicitly approved terminology. Do not use for full-text translation, translation-quality review, localization, transcreation, or general copyediting alone; in compound requests, handle only the terminology stage.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Terminology Glossary

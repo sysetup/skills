@@ -1,6 +1,9 @@
 ---
 name: prompt-verdict
 description: Compile the latest settled technical decision in the current conversation into an execution prompt for a fresh implementation session. Use when the user requests the latest technical verdict, its execution prompt, or this skill explicitly. Preserve authoritative decisions and distinguish verified evidence, reported observations, and assumptions.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # prompt-verdict

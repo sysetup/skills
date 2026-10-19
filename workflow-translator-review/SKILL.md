@@ -2,6 +2,9 @@
 name: workflow-translator-review
 description: >-
   Review an existing translation against its source and brief, reporting traceable errors and proposed corrections. Use for bilingual revision, translation QA, translation audits, assessing the fidelity or quality of human or machine translations, assessing post-edited text, or comparing candidate translations against the same source, including requests to find omissions, additions, mistranslations, terminology drift, or damaged placeholders. Without a source, request it and provide only an explicitly limited target-text assessment. Do not use for creating a translation, monolingual correction or copyediting even of translated text, glossary building, localization, or transcreation; in compound requests, handle only the translation-review stage.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Translation Review

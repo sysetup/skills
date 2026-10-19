@@ -12,6 +12,7 @@ allowed-tools:
   - python
   - bash
 metadata:
+  author: "SYSETUP.COM CarlosHRG"
   short-description: Native upfront blockers.
   version: "1.1.0"
 ---
