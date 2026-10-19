@@ -57,3 +57,4 @@ Within `doc-requests` or `doc-operations`, select a category below by purpose, t
 | `02-plans/` | Planned scope, resources, sequencing, and readiness. |
 | `03-specifications/` | Requirements, architecture, design, interfaces, test definitions, and product information. |
 | `04-control/` | Production controls and matrices that meet document eligibility. |
+| `05-evidence/` | Evidence documents that meet document eligibility. |
