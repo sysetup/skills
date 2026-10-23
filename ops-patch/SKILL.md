@@ -1,6 +1,9 @@
 ---
 name: ops-patch
 description: Generate minimal, git-apply compatible unified diff (.patch) files and verify them with strict whitespace checks before application. Use whenever asked to create, emit, or apply a patch for files.
+license: MIT
+metadata:
+  author: "SYSETUP.COM CarlosHRG"
 ---
 
 # Unified Patch Generation and Application
