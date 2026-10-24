@@ -48,13 +48,13 @@ Write only dialogue into the `.md` file. Use the literal labels `User:` and `Age
 ```markdown
 # Dialogue.
 
-## User:
+## **User:**
 
 Hi.
 
 --->
 
-## Agent:
+## **Agent:**
 
 Hi. How can I help?
 
