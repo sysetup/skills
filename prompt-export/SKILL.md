@@ -46,13 +46,19 @@ Save the active conversation's user and agent dialogue to a local Markdown file.
 Write only dialogue into the `.md` file. Use the literal labels `User:` and `Agent:` on their own lines, followed by the message text. Separate consecutive messages with a blank line, the literal `--->` on its own line, and another blank line. Do not add a trailing separator, title, frontmatter, timestamps, counts, summaries, coverage notes, or an enclosing code fence.
 
 ```markdown
-User:
+# Dialogue.
+
+## User:
+
 Hi.
 
 --->
 
-Agent:
+## Agent:
+
 Hi. How can I help?
+
+--->
 ```
 
 Keep original message content unchanged except for required redaction and line-ending normalization. Preserve existing Markdown inside each message rather than reformatting it to a house prose style. The example illustrates the format only; never insert example text into a real export.
