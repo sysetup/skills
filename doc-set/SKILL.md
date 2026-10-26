@@ -50,13 +50,44 @@ In the `INDEX.md` file, do not add any notes, comments, or additional instructio
 
 ## Directory hierarchy
 
-Within `doc-requests` or `doc-operations`, select a category below by purpose, then group by domain, topic, technology, protocol, or convention: `<category>/<group>/…/<document>.md`. Use representative kebab-case names of at most four words and create only needed directories. Resolve incompatible explicit paths before writing.
+Within `doc-requests` or `doc-operations`, select or create a category by purpose, then group by domain, topic, technology, protocol, process or convention: `...<category>/<group>/.../<document>.md`. Use representative kebab-case names of at most four words and create only needed directories. Resolve incompatible explicit paths before writing.
+
+For instance:
 
 | Directory | Responsibility |
 | --- | --- |
-| `00-governance/` | Policies, standards, and organizational advice. |
-| `01-processes/` | Recurring procedures, runbooks, playbooks, and work instructions. |
-| `02-plans/` | Planned scope, resources, sequencing, and readiness. |
-| `03-specifications/` | Requirements, architecture, design, interfaces, test definitions, and product information. |
-| `04-control/` | Production controls and matrices that meet document eligibility. |
-| `05-evidence/` | Evidence documents that meet document eligibility. |
+| `governance/` | Policies, standards, and organizational advice. |
+| `processes/` | Recurring procedures, runbooks, playbooks, and work instructions. |
+| `plans/` | Planned scope, resources, sequencing, and readiness. |
+| `specifications/` | Requirements, architecture, design, interfaces, test definitions, and product information. |
+| `control/` | Production controls and matrices that meet document eligibility. |
+| `evidence/` | Evidence documents that meet document eligibility. |
+
+Or:
+
+```bash
+.
+├── agents-ai/
+│   └── skills/
+│       ├── client-implementation/
+│       └── skill-creation/
+├── authorship-and-licensing/
+├── host-documentation/
+├── profiles/
+│   ├── developers/
+│   ├── document-authoring/
+│   └── licenses/
+├── programming-languages/
+│   ├── cpp/
+│   ├── html-css/
+│   ├── javascript/
+│   ├── json/
+│   ├── python/
+│   ├── rust/
+│   │   └── doc-src-rust/
+│   ├── shell-and-bash/
+│   ├── sql/
+│   ├── typescript/
+│   └── yaml/
+└── software-development/
+```
