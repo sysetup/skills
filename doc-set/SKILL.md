@@ -1,6 +1,6 @@
 ---
 name: doc-set
-description: Create documents using doc-specs and register default outputs in doc-requests indexes. Use whenever a user or agent requests a document, report, proposal, runbook, guide, or other documentary deliverable, including an explicit output path. Promote doc-requests documents to doc-operations only on explicit user request.
+description: Create documents using doc-specs and register default outputs in doc-requests indexes. Use whenever a user or agent requests a document, report, proposal, runbook, guide, or other documentary deliverable, including an explicit output path.
 license: MIT
 metadata:
   author: "SYSETUP.COM CarlosHRG"
@@ -20,25 +20,25 @@ For difficult documents, resolve authoring requirements from the applicable spec
 
 ## Workflow
 
-For explicit user requests to promote documents, validate the selected `doc-requests` documents against their specifications, copy them unchanged to the same relative paths under the corresponding `doc-operations` root, and apply steps 5–6 only to the destination index. Preserve sources, their index, and `Local edition` values; skip authoring. Reject ambiguous or out-of-tree paths before writing. Otherwise, follow the authoring workflow below.
+This skill covers authoring and delivery only. Leave synchronization and operational updates to the administrator, user or developer through their external process; do not implement or prescribe that process.
 
-1. Identify type, purpose, host or workspace scope, and destination. Create only requested, self-contained `doc-specs` documents; omit companion documents, third-party licenses, alternate references, cross-document citations or links, and auxiliary files.
+1. Identify type, purpose, host or workspace scope, and destination. Create only requested `doc-specs` documents, as self-contained as possible, with high cohesion and low coupling; use cross-document citations or links only when necessary. This authoring preference does not restrict reading the corpus or following required references. Omit unsolicited companion documents, alternate references and auxiliary files; include references, native assets and license texts or notices required by the applicable specifications or document owners, preserving their scope, paths and licensing conditions.
 2. For workspace scope, read the first existing catalog: `<workspace>/.agents/doc-specs/INDEX.md`. Use `$HOME/.agents/doc-specs/INDEX.md` for host scope or when workspace catalogs are absent. Select and read the matching specification and required references within authorized scope. Keep `doc-specs` read-only. Report missing catalogs or specifications and apply document eligibility; ask if scope remains unresolved.
 3. Apply the specification's structure, naming, and validation rules using verified task context. Preserve concrete supplied or existing metadata; when the specification omits it, author a descriptive filename, `Local edition` (initially `1.0`, independent of the specification's edition), `Responsibility` (accountable role), and other required index fields from the work context. Mark every document body with `Source specification: <ID>; edition: <EDITION>`; use `Unspecified` for unverifiable specification editions and verify indexed metadata before delivery. If no validator is available, check the rules manually and report the validation limitation. Do not execute documented operations.
 4. Use an explicit destination when provided; otherwise use `<workspace>/.agents/doc-requests/` for workspace project documents.
-5. Within `doc-requests` or `doc-operations`, register every document, including explicit destinations, in that root's `INDEX.md`; create it from the template if absent and use it as the sole entry point. Elsewhere, follow the task's indexing requirements.
+5. Within `doc-requests`, register every document, including explicit destinations, in that root's `INDEX.md`; create it from the template if absent and use it as the sole entry point. Catalog only documents, not accompanying assets or license files. Elsewhere, follow the task's indexing requirements.
 6. Preserve unrelated rows and index structure. Set each document link and `Installed path` to the same path relative to the index directory; reject paths resolving outside that tree. Match rows by normalized `Installed path`; update the matching row or append if absent. Stop on multiple matches. Record one row per saved document with verified metadata; reserve `Unspecified` for unverifiable source facts, not author-created metadata.
 
 If issues come up:
 
 1. Report save failures, directory errors, denied access, insufficient privileges, or sandbox restrictions to the requester. Stop dependent writes. For access restrictions, provide the directory owner with a command that creates the exact prepared document and required index update from their control panel; respect the authorized editing mechanism. For other failures, identify the cause and required correction before supplying that command. Resolve incomplete content or uncertain destinations first.
 
-For documentation related to the global host treat `$HOME/.agents/doc-operations/` and its descendants as read-only; write there only when the user explicitly instructs it. Always write documents where explicit destination when provided; otherwise use `<workspace>/.agents/doc-requests/` unless the user explicitly instructs writing to `$HOME/.agents/doc-operations/` or `<workspace>/.agents/doc-operations/`. This note takes precedence over all other destination, indexing, and hierarchy instructions in this skill.
+Treat host and workspace `doc-operations/` roots and their descendants as read-only; reject destinations within them. Use an explicit destination when provided; otherwise use `<workspace>/.agents/doc-requests/`. This restriction takes precedence over all other destination, indexing, and hierarchy instructions in this skill.
 
 ## New index template
 
 ```markdown
-# INDEX.md <doc-requests>|<doc-operations>
+# INDEX.md doc-requests
 
 | Type | Document | Installed path | Purpose and applicability | Responsibility | Local edition | Use boundary |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -50,7 +50,7 @@ In the `INDEX.md` file, do not add any notes, comments, or additional instructio
 
 ## Directory hierarchy
 
-Within `doc-requests` or `doc-operations`, select or create a category by purpose, then group by domain, topic, technology, protocol, process or convention: `...<category>/<group>/.../<document>.md`. Use representative kebab-case names of at most four words and create only needed directories. Resolve incompatible explicit paths before writing.
+Within `doc-requests`, select or create a category by purpose, then group by domain, topic, technology, protocol, process or convention: `...<category>/<group>/.../<document>.md`. Use representative kebab-case names of at most four words and create only needed directories. Resolve incompatible explicit paths before writing.
 
 For instance:
 
@@ -84,7 +84,6 @@ Or:
 │   ├── json/
 │   ├── python/
 │   ├── rust/
-│   │   └── doc-src-rust/
 │   ├── shell-and-bash/
 │   ├── sql/
 │   ├── typescript/
