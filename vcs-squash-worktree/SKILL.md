@@ -16,8 +16,10 @@ Accept these per-run parameters from user instructions or workspace discovery:
 - `repo_path`: Primary repository directory (default: current working directory or `../<repo>` when inside `../<repo>-work`).
 - `worktree_path`: Detached worktree directory (default: `../<repo>-work`, e.g., `../repo-work`).
 - `base_branch`: Primary remote-tracked branch (default: `main`).
-- `remote_url`: Remote repository URL (`git@github.com:<owner>/<repo-name>.git`); required only when `origin` is missing.
+- `remote_url`: Explicitly approved remote repository URL supplied at execution; required only when `origin` is missing.
 - `commit_message`: Imperative `<type>: <summary>` commit message for local or squashed commits.
+
+`REMOTE_URL` in shell examples is the binding of the validated `remote_url` input; it has no default endpoint.
 
 Validate all ref and path inputs before execution; never interpolate untrusted strings into shell evaluation. Stop before state-changing or network commands (`git push`, `git merge --squash`, `git worktree remove`) if required inputs (`<owner>`, `<repo-name>`) are unresolved, `base_branch` has uncommitted changes during integration, or remote push is unauthorized.
 
@@ -48,7 +50,7 @@ git worktree list --porcelain 2>/dev/null
 When the repository exists on the remote with history but is not yet present locally, clone it and attach the detached worktree:
 
 ```bash
-git clone "git@github.com:<owner>/<repo-name>.git" repo &&
+git clone "$REMOTE_URL" repo &&
 cd repo &&
 git worktree add --detach ../repo-work main &&
 cd ../repo-work
@@ -61,7 +63,7 @@ From an empty `repo` directory with an empty remote repository (`<owner>` and `<
 ```bash
 git init -b main &&
 git commit --allow-empty -m "chore: initialize repository" &&
-git remote add origin "git@github.com:<owner>/<repo-name>.git" &&
+git remote add origin "$REMOTE_URL" &&
 git push -u origin main &&
 git worktree add --detach ../repo-work main &&
 cd ../repo-work

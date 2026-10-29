@@ -22,23 +22,23 @@ Use these sources to justify engineering rules without overstating them. Disting
 
 ## Key sources
 
-1. Floyd, R. W. (1967). *Assigning Meanings to Programs*. Proceedings of Symposia in Applied Mathematics, 19, 19-32. DOI: https://doi.org/10.1090/psapm/019/0235771
-2. Hoare, C. A. R. (1969). *An Axiomatic Basis for Computer Programming*. Communications of the ACM, 12(10), 576-580. DOI: https://doi.org/10.1145/363235.363259
-3. McCabe, T. J. (1976). *A Complexity Measure*. IEEE Transactions on Software Engineering, SE-2(4), 308-320. DOI: https://doi.org/10.1109/TSE.1976.233837
-4. Miara, R. J., Musselman, J. A., Navarro, J. A., & Shneiderman, B. (1983). *Program Indentation and Comprehensibility*. Communications of the ACM, 26(11), 861-867. DOI: https://doi.org/10.1145/182.358437
-5. Basili, V. R., & Selby, R. W. (1987). *Comparing the Effectiveness of Software Testing Strategies*. IEEE Transactions on Software Engineering, SE-13(12), 1278-1296. DOI: https://doi.org/10.1109/TSE.1987.232881
+1. Floyd, R. W. (1967). *Assigning Meanings to Programs*. Proceedings of Symposia in Applied Mathematics, 19, 19-32. DOI: 10.1090/psapm/019/0235771
+2. Hoare, C. A. R. (1969). *An Axiomatic Basis for Computer Programming*. Communications of the ACM, 12(10), 576-580. DOI: 10.1145/363235.363259
+3. McCabe, T. J. (1976). *A Complexity Measure*. IEEE Transactions on Software Engineering, SE-2(4), 308-320. DOI: 10.1109/TSE.1976.233837
+4. Miara, R. J., Musselman, J. A., Navarro, J. A., & Shneiderman, B. (1983). *Program Indentation and Comprehensibility*. Communications of the ACM, 26(11), 861-867. DOI: 10.1145/182.358437
+5. Basili, V. R., & Selby, R. W. (1987). *Comparing the Effectiveness of Software Testing Strategies*. IEEE Transactions on Software Engineering, SE-13(12), 1278-1296. DOI: 10.1109/TSE.1987.232881
 6. Oman, P. W., & Cook, C. R. (1991). *A Programming Style Taxonomy*. Journal of Systems and Software, 15(3), 287-301. Use as a taxonomy/history source rather than proof that any one style is superior.
 7. Takang, A. A., Grubb, P. A., & Macredie, R. D. (1996). *The Effects of Comments and Identifier Names on Program Comprehensibility: An Experimental Investigation*. Journal of Programming Languages, 4(3), 143-167.
-8. Buse, R. P. L., & Weimer, W. (2010). *Learning a Metric for Code Readability*. IEEE Transactions on Software Engineering, 36(4), 546-558. DOI: https://doi.org/10.1109/TSE.2009.70
-9. Gopstein, D., Iannacone, J., Yan, Y., DeLong, L., Zhuang, Y., Yeh, M. K.-C., & Cappos, J. (2017). *Understanding Misunderstandings in Source Code*. ESEC/FSE, 129-139. DOI: https://doi.org/10.1145/3106237.3106264
-10. Schankin, A., Berger, A., Holt, D. V., Hofmeister, J. C., Riedel, T., & Beigl, M. (2018). *Descriptive Compound Identifier Names Improve Source Code Comprehension*. ICPC 2018, 31-40. DOI: https://doi.org/10.1145/3196321.3196332
-11. Binkley, D., Lawrie, D., Maex, S., & Morrell, C. (2009). *Identifier Length and Limited Programmer Memory*. Science of Computer Programming, 74(7), 430-445. DOI: https://doi.org/10.1016/j.scico.2009.02.006
-12. Zhu, Q., Panichella, A., & Zaidman, A. (2018). *A Systematic Literature Review of How Mutation Testing Supports Quality Assurance Processes*. Software Testing, Verification and Reliability, 28(6). DOI: https://doi.org/10.1002/stvr.1675
-13. Oliveira, D., Santos, R., Madeiral, F., Masuhara, H., & Castor, F. (2023). *A Systematic Literature Review on the Impact of Formatting Elements on Code Legibility*. Journal of Systems and Software, 203, 111728. DOI: https://doi.org/10.1016/j.jss.2023.111728
-14. Lavazza, L., Morasca, S., & Gatto, M. (2023). *An Empirical Study on Software Understandability and Its Dependence on Code Characteristics*. Empirical Software Engineering, 28, 155. DOI: https://doi.org/10.1007/s10664-023-10396-7
-15. McIntosh, S., Kamei, Y., Adams, B., & Hassan, A. E. (2014). *The Impact of Code Review Coverage and Code Review Participation on Software Quality: A Case Study of the Qt, VTK, and ITK Projects*. MSR 2014, 192-201. DOI: https://doi.org/10.1145/2597073.2597076
-16. Fleischer, R., Moret, B., & Schmidt, E. M. (eds.) (2002). *Experimental Algorithmics: From Algorithm Design to Robust and Efficient Software*. LNCS 2547. DOI: https://doi.org/10.1007/3-540-36383-1
-17. ISO/IEC 25010:2023. *Systems and Software Engineering — Systems and Software Quality Requirements and Evaluation (SQuaRE) — Product Quality Model*. Official record: https://www.iso.org/standard/78176.html
+8. Buse, R. P. L., & Weimer, W. (2010). *Learning a Metric for Code Readability*. IEEE Transactions on Software Engineering, 36(4), 546-558. DOI: 10.1109/TSE.2009.70
+9. Gopstein, D., Iannacone, J., Yan, Y., DeLong, L., Zhuang, Y., Yeh, M. K.-C., & Cappos, J. (2017). *Understanding Misunderstandings in Source Code*. ESEC/FSE, 129-139. DOI: 10.1145/3106237.3106264
+10. Schankin, A., Berger, A., Holt, D. V., Hofmeister, J. C., Riedel, T., & Beigl, M. (2018). *Descriptive Compound Identifier Names Improve Source Code Comprehension*. ICPC 2018, 31-40. DOI: 10.1145/3196321.3196332
+11. Binkley, D., Lawrie, D., Maex, S., & Morrell, C. (2009). *Identifier Length and Limited Programmer Memory*. Science of Computer Programming, 74(7), 430-445. DOI: 10.1016/j.scico.2009.02.006
+12. Zhu, Q., Panichella, A., & Zaidman, A. (2018). *A Systematic Literature Review of How Mutation Testing Supports Quality Assurance Processes*. Software Testing, Verification and Reliability, 28(6). DOI: 10.1002/stvr.1675
+13. Oliveira, D., Santos, R., Madeiral, F., Masuhara, H., & Castor, F. (2023). *A Systematic Literature Review on the Impact of Formatting Elements on Code Legibility*. Journal of Systems and Software, 203, 111728. DOI: 10.1016/j.jss.2023.111728
+14. Lavazza, L., Morasca, S., & Gatto, M. (2023). *An Empirical Study on Software Understandability and Its Dependence on Code Characteristics*. Empirical Software Engineering, 28, 155. DOI: 10.1007/s10664-023-10396-7
+15. McIntosh, S., Kamei, Y., Adams, B., & Hassan, A. E. (2014). *The Impact of Code Review Coverage and Code Review Participation on Software Quality: A Case Study of the Qt, VTK, and ITK Projects*. MSR 2014, 192-201. DOI: 10.1145/2597073.2597076
+16. Fleischer, R., Moret, B., & Schmidt, E. M. (eds.) (2002). *Experimental Algorithmics: From Algorithm Design to Robust and Efficient Software*. LNCS 2547. DOI: 10.1007/3-540-36383-1
+17. ISO/IEC 25010:2023. *Systems and Software Engineering — Systems and Software Quality Requirements and Evaluation (SQuaRE) — Product Quality Model*.
 
 ## Interpretation safeguards
 

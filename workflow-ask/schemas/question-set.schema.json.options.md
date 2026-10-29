@@ -4,9 +4,7 @@ Strict JSON cannot carry comments. This sidecar documents the complete
 domain of each path. Values in the schema file remain the source of
 truth for validation.
 
-$.$schema
-Options: URI of a JSON Schema dialect. Required. Default for this file:
-http://json-schema.org/draft-07/schema#
+Dialect: JSON Schema Draft 7. Consumers must select Draft 7 explicitly; this schema declares no remote dialect URI.
 
 $.title
 Options: free-form string naming the schema. Required in this file.

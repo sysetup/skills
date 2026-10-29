@@ -28,13 +28,6 @@ Public sources inspected for this correction on 2026-09-14:
 | SRC-AIAG-2019 | AIAG announcement dated 2019-06-13, public description of AIAG & VDA FMEA Handbook | Confirms domain-specific Action Priority replaces RPN in that method; no scoring table or equivalence is reproduced |
 | SRC-OPENAI-SKILLS | OpenAI skills documentation and linked build-skills guidance | Packaging/discovery orientation; host installation and execution are not certified by this bundle |
 
-Source locators:
-- SRC-NASA-5: https://www.nasa.gov/reference/5-0-product-realization/
-- SRC-NASA-6: https://www.nasa.gov/reference/6-0-crosscutting-technical-management/
-- SRC-ISO-15288: https://www.iso.org/standard/81702.html
-- SRC-AIAG-2019: https://blog.aiag.org/new-aiag-vda-fmea-handbook-and-trainings-available
-- SRC-OPENAI-SKILLS: https://developers.openai.com/api/docs/guides/tools-skills
-
 Other inherited references (ANSI/EIA-632, INCOSE guidance, MIL-STD families, Blanchard/Fabrycky,
 and maturity models) are source traditions only: no edition or clause was established here.
 Do not cite them as if their actual text had been consulted. Identify and inspect the exact

@@ -76,9 +76,12 @@ vncviewer HOST:DISPLAY
 | `seamless-migration=on|off` | Seamless migration support |
 
 ### Connecting
-```
+
+Supply the approved display address through `SPICE_URI` at execution.
+
+```text
 spicy -h HOST -p PORT
-remote-viewer spice://HOST:PORT
+remote-viewer "$SPICE_URI"
 ```
 
 ## VirGL / 3D Acceleration

@@ -86,16 +86,16 @@ Read-only formats for Bochs, compressed loop, and Apple DMG images.
 
 These protocols can be used as block drivers, both for images and direct storage access:
 
-| Driver | Protocol | Typical URI |
+| Driver | Protocol | Locator fields |
 |--------|----------|-------------|
-| `nbd` | Network Block Device | `nbd:host:port:exportname=NAME` |
-| `iscsi` | iSCSI | `iscsi://[user:pass@]host[:port]/target/lun` |
+| `nbd` | Network Block Device | Host, port and export name |
+| `iscsi` | iSCSI | Host, optional port, target and LUN; supply credentials separately |
 | `iser` | iSCSI over RDMA | Same as iSCSI |
-| `nfs` | Network File System | `nfs://host/path` |
-| `ssh` | SSH/SFTP | `ssh://[user@]host[:port]/path` |
-| `gluster` | GlusterFS | `gluster://host/vol/file` |
-| `http` / `https` | HTTP(S) | `http://host/path` (read-only) |
-| `ftp` / `ftps` | FTP(S) | `ftp://host/path` (read-only) |
+| `nfs` | Network File System | Host and exported path |
+| `ssh` | SSH/SFTP | User, host, optional port and path |
+| `gluster` | GlusterFS | Host, volume and file |
+| `http` / `https` | HTTP(S) | Approved resource address (read-only) |
+| `ftp` / `ftps` | FTP(S) | Approved resource address (read-only) |
 | `nvme` | NVMe over PCIe (local) | Direct NVMe namespace access |
 
 ## Filter Drivers

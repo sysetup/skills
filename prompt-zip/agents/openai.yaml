@@ -1,8 +1,6 @@
 interface:
   display_name: prompt-zip
   short_description: Bundle all task deliverables into a verified downloadable ZIP.
-  icon_small: assets/icon.svg
-  icon_large: assets/icon.svg
 policy:
   products:
   - CHAT
