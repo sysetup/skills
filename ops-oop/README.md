@@ -13,7 +13,6 @@ This package installs an AI skill for full-lifecycle object-oriented software en
 - `references/05-testing-refactoring-legacy.md` - testing, contract tests, refactoring, legacy seams.
 - `references/06-review-quality-gates.md` - review ordering, quality attributes, standards crosswalk.
 - `references/07-regulated-profiles.md` - MISRA, AUTOSAR legacy, ISO 26262, IEC 61508, DO-178C/DO-332/DO-330.
-- `references/08-source-map.md` - canonical literature and primary standards sources.
 - `references/09-output-contracts.md` - reusable design/review/refactoring/assurance output structures.
 - `evals/evals.json` - representative behavioral evaluation cases.
 

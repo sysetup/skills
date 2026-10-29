@@ -9,18 +9,13 @@
 > Systems development company.
 ```
 
-sysetup.com
+[sysetup.com](https://sysetup.com/)
 
 A collection of agent skills.
 
 ## Start here
 
-Read the selected skill's `SKILL.md` before use. Keep its entire directory
-together, including `references/`, `scripts/`, `assets/`, and `agents/` when
-present. Installation locations and activation depend on the receiving agent;
-this repository does not provide an installer or a universal compatibility claim.
-See the Agent Skills specification for
-the package format.
+Read the selected skill's `SKILL.md` before use. Keep its entire directory together, including `references/`, `scripts/`, `assets/`, and `agents/` when present. Installation locations and activation depend on the receiving agent; this repository does not provide an installer or a universal compatibility claim. See the [Agent Skills specification](https://agentskills.io/specification) for the package format.
 
 ## Skill catalog
 

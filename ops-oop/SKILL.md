@@ -265,7 +265,6 @@ Load references only when their topic becomes material:
 - **Testing, TDD, refactoring, characterization tests, legacy seams:** [references/05-testing-refactoring-legacy.md](references/05-testing-refactoring-legacy.md)
 - **Code/design review, quality attributes, lifecycle/architecture/requirements standards:** [references/06-review-quality-gates.md](references/06-review-quality-gates.md)
 - **MISRA, AUTOSAR legacy, ISO 26262, IEC 61508, DO-178C/DO-332/DO-330:** [references/07-regulated-profiles.md](references/07-regulated-profiles.md)
-- **Canonical literature and primary standards source map:** [references/08-source-map.md](references/08-source-map.md)
 - **Reusable output structures:** [references/09-output-contracts.md](references/09-output-contracts.md)
 
 ## Evidence and standards discipline
