@@ -8,7 +8,7 @@ metadata:
 
 # Unified Patch Generation and Application
 
-Generate minimal, reviewable unified diffs that apply cleanly with `git apply --whitespace=error`.
+Generate minimal, reviewable unified diffs validated with `git apply --check --whitespace=error`.
 
 ## When to Use
 
@@ -36,24 +36,10 @@ diff --git a/skills/doc-set/SKILL.md b/skills/doc-set/SKILL.md
 
 ## Verification and Application
 
-Always run a pre-flight check (`--check`) with strict whitespace enforcement (`--whitespace=error`) against the target repository (`-C`) before applying the patch:
-
-For example:
+Validate the standalone patch against the target repository without modifying files:
 
 ```bash
-git -C "$HOME/<dir>" apply --check --whitespace=error "$HOME/<dir>/<patch-name>.patch" &&
-git -C "$HOME/<dir>" apply --whitespace=error "$HOME/<dir>/<patch-name>.patch"
+git -C "<repo-root>" apply --check --whitespace=error "<patch-path>"
 ```
 
-For other target repositories or patch locations, substitute the repository root and patch path while preserving the two-stage `--check && apply` execution pattern:
-
-```bash
-git -C "<repo-root>" apply --check --whitespace=error "<patch-path>" &&
-git -C "<repo-root>" apply --whitespace=error "<patch-path>"
-```
-
-### Summary of Pattern Enforcement
-
-- **Header Normalization:** Uses three-line `diff --git a/<path> b/<path>`, `--- a/<path>`, and `+++ b/<path>` headers without object-hash `index` lines, matching `publication-ready-docs-1.0.patch`[cite: 1].
-- **Minimal Hunk Context:** Enforces exact `@@ -l,s +l,s @@` counts with 1–2 space-prefixed context lines (including single-space blank context lines) so `git apply --whitespace=error` succeeds without regressions[cite: 1].
-- **Atomic Application:** Requires pre-flight validation (`--check --whitespace=error`) chained via `&&` before mutating the target repository.
+For patch-only requests, deliver the verified artifact without editing target files. For authorized implementation, use only the governing runtime's patch mechanism (`apply_patch` on this host); translate the unified diff into its native format while preserving paths, context, and changes. Reuse existing authorization and honor runtime restrictions without adding routine reapproval. Use `git apply` only with `--check` for read-only validation.

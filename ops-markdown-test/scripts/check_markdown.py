@@ -10,7 +10,7 @@ import stat
 import sys
 
 
-STANDARD_SHA256 = "5dbd09643b93b94e979dd39d76522fa9bc79b1939874a6715be5d13709acacf4"
+STANDARD_SHA256 = "61991c4fdd665c8a903f31ff466ab3b28c523160a4ca3f872a80c152add62123"
 MAX_FILES, MAX_BYTES, MAX_LINES, MAX_LINE, MAX_FINDINGS = 32, 1048576, 20000, 65536, 200
 UNASSESSED = ["M03", "M05", "M07", "M08", "M09", "M10", "context-dependent parts of M01/M02/M04/M06"]
 FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})(.*)$")

@@ -43,7 +43,7 @@ Save the active conversation's user and agent dialogue to a local Markdown file.
 
 ## Output Contract
 
-Write only dialogue into the `.md` file. Use the literal labels `User:` and `Agent:` on their own lines, followed by the message text. Separate consecutive messages with a blank line, the literal `--->` on its own line, and another blank line. Do not add a trailing separator, title, frontmatter, timestamps, counts, summaries, coverage notes, or an enclosing code fence.
+Begin with `# Dialogue.` and a blank line. For each message, write `## **User:**` or `## **Agent:**`, a blank line, the original message text, a blank line, and `--->` on its own line, including after the last message. Separate messages with a blank line after `--->`. Do not add frontmatter, timestamps, counts, summaries, coverage notes, or an enclosing code fence.
 
 ```markdown
 # Dialogue.
@@ -73,7 +73,7 @@ Keep original message content unchanged except for required redaction and line-e
 ## Completion Verification
 
 - [ ] The Markdown file exists on disk at an authorized, verified destination and was read back successfully.
-- [ ] It contains only original eligible dialogue, correctly attributed and ordered, with recoverable questionnaire questions and submitted answers.
+- [ ] It contains the required title and message framing and only original eligible dialogue, correctly attributed and ordered, with recoverable questionnaire questions and submitted answers.
 - [ ] Reasoning, progress narration, runtime instructions, tool traces, invented content, and export diagnostics are absent.
 - [ ] Existing files, confidentiality rules, and access boundaries were preserved.
 - [ ] The user received the file location and an accurate statement of any incomplete coverage or unverified behavior.

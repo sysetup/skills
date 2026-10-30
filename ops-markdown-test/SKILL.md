@@ -29,7 +29,7 @@ python3 -B <skill-root>/scripts/check_markdown.py --root . --standard standard.m
 
 The root is an explicit scope selector, not an authorization grant. Standard and document paths must be relative to it. The checker rejects parent traversal, absolute input paths, symlinks beneath the root, nonregular files, duplicate inputs, unavailable files, and unsupported encodings. It does not recurse, rewrite files, execute examples, load other skills, or access the network.
 
-The checker binds its rule mapping to the SHA-256 of the finalized standard. An exact copy can live anywhere inside the selected root; no installation location is assumed. A mismatch stops assessment with exit 2. Read and reconcile a changed standard before updating its binding and affected tests; changing only the hash does not establish agreement.
+The compatible edition is [ops-markdown/SKILL.md](../ops-markdown/SKILL.md), rules M01–M10, SHA-256 `61991c4fdd665c8a903f31ff466ab3b28c523160a4ca3f872a80c152add62123`. The checker binds its rule mapping to that digest. An exact copy can live anywhere inside the selected root; no installation location is assumed. A mismatch stops assessment with exit 2. Read and reconcile a changed standard before updating its binding and affected tests; changing only the hash does not establish agreement.
 
 Limits are 32 documents, 1 MiB per file including the standard, 20,000 lines per document, 65,536 characters per line, and 200 findings plus a limit notice per document. Read errors and limits are explicit; successful scans of other explicit files remain available. Diagnostics omit document contents.
 
