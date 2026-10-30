@@ -19,7 +19,7 @@ import json
 import math
 import sys
 from dataclasses import dataclass
-from typing import Iterable, List
+from typing import Iterable, List, NoReturn
 
 MAX_SPLIT_SUBNETS = 4096
 MIN_PYTHON = (3, 10)
