@@ -13,7 +13,7 @@ metadata:
 
 Read [references/decision-policy.md](references/decision-policy.md) first, then the bundled [language-selection SOP](references/sop--core--ops-host-automation-language-selection.md). The source contract defines the package-relative locator, SOP identity and JSON fields to inspect, and blocking behavior when the source is unavailable or ambiguous.
 
-The bundled SOP is the sole normative source. This skill supplies a workflow and navigation, not a second policy. Read that SOP for each decision; the other references supply section maps. Installation, discovery, and the SOP's draft status do not grant operational permissions.
+The bundled SOP is the sole normative source. This skill supplies a workflow and navigation, not a second policy. Read that SOP for each decision; the other references supply section maps.
 
 ## Apply the decision workflow
 
