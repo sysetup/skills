@@ -1,6 +1,6 @@
 # SOP source contract
 
-This reference owns source resolution and navigation only. The bundled SOP owns every language-selection rule, score, tie-break, and operational control.
+This reference owns source resolution and navigation only. The bundled SOP contains the complete comparison guide. Its lifecycle state and verified task-specific adoption determine whether its recommendations are binding; governing host/project requirements retain precedence.
 
 ## Resolve from the skill location
 
@@ -19,7 +19,7 @@ Read the SOP as Markdown containing labeled JSON fences. Parse JSON rather than 
 | `data:readiness` | Read `inputs_outputs`, `equipment_materials`, `safety_regulatory`, and `prerequisites` for inputs, access and artifact controls. |
 | `data:procedure` | Decode `procedure` as the Markdown guide; read `holds` and `abnormal` as operational controls. |
 
-Missing fields, wrong identity, malformed JSON, or an unreadable required section block a source-backed decision. Report the discrepancy; do not substitute another policy. Source availability is separate from task uncertainty: missing workload facts may allow a provisional decision under an intact SOP, while a missing SOP does not.
+Missing fields, wrong identity, malformed JSON, or an unreadable required section block a source-backed decision. Report the discrepancy; do not substitute another policy. A draft with empty approval references is usable as provisional guidance; it is not an approved host standard. Explicit selection can adopt named criteria for the current task without releasing the SOP globally. Record that scope and authority. Source availability is separate from task uncertainty: missing workload facts may allow a provisional decision under an intact SOP, while a missing SOP does not.
 
 ## Governing sections
 

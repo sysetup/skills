@@ -21,35 +21,20 @@ A useful progression is:
 
 `observable behavior -> invariant -> responsibility -> collaboration -> variation -> architecture -> evolution`
 
-### C++ example used throughout
+### Language-neutral example used throughout
 
-```cpp
-#include <cstdint>
-#include <stdexcept>
-
-class BankAccount {
-public:
-    explicit BankAccount(std::int64_t opening_cents)
-        : balance_cents_(opening_cents) {
-        if (opening_cents < 0) {
-            throw std::invalid_argument("negative opening balance");
-        }
-    }
-
-    void withdraw(std::int64_t cents) {
-        if (cents <= 0 || cents > balance_cents_) {
-            throw std::invalid_argument("invalid withdrawal");
-        }
-        balance_cents_ -= cents;
-    }
-
-    [[nodiscard]] std::int64_t balance_cents() const noexcept {
-        return balance_cents_;
-    }
-
-private:
-    std::int64_t balance_cents_;
-};
+```text
+class BankAccount
+    private balance
+    construct(opening)
+        if opening is not a non-negative integer: fail InvalidBalance
+        balance := opening
+    withdraw(amount)
+        if amount is not a positive integer or amount > balance: fail InvalidWithdrawal
+        balance := balance - amount
+    balanceAmount() -> balance
+invariant: balance is a non-negative integer
+failure guarantee: rejected withdrawals leave balance unchanged
 ```
 
 The important OO fact is not that `BankAccount` is a class. It earns a type boundary because it protects the rule that a balance cannot be created negative and withdrawals cannot violate the allowed state.
@@ -64,11 +49,11 @@ Reason about an object as a runtime participant that combines state, behavior, a
 
 A value is understood by its content rather than persistent identity. Prefer values for quantities, money, coordinates, dates, IDs, configuration, and immutable domain concepts when identity adds no behavior.
 
-```cpp
-struct Money {
-    std::int64_t cents{};
-    friend auto operator<=>(const Money&, const Money&) = default;
-};
+```text
+value Money
+    cents: integer
+    currency: CurrencyCode
+    equality(other) := cents = other.cents and currency = other.currency
 ```
 
 ### Entity
@@ -97,37 +82,27 @@ An invariant is a condition that must hold whenever the object is observable in 
 
 Weak design:
 
-```cpp
-struct Rectangle {
-    double width;
-    double height;
-};
+```text
+record Rectangle
+    public width
+    public height
+# Clients can assign invalid dimensions without validation.
 ```
 
 If negative dimensions are invalid, the public representation permits invalid state.
 
 Stronger design:
 
-```cpp
-class Rectangle {
-public:
-    Rectangle(double width, double height)
-        : width_(require_positive(width)),
-          height_(require_positive(height)) {}
-
-    [[nodiscard]] double area() const noexcept {
-        return width_ * height_;
-    }
-
-private:
-    static double require_positive(double value) {
-        if (value <= 0.0) throw std::invalid_argument("non-positive dimension");
-        return value;
-    }
-
-    double width_;
-    double height_;
-};
+```text
+class Rectangle
+    private width, height
+    construct(w, h)
+        if either dimension is non-finite or non-positive: fail InvalidDimension
+        if w * h is not representable: fail AreaOverflow
+        width := w
+        height := h
+    area() -> width * height
+invariant: dimensions and area are finite and positive
 ```
 
 ### Encapsulation
@@ -136,7 +111,7 @@ Encapsulation is control over valid state and implementation dependencies, not m
 
 ### Lifetime
 
-In C++, lifecycle design is inseparable from OO design. Determine who owns an object, when it becomes valid, how long borrows may survive, and how resources are released. Use RAII to align resource lifetime with object lifetime.
+Lifecycle design is part of OO design in every language. Determine who owns an object, when it becomes valid, how long borrows may survive, and how resources are released. Use the target runtime's deterministic cleanup mechanism; garbage collection alone does not define external-resource release.
 
 ## L2: responsibilities and collaboration
 
@@ -165,34 +140,28 @@ Coupling is unavoidable; manage its direction and semantic weight. Coupling to a
 
 Use a subtype only when clients of the base contract can use the subtype without knowing which concrete type they received.
 
-Bad sign: a client receives `Shape&` but immediately checks whether it is a `Circle` to decide what operations are legal.
+Bad sign: a client receives a `Shape` collaborator but immediately checks whether it is a `Circle` to decide what operations are legal.
 
 ### Dynamic polymorphism
 
 Use virtual dispatch when implementation must vary at runtime behind a stable contract and independent compilation/deployment or heterogeneous collections justify the cost/complexity.
 
-```cpp
-class Compressor {
-public:
-    virtual ~Compressor() = default;
-    virtual void compress(InputView input, OutputSink& output) = 0;
-};
+```text
+interface Compressor
+    compress(input, output)
+    guarantees output decodes to input on success
+    declares output state and resource cleanup on failure
 ```
 
 ### Static polymorphism
 
-Use templates/concepts when variation is known at compile time and zero-overhead/generic composition is appropriate.
+Use the target language's static contracts or generic mechanisms when variation is known before execution and static composition is appropriate.
 
-```cpp
-template <class T>
-concept Compressor = requires(T c, InputView in, OutputSink& out) {
-    c.compress(in, out);
-};
-
-template <Compressor C>
-void archive(C& compressor, InputView input, OutputSink& output) {
-    compressor.compress(input, output);
-}
+```text
+algorithm archive(compressor, input, output)
+    requires compressor implements the Compressor contract
+    compressor.compress(input, output)
+# Bind the implementation statically when the target language supports it.
 ```
 
 Do not choose dynamic dispatch merely because OO is requested; OO reasoning and runtime inheritance are not synonymous.
@@ -231,10 +200,10 @@ Use these questions to select the next concept level:
 |---|---|
 | Invalid combinations of fields | invariant + encapsulation |
 | Many classes forward calls without decisions | responsibility allocation |
-| `dynamic_cast` or type switches | substitution/design boundary |
-| Repeated constructor/cleanup bugs | ownership + RAII |
+| Runtime type checks or type switches | substitution/design boundary |
+| Repeated constructor/cleanup bugs | ownership + deterministic cleanup |
 | Deep override hierarchy | inheritance contract + composition alternative |
 | Many flags select behavior | Strategy/State/policy object |
 | Tests break on harmless refactorings | collaboration granularity + mock usage |
 | Changes touch many modules | cohesion, dependency direction, architecture boundary |
-| Critical-system restriction conflicts with modern C++ idiom | regulated profile + exact standard edition |
+| Critical-system restriction conflicts with language idiom | regulated profile + exact standard edition |

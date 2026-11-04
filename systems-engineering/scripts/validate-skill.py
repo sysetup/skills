@@ -6,6 +6,11 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+
+try:
+    import yaml
+except ImportError:
+    yaml = None
 from pathlib import Path
 
 SKILL_NAME = "systems-engineering"
@@ -76,39 +81,56 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def parse_frontmatter(text: str) -> dict[str, str]:
+def parse_frontmatter(text: str) -> dict:
     match = FRONTMATTER_RE.match(text)
     if not match:
         raise ValueError("SKILL.md is missing YAML frontmatter")
-    data: dict[str, str] = {}
-    key = None
-    folded: list[str] = []
-    in_fold = False
-    for raw_line in match.group(1).splitlines():
-        line = raw_line.rstrip()
-        if in_fold:
-            if line.startswith("  "):
-                folded.append(line.strip())
-                continue
-            data[key] = " ".join(folded)
-            in_fold = False
-            folded = []
-        if not line or line.startswith(" ") or line.startswith("\t"):
-            continue
-        if ":" not in line:
-            continue
-        key, value = line.split(":", 1)
-        key = key.strip()
-        if key in data:
-            raise ValueError(f"duplicate frontmatter key: {key}")
-        value = value.strip()
-        if value in {">", ">-"}:
-            in_fold = True
-            folded = []
-            continue
-        data[key] = value.strip("\"'")
-    if in_fold and key is not None:
-        data[key] = " ".join(folded)
+    if yaml is None:
+        raise ValueError("PyYAML 6.x is required for YAML validation")
+
+    class UniqueLoader(yaml.SafeLoader):
+        def construct_mapping(self, node, deep=False):
+            result = {}
+            for key_node, value_node in node.value:
+                key = self.construct_object(key_node, deep=deep)
+                if not isinstance(key, str):
+                    raise ValueError("frontmatter keys must be strings")
+                if key in result:
+                    raise ValueError(f"duplicate frontmatter key: {key}")
+                result[key] = self.construct_object(value_node, deep=deep)
+            return result
+
+    try:
+        data = yaml.load(match.group(1), Loader=UniqueLoader)
+    except yaml.YAMLError as exc:
+        raise ValueError("invalid YAML frontmatter") from exc
+    if not isinstance(data, dict):
+        raise ValueError("frontmatter must be a mapping")
+    allowed = {
+        "name",
+        "description",
+        "license",
+        "compatibility",
+        "metadata",
+        "allowed-tools",
+    }
+    if set(data) - allowed:
+        raise ValueError("unsupported frontmatter fields")
+    for key in allowed - {"metadata"}:
+        if key in data and (not isinstance(data[key], str) or not data[key].strip()):
+            raise ValueError(f"{key} must be a nonempty string")
+    if len(data.get("compatibility", "")) > 500:
+        raise ValueError("compatibility exceeds 500 characters")
+    metadata = data.get("metadata")
+    if not isinstance(metadata, dict) or any(
+        not isinstance(key, str) or not isinstance(value, str)
+        for key, value in metadata.items()
+    ):
+        raise ValueError("metadata must be a string-to-string mapping")
+    if not re.fullmatch(
+        r"[1-9][0-9]*\.[0-9]+(?:\.[0-9]+)?", metadata.get("version", "")
+    ):
+        raise ValueError("metadata.version must be a version string starting at 1.0")
     return data
 
 
@@ -145,13 +167,20 @@ def main() -> int:
         fail(errors, "description is empty")
     elif len(description) > MAX_DESC:
         fail(errors, f"description is {len(description)} chars; cap is {MAX_DESC}")
-    if set(fm) != {"name", "description"}:
-        fail(errors, "frontmatter must contain only name and description; version belongs in CHANGELOG.md")
+    body = FRONTMATTER_RE.sub("", text, count=1)
+    if not body.lstrip().startswith(f"# {SKILL_NAME}\n"):
+        fail(errors, "H1 must match the skill name")
+    required_sections = (
+        "Execution Workflow",
+        "Output Contract",
+        "Completion Verification",
+    )
+    positions = [body.find(f"\n## {heading}\n") for heading in required_sections]
+    if min(positions) < 0 or positions != sorted(positions):
+        fail(errors, "required local skeleton sections are missing or out of order")
     required_extras = (
-        "agents/openai.yaml", "CHANGELOG.md", "scripts/engineering_checks.py",
-        "scripts/validate-artifacts.py", "scripts/test-regressions.py",
-        "tests/behavioral-evaluation.md", "tests/behavioral-cases.json",
-        "tests/validation-results.txt",
+        "scripts/engineering_checks.py",
+        "scripts/validate-artifacts.py",
     )
     for extra in required_extras:
         if not (root / extra).is_file():
@@ -162,15 +191,22 @@ def main() -> int:
         for field in ("display_name", "short_description"):
             if not re.search(rf"^  {field}: [\"']?[^\s\"']", agent, re.M):
                 fail(errors, f"agents/openai.yaml missing {field}")
-        if not re.search(r"^  allow_implicit_invocation: (?:true|false)\s*$", agent, re.M):
+        if not re.search(
+            r"^  allow_implicit_invocation: (?:true|false)\s*$", agent, re.M
+        ):
             fail(errors, "implicit invocation policy must be an explicit boolean")
         if re.search(r"^  products:", agent, re.M):
-            fail(errors, "unsupported cross-host products metadata; use host-specific packaging separately")
+            fail(
+                errors,
+                "unsupported cross-host products metadata; use host-specific packaging separately",
+            )
     for member in root.rglob("*"):
         if member.is_symlink():
             fail(errors, f"symlink in package: {member.relative_to(root)}")
         if member.name == "__pycache__" or member.suffix == ".pyc":
-            fail(errors, f"generated Python cache in package: {member.relative_to(root)}")
+            fail(
+                errors, f"generated Python cache in package: {member.relative_to(root)}"
+            )
     for doc in root.rglob("*.md"):
         try:
             content = doc.read_text(encoding="utf-8")

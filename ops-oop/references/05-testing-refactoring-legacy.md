@@ -28,17 +28,17 @@ For OO code, tests should cover:
 
 When several implementations promise one interface, define a reusable contract test suite and run it for each implementation.
 
-Conceptual C++ fixture:
+Language-neutral contract-check algorithm:
 
-```cpp
-template <class MakeStore>
-void run_key_value_store_contract(MakeStore make_store) {
-    auto store = make_store();
-    store.put("x", "1");
-    assert(store.get("x") == "1");
-    store.erase("x");
-    assert(!store.get("x"));
-}
+```text
+algorithm checkStoreContract(makeStore)
+    store := makeStore()
+    require store is a fresh, isolated instance
+    store.put("x", "1")
+    assert store.get("x") = present("1")
+    store.erase("x")
+    assert store.get("x") = absent
+    release store using its declared lifecycle contract
 ```
 
 Implementation-specific tests may be additional, but the shared suite checks substitution semantics.

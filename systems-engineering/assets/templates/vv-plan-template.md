@@ -42,8 +42,7 @@ self-approval. Preserve unsuccessful runs and retests separately. See reference 
 
 ## 6. Optional automated coverage contract for complete packages
 
-Copy the source/need/requirement registers into or link them from the delivered package. A
-self-contained checked example is in `tests/e2e-delivery-uav.md`.
+Copy the source/need/requirement registers into or link them from the delivered package.
 Declare one row per obligation; compare it to the original requirement before running the checker.
 
 | Requirement ID | Obligation ID | Observable | Trigger | Interface ID | Comparator | Limit | Unit | Conditions |

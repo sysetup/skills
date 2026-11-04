@@ -48,7 +48,7 @@ Current MISRA C++ edition at this skill's source snapshot. It targets C++17, not
 
 - do not claim a C++23 codebase is MISRA C++:2023 compliant without an explicit project strategy/tool interpretation;
 - apply the exact rule classification and deviation process from the authorized MISRA text/toolchain;
-- keep the skill's C++23 examples educational unless the project profile permits the feature used.
+- translate language-neutral examples only into features permitted by the adopted project profile.
 
 Do not reproduce MISRA rule text from licensed publications; cite rule IDs/titles only when authorized context provides them.
 

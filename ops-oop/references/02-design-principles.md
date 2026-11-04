@@ -82,7 +82,7 @@ Consider inheritance only when all are true:
 4. Base-class protected internals are not required for normal extension.
 5. Construction/destruction and copying semantics are safe for polymorphic use.
 
-If one fails, prefer composition, delegation, a policy object, type erasure, `std::variant`, or a template/concept.
+If one fails, prefer composition, delegation, a policy object, an explicit closed set of variants, or the target language's generic mechanism.
 
 ## LSP contract test
 
@@ -98,19 +98,14 @@ For each subtype, inspect:
 
 Example of a semantic violation:
 
-```cpp
-class File {
-public:
-    virtual ~File() = default;
-    virtual void write(std::string_view bytes) = 0;
-};
+```text
+interface WritableFile
+    write(bytes) -> success or declared I/O failure
+    guarantees writing is a supported capability
 
-class ReadOnlyFile : public File {
-public:
-    void write(std::string_view) override {
-        throw std::logic_error("read only");
-    }
-};
+class ReadOnlyFile implements WritableFile
+    write(bytes) -> fail UnsupportedOperation
+# Invalid substitution: it rejects the capability promised by the interface.
 ```
 
 If `File` promises that `write` is supported, `ReadOnlyFile` is not a valid subtype. Separate readable/writable capabilities or redefine the abstraction.
@@ -128,14 +123,16 @@ Good OO interfaces:
 
 Prefer:
 
-```cpp
-cart.add(product, quantity);
+```text
+cart.add(product, quantity)
+# Cart validates quantity and preserves its own collection invariants.
 ```
 
 over:
 
-```cpp
-cart.items().push_back(...); // representation and invariants escape
+```text
+cart.mutableItems.append(unvalidatedItem)
+# Representation and invariant enforcement escape the object.
 ```
 
 ## Tell, do not merely ask
@@ -157,4 +154,4 @@ For important operations, reason explicitly about:
 - invariants: what remains true across public operations;
 - failure guarantees: what state remains if the operation fails.
 
-C++ does not require a specific contract facility to apply this reasoning. Encode constraints through types, constructors, assertions where appropriate, tests, and API structure.
+No particular language-level contract facility is required to apply this reasoning. Encode constraints through types, constructors, assertions where appropriate, tests, and API structure.

@@ -70,7 +70,7 @@ Independent house process-level procedure. ISO 9001 does not supply this univers
 
 ```json data:process
 {
-  "purpose_scope": "Select a language for authorized host automation. Scores are engineering heuristics, not measured benchmarks. This SOP is the sole normative source for language-selection criteria, scores, tie-breaks and operational controls. It is usable directly or through the optional ops-language-select skill; the skill is a consumer, not a second policy authority.",
+  "purpose_scope": "Select a language for authorized host automation. Scores are engineering heuristics, not measured benchmarks. This draft supplies provisional language-selection criteria, scores, tie-breaks and operational guidance. These become binding only within a verified explicit selection or adoption; governing host and project requirements retain precedence. Installation, availability and skill invocation do not imply adoption. It is usable directly or through the optional ops-language-select skill; the skill is a consumer, not a second policy authority.",
   "roles": "HostOperator owns the guide and approves substantive rule changes. The agent applies the established criteria within its authorized task."
 }
 ```

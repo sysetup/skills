@@ -71,33 +71,28 @@ When behavior depends on lifecycle state, write legal states and transitions bef
 
 Instead of:
 
-```cpp
-struct Order {
-    bool paid{};
-    bool shipped{};
-    bool cancelled{};
-};
+```text
+record Order
+    public paid, shipped, cancelled
+# Independent flags permit contradictory combinations.
 ```
 
 prefer an explicit state model when combinations matter:
 
-```cpp
-enum class OrderState {
-    awaiting_payment,
-    paid,
-    shipped,
-    cancelled
-};
-
-class Order {
-public:
-    void mark_paid();
-    void ship();
-    void cancel();
-
-private:
-    OrderState state_{OrderState::awaiting_payment};
-};
+```text
+class Order
+    private state := awaitingPayment
+    markPaid()
+        require state = awaitingPayment
+        state := paid
+    ship()
+        require state = paid
+        state := shipped
+    cancel()
+        require state = awaitingPayment
+        state := cancelled
+# Invalid transitions fail before mutation.
+# Cancellation after payment requires a separate refund contract.
 ```
 
 The operations should enforce legal transitions. An enum alone does not create a valid state machine; behavior must protect transition rules.
@@ -136,36 +131,21 @@ Responsibility analysis:
 - `PaymentGateway` abstracts external authorization.
 - `PlaceOrder` application service coordinates the use case and transaction boundary.
 
-```cpp
-struct PlaceOrderResult {
-    enum class Status { placed, unavailable, payment_declined } status;
-};
+```text
+class PlaceOrder
+    private transaction
+    construct(candidate)
+        if candidate is absent: fail InvalidDependency
+        transaction := candidate
+    execute(draft)
+        validate draft and monetary bounds
+        return transaction.placeOnce(draft.requestId, draft)
 
-class PlaceOrder {
-public:
-    PlaceOrder(InventoryReservationService& inventory,
-               PaymentGateway& payments,
-               OrderRepository& orders)
-        : inventory_(inventory), payments_(payments), orders_(orders) {}
-
-    PlaceOrderResult execute(const DraftOrder& draft) {
-        auto reservation = inventory_.try_reserve(draft.lines());
-        if (!reservation) return {PlaceOrderResult::Status::unavailable};
-
-        if (!payments_.authorize(draft.total_cents())) {
-            reservation->release();
-            return {PlaceOrderResult::Status::payment_declined};
-        }
-
-        orders_.save(Order::from(draft, std::move(*reservation)));
-        return {PlaceOrderResult::Status::placed};
-    }
-
-private:
-    InventoryReservationService& inventory_; // non-owning collaborators
-    PaymentGateway& payments_;
-    OrderRepository& orders_;
-};
+interface OrderPlacementTransaction
+    placeOnce(requestId, draft) -> placed | unavailable | declined | pendingRecovery
+    guarantees placed only after reservation, payment authorization, and persistence succeed
+    guarantees retries with the same requestId cannot duplicate placement
+    on partial external failure: retain recovery state and return pendingRecovery
 ```
 
-The design can still change after transaction/error analysis. The point is that responsibilities are derived from the scenario, not from nouns alone.
+The transaction boundary owns inventory, payment, and persistence coordination. External effects generally require idempotency and a recovery protocol; do not imply atomic rollback across independent services. Implement that protocol for the actual infrastructure before claiming the placement contract is satisfied.

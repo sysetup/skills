@@ -2,9 +2,9 @@
 
 ## Current authority
 
-The bundled controlled record `OPS-HOST-AUTOMATION-LANGUAGE-SELECTION` is the sole normative source. [decision-policy.md](decision-policy.md) owns its exact package-relative locator, required JSON fields, and identity checks. Read the bundled record revision at invocation; external copies are not dependencies or alternative sources.
+The bundled record `OPS-HOST-AUTOMATION-LANGUAGE-SELECTION` supplies self-contained provisional guidance. It is normative only for a scope with verified explicit selection or adoption; installation and invocation alone do not establish that status. [decision-policy.md](decision-policy.md) owns its exact package-relative locator, required JSON fields, and identity checks. Read the bundled record revision at invocation; external copies are not dependencies or alternative sources.
 
-The SOP remains independently usable without this skill. Its process and readiness fields describe the optional skill consumer. This package adds source resolution, progressive section navigation, evidence classification, and a conversational decision record; those additions do not amend the language policy.
+The SOP remains independently usable without this skill. Its process and readiness fields describe the optional skill consumer. This package adds source resolution, progressive section navigation, evidence classification, and a conversational decision record; those additions do not adopt or amend a host language policy.
 
 ## Section map
 

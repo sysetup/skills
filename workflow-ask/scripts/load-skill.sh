@@ -200,15 +200,14 @@ if len(collapsed) > 1024:
     print("FAIL: description exceeds 1024 characters", file=sys.stderr)
     sys.exit(1)
 tools = data.get("allowed-tools")
-if not isinstance(tools, list) or not tools:
-    print("FAIL: allowed-tools must be a non-empty array", file=sys.stderr)
+if tools is not None and (not isinstance(tools, str) or not tools.strip()):
+    print("FAIL: allowed-tools must be a non-empty string when present", file=sys.stderr)
     sys.exit(1)
-version = data.get("version") or ""
-if not isinstance(version, str):
-    version = str(version)
 meta = data.get("metadata") or {}
-if isinstance(meta, dict) and not version:
-    version = str(meta.get("version") or "")
+version = meta.get("version") if isinstance(meta, dict) else None
+if not isinstance(version, str) or not version:
+    print("FAIL: metadata.version must be a non-empty string", file=sys.stderr)
+    sys.exit(1)
 print(f"{name}\t{version}")
 PY
   )" || exit "${EXIT_FAIL}"

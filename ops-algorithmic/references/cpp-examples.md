@@ -94,7 +94,7 @@ The comment records the non-obvious interval convention; it does not narrate syn
 
 ## 3. Preserve a loop invariant explicitly
 
-Binary search is O(log n), but boundary mistakes are common. Use a half-open interval invariant: the target, if present, remains within `[low, high)`.
+Binary search is O(log n), but boundary mistakes are common. Require sorted input. Maintain `0 <= low <= high <= n`: every index below `low` holds a value less than the target, and every index at or above `high` holds a value greater than or equal to it. The lower-bound insertion position remains in the closed interval `[low, high]`; it may equal `n`.
 
 ```cpp compile-example
 #include <cstddef>
@@ -107,7 +107,8 @@ std::optional<std::size_t> binarySearch(
     std::size_t low = 0;
     std::size_t high = sorted.size();
 
-    // Invariant: if target exists, at least one occurrence is in [low, high).
+    // Invariant: indices < low contain values < target;
+    // indices >= high contain values >= target. The lower bound is in [low, high].
     while (low < high) {
         const std::size_t mid = low + (high - low) / 2;
         if (sorted[mid] < target) {

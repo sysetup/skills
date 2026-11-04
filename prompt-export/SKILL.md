@@ -3,7 +3,7 @@ name: prompt-export
 description: "Export the current conversation to a Markdown file as User/Agent dialogue, including questionnaire questions and submitted answers, without reasoning or tool traces. Use when the user invokes prompt-export or requests a dialogue export of this conversation; not for summaries or prompt authoring."
 compatibility: "Requires access to original messages from the active conversation and tools to create and read back a file on disk."
 metadata:
-  version: "1.0"
+  version: "1.1"
   author: "SYSETUP.COM CarlosHRG"
 ---
 

@@ -75,25 +75,21 @@ Do not apply every DDD pattern to CRUD systems. DDD pays for itself when busines
 
 ## Example: runtime strategy
 
-```cpp
-class PricingPolicy {
-public:
-    virtual ~PricingPolicy() = default;
-    virtual Money price(const Cart&) const = 0;
-};
+```text
+interface PricingPolicy
+    price(cart) -> Money
+    guarantees a non-negative amount in the cart's currency or a declared failure
 
-class Checkout {
-public:
-    explicit Checkout(std::unique_ptr<PricingPolicy> pricing)
-        : pricing_(std::move(pricing)) {}
+class Checkout
+    private pricing
+    construct(candidate)
+        if candidate is absent: fail InvalidDependency
+        pricing := candidate
+    quote(cart)
+        return pricing.price(cart)
 
-    Receipt execute(const Cart& cart) {
-        return Receipt{pricing_->price(cart)};
-    }
-
-private:
-    std::unique_ptr<PricingPolicy> pricing_;
-};
+# All pricing implementations preserve this same contract.
+# Checkout retains its policy for the lifetime of the collaboration.
 ```
 
-Use this design when pricing policy varies at runtime or deployment time. If only compile-time variation is required, a template/callable policy may remove heap allocation and virtual dispatch. If there is only one stable policy, a direct function/member may be best.
+Use this design when pricing policy varies at runtime or deployment time. If binding before execution is sufficient, use a static dependency or callable policy supported by the target language. If there is only one stable policy, a direct function/member may be best.

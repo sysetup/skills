@@ -40,4 +40,4 @@ record. Use `partial` for incomplete facet coverage. Avoid the ambiguous standal
 | NEED-001 | SYR-001 | Airframe + Avionics | none | VT-001 | test | planned |
 
 This row is a format example only. A self-contained coverage contract and complete definitions
-are required for automated relationship checks; see `tests/e2e-delivery-uav.md`.
+are required for automated relationship checks; use the obligation and event-check tables in [the V&V template](vv-plan-template.md).

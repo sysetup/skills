@@ -113,7 +113,7 @@ What must the answer do?
         Yes, and random assignment is feasible → true experiment. Name the variant.
         Yes, randomization not feasible → quasi-experiment. Name the variant.
         No → nonexperimental: survey (prevalence/attitudes) and/or correlational (relationships).
-  Explain a bounded incident, failure, success, or system from artifacts (logs, code, reports, one site)
+  Explicitly requested formal case study of a bounded incident or system from artifacts
     → Qualitative **case study**. The case is the incident or system. Not phenomenology unless the question is lived experience. Not an experiment unless an intervention is manipulated.
   Understand meaning, lived experience, process, culture, or a bounded case
     → Qualitative.
@@ -138,7 +138,7 @@ These illustrate the tree above. They are not a second Gate 0. Slot filling stay
 - "Lived experience / what it is like / meaning of {phenomenon} for {people}" → qualitative phenomenology.
 - "First measure, then explain why" → mixed explanatory sequential (QUAN → qual).
 - "First explore, then measure / build an instrument" → mixed exploratory sequential.
-- "Investiga por qué falló / why did this error happen / look into this incident" → qualitative case study of the bounded incident. Not phenomenology unless the question is lived experience.
+- Ordinary requests such as "why did this error happen" use targeted technical diagnosis. Select a qualitative case study only for an explicitly requested formal study with a bounded case and suitable evidence.
 - "Investiga el éxito de X / what made X succeed" → case study, or mixed if magnitude and mechanism are both required.
 - "Estado del arte / systematic review / lit review for a thesis on X" → literature-review study (narrative, scoping, or systematic). Not mixed methods unless two analytic strands will actually be integrated.
 - "Design / build / evaluate an artifact" → DSRM (`references/dsrm.md`), not a stretch of the three approaches.

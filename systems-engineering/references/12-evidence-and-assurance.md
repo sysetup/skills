@@ -119,7 +119,3 @@ These are deterministic consistency checks on declared content, not a physics en
 assessment of arbitrary prose. An incorrectly transcribed obligation can still pass. Review the
 contract against original requirements and the procedure; check actual evidence contents and
 instrument validity. Automation does not authenticate reports or authority signatures.
-
-Use `tests/behavioral-evaluation.md` and its prompts for real-agent evaluation. Keep those results
-separate from package validation, worked examples, and regression tests. Never convert a passing
-static or mutation suite into a claim that future agent answers will always be correct.
