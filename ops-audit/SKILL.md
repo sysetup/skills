@@ -1,6 +1,6 @@
 ---
 name: ops-audit
-description: Audit scripts, application and system configurations, and projects for correctness, security, and operational readiness. Use when asked for a technical audit, readiness review, or risk assessment. Implementation, routine troubleshooting, and wording-only review alone do not select this workflow.
+description: Audit system configurations, application scripts and projects for correctness, security, and operational readiness. Use when asked for a technical audit, readiness review, or risk assessment. Implementation, routine troubleshooting, and wording-only review alone do not select this workflow.
 license: MIT
 metadata:
   author: "SYSETUP.COM CarlosHRG"
