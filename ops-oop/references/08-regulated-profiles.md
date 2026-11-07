@@ -5,7 +5,7 @@ Use this reference only when the project explicitly has safety, certification, r
 ## Table of contents
 
 - [Activation gate](#activation-gate)
-- [Core C++ assurance sources](#core-cpp-assurance-sources)
+- [Core C++ assurance sources](#core-c-assurance-sources)
 - [Automotive](#automotive)
 - [Avionics](#avionics)
 - [General functional safety](#general-functional-safety)

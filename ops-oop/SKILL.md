@@ -3,7 +3,7 @@ name: ops-oop
 description: Design, implement, review, and refactor object-oriented software using explicit responsibilities, invariants, encapsulation, composition, and substitution contracts. Use for OO modeling, interfaces, SOLID/GRASP, patterns, domain models, architecture, or legacy OO code. Explain concepts with language-neutral algorithms and pseudocode; apply regulated profiles only when the project requires them.
 license: MIT
 metadata:
-  version: "1.0"
+  version: "1.1"
   author: "SYSETUP.COM CarlosHRG"
 ---
 
@@ -19,14 +19,14 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 
 | Condition / Intended Branch | Resource to Load | Purpose |
 | --- | --- | --- |
-| Fundamentals / teaching / concept confusion | [references/00-concept-ladder.md](references/00-concept-ladder.md) | Apply the relevant object-design contracts. |
-| Requirements, use cases, domain modeling, responsibility discovery | [references/01-domain-requirements-modeling.md](references/01-domain-requirements-modeling.md) | Apply the relevant object-design contracts. |
-| SOLID, GRASP, RDD, cohesion/coupling, LSP, inheritance/composition decisions | [references/02-design-principles.md](references/02-design-principles.md) | Apply the relevant object-design contracts. |
-| Object lifecycle, ownership, copying, polymorphism, and errors | [references/03-object-lifecycle.md](references/03-object-lifecycle.md) | Apply the relevant object-design contracts. |
-| GoF patterns, DDD tactical patterns, architectural boundaries | [references/04-patterns-and-architecture.md](references/04-patterns-and-architecture.md) | Apply the relevant object-design contracts. |
-| Testing, TDD, refactoring, characterization tests, legacy seams | [references/05-testing-refactoring-legacy.md](references/05-testing-refactoring-legacy.md) | Apply the relevant object-design contracts. |
-| Code/design review, quality attributes, lifecycle/architecture/requirements standards | [references/06-review-quality-gates.md](references/06-review-quality-gates.md) | Apply the relevant object-design contracts. |
-| MISRA, AUTOSAR legacy, ISO 26262, IEC 61508, DO-178C/DO-332/DO-330 | [references/07-regulated-profiles.md](references/07-regulated-profiles.md) | Apply the relevant object-design contracts. |
+| Fundamentals / teaching / concept confusion | [references/01-concept-ladder.md](references/01-concept-ladder.md) | Apply the relevant object-design contracts. |
+| Requirements, use cases, domain modeling, responsibility discovery | [references/02-domain-requirements-modeling.md](references/02-domain-requirements-modeling.md) | Apply the relevant object-design contracts. |
+| SOLID, GRASP, RDD, cohesion/coupling, LSP, inheritance/composition decisions | [references/03-design-principles.md](references/03-design-principles.md) | Apply the relevant object-design contracts. |
+| Object lifecycle, ownership, copying, polymorphism, and errors | [references/04-object-lifecycle.md](references/04-object-lifecycle.md) | Apply the relevant object-design contracts. |
+| GoF patterns, DDD tactical patterns, architectural boundaries | [references/05-patterns-and-architecture.md](references/05-patterns-and-architecture.md) | Apply the relevant object-design contracts. |
+| Testing, TDD, refactoring, characterization tests, legacy seams | [references/06-testing-refactoring-legacy.md](references/06-testing-refactoring-legacy.md) | Apply the relevant object-design contracts. |
+| Code/design review, quality attributes, lifecycle/architecture/requirements standards | [references/07-review-quality-gates.md](references/07-review-quality-gates.md) | Apply the relevant object-design contracts. |
+| MISRA, AUTOSAR legacy, ISO 26262, IEC 61508, DO-178C/DO-332/DO-330 | [references/08-regulated-profiles.md](references/08-regulated-profiles.md) | Apply the relevant object-design contracts. |
 | Reusable output structures | [references/09-output-contracts.md](references/09-output-contracts.md) | Apply the relevant object-design contracts. |
 
 ## Permissions and Authority Boundaries
@@ -52,7 +52,7 @@ For each task, follow this sequence and stop at the lowest level that fully solv
 1. **Frame the software system.** Identify the purpose, users/actors, externally visible behavior, constraints, quality attributes, runtime environment, and relevant interfaces.
 2. **Locate the lifecycle activity.** Classify the work as requirements/domain analysis, architecture, detailed design, implementation, test, refactoring, code review, maintenance, modernization, or regulated assurance.
 3. **Choose the object-design depth.** Start at the lowest concept level that can explain or solve the problem; escalate only when the task exposes a deeper design issue.
-4. **Load only the needed references.** Use the navigation table below. Avoid loading unrelated references.
+4. **Load only the needed references.** Use the Resource Routing table. Avoid loading unrelated references.
 5. **Model behavior before structure.** Establish responsibilities, invariants, ownership, collaborations, and substitution requirements before introducing classes or patterns.
 6. **Select the simplest design mechanism.** Prefer direct value types and composition. Introduce dynamic polymorphism, inheritance, type erasure, templates, patterns, or frameworks only when they solve a demonstrated variability or dependency problem.
 7. **Implement or propose changes.** Preserve behavior unless the task explicitly changes requirements. Keep dependency direction and lifecycle semantics visible.
@@ -61,16 +61,16 @@ For each task, follow this sequence and stop at the lowest level that fully solv
 
 ### Concept escalation ladder
 
-Use this ladder to teach or reason incrementally. Read [references/00-concept-ladder.md](references/00-concept-ladder.md) when the task requires explanation, onboarding, first-principles reasoning, or diagnosis of confused OO concepts.
+Use this ladder to teach or reason incrementally. Read [references/01-concept-ladder.md](references/01-concept-ladder.md) when the task requires explanation, onboarding, first-principles reasoning, or diagnosis of confused OO concepts.
 
 | Level | Question to resolve | Typical concepts |
 |---|---|---|
-| L0 - Object semantics | What state and behavior belong together? | object, identity, value, message/call, abstraction |
-| L1 - Class integrity | What must remain true for this type? | invariant, encapsulation, constructor, ownership, lifetime |
-| L2 - Collaboration | Which object is responsible for what? | responsibilities, interfaces, cohesion, coupling, GRASP/RDD |
-| L3 - Substitution | Which implementations may vary behind one contract? | subtype, LSP, dynamic/static polymorphism, composition vs inheritance |
-| L4 - Design structure | How should recurring variability and domain boundaries be organized? | patterns, DDD, dependency inversion, architecture boundaries |
-| L5 - Evolution and assurance | How can the design change safely under real constraints? | tests, refactoring, legacy seams, quality gates, regulated profiles |
+| L1 - Object semantics | What state and behavior belong together? | object, identity, value, message/call, abstraction |
+| L2 - Class integrity | What must remain true for this type? | invariant, encapsulation, constructor, ownership, lifetime |
+| L3 - Collaboration | Which object is responsible for what? | responsibilities, interfaces, cohesion, coupling, GRASP/RDD |
+| L4 - Substitution | Which implementations may vary behind one contract? | subtype, LSP, dynamic/static polymorphism, composition vs inheritance |
+| L5 - Design structure | How should recurring variability and domain boundaries be organized? | patterns, DDD, dependency inversion, architecture boundaries |
+| L6 - Evolution and assurance | How can the design change safely under real constraints? | tests, refactoring, legacy seams, quality gates, regulated profiles |
 
 Do not teach every level when only one is relevant. If a basic defect explains an advanced symptom, repair the lower-level model first.
 
@@ -97,7 +97,7 @@ Prefer values where identity is unnecessary; value semantics reduce aliasing and
 
 #### Make ownership explicit
 
-Define one responsible owner for each resource, the validity of borrowed access, and the cleanup boundary. Shared lifetime requires an explicit need and cycle analysis. Required collaborators must be non-null at construction and remain valid for every operation. Read [references/03-object-lifecycle.md](references/03-object-lifecycle.md) for the decision rules.
+Define one responsible owner for each resource, the validity of borrowed access, and the cleanup boundary. Shared lifetime requires an explicit need and cycle analysis. Required collaborators must be non-null at construction and remain valid for every operation. Read [references/04-object-lifecycle.md](references/04-object-lifecycle.md) for the decision rules.
 
 #### Prefer composition; justify inheritance
 
@@ -118,17 +118,17 @@ Do not score designs by acronym compliance. Use these principles to diagnose pre
 - DIP: make high-level policy independent of volatile detail at architecture boundaries.
 - GRASP/RDD: assign responsibility where information, cohesion, coupling, and collaboration make the behavior easiest to reason about.
 
-Read [references/02-design-principles.md](references/02-design-principles.md) when evaluating responsibility allocation or abstraction quality.
+Read [references/03-design-principles.md](references/03-design-principles.md) when evaluating responsibility allocation or abstraction quality.
 
 #### Patterns follow forces
 
-Do not pattern-match by name. State the force first: runtime variability, construction complexity, incompatible interface, state-dependent behavior, notification, undoable request, tree structure, etc. Then choose the smallest mechanism that resolves it. Read [references/04-patterns-and-architecture.md](references/04-patterns-and-architecture.md) for the selection matrix.
+Do not pattern-match by name. State the force first: runtime variability, construction complexity, incompatible interface, state-dependent behavior, notification, undoable request, tree structure, etc. Then choose the smallest mechanism that resolves it. Read [references/05-patterns-and-architecture.md](references/05-patterns-and-architecture.md) for the selection matrix.
 
 ### Lifecycle workflows
 
 #### Requirements and domain analysis
 
-Read [references/01-domain-requirements-modeling.md](references/01-domain-requirements-modeling.md).
+Read [references/02-domain-requirements-modeling.md](references/02-domain-requirements-modeling.md).
 
 1. Capture externally observable behavior and quality constraints.
 2. Identify domain concepts, rules, invariants, events, and lifecycle boundaries.
@@ -139,7 +139,7 @@ Read [references/01-domain-requirements-modeling.md](references/01-domain-requir
 
 #### Architecture and detailed OO design
 
-Read [references/02-design-principles.md](references/02-design-principles.md) and, when patterns or architectural boundaries are involved, [references/04-patterns-and-architecture.md](references/04-patterns-and-architecture.md).
+Read [references/03-design-principles.md](references/03-design-principles.md) and, when patterns or architectural boundaries are involved, [references/05-patterns-and-architecture.md](references/05-patterns-and-architecture.md).
 
 1. Identify stable policy and volatile details.
 2. Define module/component boundaries before class proliferation.
@@ -150,7 +150,7 @@ Read [references/02-design-principles.md](references/02-design-principles.md) an
 
 #### Implementation in the target language
 
-Read [references/03-object-lifecycle.md](references/03-object-lifecycle.md).
+Read [references/04-object-lifecycle.md](references/04-object-lifecycle.md).
 
 1. Establish invariants before exposing an object.
 2. Prefer direct composition and values; introduce indirection only for a demonstrated need.
@@ -161,7 +161,7 @@ Read [references/03-object-lifecycle.md](references/03-object-lifecycle.md).
 
 #### Testing and refactoring
 
-Read [references/05-testing-refactoring-legacy.md](references/05-testing-refactoring-legacy.md).
+Read [references/06-testing-refactoring-legacy.md](references/06-testing-refactoring-legacy.md).
 
 1. Establish observable behavior with tests before structural change when regression risk is material.
 2. Prefer refactorings that preserve behavior in small reviewable steps.
@@ -171,7 +171,7 @@ Read [references/05-testing-refactoring-legacy.md](references/05-testing-refacto
 
 #### Code/design review
 
-Read [references/06-review-quality-gates.md](references/06-review-quality-gates.md).
+Read [references/07-review-quality-gates.md](references/07-review-quality-gates.md).
 
 Review in this order:
 
@@ -188,7 +188,7 @@ Do not lead with style nits when a semantic or ownership defect exists.
 
 #### Regulated or safety-critical work
 
-Read [references/07-regulated-profiles.md](references/07-regulated-profiles.md) whenever the project mentions safety-critical, automotive, avionics, functional safety, MISRA, AUTOSAR, ISO 26262, IEC 61508, DO-178C, DO-332, or tool qualification.
+Read [references/08-regulated-profiles.md](references/08-regulated-profiles.md) whenever the project mentions safety-critical, automotive, avionics, functional safety, MISRA, AUTOSAR, ISO 26262, IEC 61508, DO-178C, DO-332, or tool qualification.
 
 Before applying a profile:
 
@@ -240,7 +240,7 @@ Apply the gates that match the task. Mark unresolved items instead of silently i
 | Quality attributes | Relevant performance, reliability, security, portability, maintainability, and other product qualities are considered. |
 | Standards | Exact active profile/edition is known; deviations and evidence are tracked where applicable. |
 
-Read [references/06-review-quality-gates.md](references/06-review-quality-gates.md) for deeper review criteria and standards crosswalks.
+Read [references/07-review-quality-gates.md](references/07-review-quality-gates.md) for deeper review criteria and standards crosswalks.
 
 ### Common failure patterns
 
@@ -268,7 +268,19 @@ Do not reproduce copyrighted standards or books. Summarize principles, cite iden
 
 ### Host and repository adaptation
 
-Repository rules beat generic conventions. Before changing code, inspect the repository's language standard, build system, testing framework, ABI/API constraints, memory model, error policy, dependency rules, style guide, and regulatory profile. Preserve existing public behavior unless a requirement explicitly changes it.
+This package is self-contained; no host documentation catalog or other skill is
+required. Consult applicable host or workspace documentation when available and
+authorized. Its absence alone does not block the workflow.
+
+Repository rules beat generic conventions within governing instructions. Before
+changing code, establish the language/runtime, build and test setup, ABI/API
+constraints, memory model, error policy, dependencies, style, and regulatory
+profile from supplied requirements and inspected repository evidence. Use
+applicable local documentation to refine these constraints; otherwise use the
+bundled guidance and state assumptions. Ask only when missing information blocks
+correctness or safety; missing mandatory profile or verification evidence holds
+the affected conclusion. Preserve existing public behavior unless a requirement
+explicitly changes it.
 
 Translate the pseudocode contracts into the target language's object and lifetime model; do not impose a teaching language on the repository.
 

@@ -5,12 +5,12 @@ Use this reference when teaching OO concepts, diagnosing conceptual confusion, o
 ## Table of contents
 
 - [Learning rule](#learning-rule)
-- [L0: objects, values, identity, and abstraction](#l0-objects-values-identity-and-abstraction)
-- [L1: classes, invariants, encapsulation, and lifetime](#l1-classes-invariants-encapsulation-and-lifetime)
-- [L2: responsibilities and collaboration](#l2-responsibilities-and-collaboration)
-- [L3: subtyping and polymorphism](#l3-subtyping-and-polymorphism)
-- [L4: patterns and boundaries](#l4-patterns-and-boundaries)
-- [L5: evolution and assurance](#l5-evolution-and-assurance)
+- [L1: objects, values, identity, and abstraction](#l1-objects-values-identity-and-abstraction)
+- [L2: classes, invariants, encapsulation, and lifetime](#l2-classes-invariants-encapsulation-and-lifetime)
+- [L3: responsibilities and collaboration](#l3-responsibilities-and-collaboration)
+- [L4: subtyping and polymorphism](#l4-subtyping-and-polymorphism)
+- [L5: patterns and boundaries](#l5-patterns-and-boundaries)
+- [L6: evolution and assurance](#l6-evolution-and-assurance)
 - [Diagnostic questions](#diagnostic-questions)
 
 ## Learning rule
@@ -39,7 +39,7 @@ failure guarantee: rejected withdrawals leave balance unchanged
 
 The important OO fact is not that `BankAccount` is a class. It earns a type boundary because it protects the rule that a balance cannot be created negative and withdrawals cannot violate the allowed state.
 
-## L0: objects, values, identity, and abstraction
+## L1: objects, values, identity, and abstraction
 
 ### Object
 
@@ -64,7 +64,7 @@ An entity has continuity of identity across state changes. Model identity explic
 
 An abstraction omits irrelevant detail so clients can reason in domain or policy terms. Good abstractions expose the decisions clients need and hide representation choices that should be independently changeable.
 
-## L1: classes, invariants, encapsulation, and lifetime
+## L2: classes, invariants, encapsulation, and lifetime
 
 ### Class
 
@@ -113,7 +113,7 @@ Encapsulation is control over valid state and implementation dependencies, not m
 
 Lifecycle design is part of OO design in every language. Determine who owns an object, when it becomes valid, how long borrows may survive, and how resources are released. Use the target runtime's deterministic cleanup mechanism; garbage collection alone does not define external-resource release.
 
-## L2: responsibilities and collaboration
+## L3: responsibilities and collaboration
 
 Ask four questions for every candidate object:
 
@@ -134,7 +134,7 @@ High cohesion means operations and state serve one understandable purpose. A typ
 
 Coupling is unavoidable; manage its direction and semantic weight. Coupling to a stable domain abstraction is cheaper than coupling policy directly to a volatile SDK, database schema, or UI toolkit.
 
-## L3: subtyping and polymorphism
+## L4: subtyping and polymorphism
 
 ### Subtyping
 
@@ -166,7 +166,7 @@ algorithm archive(compressor, input, output)
 
 Do not choose dynamic dispatch merely because OO is requested; OO reasoning and runtime inheritance are not synonymous.
 
-## L4: patterns and boundaries
+## L5: patterns and boundaries
 
 Patterns become useful when a recurring design force is visible. Examples:
 
@@ -179,7 +179,7 @@ Patterns become useful when a recurring design force is visible. Examples:
 
 Architectural boundaries matter more than pattern names. Keep business policy from depending directly on framework, transport, persistence, or device APIs when those details are expected to change independently.
 
-## L5: evolution and assurance
+## L6: evolution and assurance
 
 A design is not finished when it compiles. Evaluate:
 

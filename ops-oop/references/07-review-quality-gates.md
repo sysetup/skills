@@ -6,7 +6,7 @@ Use this reference for design review, code review, quality-attribute analysis, l
 
 - [Review order](#review-order)
 - [Semantic review gates](#semantic-review-gates)
-- [C++ OO review gates](#cpp-oo-review-gates)
+- [C++ OO review gates](#c-oo-review-gates)
 - [Quality attributes](#quality-attributes)
 - [Metrics](#metrics)
 - [Standards crosswalk](#standards-crosswalk)
