@@ -3,7 +3,7 @@ name: ops-algorithmic
 description: "Design, implement, review, debug, refactor, and optimize algorithms and software with an algorithm-first quality hierarchy: prove semantic correctness, select algorithms and data structures that fit the workload, minimize asymptotic and real resource cost, then maximize clarity, comprehensibility, maintainability, and measured performance. Use for any task that creates or modifies source code, implements algorithms, chooses data structures, designs loops or state transitions, fixes performance, reviews code quality, reduces complexity, or translates requirements into executable software. Apply across programming languages and frameworks. Trigger especially when clean-looking code may conceal a poor algorithmic choice, or when optimization claims require proof, testing, profiling, or benchmarking."
 license: MIT
 metadata:
-  version: "1.0"
+  version: "1.1"
   author: "SYSETUP.COM CarlosHRG"
 ---
 
@@ -23,8 +23,7 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 | Clarity or refactoring | [references/code-comprehension.md](references/code-comprehension.md) | Apply the selected resource's procedure or contract. |
 | Correctness or performance verification | [references/verification-performance.md](references/verification-performance.md) | Apply the selected resource's procedure or contract. |
 | Scientific support | [references/scientific-evidence.md](references/scientific-evidence.md) | Apply the selected resource's procedure or contract. |
-| Canonical examples | [references/cpp-examples.md](references/cpp-examples.md) | Apply the selected resource's procedure or contract. |
-| Verify edited canonical examples | [scripts/verify_cpp_examples.py](scripts/verify_cpp_examples.py) | Apply the selected resource's procedure or contract. |
+| Canonical examples and boundary cases | [references/pseudocode-examples.md](references/pseudocode-examples.md) | Apply language-neutral algorithms, checked contracts, invariants, and expected outcomes. |
 
 ## Execution Workflow
 
@@ -167,11 +166,11 @@ Never present a convention as scientifically proven. Never convert a correlation
 
 Load `references/scientific-evidence.md` when the user asks why a rule exists, requests scientific support, or when a recommendation depends on empirical human factors.
 
-### C++ canonical examples
+### Language-neutral canonical examples
 
-Use `references/cpp-examples.md` for canonical examples showing algorithmic improvement before stylistic improvement, explicit invariants, confusing-versus-clear expressions, preprocessing trade-offs, and measurement-aware choices. The examples use C++20 but the reasoning transfers to other languages.
+Use `references/pseudocode-examples.md` for generic algorithms showing algorithmic improvement before stylistic improvement, explicit invariants, clear control flow, preprocessing trade-offs, and measurement-aware choices. Keep bundled examples in pseudocode, independent of programming languages and compiler toolchains. Implement requested software in the target project's language.
 
-Resolve `SKILL_ROOT` to the absolute directory containing this `SKILL.md`. Run `python3 "$SKILL_ROOT/scripts/verify_cpp_examples.py"` after editing those examples when a C++20 compiler is available; the caller's working directory is irrelevant.
+After editing examples, review their contracts and invariants and trace the listed boundary cases against the expected outcomes. Distinguish reasoning or an executable model from execution of an actual implementation. When translating to source code, run the same cases with the target language's tests and applicable analyzers; syntax checks alone do not establish correctness.
 
 ## Output Contract
 
