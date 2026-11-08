@@ -3,7 +3,7 @@ name: doc-set
 description: Create documents using doc-specs and register default outputs in doc-requests indexes. Use whenever a user or agent requests a document, report, proposal, runbook, guide, or other documentary deliverable, including an explicit output path.
 license: MIT
 metadata:
-  version: "1.0"
+  version: "1.1"
   author: "SYSETUP.COM CarlosHRG"
 ---
 
@@ -27,7 +27,7 @@ For difficult documents, resolve authoring requirements from the applicable spec
 
 This skill covers authoring and delivery only. Leave synchronization and operational updates to the administrator, user or developer through their external process; do not implement or prescribe that process.
 
-1. Identify type, purpose, host or workspace scope, and destination. Create only requested `doc-specs` documents, as self-contained as possible, with high cohesion and low coupling; use cross-document citations or links only when necessary. This authoring preference does not restrict reading the corpus or following required references. Omit unsolicited companion documents, alternate references and auxiliary files; include references, native assets and license texts or notices required by the applicable specifications or document owners, preserving their scope, paths and licensing conditions.
+1. Identify type, purpose, host or workspace scope, and destination. Obtain applicable operational guidance through the specialized documentation retrieval mechanism. Create only requested `doc-specs` documents, as self-contained as possible, with high cohesion and low coupling; use cross-document citations or links only when necessary. This authoring preference does not restrict reading the corpus or following required references. Omit unsolicited companion documents, alternate references and auxiliary files; include references, native assets and license texts or notices required by the applicable specifications or document owners, preserving their scope, paths and licensing conditions.
 2. For workspace scope, read the first existing catalog: `<workspace>/.agents/doc-specs/INDEX.md`. Use `$HOME/.agents/doc-specs/INDEX.md` for host scope or when workspace catalogs are absent. Select and read the matching specification and required references within authorized scope. Keep `doc-specs` read-only. Report missing catalogs or specifications and apply document eligibility; ask if scope remains unresolved.
 3. Apply the specification's structure, naming, and validation rules using verified task context. Preserve concrete supplied or existing metadata; when the specification omits it, author a descriptive filename, `Local edition` (initially `1.0`, independent of the specification's edition), `Responsibility` (accountable role), and other required index fields from the work context. Mark every document body with `Source specification: <ID>; edition: <EDITION>`; use `Unspecified` for unverifiable specification editions and verify indexed metadata before delivery. If no validator is available, check the rules manually and report the validation limitation. Do not execute documented operations.
 4. Use an explicit destination when provided; otherwise use `<workspace>/.agents/doc-requests/` for workspace project documents.
@@ -55,20 +55,9 @@ In the `INDEX.md` file, do not add any notes, comments, or additional instructio
 
 ### Directory hierarchy
 
-Within `doc-requests`, select or create a category by purpose, then group by domain, topic, technology, protocol, process or convention: `...<category>/<group>/.../<document>.md`. Use representative kebab-case names of at most four words and create only needed directories. Resolve incompatible explicit paths before writing.
+Within `doc-requests`, group by domain, then by topic, technology, protocol, process or convention: `...<domain>/<group>/.../<document>.md`. Use representative kebab-case names of at most four words and create only needed directories. Resolve incompatible explicit paths before writing.
 
 For instance:
-
-| Directory | Responsibility |
-| --- | --- |
-| `governance/` | Policies, standards, and organizational advice. |
-| `processes/` | Recurring procedures, runbooks, playbooks, and work instructions. |
-| `plans/` | Planned scope, resources, sequencing, and readiness. |
-| `specifications/` | Requirements, architecture, design, interfaces, test definitions, and product information. |
-| `control/` | Production controls and matrices that meet document eligibility. |
-| `evidence/` | Evidence documents that meet document eligibility. |
-
-Or:
 
 ```bash
 .
@@ -82,23 +71,23 @@ Or:
 │   ├── developers/
 │   ├── document-authoring/
 │   └── licenses/
-├── programming-languages/
-│   ├── cpp/
-│   ├── html-css/
-│   ├── javascript/
-│   ├── json/
-│   ├── python/
-│   ├── rust/
-│   ├── shell-and-bash/
-│   ├── sql/
-│   ├── typescript/
-│   └── yaml/
 └── software-development/
+    └── code-conventions/
+        ├── cpp/
+        ├── html-css/
+        ├── javascript/
+        ├── json/
+        ├── python/
+        ├── rust/
+        ├── shell-and-bash/
+        ├── sql/
+        ├── typescript/
+        └── yaml/
 ```
 
 ## Output Contract
 
-Deliver the requested concrete document at the authorized destination and the required catalog entry. Follow the selected specification and the eligibility and indexing rules below; report actual save and verification outcomes.
+Deliver the requested concrete document at the authorized destination and the required catalog entry. Follow the selected specification and the eligibility and indexing rules above; report actual save and verification outcomes.
 
 ## Completion Verification
 
