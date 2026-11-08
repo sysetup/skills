@@ -8,7 +8,7 @@ The dispatcher validates CLI arguments and selects a SHA-256 backend:
 | Path | Processing |
 | --- | --- |
 | `hash`, `compare`, `stdin` | Read file/stream bytes, hash, emit digest or comparison |
-| `manifest` | Validate root/options, enumerate regular files, hash, write temporary manifest, rename into place |
+| `manifest` | Validate root/options, enumerate regular files, hash, publish a temporary manifest by exclusive hard link or authorized atomic replacement |
 | `verify` | Parse records, normalize paths, reject unsafe/duplicate/symlink paths, hash listed files, compare |
 
 CLI arguments, filenames, filesystem state, and manifest records are input

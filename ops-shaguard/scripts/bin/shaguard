@@ -15,7 +15,7 @@ LC_ALL=C
 export LC_ALL
 
 readonly APP_NAME="shaguard"
-readonly APP_VERSION="1.0.0"
+readonly APP_VERSION="1.0.1"
 readonly ALGORITHM="SHA-256"
 hash_backend=""
 
@@ -142,7 +142,7 @@ require_base_dependencies() {
 require_manifest_dependencies() {
   local command_name
 
-  for command_name in find sort mktemp mv dirname basename; do
+  for command_name in find sort mktemp ln mv dirname basename; do
     require_command "$command_name"
   done
 }
@@ -553,6 +553,8 @@ Notes:
   - The walk stays on the root filesystem (-xdev).
   - The output manifest is excluded automatically when it is inside ROOT.
   - The format is compatible with GNU sha256sum checksum records.
+  - Without -f, publication never replaces an existing destination.
+  - Atomic creation requires hard links; ln and mv must support -T.
 HELP
 }
 
@@ -829,8 +831,13 @@ cmd_manifest() {
   ((count > 0)) || die "No regular files selected for the manifest." \
     "$EXIT_USAGE"
 
-  if ! mv -f -- "$manifest_tmp" "$output_abs"; then
-    die "Failed to install manifest: ${output_abs}" "$EXIT_IO"
+  if $force; then
+    if ! mv -fT -- "$manifest_tmp" "$output_abs"; then
+      die "Failed to replace manifest: ${output_abs}" "$EXIT_IO"
+    fi
+  elif ! ln -T -- "$manifest_tmp" "$output_abs"; then
+    die "Failed to publish manifest without replacement: ${output_abs}" \
+      "$EXIT_IO"
   fi
   manifest_tmp=""
 

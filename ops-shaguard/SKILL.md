@@ -7,10 +7,10 @@ description: >
   manifests, manifest verification, shaguard selftests, or diagnosis of
   shaguard results in local automation and CI. Resolve the bundled script
   from this skill; no system installation of shaguard is required.
-compatibility: Linux, Bash 4+, sha256sum or BusyBox; manifest operations also require find, sort, mktemp, mv, dirname, and basename.
+compatibility: Linux, Bash 4+, sha256sum or BusyBox; manifests also require find, sort, mktemp, dirname, basename, and ln/mv with -T support; creation without -f requires filesystem hard links.
 license: MIT
 metadata:
-  version: "1.0"
+  version: "1.1"
   author: "SYSETUP.COM CarlosHRG"
 ---
 
@@ -62,7 +62,7 @@ fi
 bash "$SHAGUARD_SCRIPT" version
 ```
 
-Expected version: `shaguard 1.0.0 (SHA-256)`. If it differs, inspect the
+Expected version: `shaguard 1.0.1 (SHA-256)`. If it differs, inspect the
 bundled implementation before relying on the version-specific reference.
 If it is unavailable, report an incomplete skill package and stop.
 
