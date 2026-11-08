@@ -13,9 +13,11 @@ Draft instruments the user can run. Fill brackets. Mark every item with the matr
 - Bracketing note (researcher, 5–8 lines) attached, not read to the participant
 
 Icebreaker (1)
+
 - Tell me about your current work / situation in {context}.
 
 Central questions (4–7). Phenomenology uses these two first:
+
 1. What have you experienced in terms of {phenomenon}?
 2. What contexts or situations have typically influenced or affected your experience of {phenomenon}?
 3. {subquestion}
@@ -24,6 +26,7 @@ Central questions (4–7). Phenomenology uses these two first:
 Probes: "What was that like?", "Can you walk me through a specific moment?", "What else?"
 
 Closing
+
 - What else should I have asked about {phenomenon}?
 - Permission to follow up; member-check offer.
 

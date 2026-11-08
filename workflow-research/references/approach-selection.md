@@ -1,27 +1,31 @@
 # Approach selection
 
-Creswell research approach = worldview × design × methods. All three must be named. Select after Gate 0 slots are filled. Start from the research problem and questions, not from a favorite method.
+For formal studies within the entrypoint's scope, Creswell research approach = worldview × design × methods. All three must be named. Select after Gate 1 slots are filled. Start from the research problem and questions, not from a favorite method.
 
 ## Worldviews (Creswell four)
 
 Pick the worldview that actually governs the study.
 
 **Postpositivist**
+
 - Core claims: a reality exists out there but is known only imperfectly; determination, reductionism, empirical observation and measurement, theory verification or falsification.
 - Shapes the study: operational variables, hypotheses, controls, reliability and validity of measures, causal language only with a counterfactual.
 - Default for quantitative. Write: worldview name, core claims, how it shaped methods, researcher/sponsor stance.
 
 **Constructivist**
+
 - Core claims: multiple meanings; knowledge is socially and historically constructed; the researcher generates or inducts patterns; theory generate rather than theory test.
 - Shapes the study: open questions, purposeful samples, interviews/observations, themes or theory as product, reflexivity.
 - Default for qualitative meaning studies.
 
 **Transformative**
+
 - Core claims: research is not neutral; power, justice, and marginalized voices; inquiry is tied to an agenda for change; participants are collaborators when feasible.
 - Shapes the study: problem framed as inequity or rights; questions about voice, access, and harm; reciprocal benefit; extra ethics.
 - Use when the problem is oppression, inequity, or rights — qualitative, mixed, or (rarely) quantitative.
 
 **Pragmatic**
+
 - Core claims: not committed to one ontology; "what works" for the question; plural methods; research in real-world practice; consequences of action matter.
 - Shapes the study: named reason to mix (or to build an artifact); integration point; practical significance alongside statistical or thematic findings.
 - Default for mixed methods and for DSRM.
@@ -100,7 +104,7 @@ If 1 conflicts with 2 or 3, change resources or change the question. Do not keep
 ## Decision tree
 
 ```
-Slots 1–6 filled? If no → SKILL.md Gate 0. Stop.
+Slots 1–6 filled? If no → SKILL.md Gate 1. Stop.
 
 Contribution is a construct / model / method / instantiation to build and evaluate?
   Yes → DSRM (references/dsrm.md). Worldview typically pragmatic.
@@ -132,18 +136,18 @@ What must the answer do?
 
 ## Prompt illustrations of the tree
 
-These illustrate the tree above. They are not a second Gate 0. Slot filling stays in `SKILL.md`. What Findings may then claim is `references/inference-license.md`.
+These illustrate the tree above. They are not a second Gate 1. Slot filling stays in `SKILL.md`. What Findings may then claim is `references/inference-license.md`.
 
 - "Does X improve / cause / affect Y in population Z" → quantitative experimental family (true if randomization is feasible; quasi if not). Hypotheses required.
 - "Lived experience / what it is like / meaning of {phenomenon} for {people}" → qualitative phenomenology.
 - "First measure, then explain why" → mixed explanatory sequential (QUAN → qual).
 - "First explore, then measure / build an instrument" → mixed exploratory sequential.
 - Ordinary requests such as "why did this error happen" use targeted technical diagnosis. Select a qualitative case study only for an explicitly requested formal study with a bounded case and suitable evidence.
-- "Investiga el éxito de X / what made X succeed" → case study, or mixed if magnitude and mechanism are both required.
+- An explicitly requested formal study of success mechanisms → select the design from the question and accessible evidence; case study or mixed methods only when their requirements fit.
 - "Estado del arte / systematic review / lit review for a thesis on X" → literature-review study (narrative, scoping, or systematic). Not mixed methods unless two analytic strands will actually be integrated.
-- "Design / build / evaluate an artifact" → DSRM (`references/dsrm.md`), not a stretch of the three approaches.
+- A formal research contribution that designs, builds, and evaluates an artifact → DSRM (`references/dsrm.md`). Ordinary engineering work does not select a study.
 
-Topic-noun-only prompts never reach this tree; they stop at Gate 0.
+Topic-noun-only prompts never reach this tree; they stop at Gate 1.
 
 ## Methods layer
 
@@ -157,4 +161,4 @@ Methods = data collection + analysis + interpretation + validation. Procedures l
 
 ## Design science routing
 
-If the problem is to design, build, or evaluate an engineering artifact, stop using this catalog as the primary design. Load `references/dsrm.md`. A DSRM evaluation strand may still pick a row from this file. Name that as evaluation, not as the study's primary approach.
+If the formal study contributes an engineering artifact to design, build, or evaluate, stop using this catalog as the primary design. Load `references/dsrm.md`. A DSRM evaluation strand may still pick a row from this file. Name that as evaluation, not as the study's primary approach.

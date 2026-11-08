@@ -2,7 +2,7 @@
 
 ## Proposal / report spine
 
-Use this order unless the user or venue mandates another.
+Use this order unless the requested format, governing instructions, or venue mandate another. Fit research content into the permitted structure; keep working checks outside exact-format artifacts.
 
 1. Title
 2. Abstract (problem, approach, method, expected or actual contribution)
@@ -57,9 +57,9 @@ Reflexivity minimum: one short paragraph on how the prompt, tools, and coding ru
 
 ## Audience adaptation
 
-Intensity follows `SKILL.md` (Artifacts by deliverable). Do not promote a desk inquiry into a thesis spine, and do not strip alignment from a committee chapter.
+Intensity follows `SKILL.md` (Output Contract). Do not promote a desk inquiry into a thesis spine, and do not strip alignment from a committee chapter.
 
 - Thesis / article — full spine, purpose scripts, matrix, ethics section, instruments.
 - Client memo — problem, method in one paragraph, findings, confidence, what was not studied; attach a compact matrix.
-- Rapid desk inquiry / executed "investiga" — lead with answers to the questions; then approach line, purpose, RQ, ranked evidence, inference, recommendation, validity note, sources, execution log, limits. Four PRISMA-adapted counts when the corpus is literature. Compact matrix if it fits; skip empty instrument and timeline sections instead of shipping instructional brackets.
-- Clarification-stop — six questions only. No spine, no fake protocol.
+- Executed formal desk study — lead with answers to the questions; then approach line, purpose, RQ, ranked evidence, inference, recommendation, validity note, sources, execution log, limits. Four PRISMA-adapted counts when the corpus is literature. Compact matrix if it fits; skip empty instrument and timeline sections instead of shipping instructional brackets.
+- Clarification stop — ask only for missing design-critical information within the available channel's limits. Wait for required answers; do not fabricate a protocol or findings.

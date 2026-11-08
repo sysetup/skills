@@ -17,6 +17,7 @@ If the second strand is decoration, drop mixed methods.
 ## Core designs
 
 **Convergent**
+
 - Collect quant and qual in the same window (or treat as concurrent).
 - Analyze separately.
 - Merge via joint display (side-by-side, statistics-by-theme, data transformation).
@@ -24,6 +25,7 @@ If the second strand is decoration, drop mixed methods.
 - Priority usually equal. Sample sizes may differ; do not force them equal.
 
 **Explanatory sequential (QUAN → qual)**
+
 - Quant first (survey, experiment, or secondary numbers).
 - Use quant results to select the qual sample (follow up outliers, unexpected cells, high/low groups, or key subgroups). Connecting samples is the integration point.
 - Qual explains the numbers (typically interviews or focus groups; phenomenology or case study as the nested qualitative design — pick one).
@@ -32,6 +34,7 @@ If the second strand is decoration, drop mixed methods.
 - Do not start the qual strand until quant results (or a simulated analysis plan with empty tables, if data are not yet collected) exist to connect from.
 
 **Exploratory sequential (QUAL → quan)**
+
 - Qual first to find constructs, language, or items.
 - Build an instrument or typology (the build step is the integration point). Report how themes became items or factors.
 - Quant tests or generalizes.

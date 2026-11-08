@@ -9,11 +9,13 @@ If the study is Design Science Research, use the purpose script in `references/d
 The purpose of this {narrative / phenomenological / grounded theory / ethnographic / case} study is to {understand / explore / describe / generate a theory of} {central phenomenon} for {participants} in {site or context}.
 
 Central question
+
 - What is / how do {participants} {experience / describe / process} {central phenomenon} in {context}?
 
 Add at most 2–5 subquestions that nest under the central question. No yes/no items. No hypotheses.
 
 Phenomenology central question form
+
 - What is the lived experience of {phenomenon} for {participants} in {context}?
 - Subquestions typically split "what was experienced" (textural) from "in what contexts and conditions" (structural).
 
@@ -22,11 +24,13 @@ Phenomenology central question form
 The purpose of this {true experimental / quasi-experimental / survey / correlational} study is to {test / measure / compare / examine the relationship between} {independent variable(s)} and {dependent variable(s)} among {population} in {setting}.
 
 Question forms
+
 - Descriptive — What is the {level / distribution} of {variable} in {population}?
 - Comparative — How does {DV} differ across {groups} after / given {IV}?
 - Relationship — What is the relationship between {IV} and {DV} among {population}, controlling for {covariates}?
 
 Hypotheses
+
 - Write H0 and H1 only when the design will test. Directional if theory is directional. Variables must match the purpose sentence.
 - Experimental example: H1 — {population} assigned to {treatment} will show higher {DV} than {population} assigned to {control}, controlling for {covariate}. H0 — no difference.
 
@@ -35,6 +39,7 @@ Hypotheses
 The purpose of this mixed methods study is to {overall intent}. A {quant design} will {quant aim}. A {qual design} will {qual aim}. These strands will be {merged / connected} in a {convergent / explanatory sequential / exploratory sequential} design in order to {integration intent}.
 
 Questions
+
 - Quantitative question(s)
 - Qualitative question(s)
 - Mixed question that can only be answered after integration (e.g. To what extent do the qualitative themes explain the quantitative results for {construct} among {subgroup}?)

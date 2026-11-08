@@ -1,6 +1,6 @@
 # Research protocol template
 
-Copy and fill. Delete unused brackets. Do not leave instructional text in the user-facing deliverable. For a Gate 0 stop, do not fill this template — ship the six questions only. For an executed desk study, lead with §9 findings; omit empty instrument and timeline sections rather than shipping instructional brackets. Protocol and thesis chapter use the full spine.
+Adapt to the requested format and destination. Copy and fill only applicable sections. Delete unused brackets. Do not leave instructional text in the user-facing deliverable. For a Gate 1 stop, do not fill this template; ask only for the missing design-critical information and wait for required answers. For an executed desk study, lead with §9 findings; omit empty instrument and timeline sections rather than shipping instructional brackets. Protocol and thesis chapter use the full spine.
 
 ## Header
 
@@ -9,7 +9,7 @@ Copy and fill. Delete unused brackets. Do not leave instructional text in the us
 - Deliverable type (protocol / completed inquiry / hybrid / literature-review study)
 - Audience
 - Date and version
-- Assumptions block (inferred Gate 0 slots)
+- Declared assumptions (permitted nonblocking Gate 1 inferences)
 
 ## 1. Problem and significance (step 1)
 

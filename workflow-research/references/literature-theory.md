@@ -17,21 +17,25 @@ Stop when new sources repeat the same claims (saturation of the map), not when a
 ### Four-phase flow (record n at each box)
 
 **Identification**
+
 - Records identified from search tools or databases (n=), by string.
 - Records identified from other sources (citation chasing, user files, registers) (n=).
 - Records removed before screening: duplicates and out-of-scope by automated rule (n=).
 
 **Screening**
+
 - Records screened at title/abstract or equivalent (n=).
 - Records excluded at this stage (n=), with aggregated reasons (wrong population, not empirical, off-topic).
 
 **Eligibility**
+
 - Reports sought for retrieval (n=).
 - Reports not retrieved (n=) — paywall, dead link, unverified bibliographic entry. Do not cite what was not retrieved.
 - Reports assessed in full (n=).
 - Reports excluded (n=), each with a specific reason (wrong design, no usable data, duplicate publication of the same study).
 
 **Inclusion**
+
 - Studies / sources included in the review (n=).
 - If several reports belong to one study, count studies and reports separately.
 

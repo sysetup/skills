@@ -1,12 +1,12 @@
 # Design Science Research (on-demand track)
 
-Load this file when the problem is to **design, build, or evaluate an engineering artifact**, not when the problem is to measure, interpret, or mix behavioral evidence. Do not stretch quantitative, qualitative, or mixed methods to cover artifact creation.
+Load for a formal study whose research contribution is to **design, build, or evaluate an engineering artifact**. Ordinary engineering design or implementation alone does not select DSRM. Do not stretch quantitative, qualitative, or mixed methods to cover artifact creation.
 
 Pinned sources: Peffers, Tuunanen, Rothenberger, and Chatterjee, *A Design Science Research Methodology for Information Systems Research*, JMIS 24(3), 2007; Hevner, March, Park, and Ram, *Design Science in Information Systems Research*, MIS Quarterly 28(1), 2004. Artifact types follow March and Smith (1995) as used by Hevner.
 
 ## When this track is the design
 
-Use DSRM when the contribution is a **construct, model, method, instantiation**, or an architecture/algorithm/tool that instantiates one of those. Typical asks: "design a protocol/architecture/algorithm," "build then evaluate a tool," "propose a method and show it works."
+Use DSRM when the formal study contributes a **construct, model, method, instantiation**, or an architecture/algorithm/tool that instantiates one of those, with research objectives and an evaluation method.
 
 Stay on Creswell when the contribution is explanation, prevalence, lived meaning, or integrated behavioral inference with no artifact to evaluate.
 
@@ -14,7 +14,7 @@ A DSRM study may **embed** a Creswell strand as the evaluation method (e.g. a su
 
 ## Operating overlay (Peffers DSRM)
 
-Map these six activities onto the Creswell eight-step loop in `SKILL.md`. Iterate when evaluation fails the objectives. State the entry point. Gate 0 still applies if slots are empty.
+Map these six activities onto the Creswell eight-step loop in `SKILL.md`. Iterate when evaluation fails the objectives. State the entry point. Gate 1 still applies if slots are empty.
 
 1. **Problem identification and motivation** — name the problem, who is blocked, and why a solution has value. Use literature to show existing artifacts fail or are missing. Name kernel theories that constrain the design; do not treat them as tested behavioral hypotheses unless an evaluation strand tests them. Skill steps 1–2.
 2. **Objectives of a solution** — infer measurable or testable objectives from the problem. Quantitative ("reduce X by…") or qualitative ("support a class of interaction that does not exist"). Skill steps 3–4 (purpose + design/evaluation questions).
