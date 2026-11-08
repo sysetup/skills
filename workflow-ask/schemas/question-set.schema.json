@@ -19,8 +19,7 @@
           },
           "header": {
             "type": "string",
-            "minLength": 1,
-            "maxLength": 12
+            "minLength": 1
           },
           "text": {
             "type": "string",

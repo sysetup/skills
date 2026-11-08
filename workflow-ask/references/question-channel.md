@@ -4,10 +4,9 @@ Read this file when this skill needs to ask the user anything. It is the
 source of truth for discovering the current harness, mapping question types
 onto that harness's live schema, and falling back to text.
 
-The skill is harness-agnostic. The agent using it must **wake up and
-investigate this session**, then use whatever interactive questionnaire that
-harness actually exposes. A hint table is a shortcut, not a catalog of
-allowed products and not a substitute for the live tool schema.
+The agent integrates the user-input tools actually available in this
+session, respecting their live contracts and applicable guidance.
+No product identity, fixed tool name or bundled renderer determines the payload.
 
 ## 1. Why native first
 
@@ -29,14 +28,11 @@ Collect evidence in this order:
 1. **Tools offered this turn.** This is the strongest signal. Read the tool
    list injected into the system/developer prompt, including MCP tools.
 2. **Live schema** of each candidate (tool description, JSON schema,
-   `search_tool` / equivalent docs). Never guess parameter names.
-3. **Identity strings** in the system/developer prompt (product name,
-   runtime name, "You are …"). Use them only to pick which hint to try
-   first.
-4. **Feature flags and config** mentioned in the prompt or harness docs
+   available discovery tools or docs). Never guess parameter names.
+3. **Feature flags and config** mentioned in the prompt or harness docs
    already in context (for example a boolean that disables the question
    tool).
-5. **Actor role.** If this actor is a subagent, background worker, or other
+4. **Actor role.** If this actor is a subagent, background worker, or other
    session without a user-facing UI, do not ask the user here. Return the
    logical question set to the parent so the parent can run this protocol.
 
@@ -44,13 +40,8 @@ An unknown or future harness is valid. Run the same algorithm.
 
 ## 3. Candidate selection
 
-Keep a tool as a candidate when its **name or description** indicates a
-user-facing choice UI. Match case-insensitively against patterns such as:
-
-- `ask_user`, `AskUser`, `ask_user_question`, `AskUserQuestion`
-- `request_user_input`, `request_user`, `AskQuestion`
-- `question`, `questionnaire`, `choice`, `select option`
-- harness-owned `elicit` that presents a question card to the human
+Select candidates by their documented ability to ask the user and receive
+the needed answers, including choices or free text; do not require a tool name.
 
 Drop a candidate when it is any of:
 
@@ -76,7 +67,7 @@ If no candidate remains, go to [§7 Fallback](#7-fallback-textual-questionnaire)
 
 ## 4. Disabled / unavailable
 
-If §2 item 5 applies (no user-facing UI), stop. Return the logical question
+If §2 item 4 applies (no user-facing UI), stop. Return the logical question
 set to the parent. Do not emit §7 in this transcript.
 
 Otherwise treat the native channel as **disabled or missing** only when one
@@ -88,7 +79,7 @@ of these is true:
 - The native call returns unavailable, disabled, not permitted, or
   non-interactive
 - The selected native tool cannot preserve the complete logical set's
-  semantics (for example, Codex has no native multi-select); use one
+  semantics (for example, required multiple selection); use one
   complete text fallback rather than silently changing a multi-select into
   a single-select
 
@@ -103,18 +94,18 @@ Fall back only if the call fails as non-interactive.
 
 ## 5. Map logical questions onto the live schema
 
-Validate the logical set with
-`scripts/validate-question-set.py validate FILE` before calling native.
-Build the payload from the live schema, not from memory. Typical mappings:
+Build and validate the final payload against the selected live schema.
+The bundled validator optionally checks logical JSON, not native payloads.
+Typical mappings:
 
 | Logical kind | How to encode |
 | --- | --- |
 | `single-select` | One question, two or more options, multi-select off |
 | `multi-select` | Same, multi-select on; phrase as "which of these apply?" |
 | `confirm` | Two options (`Yes` / `No`, or `Proceed (Recommended)` / `Stop`) |
-| `free-text` | Native string field if the schema has one; otherwise rely on the harness's automatic `Other` / custom-input row; if neither exists, add a last option `I'll provide a custom value` and, after they pick it, ask that one item as a follow-up **native** question or, only if native cannot take free text at all, as one textual line |
+| `free-text` | Use a supported free-text field or custom-input path with valid option counts; otherwise select another permitted channel or text fallback. Do not invent choices to satisfy a schema. |
 | recommended default | First option; append `(Recommended)` to the label; describe the consequence in the option description |
-| required | No skip option |
+| required | Preserve the blocker; omission or dismissal never supplies an answer. |
 | optional | First option is `Use recommended default (Recommended)` or an equivalent skip-to-default |
 
 Rules that survive most schemas:
@@ -131,20 +122,10 @@ Rules that survive most schemas:
 - If the tool allows only one question per call, issue consecutive native
   calls for the remaining blockers. Still do not drip unpredicted extra
   questions.
-- If options exceed the cap, keep the recommended choice, the strongest
-  alternatives, and a custom/other path. Drop the lowest-impact options.
+- Preserve all material choices and required questions. Rephrase or batch
+  within the live limits; if meaning cannot be preserved, use §7.
 - Never put a destructive, privileged, or production-impacting action in
   the recommended option.
-- Use the matching renderer only after generic validation:
-  `render-native --target grok FILE` for Grok,
-  `render-native --target codex FILE` for Codex `request_user_input`, and
-  manual mapping from the live schema for other tools, including
-  `request_user_input_async`. Plain `render-native` remains Grok for
-  compatibility. A harness identity does not imply identical tool schemas.
-- Codex `request_user_input` accepts at most 3 questions. It has no
-  multi-select field; its automatic `Other` row supports free text. IDs are
-  snake_case and short headers are required; the renderer converts kebab-case
-  IDs and accepts an optional logical `header` of at most 12 characters.
 
 Do not also paste the questionnaire as assistant markdown in the same turn
 as a native call. One sentence of status is enough, for example: "Opening
@@ -175,11 +156,12 @@ After actual answers or an explicit dismissal arrive:
 - Multi-select values may arrive as a list or as a comma-separated string.
 - Custom/`Other` text is a first-class answer.
 - Empty, skipped, or dismissed optional answers take the recorded default.
-- Empty required answers: if a safe default exists, use it and say so;
-  otherwise ask that one remaining blocker again through the same native
-  channel.
+- Empty, skipped or dismissed required answers remain blockers. Request
+  the missing answer without repeating resolved questions; continue only
+  independently safe work. `use defaults` does not supply required answers
+  or operational approval.
 
-Then proceed with the work.
+Proceed with dependent work only after its required answers and authority exist.
 
 ## 7. Fallback textual questionnaire
 
@@ -209,34 +191,20 @@ Native interactive questions are unavailable in this session
    - Options: …
    - Default: [reasonable default]
 
-If you want me to proceed with the defaults, reply: "use defaults".
+Reply with required answers; optional questions may use defaults.
 ```
 
 Keep the same logical set, kinds, options, and defaults that would have gone
 to the native tool. Number every question. Mark required only when the item
 is a true blocker.
 
-## 8. Known signatures (hints only)
-
-These are **fast paths**. Verify against the live schema. Unknown harnesses
-use §2–§5 unchanged. Do not treat this table as exclusive or complete.
-
-| Identity cue in this session | Typical tool name | What to expect (verify live) |
-| --- | --- | --- |
-| Grok / xAI / Grok Build | `ask_user_question` | `questions[]` with `question`, `options[{label, description, preview?}]`, `multi_select`. Automatic `Other`. Recommended option first with `(Recommended)`. Preview is single-select only. May be toggled off by `features.ask_user_question` / `GROK_ASK_USER_QUESTION`. |
-| Claude Code / Anthropic agent CLI | `AskUserQuestion` | `questions[]` (often 1–4) with `question`, `header`, `options` (often 2–4), `multiSelect`. Automatic `Other`. Recommended option first with `(Recommended)`. Preview may exist for single-select. |
-| Codex CLI | `request_user_input` / `request_user_input_async` if offered | Verify mode and policy restrictions. The former waits for answers: 1–3 questions, `id`, short `header`, `question`, `options[{label, description}]`. The latter returns a delivery receipt: `questions[{title, options?: string[]}]`; map manually, include needed trade-offs in option strings, and omit options for free text. Both offer custom input and lack multi-select. Prefer the permitted answer-waiting tool; for async follow §6 because turn completion can close TUI cards. If neither is usable or multi-select is required, use §7. |
-| Cursor / other IDEs | `AskQuestion` or similar if offered | Inspect the live schema. If nothing selectable is offered, go to §7. |
-
-Name patterns in §3 still apply when the product is not in this table.
-
-## 9. Failure handling
+## 8. Failure handling
 
 | Event | Action |
 | --- | --- |
-| Native call returns answers | Apply §6; start work once blockers are resolved |
+| Native call returns answers | Apply §6; start dependent work once its blockers are resolved |
 | Schema / parameter error | Repair from live schema; retry native once |
 | Tool missing, disabled, or non-interactive | §7 fallback |
-| User dismisses the card / replies `use defaults` | Apply safe recommended defaults; start work |
+| User dismisses the card / replies `use defaults` | Apply optional defaults only; required answers and approval remain pending |
 | New blocker appears after answers | One additional native round (or §7 if still no native channel) |
 | Subagent / no user UI | Return the logical set to the parent; do not fall back as if this transcript were the user |
