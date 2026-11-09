@@ -1,0 +1,8 @@
+interface:
+  display_name: Explain by Analogy
+  short_description: Clear analogies across five audience age modes
+  default_prompt: Use $workflow-analogy to explain my topic with an accurate everyday
+    analogy; apply my requested age mode, or the plain adult default if none is given.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+  allow_implicit_invocation: true
