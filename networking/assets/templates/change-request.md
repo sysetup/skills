@@ -1,14 +1,14 @@
 # Network Change Request — {{change_id}}
 
-## 0. Technical traceability
-- **Authority record:** `references/00-source-authority.md`
+## Technical traceability
+- **Authority record:** `references/source-authority.md`
 - **Primary reference files:** {{reference_files}}
 - **Chapter lineage:** {{chapter_lineage}}
 - **Applied concepts:** {{applied_concepts}}
 - **Derived synthesis:** {{derived_synthesis}}
 - **Input evidence:** {{input_evidence}}
 
-### 0.1 Change justification traceability
+### Change justification traceability
 | Change area | Layer / phase | Reference file | Chapter / section | Applied concept | Why this change is justified |
 |---|---|---|---|---|---|
 | {{change_area_1}} | {{change_layer_1}} | {{change_ref_1}} | {{change_lineage_1}} | {{change_concept_1}} | {{change_why_1}} |

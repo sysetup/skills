@@ -4,9 +4,3 @@ interface:
 
 policy:
   allow_implicit_invocation: true
-
-tools:
-  read: true
-  write: true
-  python: true
-  bash: true

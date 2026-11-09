@@ -1,4 +1,4 @@
-# 00 – Source authority
+# Source authority
 
 ## Purpose
 
@@ -20,7 +20,7 @@ authoritative local artifacts are the Markdown files listed in this directory.
 
 Use the following order whenever two local artifacts appear to disagree:
 
-1. This file: `references/00-source-authority.md`
+1. This file: `references/source-authority.md`
 2. Canonical chapter-aligned and canonical synthesis references:
    `references/01-fundamentals.md` through
    `references/10-network-analysis-and-design.md`

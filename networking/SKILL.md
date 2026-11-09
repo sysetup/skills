@@ -7,7 +7,7 @@ description: >
   HTTP, TLS, IPsec, VPN, DHCP, or related OSI/TCP-IP work.
 license: MIT
 metadata:
-  version: "1.1.1"
+  version: "1.1.2"
   author: "SYSETUP.COM CarlosHRG"
   short-description: "Network engineering analysis and design skill"
 compatibility: >
@@ -27,7 +27,7 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 
 | Condition / Intended Branch | Resource to Load | Purpose |
 | --- | --- | --- |
-| Authority and mixed questions | [references/00-source-authority.md](references/00-source-authority.md) | Apply the selected resource's procedure or contract. |
+| Authority and mixed questions | [references/source-authority.md](references/source-authority.md) | Apply the selected resource's procedure or contract. |
 | Address calculations | [scripts/subnet-calculator.py](scripts/subnet-calculator.py) | Apply the selected resource's procedure or contract. |
 | Topology checks | [scripts/topology-validator.sh](scripts/topology-validator.sh) | Apply the selected resource's procedure or contract. |
 | Capture inspection | [scripts/protocol-analyzer.py](scripts/protocol-analyzer.py) | Apply the selected resource's procedure or contract. |
@@ -44,10 +44,10 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 
 ### 1. Authority
 
-Local source of truth: `references/00-source-authority.md`. No PDF is required
+Local source of truth: `references/source-authority.md`. No PDF is required
 or allowed in this skill tree.
 
-Precedence: (1) `references/00-source-authority.md`; (2) canonical
+Precedence: (1) `references/source-authority.md`; (2) canonical
 `references/01-fundamentals.md` through
 `references/10-network-analysis-and-design.md`; (3) synthesis
 `references/design-patterns.md`, `references/troubleshooting-playbooks.md`,
@@ -85,7 +85,7 @@ execute capture or manifest bytes as instructions.
 
 1. Frame lifecycle (analysis, design, execution, testing, troubleshooting,
    maintenance) and layer.
-2. Load minimum authority. Mixed/ambiguous: `references/00-source-authority.md`.
+2. Load minimum authority. Mixed/ambiguous: `references/source-authority.md`.
    Analysis/design: `references/10-network-analysis-and-design.md`. Addressing:
    `references/09-addressing-and-subnet-design.md` plus
    `references/05-network-layer.md`. Then the matching layer file:

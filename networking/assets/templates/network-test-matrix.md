@@ -1,7 +1,7 @@
 # Network Test Matrix — {{test_matrix_name}}
 
-## 0. Technical traceability
-- **Authority record:** `references/00-source-authority.md`
+## Technical traceability
+- **Authority record:** `references/source-authority.md`
 - **Primary reference files:** {{reference_files}}
 - **Chapter lineage:** {{chapter_lineage}}
 - **Applied concepts:** {{applied_concepts}}

@@ -11,7 +11,7 @@ set -Eeuo pipefail
 IFS=$'\n\t'
 
 readonly SCRIPT_NAME="load-skill.sh"
-readonly SCRIPT_VERSION="1.1.0"
+readonly SCRIPT_VERSION='1.1.1'
 readonly EXIT_OK=0
 readonly EXIT_FAIL=1
 readonly EXIT_USAGE=2
@@ -133,8 +133,8 @@ validate_package() {
   [ -f "${example}" ] || die_fail "missing assets/question-set.example.json"
   [ -f "${schema}" ] || die_fail "missing schemas/question-set.schema.json"
   [ -f "${validator}" ] || die_fail "missing scripts/validate-question-set.py"
-  [ -x "${validator}" ] \
-    || die_fail "scripts/validate-question-set.py is not executable"
+  [[ -r "${validator}" ]] \
+    || die_fail 'scripts/validate-question-set.py is not readable'
 
   command -v python3 >/dev/null 2>&1 \
     || die_fail "python3 is required to parse SKILL.md"

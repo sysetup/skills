@@ -9,7 +9,7 @@ or topology options for campus, datacenter, WAN, cloud-hybrid, SOHO, or IoT.
 
 This file is an operational synthesis.
 
-- Read `references/00-source-authority.md` first for precedence rules.
+- Read `references/source-authority.md` first for precedence rules.
 - Validate addressing and subnet choices against
   `references/09-addressing-and-subnet-design.md`.
 - Validate the design workflow against

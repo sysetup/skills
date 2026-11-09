@@ -11,7 +11,7 @@ This file is an operational synthesis anchored in the canonical references,
 especially `references/05-network-layer.md` through
 `references/10-network-analysis-and-design.md`.
 
-- Use `references/00-source-authority.md` for precedence.
+- Use `references/source-authority.md` for precedence.
 - Use this file to operationalize the canonical concepts, not to override
   them.
 - If an operational shortcut would contradict the canonical addressing,

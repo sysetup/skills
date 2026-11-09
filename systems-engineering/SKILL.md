@@ -13,7 +13,7 @@ description: >-
   implementation/debugging without a system-of-interest frame.
 license: MIT
 metadata:
-  version: "1.0"
+  version: "1.1"
   author: "SYSETUP.COM CarlosHRG"
 compatibility: Python 3.10+; package YAML validation requires PyYAML 6.x. Artifact validation uses the standard library.
 ---

@@ -1,14 +1,14 @@
 # Network Design Document — {{project_name}}
 
-## 0. Technical traceability
-- **Authority record:** `references/00-source-authority.md`
+## Technical traceability
+- **Authority record:** `references/source-authority.md`
 - **Primary reference files:** {{reference_files}}
 - **Chapter lineage:** {{chapter_lineage}}
 - **Applied concepts:** {{applied_concepts}}
 - **Derived synthesis:** {{derived_synthesis}}
 - **Input evidence:** {{input_evidence}}
 
-### 0.1 Decision traceability matrix
+### Decision traceability matrix
 | Decision area | Layer / phase | Reference file | Chapter / section | Applied concept | Rationale |
 |---|---|---|---|---|---|
 | {{decision_1_area}} | {{decision_1_layer}} | {{decision_1_ref}} | {{decision_1_lineage}} | {{decision_1_concept}} | {{decision_1_rationale}} |

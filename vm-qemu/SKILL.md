@@ -1,18 +1,14 @@
 ---
 name: vm-qemu
 description: >
-  Explain and configure QEMU tools within authorized scope. Use for qemu-system-*, qemu-img, qemu-nbd,
-  qemu-storage-daemon, qemu-pr-helper, block drivers, machine types, CPU models,
-  device emulation, networking, display options, QMP protocol, and guest agent.
-  Triggers on: "qemu", "qemu-system", "qemu-img", "qemu-nbd", "qemu-kvm",
-  "QEMU", "qcow2", "qcow", "qed", "virtio", "virgl", "vhost-user", "VirtIO",
-  "block driver", "machine type", "SEV", "SEV-SNP", "TDX", "snapshot",
-  "backing file", "NBD", "Network Block Device", "QMP",
-  "QEMU Monitor Protocol", "guest agent", "qemu-ga", "cpu model",
-  "host passthrough", "SPICE", "VNC".
+  Explain and configure QEMU virtual machines, disk images, storage services,
+  devices, networking, displays, QMP and guest agents. Use for QEMU commands,
+  QEMU-specific configuration, or troubleshooting confirmed to involve QEMU.
+  Do not use for generic snapshots, block drivers, CPU models, NBD, VNC, SPICE
+  or confidential computing without QEMU context.
 license: MIT
 metadata:
-  version: "1.0"
+  version: "1.1"
   author: "SYSETUP.COM CarlosHRG"
 ---
 
@@ -43,7 +39,7 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 | Configure CPU models and features | [references/cpu-models.md](references/cpu-models.md) | Consult the selected QEMU component reference. |
 | Control QEMU via QMP | [references/qmp.md](references/qmp.md) | Consult the selected QEMU component reference. |
 | Install and use the guest agent | [references/guest-agent.md](references/guest-agent.md) | Consult the selected QEMU component reference. |
-| man pages, documentation, carapace completions, existing completers | [references/man-docs.md](references/man-docs.md) | Consult the selected QEMU component reference. |
+| Man pages and optional shell completions | [references/man-docs.md](references/man-docs.md) | Consult the selected QEMU component reference. |
 
 ## Execution Workflow
 

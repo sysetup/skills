@@ -1,9 +1,9 @@
 ---
 name: vcs-squash-worktree
-description: Detect Git repository and worktree state automatically and execute isolated worktree development, squash-merge integration, or parallel worktree workflows from the current state. Use when working in a Git repository to keep local iterative commits out of the remote branch, squash-merging worktree progress into a single commit, initializing local/remote worktree layouts, or applying multi-worktree patterns.
+description: Develop in requested Git worktrees and integrate their changes with a squash commit. Use for creating or selecting isolated worktrees, iterating in a worktree, or squash-integrating completed worktree changes. Do not use for ordinary repository edits or commits without a worktree workflow.
 license: MIT
 metadata:
-  version: "1.0"
+  version: "1.1"
   author: "SYSETUP.COM CarlosHRG"
 ---
 
@@ -65,15 +65,15 @@ git worktree list --porcelain 2>/dev/null
 
 | Detected Condition | Active State | Entry Action |
 | :--- | :--- | :--- |
-| Directory empty or not a Git repository, and remote exists with commits | State 0: Remote-only | Clone remote into `repo_path`, then run State 1 worktree creation |
-| Directory empty or uninitialized (remote created and empty) | State 1: Uninitialized | Initialize `main`, push initial commit to `origin`, create detached `../repo-work` |
-| Local repo exists (`git-dir == git-common-dir`), missing `origin`, initial push, or `../repo-work` | State 1b: Partial local | Add `origin` / push `main` if missing, then create detached `../repo-work` |
-| Active detached worktree exists (`../repo-work`) and task requires edits or local commits | State 2: Worktree iteration | Edit files inside `../repo-work`, commit iteratively, record latest commit `HASH` |
-| Worktree commits are complete and ready to consolidate into `main` | State 3: Squash integration | Switch to `../repo`, squash-merge `HASH`, commit once, push `main`, remove `../repo-work` |
+| Directory empty or not a Git repository, and remote exists with commits | State 1: Remote-only | Clone remote into `repo_path`, then run State 2 worktree creation |
+| Directory empty or uninitialized (remote created and empty) | State 2: Uninitialized | Initialize `main`, push initial commit to `origin`, create detached `../repo-work` |
+| Local repo exists (`git-dir == git-common-dir`), missing `origin`, initial push, or `../repo-work` | State 2b: Partial local | Add `origin` / push `main` if missing, then create detached `../repo-work` |
+| Active detached worktree exists (`../repo-work`) and task requires edits or local commits | State 3: Worktree iteration | Edit files inside `../repo-work`, commit iteratively, record latest commit `HASH` |
+| Worktree commits are complete and ready to consolidate into `main` | State 4: Squash integration | Switch to `../repo`, squash-merge `HASH`, commit once, push `main`, remove `../repo-work` |
 
 ### Execution Procedure by State
 
-#### State 0 — Remote-Only Repository
+#### State 1 — Remote-Only Repository
 
 When the repository exists on the remote with history but is not yet present locally, clone it and attach the detached worktree:
 
@@ -84,7 +84,7 @@ git worktree add --detach ../repo-work main &&
 cd ../repo-work
 ```
 
-#### State 1 — Initialize Repository and Detached Worktree
+#### State 2 — Initialize Repository and Detached Worktree
 
 From an empty `repo` directory with an empty remote repository (`<owner>` and `<repo-name>`), execute only the missing steps from this sequence:
 
@@ -99,7 +99,7 @@ cd ../repo-work
 
 If the local repository already has commits on `main` and `origin` configured, run only `git worktree add --detach ../repo-work main && cd ../repo-work`.
 
-#### State 2 — Iterative Local Work in Worktree
+#### State 3 — Iterative Local Work in Worktree
 
 Inside `../repo-work`, perform edits and create as many granular local commits as needed without advancing `main`:
 
@@ -119,7 +119,7 @@ Capture the latest worktree commit hash (`HASH`) before integration:
 git log -1 --oneline
 ```
 
-#### State 3 — Squash Integration, Push, and Cleanup
+#### State 4 — Squash Integration, Push, and Cleanup
 
 Return to `../repo`, verify a clean working tree on `main`, integrate all worktree commits into a single commit using `HASH`, push to `origin`, and remove the worktree:
 

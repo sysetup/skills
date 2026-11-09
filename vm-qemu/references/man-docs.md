@@ -1,6 +1,6 @@
 # Man Pages and Documentation
 
-Reference for QEMU man pages and how they relate to carapace completions.
+Reference for QEMU man pages and optional shell completion metadata.
 
 ## Man Pages
 
@@ -39,11 +39,9 @@ All QEMU man pages are available on the system (`man -k qemu`):
 - `qemu-nbd` — NBD server/utility
 - `qemu-pr-helper` — persistent reservation helper daemon
 
-## Carapace Completions
+## Optional Shell Completions
 
-In carapace-bin, QEMU completers live under `completers/linux/` (they are Linux-specific tools). As of this skill's creation, no QEMU completers exist in the carapace-bin repository.
-
-To create completions for QEMU commands, follow the patterns in `skills/carapace/references/spec.md` for YAML specs or `skills/carapace/references/scrape.md` for automated spec generation.
+Use the selected completion framework's documentation; no companion skill is required.
 
 Key QEMU commands that benefit from completion:
 - `qemu-system-x86_64` — machine type names (`-machine help`), CPU models (`-cpu help`), device names, block device options
@@ -53,7 +51,7 @@ Key QEMU commands that benefit from completion:
 
 ## Documentation Best Practices
 
-When documenting QEMU completers (see `skills/man-docs/`):
+When the completion framework supports documentation metadata:
 
 - Use the canonical man page names for `documentation.command` values
 - For `documentation.flag`, reference the flag name as documented in `qemu(1)` (e.g. `-accel`, `-machine`, `-blockdev`)
