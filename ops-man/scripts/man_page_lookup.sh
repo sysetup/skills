@@ -15,7 +15,7 @@ set -Eeuo pipefail
 IFS=$'\n\t'
 
 readonly SCRIPT_NAME="man_page_lookup.sh"
-readonly SCRIPT_VERSION="1.2.1"
+readonly SCRIPT_VERSION="1.2.2"
 readonly DEFAULT_MAX_TOKENS=6000
 readonly CHARS_PER_TOKEN=4
 readonly MAX_COMMAND_LENGTH=128
@@ -293,7 +293,6 @@ fetch_man_page() {
       LANG="${SAFE_LOCALE}" \
       LANGUAGE="${SAFE_LOCALE}" \
       TERM="dumb" \
-      MANWIDTH="80" \
       "${man_bin}" "${man_args[@]}" 2>/dev/null \
       | "${col_bin}" -bx 2>/dev/null
   )"; then

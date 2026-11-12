@@ -268,19 +268,9 @@ Do not reproduce copyrighted standards or books. Summarize principles, cite iden
 
 ### Host and repository adaptation
 
-This package is self-contained; no host documentation catalog or other skill is
-required. Consult applicable host or workspace documentation when available and
-authorized. Its absence alone does not block the workflow.
+This package is self-contained; no host documentation catalog or other skill is required. Consult applicable host or workspace documentation when available and authorized. Its absence alone does not block the workflow.
 
-Repository rules beat generic conventions within governing instructions. Before
-changing code, establish the language/runtime, build and test setup, ABI/API
-constraints, memory model, error policy, dependencies, style, and regulatory
-profile from supplied requirements and inspected repository evidence. Use
-applicable local documentation to refine these constraints; otherwise use the
-bundled guidance and state assumptions. Ask only when missing information blocks
-correctness or safety; missing mandatory profile or verification evidence holds
-the affected conclusion. Preserve existing public behavior unless a requirement
-explicitly changes it.
+Repository rules beat generic conventions within governing instructions. Before changing code, establish the language/runtime, build and test setup, ABI/API constraints, memory model, error policy, dependencies, style, and regulatory profile from supplied requirements and inspected repository evidence. Use applicable local documentation to refine these constraints; otherwise use the bundled guidance and state assumptions. Ask only when missing information blocks correctness or safety; missing mandatory profile or verification evidence holds the affected conclusion. Preserve existing public behavior unless a requirement explicitly changes it.
 
 Translate the pseudocode contracts into the target language's object and lifetime model; do not impose a teaching language on the repository.
 

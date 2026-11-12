@@ -1,9 +1,6 @@
 # Bundled shaguard 1.0.1 command semantics
 
-Resolve the bundled script as described in [SKILL.md](../SKILL.md).
-Every subcommand below is an argument to `bash "$SHAGUARD_SCRIPT"`;
-`shaguard` in its built-in help is a program label, not a PATH lookup.
-The bundled implementation is authoritative if this reference differs.
+Resolve the bundled script as described in [SKILL.md](../SKILL.md). Every subcommand below is an argument to `bash "$SHAGUARD_SCRIPT"`; `shaguard` in its built-in help is a program label, not a PATH lookup. The bundled implementation is authoritative if this reference differs.
 
 ## Subcommand rules
 
@@ -92,9 +89,7 @@ Success demonstrates only that this backend produced the expected digest for tha
 
 ### `version` and `help`
 
-Use `version` to identify the program version and fixed algorithm. Use `help` or `help COMMAND` to inspect the implemented CLI. Zero arguments print main help and exit 0 without performing an integrity operation.
-`help COMMAND` accepts every command listed in the main help, including
-`help help`; an unknown command remains a usage error (exit 2).
+Use `version` to identify the program version and fixed algorithm. Use `help` or `help COMMAND` to inspect the implemented CLI. Zero arguments print main help and exit 0 without performing an integrity operation. `help COMMAND` accepts every command listed in the main help, including `help help`; an unknown command remains a usage error (exit 2).
 
 ## Exit-status interpretation
 

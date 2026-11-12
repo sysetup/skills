@@ -18,19 +18,11 @@ This package installs an AI skill for full-lifecycle object-oriented software en
 ## Design decisions
 
 - Teaching examples specify behavior independently of language; actual implementations follow the project's runtime and adopted profile.
-- Bundled guidance supports hosts with or without local documentation. Apply
-  available, authorized host/workspace guidance; otherwise use task requirements
-  and repository evidence, stating unresolved assumptions. No documentation
-  catalog or other skill is required.
+- Bundled guidance supports hosts with or without local documentation. Apply available, authorized host/workspace guidance; otherwise use task requirements and repository evidence, stating unresolved assumptions. No documentation catalog or other skill is required.
 - The skill prefers composition/value semantics and introduces inheritance/patterns only when forces justify them.
 - Standards compliance requires exact project applicability and evidence; the skill never equates a checklist or static-analysis pass with certification.
 - Canonical references are summarized and cited; licensed standards/books are not reproduced.
 
 ## Maintenance
 
-Re-verify mutable standard editions/status before updating compliance guidance.
-After edits, validate YAML metadata, bundled paths, Markdown links/anchors, and
-consistent reference/level numbering. Use available, authorized host or project
-checks; if tooling is absent, perform a manual structural review and report unrun
-checks. Native activation and output quality require separate runtime evidence.
-Repackage the complete skill directory.
+Re-verify mutable standard editions/status before updating compliance guidance. After edits, validate YAML metadata, bundled paths, Markdown links/anchors, and consistent reference/level numbering. Use available, authorized host or project checks; if tooling is absent, perform a manual structural review and report unrun checks. Native activation and output quality require separate runtime evidence. Repackage the complete skill directory.
