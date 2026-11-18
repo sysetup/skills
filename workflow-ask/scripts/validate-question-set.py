@@ -158,8 +158,11 @@ def option_label(option: Any, index: int, errors: list[str]) -> str:
     elif len(description) > 300:
         errors.append(f"option {index} description exceeds 300 characters")
     preview = option.get("preview", None)
-    if preview is not None and not isinstance(preview, str):
-        errors.append(f"option {index} preview must be a string or null")
+    if preview is not None:
+        if not isinstance(preview, str):
+            errors.append(f"option {index} preview must be a string or null")
+        elif len(preview) > 4000:
+            errors.append(f"option {index} preview exceeds 4000 characters")
     extra = set(option) - {"label", "description", "preview"}
     if extra:
         errors.append(f"option {index} has unknown fields: {sorted(extra)}")
@@ -221,8 +224,11 @@ def validate_question(item: Any, index: int, seen_ids: set[str]) -> list[str]:
         errors.append(f"{prefix} confirm needs exactly two options")
     if not isinstance(default, str) or not default.strip():
         errors.append(f"{prefix}.default must be a non-empty string")
-    elif labels and default not in labels:
-        errors.append(f"{prefix}.default must match an option label")
+    else:
+        if len(default) > 80:
+            errors.append(f"{prefix}.default exceeds 80 characters")
+        if labels and default not in labels:
+            errors.append(f"{prefix}.default must match an option label")
     if labels and "(Recommended)" not in labels[0]:
         errors.append(f"{prefix} first option label must include (Recommended)")
     extra = set(item) - {

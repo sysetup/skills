@@ -46,7 +46,7 @@ $.properties.questions.items.properties.options.items.properties.description Opt
 
 $.properties.questions.items.properties.options.items.properties.preview Options: string or null, max 4000 characters. Single-select mockup only.
 
-$.properties.questions.items.properties.default.type Options: string, 1..80 characters. Must match an option label.
+$.properties.questions.items.properties.default.type Options: string, 1..80 characters. Must match an option label when options are present.
 
 $.properties.questions.items.properties.rationale.type Options: string, max 300 characters. Internal; not shown to the user.
 

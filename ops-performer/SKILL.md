@@ -3,8 +3,10 @@ name: ops-performer
 description: Use when asked to review an entire project and fix confirmed issues.
 license: MIT
 metadata:
-  version: "1.2"
+  version: "1.3"
   author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # ops-performer
