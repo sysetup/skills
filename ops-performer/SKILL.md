@@ -2,7 +2,8 @@
 name: ops-performer
 description: Use when asked to review an entire project and fix confirmed issues.
 metadata:
-  version: "1.0"
+  version: "1.1"
+  author: "Carlos HRG"
 ---
 
 # ops-performer
