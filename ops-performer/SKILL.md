@@ -1,8 +1,9 @@
 ---
 name: ops-performer
 description: Use when asked to review an entire project and fix confirmed issues.
+license: MIT
 metadata:
-  version: "1.1"
+  version: "1.2"
   author: "Carlos HRG"
 ---
 
