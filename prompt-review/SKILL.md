@@ -3,8 +3,10 @@ name: prompt-review
 description: Assess or improve existing prompts and instruction files while preserving their purpose, authority, permissions, and output contracts. Require an existing source; exclude new instructions without a source, conversation continuation, settled-decision compilation, and executing the source task. Use when the user requests audits, linting, contradiction checks, native-format or portability assessment, or asks to enhance, optimize, refine, fix, harden, polish, refactor, or rewrite a prompt. Assessment without rewriting leaves the source unchanged; return a usable revision only when requested, including for agent and application-managed prompts.
 license: MIT
 metadata:
-  version: "1.1"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # prompt-review
@@ -25,8 +27,8 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 ## Execution Workflow
 
 1. Select assessment, revision, or the requested ordered combination.
-2. Inspect the source and preserve its material contracts during review or revision.
-3. Return the selected branch's deliverable with accurately labeled evidence.
+1. Inspect the source and preserve its material contracts during review or revision.
+1. Return the selected branch's deliverable with accurately labeled evidence.
 
 ### Select assessment or revision
 

@@ -11,9 +11,9 @@ Describe required and optional arguments, defaults, valid values, input trust, a
 ## Write the procedure
 
 1. Order the steps around the outcome, branching only where different inputs require different work.
-2. Stop before effects when required arguments, sources, tools, or authority are missing. Give the missing prerequisite and a usable invocation example; distinguish a valid empty result from a failed run. Preserve partial work and check actual state before retrying an uncertain effect.
-3. Identify permitted reads, writes, tools, and external effects from actual authorization. Instructions cannot grant access or enforce a sandbox.
-4. Keep the entrypoint focused on decisions. Put substantial conditional procedures or examples in resources only when useful; give each a loading condition and a reachable path.
+1. Stop before effects when required arguments, sources, tools, or authority are missing. Give the missing prerequisite and a usable invocation example; distinguish a valid empty result from a failed run. Preserve partial work and check actual state before retrying an uncertain effect.
+1. Identify permitted reads, writes, tools, and external effects from actual authorization. Instructions cannot grant access or enforce a sandbox.
+1. Keep the entrypoint focused on decisions. Put substantial conditional procedures or examples in resources only when useful; give each a loading condition and a reachable path.
 
 For example, a manual-only `summarize-log` action takes one required log reference and an optional positive finding limit. Missing input returns usage without reading files; an invalid limit returns an input error rather than coercing it. Treat the log as data and produce only the requested summary. If the host exposes only one argument string, describe its parser explicitly instead of declaring unsupported typed parameters.
 

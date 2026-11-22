@@ -4,14 +4,14 @@ JSON-based protocol for controlling QEMU programmatically. The primary managemen
 
 ## Enabling QMP
 
-```
+```text
 -qmp tcp:localhost:4444,server,nowait    # TCP
 -qmp unix:/tmp/qmp.sock,server,nowait    # UNIX socket
 ```
 
 Also via `-chardev` + `-mon`:
 
-```
+```text
 -chardev socket,id=qmp0,path=/tmp/qmp.sock,server=on,wait=off
 -mon chardev=qmp0,mode=control
 ```
@@ -20,7 +20,7 @@ Also via `-chardev` + `-mon`:
 
 Legacy text-based monitor:
 
-```
+```text
 -hmp tcp:localhost:4445,server,nowait
 -hmp unix:/tmp/hmp.sock,server,nowait
 ```
@@ -33,7 +33,7 @@ QMP is JSON-over-TCP. Messages are newline-delimited JSON objects.
 
 ### Handshake
 
-```
+```text
 ← {"QMP": {"version": {"qemu": {"major": 11, "minor": 0, "micro": 1}, "package": ""}, "capabilities": []}}
 → { "execute": "qmp_capabilities" }
 ← { "return": {} }
@@ -41,7 +41,7 @@ QMP is JSON-over-TCP. Messages are newline-delimited JSON objects.
 
 ### Command Structure
 
-```
+```json
 { "execute": "COMMAND", "arguments": { ... }, "id": "TAG" }
 ```
 
@@ -52,17 +52,20 @@ QMP is JSON-over-TCP. Messages are newline-delimited JSON objects.
 ### Response Structure
 
 Success:
-```
+
+```json
 { "return": VALUE, "id": "TAG" }
 ```
 
 Error:
-```
+
+```json
 { "error": { "class": "ERROR_CLASS", "desc": "Human-readable description" }, "id": "TAG" }
 ```
 
 Events (asynchronous):
-```
+
+```json
 { "event": "EVENT_NAME", "data": { ... }, "timestamp": { "seconds": N, "microseconds": N } }
 ```
 
@@ -71,7 +74,7 @@ Events (asynchronous):
 ### VM Lifecycle
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `stop` | Pause VM |
 | `cont` | Resume VM |
 | `system_powerdown` | ACPI power button |
@@ -83,7 +86,7 @@ Events (asynchronous):
 ### State Queries
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `query-kvm` | KVM status |
 | `query-status` | VM run state |
 | `query-name` | VM name |
@@ -101,7 +104,7 @@ Events (asynchronous):
 ### Block Operations
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `blockdev-snapshot-sync` | Create snapshot (legacy) |
 | `blockdev-snapshot` | Take snapshot (new API) |
 | `blockdev-backup` | Backup job |
@@ -122,7 +125,7 @@ Events (asynchronous):
 ### Migration
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `migrate` | Start migration (`uri` argument) |
 | `migrate_cancel` | Cancel migration |
 | `migrate-incoming` | Set migration target for incoming (`-incoming defer`) |
@@ -135,7 +138,7 @@ Events (asynchronous):
 ### Device Hotplug
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `device_add` | Add device (QOM path, id, properties) |
 | `device_del` | Remove device by ID |
 | `netdev_add` / `netdev_del` | Network backend hotplug |
@@ -144,7 +147,7 @@ Events (asynchronous):
 
 ### QOM (QEMU Object Model)
 
-```
+```text
 qom-list path=/machine/peripheral
 qom-get path=/machine/peripheral/virtio0,property=drive
 qom-set path=/machine/peripheral/virtio0,property=drive,value=disk0
@@ -152,14 +155,14 @@ qom-set path=/machine/peripheral/virtio0,property=drive,value=disk0
 
 ### Dump and Snapshot
 
-```
+```text
 dump-guest-memory paging=false protocol=file:/tmp/dump
 pmemsave val=... size=... filename=...
 ```
 
 ### Set Password
 
-```
+```json
 { "execute": "set_password", "arguments": { "protocol": "vnc", "password": "mypass" } }
 { "execute": "expire_password", "arguments": { "protocol": "vnc", "time": "+10m" } }
 ```
@@ -169,7 +172,7 @@ pmemsave val=... size=... filename=...
 QMP events the management layer subscribes to:
 
 | Event | Trigger |
-|-------|---------|
+| --- | --- |
 | `SHUTDOWN` | Guest shutdown |
 | `RESET` | Guest reset |
 | `STOP` | VM paused |
@@ -193,11 +196,13 @@ QMP events the management layer subscribes to:
 ## Tools
 
 **qmp-shell** (in QEMU source tree):
-```
+
+```bash
 python3 scripts/qmp/qmp-shell /tmp/qmp.sock
 ```
 
 **qmp-proxy** and **qemu-vm** for programmatic Python use via `qemu.qmp` package:
+
 ```python
 from qemu.qmp import QMPClient
 qmp = QMPClient()
@@ -208,7 +213,7 @@ await qmp.disconnect()
 
 ## JSON Formatting
 
-For constructing QMP commands and parsing responses programmatically, use `jq`. See the `jq` skill (`skills/jq/`).
+For constructing QMP commands and parsing responses programmatically, use the `jq` CLI directly (for example, `jq -nc '{execute: "query-status"}'` to build compact JSON requests and `jq '.return'` to inspect replies; see `jq(1)`).
 
 ## See Also
 

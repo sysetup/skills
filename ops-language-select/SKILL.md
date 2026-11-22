@@ -4,8 +4,10 @@ description: Select and justify implementation languages for host automation usi
 compatibility: Requires read access to this skill's bundled references. No executable runtime dependency.
 license: MIT
 metadata:
-  version: "1.1"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # ops-language-select
@@ -46,13 +48,13 @@ Host documentation is optional input; use it when available and applicable. With
 ### Apply the decision workflow
 
 1. Frame the tool: callers, repository, workload, OS targets, runtimes, deployment, expected lifetime, and interfaces. Inspect supplied project facts within authorized scope.
-2. Read the governing sections. Separate fixed requirements, negotiable preferences, and assumptions. Keep unknown mandatory requirements explicit; hold the affected implementation until safety, requirements, and necessary access are resolved.
-3. Classify the workload and use the resource routing table to read the relevant sections of the guide. For mixed workloads, identify the dominant lifecycle cost or risk rather than averaging unrelated table rows.
-4. Compare credible candidates in the guide's governing order. Ask only for missing facts that can change the candidate family or a hard constraint. Otherwise state the assumption and make the conclusion provisional when necessary.
-5. Read the performance and migration sections before recommending a rewrite or native extraction. Compare whole-tool and component-level alternatives against the same requirements; distinguish measured cost from a hypothesis.
-6. Apply the guide's security guidance when privilege, untrusted input, process invocation, filesystem mutation, network exposure, or native safety matters. Language selection does not authorize those operations.
-7. Apply the guide's tie-breaks only after establishing material equivalence. The decision tree and task matrices support the complete criteria; an early branch is not permission to bypass a hard requirement. If the source does not resolve a remaining tie, explain the unresolved tradeoff rather than inventing a host preference.
-8. Return the decision in the session with the source locator and the deciding evidence. Record what would reverse it, and whether migration is warranted now or only after measurement.
+1. Read the governing sections. Separate fixed requirements, negotiable preferences, and assumptions. Keep unknown mandatory requirements explicit; hold the affected implementation until safety, requirements, and necessary access are resolved.
+1. Classify the workload and use the resource routing table to read the relevant sections of the guide. For mixed workloads, identify the dominant lifecycle cost or risk rather than averaging unrelated table rows.
+1. Compare credible candidates in the guide's governing order. Ask only for missing facts that can change the candidate family or a hard constraint. Otherwise state the assumption and make the conclusion provisional when necessary.
+1. Read the performance and migration sections before recommending a rewrite or native extraction. Compare whole-tool and component-level alternatives against the same requirements; distinguish measured cost from a hypothesis.
+1. Apply the guide's security guidance when privilege, untrusted input, process invocation, filesystem mutation, network exposure, or native safety matters. Language selection does not authorize those operations.
+1. Apply the guide's tie-breaks only after establishing material equivalence. The decision tree and task matrices support the complete criteria; an early branch is not permission to bypass a hard requirement. If the source does not resolve a remaining tie, explain the unresolved tradeoff rather than inventing a host preference.
+1. Return the decision in the session with the source locator and the deciding evidence. Record what would reverse it, and whether migration is warranted now or only after measurement.
 
 ### Keep evidence distinguishable
 

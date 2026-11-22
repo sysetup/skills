@@ -3,8 +3,10 @@ name: ops-oop
 description: Design, implement, review, and refactor object-oriented software using explicit responsibilities, invariants, encapsulation, composition, and substitution contracts. Use for OO modeling, interfaces, SOLID/GRASP, patterns, domain models, architecture, or legacy OO code. Explain concepts with language-neutral algorithms and pseudocode; apply regulated profiles only when the project requires them.
 license: MIT
 metadata:
-  version: "1.1"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # ops-oop
@@ -50,21 +52,21 @@ Preserve the host's instructions, repository conventions, safety rules, tooling 
 For each task, follow this sequence and stop at the lowest level that fully solves the request:
 
 1. **Frame the software system.** Identify the purpose, users/actors, externally visible behavior, constraints, quality attributes, runtime environment, and relevant interfaces.
-2. **Locate the lifecycle activity.** Classify the work as requirements/domain analysis, architecture, detailed design, implementation, test, refactoring, code review, maintenance, modernization, or regulated assurance.
-3. **Choose the object-design depth.** Start at the lowest concept level that can explain or solve the problem; escalate only when the task exposes a deeper design issue.
-4. **Load only the needed references.** Use the Resource Routing table. Avoid loading unrelated references.
-5. **Model behavior before structure.** Establish responsibilities, invariants, ownership, collaborations, and substitution requirements before introducing classes or patterns.
-6. **Select the simplest design mechanism.** Prefer direct value types and composition. Introduce dynamic polymorphism, inheritance, type erasure, templates, patterns, or frameworks only when they solve a demonstrated variability or dependency problem.
-7. **Implement or propose changes.** Preserve behavior unless the task explicitly changes requirements. Keep dependency direction and lifecycle semantics visible.
-8. **Verify.** Check requirements traceability, invariants, ownership/lifetime, substitutability, error behavior, tests, quality attributes, and any active standard/profile.
-9. **Deliver evidence.** Report decisions, trade-offs, assumptions, risks, tests/checks performed, unresolved issues, and the next useful action.
+1. **Locate the lifecycle activity.** Classify the work as requirements/domain analysis, architecture, detailed design, implementation, test, refactoring, code review, maintenance, modernization, or regulated assurance.
+1. **Choose the object-design depth.** Start at the lowest concept level that can explain or solve the problem; escalate only when the task exposes a deeper design issue.
+1. **Load only the needed references.** Use the Resource Routing table. Avoid loading unrelated references.
+1. **Model behavior before structure.** Establish responsibilities, invariants, ownership, collaborations, and substitution requirements before introducing classes or patterns.
+1. **Select the simplest design mechanism.** Prefer direct value types and composition. Introduce dynamic polymorphism, inheritance, type erasure, templates, patterns, or frameworks only when they solve a demonstrated variability or dependency problem.
+1. **Implement or propose changes.** Preserve behavior unless the task explicitly changes requirements. Keep dependency direction and lifecycle semantics visible.
+1. **Verify.** Check requirements traceability, invariants, ownership/lifetime, substitutability, error behavior, tests, quality attributes, and any active standard/profile.
+1. **Deliver evidence.** Report decisions, trade-offs, assumptions, risks, tests/checks performed, unresolved issues, and the next useful action.
 
 ### Concept escalation ladder
 
 Use this ladder to teach or reason incrementally. Read [references/01-concept-ladder.md](references/01-concept-ladder.md) when the task requires explanation, onboarding, first-principles reasoning, or diagnosis of confused OO concepts.
 
 | Level | Question to resolve | Typical concepts |
-|---|---|---|
+| --- | --- | --- |
 | L1 - Object semantics | What state and behavior belong together? | object, identity, value, message/call, abstraction |
 | L2 - Class integrity | What must remain true for this type? | invariant, encapsulation, constructor, ownership, lifetime |
 | L3 - Collaboration | Which object is responsible for what? | responsibilities, interfaces, cohesion, coupling, GRASP/RDD |
@@ -131,43 +133,43 @@ Do not pattern-match by name. State the force first: runtime variability, constr
 Read [references/02-domain-requirements-modeling.md](references/02-domain-requirements-modeling.md).
 
 1. Capture externally observable behavior and quality constraints.
-2. Identify domain concepts, rules, invariants, events, and lifecycle boundaries.
-3. Separate problem-domain terminology from implementation mechanisms.
-4. Assign candidate responsibilities using information ownership and collaboration needs.
-5. Validate the model with scenarios before committing to class hierarchies.
-6. Trace each important responsibility to a requirement, use case, domain rule, or quality attribute.
+1. Identify domain concepts, rules, invariants, events, and lifecycle boundaries.
+1. Separate problem-domain terminology from implementation mechanisms.
+1. Assign candidate responsibilities using information ownership and collaboration needs.
+1. Validate the model with scenarios before committing to class hierarchies.
+1. Trace each important responsibility to a requirement, use case, domain rule, or quality attribute.
 
 #### Architecture and detailed OO design
 
 Read [references/03-design-principles.md](references/03-design-principles.md) and, when patterns or architectural boundaries are involved, [references/05-patterns-and-architecture.md](references/05-patterns-and-architecture.md).
 
 1. Identify stable policy and volatile details.
-2. Define module/component boundaries before class proliferation.
-3. Define public contracts, ownership, error semantics, and concurrency assumptions.
-4. Choose value composition, static polymorphism, dynamic polymorphism, or type erasure deliberately.
-5. Model important interactions with a sequence/interaction view; use UML only when it improves communication or traceability.
-6. Record trade-offs for non-obvious decisions.
+1. Define module/component boundaries before class proliferation.
+1. Define public contracts, ownership, error semantics, and concurrency assumptions.
+1. Choose value composition, static polymorphism, dynamic polymorphism, or type erasure deliberately.
+1. Model important interactions with a sequence/interaction view; use UML only when it improves communication or traceability.
+1. Record trade-offs for non-obvious decisions.
 
 #### Implementation in the target language
 
 Read [references/04-object-lifecycle.md](references/04-object-lifecycle.md).
 
 1. Establish invariants before exposing an object.
-2. Prefer direct composition and values; introduce indirection only for a demonstrated need.
-3. Validate required collaborators and document ownership, nullability, and lifetime.
-4. Preserve polymorphic behavior and client-visible contracts.
-5. Define copying, identity, resource cleanup, and error guarantees.
-6. Protect shared invariants under the target runtime's concurrency model.
+1. Prefer direct composition and values; introduce indirection only for a demonstrated need.
+1. Validate required collaborators and document ownership, nullability, and lifetime.
+1. Preserve polymorphic behavior and client-visible contracts.
+1. Define copying, identity, resource cleanup, and error guarantees.
+1. Protect shared invariants under the target runtime's concurrency model.
 
 #### Testing and refactoring
 
 Read [references/06-testing-refactoring-legacy.md](references/06-testing-refactoring-legacy.md).
 
 1. Establish observable behavior with tests before structural change when regression risk is material.
-2. Prefer refactorings that preserve behavior in small reviewable steps.
-3. Test polymorphic contracts against every implementation, not only concrete classes individually.
-4. Use test doubles at architectural seams, not indiscriminately between every pair of objects.
-5. In legacy code, create a safe seam before redesigning a large dependency graph.
+1. Prefer refactorings that preserve behavior in small reviewable steps.
+1. Test polymorphic contracts against every implementation, not only concrete classes individually.
+1. Use test doubles at architectural seams, not indiscriminately between every pair of objects.
+1. In legacy code, create a safe seam before redesigning a large dependency graph.
 
 #### Code/design review
 
@@ -176,13 +178,13 @@ Read [references/07-review-quality-gates.md](references/07-review-quality-gates.
 Review in this order:
 
 1. requirement and behavior correctness;
-2. invariants and state model;
-3. ownership/lifetime and error paths;
-4. responsibilities and dependency direction;
-5. substitution and polymorphism safety;
-6. changeability/testability;
-7. performance/resource implications where relevant;
-8. active standards/profile evidence.
+1. invariants and state model;
+1. ownership/lifetime and error paths;
+1. responsibilities and dependency direction;
+1. substitution and polymorphism safety;
+1. changeability/testability;
+1. performance/resource implications where relevant;
+1. active standards/profile evidence.
 
 Do not lead with style nits when a semantic or ownership defect exists.
 
@@ -193,10 +195,10 @@ Read [references/08-regulated-profiles.md](references/08-regulated-profiles.md) 
 Before applying a profile:
 
 1. identify jurisdiction/domain, required standard, exact edition, project tailoring, language version, and assurance level;
-2. distinguish mandatory project rules from advisory guidance;
-3. preserve bidirectional traceability from requirement to design/code/test evidence;
-4. do not claim compliance from code inspection alone;
-5. verify mutable standards information from current primary sources when web/retrieval is available.
+1. distinguish mandatory project rules from advisory guidance;
+1. preserve bidirectional traceability from requirement to design/code/test evidence;
+1. do not claim compliance from code inspection alone;
+1. verify mutable standards information from current primary sources when web/retrieval is available.
 
 Language-neutral examples do not establish compliance with any language-specific regulated profile. Verify the actual project's permitted language edition and features.
 
@@ -227,7 +229,7 @@ Explain why the abstraction exists. In this example, runtime substitution is jus
 Apply the gates that match the task. Mark unresolved items instead of silently inventing evidence.
 
 | Gate | Pass condition |
-|---|---|
+| --- | --- |
 | Behavior | Design/code satisfies the stated scenarios and requirements. |
 | Invariants | Each stateful type has explicit valid-state rules; public operations preserve them. |
 | Responsibility | Each class/module has a coherent reason to exist and an understandable collaboration role. |

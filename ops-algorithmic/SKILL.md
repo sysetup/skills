@@ -3,8 +3,10 @@ name: ops-algorithmic
 description: "Design, review, debug, and optimize algorithms and data structures against correctness and resource contracts. Use for algorithm selection, invariants, asymptotic complexity, workload scaling, or measured computational bottlenecks. Do not use for routine edits, documentation, formatting, or implementation without an algorithmic concern."
 license: MIT
 metadata:
-  version: "1.2"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.3"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # ops-algorithmic
@@ -34,11 +36,11 @@ Treat source code as the executable expression of an algorithm, not as a substit
 Optimize in this order:
 
 1. Establish the contract and semantic correctness.
-2. Select the mathematically and operationally appropriate algorithm and data structures.
-3. Minimize dominant time, space, I/O, allocation, communication, synchronization, and data-movement costs under the actual constraints.
-4. Express the selected algorithm so a competent maintainer can reconstruct its intent and invariants.
-5. Localize change, preserve stable abstractions, and make future modification safe.
-6. Tune constants, layout, branches, vectorization, caching, concurrency, or other low-level details only from evidence when they materially matter.
+1. Select the mathematically and operationally appropriate algorithm and data structures.
+1. Minimize dominant time, space, I/O, allocation, communication, synchronization, and data-movement costs under the actual constraints.
+1. Express the selected algorithm so a competent maintainer can reconstruct its intent and invariants.
+1. Localize change, preserve stable abstractions, and make future modification safe.
+1. Tune constants, layout, branches, vectorization, caching, concurrency, or other low-level details only from evidence when they materially matter.
 
 Reject the false trade-off "efficient or readable." First choose the right algorithm; then make that algorithm readable. Accept an asymptotically inferior algorithm only when the bounded workload, lower constants, memory limits, simplicity, determinism, or another explicit constraint makes it the better engineering choice.
 
@@ -128,12 +130,12 @@ Use complementary verification techniques rather than a single metric or happy-p
 At minimum for nontrivial code:
 
 1. test nominal behavior;
-2. test boundaries, empties, singletons, duplicates, extremes, invalid inputs, and overflow/precision cases that apply;
-3. test adversarial or worst-shaped inputs when the algorithm has a degradation mode;
-4. use a simple reference implementation or invariant/property checks when feasible;
-5. compile/lint/type-check and run static or dynamic analyzers available for the language;
-6. for C/C++, use sanitizers or equivalent memory/undefined-behavior tooling when available;
-7. benchmark only after correctness is established if a performance claim matters.
+1. test boundaries, empties, singletons, duplicates, extremes, invalid inputs, and overflow/precision cases that apply;
+1. test adversarial or worst-shaped inputs when the algorithm has a degradation mode;
+1. use a simple reference implementation or invariant/property checks when feasible;
+1. compile/lint/type-check and run static or dynamic analyzers available for the language;
+1. for C/C++, use sanitizers or equivalent memory/undefined-behavior tooling when available;
+1. benchmark only after correctness is established if a performance claim matters.
 
 For optimization, compare against a baseline on representative workloads. Keep environment and inputs comparable. Report enough information to distinguish noise from a meaningful improvement. Profile before low-level tuning.
 
@@ -158,9 +160,9 @@ If any answer is no, revise before presenting the solution as high quality.
 Separate four kinds of support:
 
 1. **Mathematical guarantee** — proofs, invariants, asymptotic bounds, amortized analysis, numerical error bounds.
-2. **Controlled empirical evidence** — human/program experiments with stated participants and tasks.
-3. **Observational evidence** — repositories, defects, changes, production traces, or case studies; treat association as association.
-4. **Engineering convention** — standards, style guides, or local practice; useful for consistency but not automatically a causal fact.
+1. **Controlled empirical evidence** — human/program experiments with stated participants and tasks.
+1. **Observational evidence** — repositories, defects, changes, production traces, or case studies; treat association as association.
+1. **Engineering convention** — standards, style guides, or local practice; useful for consistency but not automatically a causal fact.
 
 Never present a convention as scientifically proven. Never convert a correlation into causation. Never use a source-code metric as a complete proxy for human comprehension.
 
@@ -177,14 +179,14 @@ After editing examples, review their contracts and invariants and trace the list
 For algorithmic implementations, optimizations, or reviews, include the relevant subset of:
 
 1. **Contract and assumptions**
-2. **Chosen algorithm and data structures**
-3. **Why this choice beats credible alternatives for the stated workload**
-4. **Correctness argument/invariants**
-5. **Time and space complexity**
-6. **Implementation**
-7. **Verification performed or tests to run**
-8. **Performance evidence or benchmark plan when performance is claimed**
-9. **Residual risks and trade-offs**
+1. **Chosen algorithm and data structures**
+1. **Why this choice beats credible alternatives for the stated workload**
+1. **Correctness argument/invariants**
+1. **Time and space complexity**
+1. **Implementation**
+1. **Verification performed or tests to run**
+1. **Performance evidence or benchmark plan when performance is claimed**
+1. **Residual risks and trade-offs**
 
 Keep trivial tasks proportionate; do not bury a two-line fix under a formal report. Preserve the hierarchy even when the explanation is short.
 

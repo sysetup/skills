@@ -3,10 +3,12 @@ name: workflow-cognitive
 description: Structure reasoning for complex decisions, plans, synthesis, and creative work with competing constraints. Use when the task needs decomposition, alternatives, or prioritization, or the user asks to think deeply or develop creative options. Excludes casual chat, simple lookups, and mechanical transformations; ordinary uncertainty alone does not select a new workflow.
 license: MIT
 metadata:
-  author: "SYSETUP.COM CarlosHRG"
-  version: "1.0.2"
-  short-description: Structured reasoning, creativity, and delivery workflow.
-  keywords: reasoning, decomposition, synthesis, creativity, prioritization, planning, verification, quality
+  version: "1.0.3"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
+  short-description: "Structured reasoning, creativity, and delivery workflow."
+  keywords: "reasoning, decomposition, synthesis, creativity, prioritization, planning, verification, quality"
 ---
 
 # workflow-cognitive
@@ -30,7 +32,7 @@ Output precedence: governing instructions and the requested deliverable's output
 ### Modes
 
 | Mode | Use | Deliverable shape |
-|---|---|---|
+| --- | --- | --- |
 | Quick | Simple but consequential request | Answer, one check, next action |
 | Standard | Default structured workflow | Frame, solution, checks, next action |
 | Deep | High stakes or competing constraints | Options, criteria, risks, tests, recommendation |
@@ -42,12 +44,12 @@ Output precedence: governing instructions and the requested deliverable's output
 Run internally; expose only content that improves the result.
 
 1. **Frame:** capture goal, audience, context, constraints, success criteria, and unknowns. Ask every question needed to resolve material blockers, reusing supplied answers and adapting batches to the available channel's schema. Use a stated assumption only for nonblocking details permitted by the task. Wait for required answers or approval before dependent work; silence, defaults, and timeouts are not answers. Continue independently safe work.
-2. **Decompose:** split into 3–7 components, mark dependencies and critical path, and classify the task type.
-3. **Prioritize:** choose the three highest-value actions, one default path, and one fallback.
-4. **Create:** when the task calls for ideation, generate distinct alternatives using inversion, analogy, constraint tightening, dimensional shift, forced connection, or assumption deletion; converge on a concrete result within the task's constraints.
-5. **Execute:** lead with the result and provide a copy-ready deliverable in the requested format.
-6. **Verify:** check completeness, consistency, correctness, safety, risk, units, edge cases, and format; use available evidence, sanity checks, and results of task-authorized tests. Distinguish known, inferred, assumed, and unknown information internally; report material uncertainty within the permitted format and never claim an unrun check.
-7. **Learn:** retain an internal note—worked, improve, reuse—and reveal it only by request or to prevent repetition.
+1. **Decompose:** split into 3–7 components, mark dependencies and critical path, and classify the task type.
+1. **Prioritize:** choose the three highest-value actions, one default path, and one fallback.
+1. **Create:** when the task calls for ideation, generate distinct alternatives using inversion, analogy, constraint tightening, dimensional shift, forced connection, or assumption deletion; converge on a concrete result within the task's constraints.
+1. **Execute:** lead with the result and provide a copy-ready deliverable in the requested format.
+1. **Verify:** check completeness, consistency, correctness, safety, risk, units, edge cases, and format; use available evidence, sanity checks, and results of task-authorized tests. Distinguish known, inferred, assumed, and unknown information internally; report material uncertainty within the permitted format and never claim an unrun check.
+1. **Learn:** retain an internal note—worked, improve, reuse—and reveal it only by request or to prevent repetition.
 
 ### Filters
 
@@ -58,7 +60,7 @@ Run internally; expose only content that improves the result.
 ### PASS gates
 
 | Dimension | Evidence |
-|---|---|
+| --- | --- |
 | Intelligence | Three of: 3+ components, explicit assumptions, coherent synthesis, verification check |
 | Creativity | For ideation: 3+ distinct directions, one lateral move, justified convergence with concrete detail |
 | Productivity | Three of: explicit priorities, immediate deliverable, MVP-first focus, clean format with next action |

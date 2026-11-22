@@ -15,7 +15,7 @@ QEMU runs as a single process that models a complete computer system. There are 
 The QEMU project ships these commands:
 
 | Command | Section | Role |
-|---------|---------|------|
+| --- | --- | --- |
 | `qemu-system-ARCH` | Emulator | Full-system virtual machine (one binary per arch, e.g. `qemu-system-x86_64`, `qemu-system-aarch64`, `qemu-system-riscv64`) |
 | `qemu-img` | Disk tool | Create, convert, modify, inspect disk images offline |
 | `qemu-nbd` | Network block | Export disk images as NBD server; connect to NBD devices |
@@ -26,7 +26,7 @@ The QEMU project ships these commands:
 And these reference man pages:
 
 | Man page | Content |
-|----------|---------|
+| --- | --- |
 | `qemu(1)` | `qemu-system-x86_64` documentation (canonical for all archs) |
 | `qemu-block-drivers(7)` | All supported disk image formats and network storage protocols |
 | `qemu-cpu-models(7)` | CPU model recommendations, features, and ABI compatibility |
@@ -41,6 +41,7 @@ QEMU emulates CPUs in software using **TCG** (Tiny Code Generator). This is slow
 **KVM** (Kernel-based Virtual Machine) is a Linux kernel module that allows QEMU to run guest code directly on the host CPU. QEMU becomes a VMM (Virtual Machine Monitor), handling device emulation while guest code runs natively.
 
 Other accelerators:
+
 - **HVF** — macOS Hypervisor.framework (Intel Macs)
 - **WHV/WHVP** — Windows Hypervisor Platform
 - **NVMM** — NetBSD virtual machine monitor
@@ -52,13 +53,14 @@ Enable with `-accel kvm` or `-enable-kvm` (legacy). Multiple accelerators can be
 ## Process Model
 
 A running QEMU process:
+
 1. Parses the command line, building the VM configuration (machine, CPUs, RAM, devices, block backends, network)
-2. Initializes the machine and all devices
-3. Connects to the accelerator (if requested)
-4. Opens a QMP/HMP monitor socket (if requested)
-5. Loads BIOS/firmware or kernel/initrd
-6. Starts the guest CPUs
-7. Enters the main event loop — dispatches timers, I/O, monitor commands, and VCPU execution
+1. Initializes the machine and all devices
+1. Connects to the accelerator (if requested)
+1. Opens a QMP/HMP monitor socket (if requested)
+1. Loads BIOS/firmware or kernel/initrd
+1. Starts the guest CPUs
+1. Enters the main event loop — dispatches timers, I/O, monitor commands, and VCPU execution
 
 ## ELF Binary Variants
 
@@ -67,7 +69,7 @@ Each target architecture has its own `qemu-system-ARCH` binary. On Debian-based 
 Common variants:
 
 | Binary | Architecture |
-|--------|-------------|
+| --- | --- |
 | `qemu-system-x86_64` | x86-64 |
 | `qemu-system-i386` | x86 (32-bit) |
 | `qemu-system-aarch64` | AArch64 / ARM64 |

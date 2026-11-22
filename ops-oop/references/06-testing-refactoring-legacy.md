@@ -62,12 +62,12 @@ Prefer fakes when stateful behavior is easier to understand than call expectatio
 Use this control loop:
 
 1. establish passing tests for relevant behavior;
-2. make one structural change;
-3. compile/static-check;
-4. run focused tests;
-5. run broader regression tests as risk requires;
-6. commit/record a rollback point;
-7. repeat.
+1. make one structural change;
+1. compile/static-check;
+1. run focused tests;
+1. run broader regression tests as risk requires;
+1. commit/record a rollback point;
+1. repeat.
 
 Separate behavior change from refactoring when possible. Mixing them makes failures harder to diagnose and review.
 
@@ -76,12 +76,12 @@ Separate behavior change from refactoring when possible. Mixing them makes failu
 When code lacks tests and has difficult dependencies:
 
 1. identify the behavior that must change;
-2. locate a seam where behavior can be observed or dependency replaced;
-3. add characterization tests around current behavior, including surprising behavior that consumers may rely on;
-4. introduce the smallest dependency-breaking refactor;
-5. add/strengthen tests for desired behavior;
-6. make the feature/fix;
-7. improve deeper structure only where evidence and scope justify it.
+1. locate a seam where behavior can be observed or dependency replaced;
+1. add characterization tests around current behavior, including surprising behavior that consumers may rely on;
+1. introduce the smallest dependency-breaking refactor;
+1. add/strengthen tests for desired behavior;
+1. make the feature/fix;
+1. improve deeper structure only where evidence and scope justify it.
 
 Do not start with a broad architecture rewrite merely because the code is unpleasant. First reduce uncertainty.
 

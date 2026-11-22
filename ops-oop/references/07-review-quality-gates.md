@@ -17,14 +17,14 @@ Use this reference for design review, code review, quality-attribute analysis, l
 Review highest-consequence issues first:
 
 1. wrong behavior or missing requirement;
-2. invalid state/invariant failure;
-3. ownership/lifetime/resource defect;
-4. unsafe polymorphism/substitution;
-5. error/concurrency contract;
-6. architecture/dependency defect;
-7. changeability/testability;
-8. performance/resource usage;
-9. style/readability.
+1. invalid state/invariant failure;
+1. ownership/lifetime/resource defect;
+1. unsafe polymorphism/substitution;
+1. error/concurrency contract;
+1. architecture/dependency defect;
+1. changeability/testability;
+1. performance/resource usage;
+1. style/readability.
 
 Do not bury correctness defects under formatting comments.
 
@@ -106,7 +106,7 @@ Investigate outliers in context. Avoid universal thresholds such as "class > N l
 These standards frame lifecycle and evidence; they do not prescribe one OO design method.
 
 | Need | Primary reference | How this skill uses it |
-|---|---|---|
+| --- | --- | --- |
 | software lifecycle process | ISO/IEC/IEEE 12207:2026 | place OO work inside development, operation, maintenance, disposal and supporting processes |
 | system lifecycle context | ISO/IEC/IEEE 15288:2023 | connect software design to system-level lifecycle/stakeholder context |
 | requirements engineering | ISO/IEC/IEEE 29148:2018 | trace responsibilities/design to requirements; verify current edition before compliance claims |

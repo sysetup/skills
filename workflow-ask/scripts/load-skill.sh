@@ -140,7 +140,7 @@ validate_package() {
     || die_fail "python3 is required to parse SKILL.md"
 
   parsed="$(
-    python3 - "${skill_md}" "${want_name}" "${SKILL_ROOT}" <<'PY'
+    python3 -B - "${skill_md}" "${want_name}" "${SKILL_ROOT}" <<'PY'
 import sys
 from pathlib import Path
 
@@ -212,7 +212,7 @@ print(f"{name}\t{version}")
 PY
   )" || exit "${EXIT_FAIL}"
 
-  if ! python3 "${validator}" validate "${example}" >/dev/null; then
+  if ! python3 -B "${validator}" validate "${example}" >/dev/null; then
     die_fail "assets/question-set.example.json failed validate-question-set.py"
   fi
 

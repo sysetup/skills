@@ -41,10 +41,10 @@ If the code introduces a policy or constraint with no upstream reason, label it 
 Nouns are vocabulary candidates, not class mandates. For each candidate concept ask:
 
 1. Does it have behavior or invariant worth protecting?
-2. Does it own a lifecycle or identity?
-3. Is it a value with domain semantics?
-4. Is it only a label/DTO/database row?
-5. Does another existing abstraction already own this responsibility?
+1. Does it own a lifecycle or identity?
+1. Is it a value with domain semantics?
+1. Is it only a label/DTO/database row?
+1. Does another existing abstraction already own this responsibility?
 
 Avoid creating classes such as `Manager`, `Processor`, or `Helper` before their responsibility can be stated precisely.
 

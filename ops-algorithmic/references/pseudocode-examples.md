@@ -1,8 +1,8 @@
 # Algorithmic Pseudocode Guide
 
-Source specification: GUIDE@core; edition: 1.0. Local edition: 1.0.
+Source specification: GUIDE@core; edition: 1.0.
 
-These synthetic examples give developers nonbinding guidance on algorithm selection, correctness, and resource costs. They are language-neutral illustrations, not executable implementations or measured performance results. No external client.
+These synthetic examples give developers nonbinding guidance on algorithm selection, correctness, and resource costs. They are language-neutral illustrations, not executable implementations or measured performance results.
 
 ## Notation and contracts
 

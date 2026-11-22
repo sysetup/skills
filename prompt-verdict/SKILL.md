@@ -3,8 +3,10 @@ name: prompt-verdict
 description: Compile the latest settled technical decision in the current conversation into an execution prompt for a fresh implementation session. Exclude making a new decision, general progress summaries, dialogue transcripts, and direct implementation. Use when the user requests the latest technical verdict, its execution prompt, or this skill explicitly. Preserve authoritative decisions and distinguish verified evidence, reported observations, and assumptions.
 license: MIT
 metadata:
-  version: "1.1"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # prompt-verdict
@@ -20,8 +22,8 @@ Apply available, applicable host/project requirements within their scope. The se
 ## Execution Workflow
 
 1. Identify the latest operative decision and explicit amendments.
-2. Extract implementation requirements and transfer usable evidence.
-3. Write and verify the execution prompt, ending with one concrete First Action.
+1. Extract implementation requirements and transfer usable evidence.
+1. Write and verify the execution prompt, ending with one concrete First Action.
 
 ### Select the operative decision
 

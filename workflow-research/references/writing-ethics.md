@@ -5,21 +5,21 @@
 Use this order unless the requested format, governing instructions, or venue mandate another. Fit research content into the permitted structure; keep working checks outside exact-format artifacts.
 
 1. Title
-2. Abstract (problem, approach, method, expected or actual contribution)
-3. Introduction — hook, problem evidence, literatures addressing it, deficiencies, significance for audiences (Creswell introduction logic)
-4. Purpose statement
-5. Questions and/or hypotheses
-6. Worldview and theory (short)
-7. Methods (sampling, instruments, procedure, analysis)
-8. Consistency matrix (body or appendix; required)
-9. Validation / trustworthiness / integration validity
-10. Timeline
-11. Findings (if executed)
-12. Integration / discussion
-13. Limitations, ethics, next actions
-14. References actually used
-15. Instruments appendix
-16. Execution log / replication package if analysis ran
+1. Abstract (problem, approach, method, expected or actual contribution)
+1. Introduction — hook, problem evidence, literatures addressing it, deficiencies, significance for audiences (Creswell introduction logic)
+1. Purpose statement
+1. Questions and/or hypotheses
+1. Worldview and theory (short)
+1. Methods (sampling, instruments, procedure, analysis)
+1. Consistency matrix (body or appendix; required)
+1. Validation / trustworthiness / integration validity
+1. Timeline
+1. Findings (if executed)
+1. Integration / discussion
+1. Limitations, ethics, next actions
+1. References actually used
+1. Instruments appendix
+1. Execution log / replication package if analysis ran
 
 Keep academic ceremony only when the audience is a committee or journal. For product, policy, or newsroom work, keep the same logic in shorter headings. Never drop validity and source quality. The matrix is required on protocol/thesis work; a desk study may attach a compact matrix or omit it when findings-first is the deliverable.
 

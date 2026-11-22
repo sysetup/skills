@@ -81,10 +81,10 @@ Preserve the reasoning that future edits must respect:
 Ask a reviewer to explain, without executing the code:
 
 1. What problem does this component solve?
-2. What are the main invariants?
-3. Why is this algorithm/data structure used?
-4. What are its complexity and degradation modes?
-5. Which edge cases change control flow?
-6. What must remain true after a maintenance edit?
+1. What are the main invariants?
+1. Why is this algorithm/data structure used?
+1. What are its complexity and degradation modes?
+1. Which edge cases change control flow?
+1. What must remain true after a maintenance edit?
 
 If the code cannot support accurate answers, improve the expression or documentation even if the implementation is functionally correct.

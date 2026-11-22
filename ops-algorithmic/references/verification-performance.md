@@ -5,14 +5,14 @@
 Use the strongest proportionate combination available:
 
 1. **Reasoning:** contract, invariants, termination, type/ownership model, numerical bounds.
-2. **Examples:** representative concrete cases for fast sanity checking.
-3. **Boundary tests:** empty, singleton, maximum/minimum, duplicates, degenerate shapes, invalid inputs.
-4. **Property/invariant tests:** statements that must hold across many generated inputs.
-5. **Differential tests:** compare optimized code against a simpler trusted implementation for many inputs.
-6. **Static analysis/type checking:** detect classes of defects without execution.
-7. **Dynamic analysis:** sanitizers, race detectors, memory tools, undefined-behavior checks.
-8. **Fuzzing:** parsers, protocols, stateful interfaces, security-sensitive input handling, and other broad input spaces.
-9. **Formal proof/model checking:** use when the risk, tractability, or contract warrants it.
+1. **Examples:** representative concrete cases for fast sanity checking.
+1. **Boundary tests:** empty, singleton, maximum/minimum, duplicates, degenerate shapes, invalid inputs.
+1. **Property/invariant tests:** statements that must hold across many generated inputs.
+1. **Differential tests:** compare optimized code against a simpler trusted implementation for many inputs.
+1. **Static analysis/type checking:** detect classes of defects without execution.
+1. **Dynamic analysis:** sanitizers, race detectors, memory tools, undefined-behavior checks.
+1. **Fuzzing:** parsers, protocols, stateful interfaces, security-sensitive input handling, and other broad input spaces.
+1. **Formal proof/model checking:** use when the risk, tractability, or contract warrants it.
 
 No single rung replaces all others.
 
@@ -44,17 +44,17 @@ Never turn an expected improvement into a measured claim.
 For consequential performance work:
 
 1. Define the decision the benchmark must answer.
-2. Preserve a baseline implementation/build.
-3. Use release/optimized builds unless debugging behavior itself is under study.
-4. Use representative input sizes and distributions, including stressful shapes.
-5. Control or record hardware, OS, compiler/runtime, build flags, core/thread count, and relevant environment.
-6. Separate setup from the operation under test when setup is not part of production cost.
-7. Warm up JIT/runtime/cache effects when the platform requires it; for native code, account for cache state if relevant.
-8. Run enough repetitions to characterize variability.
-9. Report a distribution or robust summary, not only the best run.
-10. Measure memory/allocation/I/O/contention when those resources are part of the optimization target.
-11. Profile to attribute the improvement to the intended bottleneck.
-12. Reject benchmark changes that alter semantics or input work unfairly.
+1. Preserve a baseline implementation/build.
+1. Use release/optimized builds unless debugging behavior itself is under study.
+1. Use representative input sizes and distributions, including stressful shapes.
+1. Control or record hardware, OS, compiler/runtime, build flags, core/thread count, and relevant environment.
+1. Separate setup from the operation under test when setup is not part of production cost.
+1. Warm up JIT/runtime/cache effects when the platform requires it; for native code, account for cache state if relevant.
+1. Run enough repetitions to characterize variability.
+1. Report a distribution or robust summary, not only the best run.
+1. Measure memory/allocation/I/O/contention when those resources are part of the optimization target.
+1. Profile to attribute the improvement to the intended bottleneck.
+1. Reject benchmark changes that alter semantics or input work unfairly.
 
 ## Microbenchmark warning
 

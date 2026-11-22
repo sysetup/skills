@@ -19,9 +19,9 @@ Icebreaker (1)
 Central questions (4–7). Phenomenology uses these two first:
 
 1. What have you experienced in terms of {phenomenon}?
-2. What contexts or situations have typically influenced or affected your experience of {phenomenon}?
-3. {subquestion}
-4. {subquestion}
+1. What contexts or situations have typically influenced or affected your experience of {phenomenon}?
+1. {subquestion}
+1. {subquestion}
 
 Probes: "What was that like?", "Can you walk me through a specific moment?", "What else?"
 
@@ -63,12 +63,12 @@ Search strings and PRISMA-adapted counts live in the execution log, not in this 
 ## Experiment session script (experimental family)
 
 1. Eligibility and consent
-2. Pretest measure (if the design includes it) — instrument ID
-3. Random assignment record (or quasi assignment rule)
-4. Treatment delivery — fidelity checklist
-5. Contamination reminder / usage log if the treatment is a shareable tool
-6. Posttest measure — instrument ID
-7. Debrief
+1. Pretest measure (if the design includes it) — instrument ID
+1. Random assignment record (or quasi assignment rule)
+1. Treatment delivery — fidelity checklist
+1. Contamination reminder / usage log if the treatment is a shareable tool
+1. Posttest measure — instrument ID
+1. Debrief
 
 Empty result table (do not fill with invented numbers)
 

@@ -16,7 +16,7 @@ If the second strand is decoration, drop mixed methods.
 
 ## Core designs
 
-**Convergent**
+### Convergent
 
 - Collect quant and qual in the same window (or treat as concurrent).
 - Analyze separately.
@@ -24,7 +24,7 @@ If the second strand is decoration, drop mixed methods.
 - Resolve divergence (possible, plausible, or collect more).
 - Priority usually equal. Sample sizes may differ; do not force them equal.
 
-**Explanatory sequential (QUAN → qual)**
+### Explanatory sequential (QUAN → qual)
 
 - Quant first (survey, experiment, or secondary numbers).
 - Use quant results to select the qual sample (follow up outliers, unexpected cells, high/low groups, or key subgroups). Connecting samples is the integration point.
@@ -33,7 +33,7 @@ If the second strand is decoration, drop mixed methods.
 - Integration question form: To what extent do the qualitative findings explain the quantitative results for {construct} in {subgroup}?
 - Do not start the qual strand until quant results (or a simulated analysis plan with empty tables, if data are not yet collected) exist to connect from.
 
-**Exploratory sequential (QUAL → quan)**
+### Exploratory sequential (QUAL → quan)
 
 - Qual first to find constructs, language, or items.
 - Build an instrument or typology (the build step is the integration point). Report how themes became items or factors.
@@ -47,14 +47,14 @@ Embed a core design inside an experiment or intervention, a participatory or tra
 ## Required writes
 
 1. Definition of mixed methods as used in this study.
-2. Rationale for mixing (one function from the list above).
-3. Worldview (usually pragmatic or transformative) and theory.
-4. Types of quant and qual data and analyses.
-5. Named design + diagram in words.
-6. Integration method and timing.
-7. Priority (equal, quant-dominant, qual-dominant) and why.
-8. Validity issues unique to mixing (unequal samples, divergent results, weak integration, connecting-sample bias).
-9. Planned metainferences — what you will be able to say only after integration.
+1. Rationale for mixing (one function from the list above).
+1. Worldview (usually pragmatic or transformative) and theory.
+1. Types of quant and qual data and analyses.
+1. Named design + diagram in words.
+1. Integration method and timing.
+1. Priority (equal, quant-dominant, qual-dominant) and why.
+1. Validity issues unique to mixing (unequal samples, divergent results, weak integration, connecting-sample bias).
+1. Planned metainferences — what you will be able to say only after integration.
 
 ## Joint display
 

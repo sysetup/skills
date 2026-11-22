@@ -9,13 +9,13 @@ Causal language rule: use "cause", "impact", "effect of", "mejora" as a confirme
 ### True experiment checklist
 
 1. Participants — eligibility, recruitment, random assignment procedure (unit of randomization: person, class, site).
-2. Design name and diagram in words — groups × time × treatment. Prefer pretest–posttest control group when a baseline is available; posttest-only when pretest would itself treat; factorial when two or more IVs are crossed; Solomon four-group when pretest sensitization is a plausible threat.
-3. Independent variable — operational definition, levels (e.g. GenAI-assisted with protocol vs business-as-usual), dose, duration, fidelity check (what counts as receiving the treatment).
-4. Dependent variable(s) — operational definition, instrument, metric, timing. Academic performance is not a variable until it is a score, rubric, or GPA window.
-5. Covariates / controls — prior achievement, hours of study, prior tool use. Pre-specify.
-6. Procedure — sequence, blinding if any, contamination controls (especially for tools students can share), attrition rule (intent-to-treat vs per-protocol).
-7. Analysis — match to the design: independent t or Mann–Whitney (posttest-only, two groups); mixed ANOVA or ANCOVA (pretest–posttest); factorial ANOVA; linear mixed model if clustered (students in classes). Effect size (Cohen's d, η², or equivalent) and assumption checks. Alpha pre-specified. No fishing.
-8. Validity threats — name only those that can bite this design; state the control or residual risk (section below).
+1. Design name and diagram in words — groups × time × treatment. Prefer pretest–posttest control group when a baseline is available; posttest-only when pretest would itself treat; factorial when two or more IVs are crossed; Solomon four-group when pretest sensitization is a plausible threat.
+1. Independent variable — operational definition, levels (e.g. GenAI-assisted with protocol vs business-as-usual), dose, duration, fidelity check (what counts as receiving the treatment).
+1. Dependent variable(s) — operational definition, instrument, metric, timing. Academic performance is not a variable until it is a score, rubric, or GPA window.
+1. Covariates / controls — prior achievement, hours of study, prior tool use. Pre-specify.
+1. Procedure — sequence, blinding if any, contamination controls (especially for tools students can share), attrition rule (intent-to-treat vs per-protocol).
+1. Analysis — match to the design: independent t or Mann–Whitney (posttest-only, two groups); mixed ANOVA or ANCOVA (pretest–posttest); factorial ANOVA; linear mixed model if clustered (students in classes). Effect size (Cohen's d, η², or equivalent) and assumption checks. Alpha pre-specified. No fishing.
+1. Validity threats — name only those that can bite this design; state the control or residual risk (section below).
 
 ### Quasi-experiment extras
 
@@ -26,13 +26,13 @@ Name the design (nonequivalent groups, interrupted time series, regression disco
 ### Survey plan checklist
 
 1. Design — cross-sectional or longitudinal. Justify.
-2. Population — inclusion rules, setting, time window.
-3. Sampling — frame, strategy (simple, stratified, cluster, systematic, convenience), planned n, power or precision rationale if estimable. If power cannot be computed, say so and use a precision or named rule-of-thumb without fake numbers.
-4. Instrumentation — source of items, construct map, scales, reliability evidence from prior use, translation or adaptation notes, pilot plan. Draft the instrument with `assets/instruments.md`.
-5. Variables — independent, dependent, control, mediating, moderating. Each operational definition.
-6. Procedure — recruitment, mode (web, phone, paper, intercept), timing, nonresponse plan.
-7. Analysis — descriptive stats, missing-data rule, inferential tests or models matched to the hypotheses, effect sizes, assumption checks.
-8. Interpretation — what a significant or non-significant result would mean; what it would not mean.
+1. Population — inclusion rules, setting, time window.
+1. Sampling — frame, strategy (simple, stratified, cluster, systematic, convenience), planned n, power or precision rationale if estimable. If power cannot be computed, say so and use a precision or named rule-of-thumb without fake numbers.
+1. Instrumentation — source of items, construct map, scales, reliability evidence from prior use, translation or adaptation notes, pilot plan. Draft the instrument with `assets/instruments.md`.
+1. Variables — independent, dependent, control, mediating, moderating. Each operational definition.
+1. Procedure — recruitment, mode (web, phone, paper, intercept), timing, nonresponse plan.
+1. Analysis — descriptive stats, missing-data rule, inferential tests or models matched to the hypotheses, effect sizes, assumption checks.
+1. Interpretation — what a significant or non-significant result would mean; what it would not mean.
 
 ### Correlational / causal-comparative
 

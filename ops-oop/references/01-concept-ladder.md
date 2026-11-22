@@ -118,9 +118,9 @@ Lifecycle design is part of OO design in every language. Determine who owns an o
 Ask four questions for every candidate object:
 
 1. What decisions does it own?
-2. What information does it know?
-3. Which invariant does it protect?
-4. With whom must it collaborate to fulfill its responsibility?
+1. What information does it know?
+1. Which invariant does it protect?
+1. With whom must it collaborate to fulfill its responsibility?
 
 Prefer responsibility descriptions written as verbs: `prices an order`, `authorizes a payment`, `selects a retry policy`.
 
@@ -197,7 +197,7 @@ For legacy systems, first gain control of behavior, then improve structure. Larg
 Use these questions to select the next concept level:
 
 | Symptom | Investigate first |
-|---|---|
+| --- | --- |
 | Invalid combinations of fields | invariant + encapsulation |
 | Many classes forward calls without decisions | responsibility allocation |
 | Runtime type checks or type switches | substitution/design boundary |

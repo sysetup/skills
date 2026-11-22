@@ -3,8 +3,10 @@ name: doc-set
 description: Create specification-governed documents from doc-specs and register operational outputs placed in doc-requests indexes. Use when a user or agent requests a document, report, proposal, runbook, guide, or other documentary file deliverable, including an explicit output path. Do not create files for chat-only replies, inline reviews, or conversational summaries unless a document file is requested.
 license: MIT
 metadata:
-  version: "1.3"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.4"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # doc-set
@@ -56,7 +58,7 @@ Treat host and workspace `doc-operations/` and `doc-specs/` roots and their desc
 | --- | --- | --- | --- | --- | --- |
 ```
 
-Use `Type` for the specification's document type; `Document` for the title linked to the saved document; `Installed path` for the saved document's path relative to the index directory; `Purpose and applicability` for the outcome and applicable context; `Responsibility` for the accountable role or owner; and `Use boundary` for its limits and exclusions. Include `Local edition` (for the document's own version) only when updating an existing catalog that already has that column or when the project requires per-document versioning instead of centralized `CHANGELOG.md` tracking.
+Use `Type` for the backticked Specification ID (for example, `` `STANDARD@core` ``, `` `GUIDE@core` ``, `` `PRODUCT-GUIDE@core` ``, or `` `SOP@core` ``); `Document` for the title linked to the saved document; `Installed path` for the saved document's path relative to the index directory; `Purpose and applicability` for the outcome and applicable context; `Responsibility` for the accountable role or owner; and `Use boundary` for its limits and exclusions. Include `Local edition` (for the document's own version) only when updating an existing catalog that already has that column or when the project requires per-document versioning instead of centralized `CHANGELOG.md` tracking.
 
 In the `INDEX.md` file, do not add any notes, comments, or additional instructions outside the table.
 
@@ -76,6 +78,7 @@ For instance:
 │   └── media/
 ├── authorship-and-licensing/
 ├── host-documentation/
+├── host-operations/
 └── software-development/
     └── code-conventions/
         ├── ansible/

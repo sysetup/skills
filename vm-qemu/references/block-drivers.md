@@ -17,9 +17,9 @@ Raw disk image. Simplest format, no metadata overhead.
 QEMU Copy-On-Write version 2. The most versatile format. Default for QEMU.
 
 | Feature | Description |
-|---------|-------------|
+| --- | --- |
 | Sparse allocation | Only allocate clusters on write |
-| Compression | zlib-based, set `-c` on convert or `qcow2-compression-type=zlib|zstd` |
+| Compression | zlib-based, set `-c` on convert or `qcow2-compression-type=zlib\|zstd` |
 | Encryption | Native AES-CBC (deprecated) or LUKS |
 | Snapshots | Internal snapshots (differ from backing files) |
 | Backing files | Copy-on-write overlay on a base image |
@@ -30,6 +30,7 @@ QEMU Copy-On-Write version 2. The most versatile format. Default for QEMU.
 | Dirty bitmaps | Persistent bitmaps for incremental backup |
 
 Options:
+
 - `compat=0.10|1.1` — qcow2 version (1.1 enables zero clusters, subclusters, data files)
 - `backing_file=FMT` — base image filename
 - `backing_fmt=FMT` — base image format
@@ -50,11 +51,13 @@ QEMU Enhanced Disk format. Legacy, no longer recommended. Replaced by qcow2 with
 ### vmdk
 
 VMware Virtual Disk format. Supported for compatibility with VMware products.
+
 - Options: `compat6`, `subformat`, `adapter_type`, `hwversion`, `backing_file`, `zeroed_grain`
 
 ### vhdx
 
 Microsoft Hyper-V Virtual Hard Disk v2 format. Supports dynamic and differencing disks.
+
 - Options: `subformat=dynamic|fixed`, `block_size=N`, `log_size=N`
 
 ### vdi
@@ -72,6 +75,7 @@ Microsoft Virtual PC / Hyper-V VHD format.
 ### luks
 
 LUKS encrypted volume (not a disk image format per se, but a driver wrapping raw/block storage).
+
 - Options: `key-secret=ID`
 
 ### Parallels
@@ -87,7 +91,7 @@ Read-only formats for Bochs, compressed loop, and Apple DMG images.
 These protocols can be used as block drivers, both for images and direct storage access:
 
 | Driver | Protocol | Locator fields |
-|--------|----------|-------------|
+| --- | --- | --- |
 | `nbd` | Network Block Device | Host, port and export name |
 | `iscsi` | iSCSI | Host, optional port, target and LUN; supply credentials separately |
 | `iser` | iSCSI over RDMA | Same as iSCSI |
@@ -103,7 +107,7 @@ These protocols can be used as block drivers, both for images and direct storage
 These wrap another block node to add functionality:
 
 | Driver | Purpose |
-|--------|---------|
+| --- | --- |
 | `blkdebug` | Inject I/O errors for testing |
 | `blkverify` | Verify read data matches a reference driver |
 | `blklogwrites` | Log writes to a separate device |
@@ -119,7 +123,7 @@ These wrap another block node to add functionality:
 ## Null Drivers
 
 | Driver | Purpose |
-|--------|---------|
+| --- | --- |
 | `null-aio` | Discard all I/O, use AIO internally |
 | `null-co` | Discard all I/O, use coroutines |
 

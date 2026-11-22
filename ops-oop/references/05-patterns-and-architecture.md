@@ -20,7 +20,7 @@ A pattern is justified when it makes future change more localized, makes a contr
 ## Pattern force matrix
 
 | Force | Candidate mechanism | Watch for |
-|---|---|---|
+| --- | --- | --- |
 | replace algorithm/policy | Strategy, callable, template policy | one-method hierarchy may be heavier than a callable |
 | create family based on configuration | Factory Method / Abstract Factory | factory layer can become service locator |
 | adapt external interface | Adapter | do not leak vendor types through adapter boundary |

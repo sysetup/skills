@@ -8,7 +8,7 @@ The machine type defines the motherboard/chipset, devices, and firmware interfac
 
 Standard PC with Intel 440FX chipset. The original QEMU PC machine.
 
-```
+```text
 -machine pc-i440fx-11.0   # current version (alias: pc)
 -machine pc-i440fx-9.0    # versioned (migration-compatible)
 ```
@@ -23,7 +23,7 @@ Standard PC with Intel 440FX chipset. The original QEMU PC machine.
 
 Standard PC with Intel Q35 chipset. Modern replacement for i440FX.
 
-```
+```text
 -machine q35
 -machine pc-q35-11.0
 ```
@@ -40,7 +40,7 @@ Standard PC with Intel Q35 chipset. Modern replacement for i440FX.
 
 Minimal machine type. Ultra-small, no PCI, no ACPI.
 
-```
+```text
 -machine microvm
 ```
 
@@ -53,7 +53,7 @@ Minimal machine type. Ultra-small, no PCI, no ACPI.
 
 ### nitro-enclave
 
-```
+```text
 -machine nitro-enclave
 ```
 
@@ -63,7 +63,7 @@ AWS Nitro Enclave compatible machine. Minimal, no persistent storage, no network
 
 ### virt
 
-```
+```text
 -machine virt
 ```
 
@@ -75,7 +75,7 @@ AWS Nitro Enclave compatible machine. Minimal, no persistent storage, no network
 
 ### Other ARM machines
 
-```
+```text
 -machine raspi4b      # Raspberry Pi 4 Model B
 -machine virt-11.0    # versioned virt
 -machine sbsa-ref     # ARM SBSA reference (server-class)
@@ -85,7 +85,7 @@ AWS Nitro Enclave compatible machine. Minimal, no persistent storage, no network
 
 ### virt
 
-```
+```text
 -machine virt
 ```
 
@@ -97,7 +97,7 @@ AWS Nitro Enclave compatible machine. Minimal, no persistent storage, no network
 
 ### s390-ccw-virtio
 
-```
+```text
 -machine s390-ccw-virtio
 ```
 
@@ -110,7 +110,7 @@ AWS Nitro Enclave compatible machine. Minimal, no persistent storage, no network
 
 Machine types are versioned to support live migration compatibility across QEMU releases:
 
-```
+```text
 pc-i440fx-9.0       # migratable to pc-i440fx-9.x
 pc-i440fx-9.2       # migratable to pc-i440fx-9.x
 pc-q35-9.0          # migratable to pc-q35-9.x
@@ -123,11 +123,12 @@ The `latest` (unversioned) machine type enables new features but breaks migratio
 ## Migration Compatibility
 
 To enable live migration:
+
 1. Both hosts must use compatible QEMU versions
-2. Must use the same versioned machine type
-3. CPU model must be stable across hosts (use a named model, not `host`)
-4. Device configuration must match
-5. Check with `qemu-system-x86_64 -machine pc-q35-9.0,usb=on` — enable needed features explicitly
+1. Must use the same versioned machine type
+1. CPU model must be stable across hosts (use a named model, not `host`)
+1. Device configuration must match
+1. Check with `qemu-system-x86_64 -machine pc-q35-9.0,usb=on` — enable needed features explicitly
 
 ## See Also
 

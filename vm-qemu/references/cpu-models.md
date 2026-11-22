@@ -8,7 +8,7 @@ CPU model selection and feature configuration for QEMU/KVM. Set with `-cpu MODEL
 
 Passes the host CPU exactly as-is to the guest:
 
-```
+```text
 -cpu host
 ```
 
@@ -20,7 +20,7 @@ Passes the host CPU exactly as-is to the guest:
 
 QEMU provides predefined named CPU models representing specific hardware generations.
 
-```
+```text
 -cpu EPYC
 -cpu Cascadelake-Server-v5
 -cpu max   # maximum features for this arch
@@ -35,12 +35,12 @@ Libvirt's "host model" picks a named model approximating the host, then adds fea
 
 ## CPU Topology
 
-```
+```text
 -smp cpus=4,cores=2,threads=2,sockets=1
 ```
 
 | Parameter | Description |
-|-----------|-------------|
+| --- | --- |
 | `cpus=N` | Total number of guest CPUs (required) |
 | `maxcpus=N` | Maximum CPUs (including hotplug) |
 | `sockets=N` | Physical sockets |
@@ -55,7 +55,7 @@ The product of sockets × dies × clusters × cores × threads must equal `maxcp
 
 Enable/disable features with `+`/`-` prefix or `=on`/`=off`:
 
-```
+```text
 -cpu host,+svm,-vmx
 -cpu Cascadelake-Server-v5,pcid=on,ssbd=on
 ```
@@ -63,7 +63,7 @@ Enable/disable features with `+`/`-` prefix or `=on`/`=off`:
 ### Common x86 Feature Flags
 
 | Feature | Description |
-|---------|-------------|
+| --- | --- |
 | `vmx` | Intel VMX (nested virtualization) |
 | `svm` | AMD SVM (nested virtualization) |
 | `pcid` | Process Context IDentifiers |
@@ -91,7 +91,7 @@ Enable/disable features with `+`/`-` prefix or `=on`/`=off`:
 
 ## NUMA
 
-```
+```text
 -numa node,cpus=0-1,memdev=mem0
 -numa node,cpus=2-3,memdev=mem1
 -object memory-backend-ram,id=mem0,size=4G
@@ -108,7 +108,7 @@ Enable/disable features with `+`/`-` prefix or `=on`/`=off`:
 
 AMD Secure Encrypted Virtualization. Encrypts guest memory, protects from hypervisor.
 
-```
+```text
 -machine ...,memory-encryption=sev0
 -object sev-guest,id=sev0,cbitpos=47,reduced-phys-bits=1,policy=0x01
 ```
@@ -122,7 +122,7 @@ AMD Secure Encrypted Virtualization. Encrypts guest memory, protects from hyperv
 
 Intel Trust Domain Extensions. Hardware-isolated virtual machines.
 
-```
+```text
 -machine ...,memory-encryption=tdx0
 -object tdx-guest,id=tdx0
 ```
@@ -132,7 +132,7 @@ Requires TDX-capable hardware and kernel support.
 ## CPU Model Recommendations (x86)
 
 | Use Case | -cpu Setting |
-|----------|-------------|
+| --- | --- |
 | Maximum performance, no migration | `host` |
 | Migrate between same-generation Intel | `-cpu Nehalem`, `-cpu Westmere`, `-cpu SandyBridge`, `-cpu Haswell`, `-cpu Broadwell`, `-cpu Skylake-Client`, etc. |
 | Migrate between same-generation AMD | `-cpu Opteron_G1` through `-cpu EPYC` |
@@ -142,7 +142,7 @@ Requires TDX-capable hardware and kernel support.
 
 ## ARM CPU Models
 
-```
+```text
 -cpu host            # host passthrough (KVM only)
 -cpu max             # max QEMU features (TCG)
 -cpu cortex-a76      # specific ARM core
@@ -152,7 +152,7 @@ Requires TDX-capable hardware and kernel support.
 
 ## RISC-V CPU Models
 
-```
+```text
 -cpu host            # host passthrough (KVM)
 -cpu rv64            # base RISC-V 64-bit
 -cpu sifive-u54      # SiFive U54

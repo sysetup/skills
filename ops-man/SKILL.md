@@ -8,8 +8,10 @@ description: >-
 compatibility: Debian with Bash, GNU coreutils, man-db, col and awk installed; no installation is performed.
 license: MIT
 metadata:
-  author: "SYSETUP.COM CarlosHRG"
-  version: "1.3.0"
+  version: "1.3.1"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # ops-man

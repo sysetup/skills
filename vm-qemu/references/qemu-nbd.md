@@ -4,7 +4,7 @@ Export disk images over the network using the NBD protocol, or connect to an exi
 
 ## Synopsis
 
-```
+```bash
 qemu-nbd [OPTIONS] FILE
 qemu-nbd -L [OPTIONS]
 ```
@@ -20,7 +20,7 @@ qemu-nbd -L [OPTIONS]
 ## Connection Options
 
 | Option | Description |
-|--------|-------------|
+| --- | --- |
 | `-p, --port PORT` | Listen port (default `10809`) |
 | `-b, --bind IFACE` | Interface to bind to (default `0.0.0.0`) |
 | `-k, --socket PATH` | UNIX socket path (default `/var/lock/qemu-nbd-DEVICE`) |
@@ -36,7 +36,7 @@ qemu-nbd -L [OPTIONS]
 ## Image Exposure
 
 | Option | Description |
-|--------|-------------|
+| --- | --- |
 | `-o, --offset OFFSET` | Expose image starting at byte offset |
 | `-A, --allocation-depth` | Expose allocation depth (thin provisioning info) |
 | `-B, --bitmap NAME` | Expose a persistent dirty bitmap |
@@ -44,7 +44,7 @@ qemu-nbd -L [OPTIONS]
 ## TLS and Authorization
 
 | Option | Description |
-|--------|-------------|
+| --- | --- |
 | `--object type,id=ID,...` | Define objects (secrets, TLS creds) |
 | `--tls-creds ID` | TLS server credentials (use `--object tls-creds-x509`) |
 | `--tls-authz ID` | Authorization object (use `--object authz-*`) |
@@ -53,7 +53,7 @@ qemu-nbd -L [OPTIONS]
 ## Kernel NBD Client
 
 | Option | Description |
-|--------|-------------|
+| --- | --- |
 | `-c, --connect DEV` | Connect FILE to kernel NBD device `DEV` (e.g. `/dev/nbd0`) |
 | `-d, --disconnect` | Disconnect the specified device |
 
@@ -62,7 +62,7 @@ Kernel module must be loaded: `modprobe nbd`.
 ## Block Device Options
 
 | Option | Description |
-|--------|-------------|
+| --- | --- |
 | `-f, --format FMT` | Image format (`raw`, `qcow2`, etc.) |
 | `-r, --read-only` | Export read-only |
 | `-s, --snapshot` | Use FILE as backing for a temporary overlay |
@@ -77,17 +77,20 @@ Kernel module must be loaded: `modprobe nbd`.
 ## Examples
 
 Export a qcow2 image read-only:
-```
+
+```bash
 qemu-nbd -f qcow2 -r vmdisk.qcow2
 ```
 
 Export with persistent mode and multiple clients:
-```
+
+```bash
 qemu-nbd -t -e 4 -f qcow2 vmdisk.qcow2
 ```
 
 Connect to kernel NBD device:
-```
+
+```bash
 sudo modprobe nbd
 sudo qemu-nbd -c /dev/nbd0 vmdisk.qcow2
 sudo mount /dev/nbd0 /mnt
@@ -95,17 +98,20 @@ sudo qemu-nbd -d /dev/nbd0
 ```
 
 List exports on an NBD server:
-```
+
+```bash
 qemu-nbd -L server.example.com
 ```
 
 UNIX socket export:
-```
+
+```bash
 qemu-nbd -k /tmp/nbd.sock -t vmdisk.qcow2
 ```
 
 TLS-encrypted export:
-```
+
+```bash
 qemu-nbd --object tls-creds-x509,id=tls0,endpoint=server,dir=/path/to/certs \
   --tls-creds tls0 -t vmdisk.qcow2
 ```

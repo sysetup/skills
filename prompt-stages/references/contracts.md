@@ -69,13 +69,13 @@ The prompt instructs a fresh session to resolve the explicit pack root, obey cur
 Write an imperative, directly runnable coordinator prompt that:
 
 1. Binds the pack root and current envelope/plan revision.
-2. Reads/rebuilds the register index and reconciles attempt reports and claims.
-3. Evaluates prerequisites, currency, human gates and permissions.
-4. Selects one ready task, or a conflict-free set within authorized capacity.
-5. Dispatches a concrete contract with owner, attempt and assignment generation; falls back to a manual fresh-session sequence if agent spawning is unavailable.
-6. Reconciles evidence, issues, retries and reassignments according to the state rules, keeping the shared register under one writer.
-7. Schedules stage integration and final checks; checkpoints coordinator state.
-8. Stops with the next runnable task or a named blocking decision, and closes the job only under the whole-job rule below.
+1. Reads/rebuilds the register index and reconciles attempt reports and claims.
+1. Evaluates prerequisites, currency, human gates and permissions.
+1. Selects one ready task, or a conflict-free set within authorized capacity.
+1. Dispatches a concrete contract with owner, attempt and assignment generation; falls back to a manual fresh-session sequence if agent spawning is unavailable.
+1. Reconciles evidence, issues, retries and reassignments according to the state rules, keeping the shared register under one writer.
+1. Schedules stage integration and final checks; checkpoints coordinator state.
+1. Stops with the next runnable task or a named blocking decision, and closes the job only under the whole-job rule below.
 
 Inline the job's chosen operational rules from continuity and its concrete paths in the generated prompt. Point workers to that generated protocol, not to this installed skill.
 

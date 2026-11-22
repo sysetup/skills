@@ -4,14 +4,14 @@ Offline tool for creating, converting, inspecting, and modifying disk images. Ne
 
 ## Synopsis
 
-```
+```bash
 qemu-img [standard options] COMMAND [command options]
 ```
 
 ## Standard Options
 
 | Option | Description |
-|--------|-------------|
+| --- | --- |
 | `-h, --help` | Display help |
 | `-V, --version` | Display version |
 | `-T, --trace [...]` | Tracing options |
@@ -20,12 +20,12 @@ qemu-img [standard options] COMMAND [command options]
 
 ### `create` — Create a new image
 
-```
+```bash
 qemu-img create [-f FMT] [-b BACKING_FILE [-F BACKING_FMT]] [-u] [-o OPTIONS] FILENAME [SIZE]
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `-f FMT` | Image format (default: `qcow2`) |
 | `-b FILE` | Backing file (for overlay images) |
 | `-F FMT` | Backing file format |
@@ -35,7 +35,8 @@ qemu-img create [-f FMT] [-b BACKING_FILE [-F BACKING_FMT]] [-u] [-o OPTIONS] FI
 | `SIZE` | Size with suffix (optional for `qcow2` with backing file) |
 
 Examples:
-```
+
+```bash
 qemu-img create -f qcow2 vmdisk.qcow2 50G
 qemu-img create -f qcow2 -b base.qcow2 -F qcow2 overlay.qcow2
 qemu-img create -f raw -o preallocation=falloc bigdisk.raw 100G
@@ -43,12 +44,12 @@ qemu-img create -f raw -o preallocation=falloc bigdisk.raw 100G
 
 ### `convert` — Convert image format
 
-```
+```bash
 qemu-img convert [-c] [-p] [-q] [-n] [-f FMT] [-O OUTPUT_FMT] [-B BACKING_FILE] [-o OPTIONS] [-S SPARSE_SIZE] [-m COROUTINES] [-W] FILENAME [FILENAME2 [...]] OUTPUT_FILENAME
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `-c` | Compress (qcow2/zlib) |
 | `-O FMT` | Output format |
 | `-B FILE` | Output backing file |
@@ -62,31 +63,32 @@ qemu-img convert [-c] [-p] [-q] [-n] [-f FMT] [-O OUTPUT_FMT] [-B BACKING_FILE] 
 | `--salvage` | Try to continue after I/O errors |
 
 Examples:
-```
+
+```bash
 qemu-img convert -f qcow2 -O raw vmdisk.qcow2 vmdisk.raw
 qemu-img convert -c -O qcow2 -p large.qcow2 compressed.qcow2
 ```
 
 ### `check` — Verify image integrity
 
-```
+```bash
 qemu-img check [-f FMT] [--output=OFMT] [-r [leaks | all]] [-T CACHE] [-U] FILENAME
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `-r MODE` | Repair mode: `leaks` (fix leaks only) or `all` |
 | `-U` | Force-share (allow opening in use by running VM) |
 | `--output=json` | Machine-readable JSON output |
 
 ### `info` — Show image information
 
-```
+```bash
 qemu-img info [-f FMT] [--backing-chain] [--limits] [-U] FILENAME
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `--backing-chain` | Show info for entire backing chain |
 | `--limits` | Show format limits |
 | `-U` | Force-share |
@@ -94,12 +96,12 @@ qemu-img info [-f FMT] [--backing-chain] [--limits] [-U] FILENAME
 
 ### `snapshot` — List/manage snapshots
 
-```
+```bash
 qemu-img snapshot [-l | -a SNAPSHOT | -c SNAPSHOT | -d SNAPSHOT] FILENAME
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `-l` | List snapshots |
 | `-c NAME` | Create snapshot |
 | `-a NAME` | Apply/restore snapshot |
@@ -107,12 +109,12 @@ qemu-img snapshot [-l | -a SNAPSHOT | -c SNAPSHOT | -d SNAPSHOT] FILENAME
 
 ### `commit` — Commit overlays to backing file
 
-```
+```bash
 qemu-img commit [-b BASE] [-d] [-p] [-r RATE_LIMIT] FILENAME
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `-b BASE` | Commit only to this backing file level |
 | `-d` | Delete the overlay after committing |
 | `-p` | Show progress |
@@ -120,12 +122,12 @@ qemu-img commit [-b BASE] [-d] [-p] [-r RATE_LIMIT] FILENAME
 
 ### `rebase` — Change backing file
 
-```
+```bash
 qemu-img rebase [-u] [-c] [-b BACKING_FILE] [-F BACKING_FMT] [-p] FILENAME
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `-b FILE` | New backing file |
 | `-F FMT` | New backing file format |
 | `-u` | Unsafe: update backing file reference only (no data rewrite) |
@@ -133,12 +135,12 @@ qemu-img rebase [-u] [-c] [-b BACKING_FILE] [-F BACKING_FMT] [-p] FILENAME
 
 ### `resize` — Resize an image
 
-```
+```bash
 qemu-img resize [--preallocation=PREALLOC] [--shrink] FILENAME [+|-]SIZE
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `--preallocation` | `off`, `falloc`, `full` |
 | `--shrink` | Allow shrinking (data loss risk) |
 | `+SIZE` | Grow by SIZE |
@@ -146,7 +148,7 @@ qemu-img resize [--preallocation=PREALLOC] [--shrink] FILENAME [+|-]SIZE
 
 ### `amend` — Modify format-specific options
 
-```
+```bash
 qemu-img amend [-o OPTIONS] [-f FMT] [-p] [-q] FILENAME
 ```
 
@@ -154,12 +156,12 @@ Used to change image metadata (e.g. qcow2 compat level, encryption, cluster size
 
 ### `bench` — Benchmark image performance
 
-```
+```bash
 qemu-img bench [-c COUNT] [-d DEPTH] [-f FMT] [-i AIO] [-n] [-o OFFSET] [-s SIZE] [-S STEP] [-t CACHE] [-w] FILENAME
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `-c N` | I/O count per iteration |
 | `-d N` | AIO queue depth |
 | `-i MODE` | AIO mode: `threads`, `native`, `io_uring` |
@@ -168,7 +170,7 @@ qemu-img bench [-c COUNT] [-d DEPTH] [-f FMT] [-i AIO] [-n] [-o OFFSET] [-s SIZE
 
 ### `dd` — Raw copy with format conversion
 
-```
+```bash
 qemu-img dd [-f FMT] [-O FMT] [bs=BLOCK_SIZE] [count=BLOCKS] [skip=BLOCKS] if=INPUT of=OUTPUT
 ```
 
@@ -176,18 +178,18 @@ Same semantics as `dd(1)` but with QEMU I/O path and format support.
 
 ### `compare` — Compare two images
 
-```
+```bash
 qemu-img compare [-f FMT] [-F FMT] [-s] [-p] [-q] [-U] FILENAME1 FILENAME2
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `-s` | Strict (compare all data including unallocated) |
 | `-p` | Show progress |
 
 ### `map` — Dump image metadata
 
-```
+```bash
 qemu-img map [-f FMT] [--start-offset=OFFSET] [--max-length=LEN] [--output=OFMT] [-U] FILENAME
 ```
 
@@ -195,7 +197,7 @@ Shows which sectors are allocated. Useful for understanding image sparseness.
 
 ### `measure` — Calculate required size
 
-```
+```bash
 qemu-img measure [-O OUTPUT_FMT] [-o OPTIONS] [--size N | [-f FMT] [-l SNAPSHOT] FILENAME]
 ```
 
@@ -203,12 +205,12 @@ Estimates the file size needed for a new image or conversion.
 
 ### `bitmap` — Manipulate persistent bitmaps
 
-```
+```bash
 qemu-img bitmap (--merge SOURCE | --add | --remove | --clear | --enable | --disable)... [-g GRANULARITY] [-b SOURCE_FILE] FILENAME BITMAP
 ```
 
 | Flag | Description |
-|------|-------------|
+| --- | --- |
 | `--add` | Create a new persistent dirty bitmap |
 | `--remove` | Remove a bitmap |
 | `--clear` | Clear a bitmap |

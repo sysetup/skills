@@ -3,8 +3,10 @@ name: prompt-handoff
 description: Compact the current conversation into a continuation handoff for a fresh session or agent. Use when the user explicitly requests conversation continuation, preserving decisions, actual progress, references, unresolved questions, and next actions while redacting secrets.
 license: MIT
 metadata:
-  version: "1.1"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # prompt-handoff
@@ -21,13 +23,13 @@ Apply available, applicable host/project requirements within their scope. Compil
 
 - **Activate when**: The user explicitly requests continuation of the current work in a fresh session or agent.
 - **Do not activate when**: The request is only a dialogue transcript, new task instructions, compilation of a settled decision, or worker assignments.
-- **Activation mode**: Manual selection only. The optional client adapter requests this policy where supported; verify the receiving client's control before claiming enforced manual-only routing. Writing the handoff never dispatches an agent.
+- **Activation mode**: Activate only on an explicit user request for conversation continuation; client catalogs may keep implicit discovery enabled (`agents/openai.yaml` declares no manual-only policy override). Writing the handoff never dispatches an agent.
 
 ## Execution Workflow
 
 1. Identify the continuation objective and recover available settled state.
-2. Compile decisions, actual progress, evidence, blockers, and next actions.
-3. Check that a new session can resume without repeating completed work.
+1. Compile decisions, actual progress, evidence, blockers, and next actions.
+1. Check that a new session can resume without repeating completed work.
 
 ### Preserve the continuation state
 

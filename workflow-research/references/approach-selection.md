@@ -6,25 +6,25 @@ For formal studies within the entrypoint's scope, Creswell research approach = w
 
 Pick the worldview that actually governs the study.
 
-**Postpositivist**
+### Postpositivist
 
 - Core claims: a reality exists out there but is known only imperfectly; determination, reductionism, empirical observation and measurement, theory verification or falsification.
 - Shapes the study: operational variables, hypotheses, controls, reliability and validity of measures, causal language only with a counterfactual.
 - Default for quantitative. Write: worldview name, core claims, how it shaped methods, researcher/sponsor stance.
 
-**Constructivist**
+### Constructivist
 
 - Core claims: multiple meanings; knowledge is socially and historically constructed; the researcher generates or inducts patterns; theory generate rather than theory test.
 - Shapes the study: open questions, purposeful samples, interviews/observations, themes or theory as product, reflexivity.
 - Default for qualitative meaning studies.
 
-**Transformative**
+### Transformative
 
 - Core claims: research is not neutral; power, justice, and marginalized voices; inquiry is tied to an agenda for change; participants are collaborators when feasible.
 - Shapes the study: problem framed as inequity or rights; questions about voice, access, and harm; reciprocal benefit; extra ethics.
 - Use when the problem is oppression, inequity, or rights — qualitative, mixed, or (rarely) quantitative.
 
-**Pragmatic**
+### Pragmatic
 
 - Core claims: not committed to one ontology; "what works" for the question; plural methods; research in real-world practice; consequences of action matter.
 - Shapes the study: named reason to mix (or to build an artifact); integration point; practical significance alongside statistical or thematic findings.
@@ -96,14 +96,14 @@ Mixed methods is valid only with an integration reason (triangulation, complemen
 ## Selection criteria (Creswell order)
 
 1. Research problem and questions.
-2. Personal or team training, access, and time.
-3. Audience expectations (discipline, committee, journal, client).
+1. Personal or team training, access, and time.
+1. Audience expectations (discipline, committee, journal, client).
 
 If 1 conflicts with 2 or 3, change resources or change the question. Do not keep a question the design cannot answer.
 
 ## Decision tree
 
-```
+```text
 Slots 1–6 filled? If no → SKILL.md Gate 1. Stop.
 
 Contribution is a construct / model / method / instantiation to build and evaluate?

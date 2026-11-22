@@ -6,7 +6,7 @@ How to attach storage to a QEMU VM. There are two configuration syntaxes: modern
 
 Modern QEMU storage uses a node-based graph. `-blockdev` creates block driver nodes, `-device` attaches a virtual controller.
 
-```
+```text
 -blockdev file,node-name=file0,filename=vmdisk.qcow2
 -blockdev qcow2,node-name=disk0,file=file0
 -device virtio-blk,drive=disk0
@@ -17,7 +17,8 @@ The block graph can be arbitrarily complex (filters, snapshots, mirroring). Node
 ## -drive (Legacy API)
 
 Syntax:
-```
+
+```text
 -drive file=FILENAME[,if=TYPE][,bus=N][,unit=N][,index=N][,media=cdrom|disk][,format=FMT][,cache=MODE][,snapshot=on|off][,read-only=on|off][,werror=ACTION][,rerror=ACTION]
 ```
 
@@ -29,9 +30,10 @@ Shortcut that combines blockdev creation and device attachment. `if=TYPE` select
 
 Para-virtualized block device. Highest performance.
 
-```
+```text
 -device virtio-blk,drive=disk0 [,num-queues=N] [,queue-size=QS] [,serial=STR]
 ```
+
 - `num-queues` — multi-queue (match host CPU count)
 - `queue-size` — virtqueue depth (default 256)
 - Uses `PCI` or `virtio-mmio` depending on machine type
@@ -41,7 +43,7 @@ Para-virtualized block device. Highest performance.
 
 SCSI HBA emulation with virtio transport. Supports more devices per controller than virtio-blk.
 
-```
+```text
 -device virtio-scsi-pci,id=scsi0 [,num_queues=N]
 -device scsi-hd,drive=disk0,bus=scsi0.0,channel=0,scsi-id=0,lun=0
 -device scsi-cd,drive=cdrom0,bus=scsi0.0
@@ -51,7 +53,7 @@ Supports hotplug, multiple LUNs, SCSI command passthrough. Use `scsi-block` for 
 
 ### AHCI / SATA
 
-```
+```text
 -device ahci,id=ahci0
 -drive file=...,if=none,id=drive0,format=qcow2
 -device ide-hd,drive=drive0,bus=ahci0.0
@@ -63,7 +65,7 @@ Emulates Intel ICH9 AHCI controller. Each port is a separate bus (`ahci0.0`, `ah
 
 Legacy PATA interface. Default for `pc-i440fx-*` machines.
 
-```
+```text
 -device ide-hd,drive=disk0,bus=ide.0,unit=0
 -device ide-cd,drive=cdrom0,bus=ide.1,unit=0
 ```
@@ -72,7 +74,7 @@ Or simply `-drive file=...,if=ide`.
 
 ### NVMe
 
-```
+```text
 -device nvme,serial=deadbeef,id=nvme0 [,num_queues=N] [,msix_qsize=N]
 -device nvme-ns,drive=disk0,bus=nvme0.0
 ```
@@ -81,7 +83,7 @@ Emulates an NVMe controller. Supports multiple namespaces per controller.
 
 ### USB Storage
 
-```
+```text
 -device usb-storage,drive=disk0
 ```
 
@@ -90,7 +92,8 @@ Emulates a USB mass storage device.
 ### FUSE Export (no VM)
 
 The `qemu-storage-daemon` can export a block node via FUSE:
-```
+
+```text
 --export fuse,id=export0,node-name=disk,mountpoint=/mnt/disk.raw,writable=on
 ```
 
@@ -101,7 +104,7 @@ See [qemu-storage-daemon.md](qemu-storage-daemon.md).
 Set via `-drive cache=MODE` or `--blockdev ...,cache={direct,writeback,...}`:
 
 | Mode | Host Cache | Flush | Safe for |
-|------|-----------|-------|----------|
+| --- | --- | --- | --- |
 | `writeback` | Yes | Ignore guest cache flush | Guest with battery-backed or virtio |
 | `writethrough` | Yes | On every write | Single VM, no risk |
 | `none` | No (O_DIRECT) | Ignore guest flush | Dedicated storage, high perf |
@@ -110,7 +113,7 @@ Set via `-drive cache=MODE` or `--blockdev ...,cache={direct,writeback,...}`:
 
 ## I/O and Discard Options
 
-```
+```text
 [...],aio=threads|native|io_uring
 [...],discard=ignore|unmap
 [...],detect-zeroes=off|on|unmap
@@ -123,7 +126,7 @@ Set via `-drive cache=MODE` or `--blockdev ...,cache={direct,writeback,...}`:
 
 ## Error Handling
 
-```
+```text
 -drive ...,werror=report|ignore|enospc|stop|auto,rerror=report|ignore|stop|auto
 ```
 
@@ -137,7 +140,7 @@ Set via `-drive cache=MODE` or `--blockdev ...,cache={direct,writeback,...}`:
 
 Shared by `-blockdev` and `-drive`:
 
-```
+```text
 -object secret,id=sec0,data=PASSWORD
 -object secret,id=sec1,file=/path/to/secret
 -object iothread,id=iothread0

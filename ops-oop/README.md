@@ -1,4 +1,4 @@
-# ops-OOP
+# ops-oop
 
 This package installs an AI skill for full-lifecycle object-oriented software engineering. It uses language-neutral algorithms and pseudocode to explain object-oriented contracts. Regulated profiles are conditional and do not activate unless the project requires them.
 

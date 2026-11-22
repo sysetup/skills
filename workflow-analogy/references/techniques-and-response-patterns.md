@@ -59,7 +59,7 @@ For a topic outside these families, derive a new mapping instead of forcing one 
 
 Use this optional prose scaffold:
 
-> [Literal main idea.] Imagine [familiar scene]. [Source element] plays the role of [target element], and [source action] resembles [target action]. For example, [small concrete event]. The comparison works for [shared relationship], but [important difference]. In the real topic, this means [takeaway].
+> \[Literal main idea.\] Imagine \[familiar scene\]. \[Source element\] plays the role of \[target element\], and \[source action\] resembles \[target action\]. For example, \[small concrete event\]. The comparison works for \[shared relationship\], but \[important difference\]. In the real topic, this means \[takeaway\].
 
 For age-11, combine this into a few short sentences and keep only the key roles. For a technical adult audience, retain exact terminology and use the image to support it.
 
@@ -68,10 +68,10 @@ For age-11, combine this into a few short sentences and keep only the key roles.
 Use a comparison to organize observations, not to turn a guess into a diagnosis.
 
 1. State what the user has actually observed.
-2. Explain one plausible mechanism through the scene.
-3. State what evidence would support or weaken that mechanism.
-4. Give a justified next check or ask for essential missing information.
-5. Clarify where the scene differs from the real problem.
+1. Explain one plausible mechanism through the scene.
+1. State what evidence would support or weaken that mechanism.
+1. Give a justified next check or ask for essential missing information.
+1. Clarify where the scene differs from the real problem.
 
 Example shape: "A slow service can resemble a queue with one slow station. That suggests checking where waiting builds up. It does not establish that a particular component is the cause."
 
@@ -83,7 +83,7 @@ For a proposal, explain the current process, proposed change, expected benefit, 
 
 Optional structure:
 
-> The current process resembles [scene]. The proposal changes [mapped part]. That could improve [outcome] if [condition]. It may also create [tradeoff]. The story leaves out [real-world constraint], so assess the proposal using [actual criterion or evidence].
+> The current process resembles \[scene\]. The proposal changes \[mapped part\]. That could improve \[outcome\] if \[condition\]. It may also create \[tradeoff\]. The story leaves out \[real-world constraint\], so assess the proposal using \[actual criterion or evidence\].
 
 For competing proposals, keep a common source scene and a common set of criteria. Do not make one option a heroic character and the other a foolish character. Translate persuasive imagery back into measurable or inspectable claims.
 
@@ -123,7 +123,7 @@ Do not use numerical detail merely to distinguish adult modes. Add it only when 
 
 For "I still do not understand," change the source scene or isolate one relationship. For "That comparison is wrong," acknowledge the material mismatch, correct the literal claim if needed, and choose a better model. Do not hide a factual correction inside a new metaphor.
 
-For a one-sentence request, compress the essential mapping and boundary: "[Target] is like [source] because [relationship], though [important difference]." Add the literal term within the sentence when possible.
+For a one-sentence request, compress the essential mapping and boundary: "\[Target\] is like \[source\] because \[relationship\], though \[important difference\]." Add the literal term within the sentence when possible.
 
 For a requested story-only format, keep the scene plainly fictional and make the intended mapping and material limit understandable within the requested format. If precision or urgent safety requires a literal statement, provide it rather than preserve a misleading constraint.
 

@@ -17,11 +17,11 @@ A DSRM study may **embed** a Creswell strand as the evaluation method (e.g. a su
 Map these six activities onto the Creswell eight-step loop in `SKILL.md`. Iterate when evaluation fails the objectives. State the entry point. Gate 1 still applies if slots are empty.
 
 1. **Problem identification and motivation** — name the problem, who is blocked, and why a solution has value. Use literature to show existing artifacts fail or are missing. Name kernel theories that constrain the design; do not treat them as tested behavioral hypotheses unless an evaluation strand tests them. Skill steps 1–2.
-2. **Objectives of a solution** — infer measurable or testable objectives from the problem. Quantitative ("reduce X by…") or qualitative ("support a class of interaction that does not exist"). Skill steps 3–4 (purpose + design/evaluation questions).
-3. **Design and development** — specify artifact type, functions, architecture; then build. Skill steps 5–6.
-4. **Demonstration** — use the artifact on one or more problem instances. Proof of use, not yet a full evaluation. Skill step 6.
-5. **Evaluation** — observe and measure how well the artifact meets the objectives from step 2. Name the method (below). Skill step 7 (validation of the artifact against objectives).
-6. **Communication** — report problem, artifact, utility, rigor, and limits to the audience. Skill step 8.
+1. **Objectives of a solution** — infer measurable or testable objectives from the problem. Quantitative ("reduce X by…") or qualitative ("support a class of interaction that does not exist"). Skill steps 3–4 (purpose + design/evaluation questions).
+1. **Design and development** — specify artifact type, functions, architecture; then build. Skill steps 5–6.
+1. **Demonstration** — use the artifact on one or more problem instances. Proof of use, not yet a full evaluation. Skill step 6.
+1. **Evaluation** — observe and measure how well the artifact meets the objectives from step 2. Name the method (below). Skill step 7 (validation of the artifact against objectives).
+1. **Communication** — report problem, artifact, utility, rigor, and limits to the audience. Skill step 8.
 
 Entry points (Peffers): problem-centered (start at 1), objective-centered (start at 2), design- and development-centered (start at 3 with an existing artifact), client/context-initiated (start at 4). Do not skip evaluation.
 
@@ -65,12 +65,12 @@ Criteria typically include functionality, completeness, consistency, accuracy, p
 Fail closed if any of these is missing.
 
 1. A named, viable artifact (not only an opinion).
-2. A relevant problem (who is blocked, why it matters).
-3. Evaluation of utility, quality, or efficacy by a named method.
-4. A stated contribution (artifact, foundations, and/or methodology).
-5. Rigorous construction and evaluation procedures a second researcher could audit.
-6. Design treated as a search (alternatives considered, constraints named).
-7. Communication fit for the audience (technical and, if required, managerial).
+1. A relevant problem (who is blocked, why it matters).
+1. Evaluation of utility, quality, or efficacy by a named method.
+1. A stated contribution (artifact, foundations, and/or methodology).
+1. Rigorous construction and evaluation procedures a second researcher could audit.
+1. Design treated as a search (alternatives considered, constraints named).
+1. Communication fit for the audience (technical and, if required, managerial).
 
 ## Agent execution
 

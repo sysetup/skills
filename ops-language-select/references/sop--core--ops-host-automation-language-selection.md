@@ -23,14 +23,14 @@ Treat the scores below as decision heuristics for host automation, not universal
 Apply these criteria in order unless the task establishes a stronger constraint:
 
 1. **Correctness and safety** — choose an approach that can express and verify the required behavior reliably.
-2. **Task and ecosystem fit** — prefer the language already native to the repository, toolchain, runtime, or operational environment when this materially reduces integration cost.
-3. **Algorithmic quality** — select algorithms and data structures before micro-optimizing implementation language.
-4. **Reliability and failure handling** — account for exit status, timeouts, partial failure, cleanup, malformed input, concurrency, and recovery.
-5. **Maintainability** — prefer code whose behavior remains understandable and modifiable as the automation grows.
-6. **Deployment and portability** — account for runtimes, binary distribution, OS support, installation friction, and dependency management.
-7. **Security** — minimize injection hazards, memory hazards, privilege exposure, unsafe interpolation, and unvalidated inputs.
-8. **Performance** — optimize measured bottlenecks, including CPU, memory, I/O, startup, latency, throughput, and external-process overhead.
-9. **Development cost** — prefer the simplest language that satisfies the preceding requirements without creating predictable future migration work.
+1. **Task and ecosystem fit** — prefer the language already native to the repository, toolchain, runtime, or operational environment when this materially reduces integration cost.
+1. **Algorithmic quality** — select algorithms and data structures before micro-optimizing implementation language.
+1. **Reliability and failure handling** — account for exit status, timeouts, partial failure, cleanup, malformed input, concurrency, and recovery.
+1. **Maintainability** — prefer code whose behavior remains understandable and modifiable as the automation grows.
+1. **Deployment and portability** — account for runtimes, binary distribution, OS support, installation friction, and dependency management.
+1. **Security** — minimize injection hazards, memory hazards, privilege exposure, unsafe interpolation, and unvalidated inputs.
+1. **Performance** — optimize measured bottlenecks, including CPU, memory, I/O, startup, latency, throughput, and external-process overhead.
+1. **Development cost** — prefer the simplest language that satisfies the preceding requirements without creating predictable future migration work.
 
 Do not select C++ or Rust merely because they are faster in microbenchmarks. Do not select Python, Bash, or Node.js merely because they are faster to write. Optimize the dominant cost of the complete system.
 
@@ -50,7 +50,7 @@ Do not use these tie-break rules to override a material advantage in correctness
 ## Rating Scale
 
 | Score | Meaning |
-|---:|---|
+| ---: | --- |
 | 5/5 | Excellent fit for this host-automation dimension |
 | 4/5 | Very good; minor trade-offs |
 | 3/5 | Adequate; use when surrounding constraints favor it |
@@ -64,7 +64,7 @@ Do not use these tie-break rules to override a material advantage in correctness
 Typical work: compile -> execute -> capture output -> verify -> report; invoke Git, compilers, package managers, test runners, or system tools.
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | Launch external commands | 5 | 5 | 5 | 3 | 4 |
 | Native Unix pipelines | 4 | 5 | 3 | 2 | 3 |
 | Capture stdout/stderr | 5 | 4 | 5 | 3 | 4 |
@@ -87,7 +87,7 @@ Typical work: compile -> execute -> capture output -> verify -> report; invoke G
 Typical work: recursive traversal, copying, renaming, synchronization, hashing, metadata inspection, content transformation, safe path handling.
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | Directory traversal | 5 | 4 | 5 | 4 | 5 |
 | Safe path manipulation | 5 | 2 | 5 | 5 | 5 |
 | Large-file handling | 4 | 3 | 4 | 5 | 5 |
@@ -109,7 +109,7 @@ Typical work: recursive traversal, copying, renaming, synchronization, hashing, 
 Typical work: filter logs, extract fields, aggregate records, transform text streams, parse semi-structured output.
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | Regular expressions | 5 | 4 | 5 | 3 | 5 |
 | Ad-hoc parsing | 5 | 4 | 5 | 3 | 4 |
 | Small text transformations | 5 | 5 | 5 | 3 | 4 |
@@ -128,7 +128,7 @@ Typical work: filter logs, extract fields, aggregate records, transform text str
 ## 4. JSON, YAML, TOML, CSV, and Structured Configuration
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | JSON | 5 | 2 | 5 | 4 | 5 |
 | YAML | 5 | 1 | 5 | 3 | 4 |
 | TOML | 4 | 1 | 4 | 3 | 5 |
@@ -151,7 +151,7 @@ Typical work: filter logs, extract fields, aggregate records, transform text str
 Typical work: invoke compilers, generate temporary sources, execute tests, enforce timeouts, compare outputs, aggregate failures, emit reports.
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | Invoke compilers/toolchains | 5 | 5 | 5 | 3 | 4 |
 | Manage many test cases | 5 | 3 | 5 | 4 | 5 |
 | Timeout handling | 5 | 3 | 5 | 3 | 5 |
@@ -173,7 +173,7 @@ Typical work: invoke compilers, generate temporary sources, execute tests, enfor
 ## 6. Cross-Platform Command-Line Tools
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | Fast CLI development | 5 | 4 | 5 | 3 | 5 |
 | Argument parsing | 5 | 3 | 5 | 4 | 5 |
 | Rich terminal UX | 4 | 2 | 5 | 4 | 5 |
@@ -196,7 +196,7 @@ Typical work: invoke compilers, generate temporary sources, execute tests, enfor
 Typical work: HTTP requests, sockets, concurrent downloads, APIs, WebSockets, remote service orchestration.
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | Simple HTTP work | 5 | 4 with curl | 5 | 3 | 4 |
 | Large connection counts | 4 | 1 | 5 | 5 | 5 |
 | Async I/O | 4 | 1 | 5 | 4 | 5 |
@@ -218,7 +218,7 @@ Typical work: HTTP requests, sockets, concurrent downloads, APIs, WebSockets, re
 Typical work: hashing, compression, simulation, binary parsing, high-volume transformation, compute-heavy algorithms.
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | CPU-bound execution | 2 | 1 | 3 | 5 | 5 |
 | SIMD potential | 3 via libraries | 1 | 3 | 5 | 5 |
 | CPU multithreading | 3 | 2 | 3 | 5 | 5 |
@@ -237,7 +237,7 @@ Typical work: hashing, compression, simulation, binary parsing, high-volume tran
 ## 9. Daemons, Watchers, and Long-Running Local Services
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | Initial implementation speed | 5 | 3 | 5 | 2 | 4 |
 | Event-loop support | 4 | 2 | 5 | 4 | 5 |
 | Memory efficiency | 3 | 5 simple | 3 | 5 | 5 |
@@ -258,7 +258,7 @@ Typical work: hashing, compression, simulation, binary parsing, high-volume tran
 Typical work: privileged local tools, untrusted input, secrets, process control, filesystem mutation, network-facing utilities.
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | Memory safety | 5 | N/A | 5 | 2 | 5 |
 | Strong static typing | 3 | 1 | 3 JS / 5 TS | 5 | 5 |
 | Use-after-free prevention | 5 | N/A | 5 | 2 | 5 |
@@ -279,7 +279,7 @@ Typical work: privileged local tools, untrusted input, secrets, process control,
 Typical work: ship one executable that users or agents can invoke without separately provisioning an interpreter/runtime.
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | No external runtime | 2 | 3 Unix | 2 | 5 | 5 |
 | Single-binary delivery | 3 | 2 | 3 | 5 | 5 |
 | Small distribution footprint | 3 | 5 script | 2 | 4 | 4 |
@@ -299,7 +299,7 @@ Typical work: ship one executable that users or agents can invoke without separa
 Typical work: one-liners or short scripts that connect a few existing system utilities.
 
 | Criterion | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | Time to implement | 4 | 5 | 3 | 1 | 1 |
 | Code volume | 4 | 5 | 3 | 1 | 1 |
 | Fit for tiny Unix composition | 4 | 5 | 3 | 1 | 1 |
@@ -313,7 +313,7 @@ Typical work: one-liners or short scripts that connect a few existing system uti
 ## Global Summary Matrix
 
 | Task class | Python | Bash | Node.js | C++ | Rust |
-|---|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: |
 | Process orchestration | 5 | 5 | 4 | 3 | 4 |
 | Filesystem automation | 5 | 3 | 5 | 4 | 5 |
 | Text processing | 5 | 5 simple | 5 | 4 | 5 |
@@ -480,13 +480,13 @@ Use profiling or representative benchmarks before rewriting a mature tool solely
 Apply these regardless of language:
 
 1. Pass external command arguments as structured argument arrays whenever the API permits it; avoid constructing command strings from untrusted input.
-2. Validate filesystem paths and inputs before destructive operations.
-3. Use temporary-file APIs that avoid predictable names and race conditions.
-4. Check and propagate meaningful exit codes.
-5. Define timeout, cancellation, cleanup, and partial-failure behavior for external processes.
-6. Avoid executing parsed configuration, logs, filenames, or network input as code or shell syntax.
-7. Prefer least privilege; do not require elevated privileges merely for convenience.
-8. Treat memory safety as a material factor for long-running or untrusted-input native tools.
+1. Validate filesystem paths and inputs before destructive operations.
+1. Use temporary-file APIs that avoid predictable names and race conditions.
+1. Check and propagate meaningful exit codes.
+1. Define timeout, cancellation, cleanup, and partial-failure behavior for external processes.
+1. Avoid executing parsed configuration, logs, filenames, or network input as code or shell syntax.
+1. Prefer least privilege; do not require elevated privileges merely for convenience.
+1. Treat memory safety as a material factor for long-running or untrusted-input native tools.
 
 ---
 
@@ -551,7 +551,7 @@ Select the language that satisfies the required correctness and operational cons
 When two choices remain genuinely equivalent after this analysis, apply the mandatory tie-break directives:
 
 1. **Node.js over Python.**
-2. **Bash over Python.**
+1. **Bash over Python.**
 
 ---
 

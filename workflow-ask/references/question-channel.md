@@ -17,9 +17,9 @@ Do this investigation **every time** questions will be asked. Do not reuse an ea
 Collect evidence in this order:
 
 1. **Tools offered this turn.** This is the strongest signal. Read the tool list injected into the system/developer prompt, including MCP tools.
-2. **Live schema** of each candidate (tool description, JSON schema, available discovery tools or docs). Never guess parameter names.
-3. **Feature flags and config** mentioned in the prompt or harness docs already in context (for example a boolean that disables the question tool).
-4. **Actor role.** If this actor is a subagent, background worker, or other session without a user-facing UI, do not ask the user here. Return the logical question set to the parent so the parent can run this protocol.
+1. **Live schema** of each candidate (tool description, JSON schema, available discovery tools or docs). Never guess parameter names.
+1. **Feature flags and config** mentioned in the prompt or harness docs already in context (for example a boolean that disables the question tool).
+1. **Actor role.** If this actor is a subagent, background worker, or other session without a user-facing UI, do not ask the user here. Return the logical question set to the parent so the parent can run this protocol.
 
 An unknown or future harness is valid. Run the same algorithm.
 
@@ -38,10 +38,10 @@ Drop a candidate when it is any of:
 If several candidates remain, prefer the one that, according to its live schema:
 
 1. Is permitted for these questions in the current mode and **waits for actual answers**, since this workflow gathers blockers before work
-2. Accepts a **list of questions in one call**
-3. Renders **selectable option labels**
-4. Supports **multi-select** when the logical set needs it
-5. Is **owned by the harness** rather than an unrelated MCP server
+1. Accepts a **list of questions in one call**
+1. Renders **selectable option labels**
+1. Supports **multi-select** when the logical set needs it
+1. Is **owned by the harness** rather than an unrelated MCP server
 
 If no candidate remains, go to [§7 Fallback](#7-fallback-textual-questionnaire).
 
@@ -64,7 +64,7 @@ Headless / CI / ACP sessions: if the question tool is still listed, try it. Fall
 
 ## 5. Map logical questions onto the live schema
 
-Build and validate the final payload against the selected live schema. The bundled validator optionally checks logical JSON, not native payloads. Typical mappings:
+Build and validate the final payload against the selected live schema. The bundled validator (`scripts/validate-question-set.py`, verified by `scripts/test_validate_question_set.py` against `schemas/question-set.schema.json` and its sidecar `schemas/question-set.schema.json.options.md`) optionally checks logical JSON, not native payloads. Typical mappings:
 
 | Logical kind | How to encode |
 | --- | --- |

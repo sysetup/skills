@@ -8,8 +8,10 @@ description: >
   or confidential computing without QEMU context.
 license: MIT
 metadata:
-  version: "1.1"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # vm-qemu
@@ -44,8 +46,8 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 ## Execution Workflow
 
 1. Identify the QEMU component, installed version, requested outcome, and authorized effects.
-2. Load the corresponding component reference and verify applicable options against local help or the installed manual.
-3. Prepare the requested configuration or perform the authorized operation, then report actual checks and limits.
+1. Load the corresponding component reference and verify applicable options against local help or the installed manual.
+1. Prepare the requested configuration or perform the authorized operation, then report actual checks and limits.
 
 ## Output Contract
 

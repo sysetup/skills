@@ -8,7 +8,7 @@ $.title Options: free-form string naming the schema. Required in this file.
 
 $.type Options: object
 
-$.required Options: JSON array of property names that must be present. This file requires ["questions"].
+$.required Options: JSON array of property names that must be present. This file requires `["questions"]`.
 
 $.additionalProperties Options: true, false, or a nested schema. This file uses false.
 
@@ -16,7 +16,7 @@ $.properties.questions.type Options: array
 
 $.properties.questions.items.type Options: object
 
-$.properties.questions.items.required Options: array of field names. This file requires ["id", "text", "kind", "required", "options", "default"].
+$.properties.questions.items.required Options: array of field names. This file requires `["id", "text", "kind", "required", "options", "default"]`.
 
 $.properties.questions.items.additionalProperties Options: true, false, or a nested schema. This file uses false.
 
@@ -38,7 +38,7 @@ $.properties.questions.items.properties.required.type Options: boolean
 
 $.properties.questions.items.properties.options.type Options: array
 
-$.properties.questions.items.properties.options.items.required Options: ["label", "description"]
+$.properties.questions.items.properties.options.items.required Options: `["label", "description"]`
 
 $.properties.questions.items.properties.options.items.properties.label Options: string, 1..80 characters. Short option title shown in the UI.
 

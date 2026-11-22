@@ -3,8 +3,10 @@ name: prompt-author
 description: Create, adapt, convert, migrate, or consolidate prompts as bounded task requests, reusable actions, agent definitions, or persistent repository and path rules. Exclude assessment-only review, conversation continuation, settled-decision compilation, transcript export, and worker coordination unless separately requested. Use when the user needs paste-ready task requests, repeated procedures with activation and arguments, durable responsibilities and tools, or AGENTS.md-like guidance with discovery and precedence. Select the branch from intended use; preserve native format, authority, and source contracts.
 license: MIT
 metadata:
-  version: "1.1"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # prompt-author
@@ -27,8 +29,8 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 ## Execution Workflow
 
 1. Select the requested artifact branch and load its reference.
-2. Bind the common instruction contract and author the usable prompt.
-3. Check source fidelity, authority, native format, and completion before returning it.
+1. Bind the common instruction contract and author the usable prompt.
+1. Check source fidelity, authority, native format, and completion before returning it.
 
 ### Select the operation and branch
 

@@ -8,10 +8,12 @@ description: >-
   technical diagnoses unless a formal study is explicitly requested.
 license: MIT
 metadata:
-  author: "SYSETUP.COM CarlosHRG"
-  short-description: Formal research design and evidence.
-  framework: Creswell & Creswell Research Design 6th ed. (2022); Creswell Educational Research process (6 steps); Creswell & Poth Qualitative Inquiry 5th ed. (2024); Peffers et al. DSRM (2007); Hevner et al. MISQ (2004); PRISMA 2020
-  version: "2.4"
+  version: "2.5"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
+  short-description: "Formal research design and evidence."
+  framework: "Creswell & Creswell Research Design 6th ed. (2022); Creswell Educational Research process (6 steps); Creswell & Poth Qualitative Inquiry 5th ed. (2024); Peffers et al. DSRM (2007); Hevner et al. MISQ (2004); PRISMA 2020"
 ---
 
 # workflow-research
@@ -96,13 +98,13 @@ If the user declines to supply design-critical details, offer a **design-choice 
 Creswell's *Educational Research* process is six steps: problem, literature, purpose, collect, analyze, report. *Research Design* splits purpose from questions and puts validity inside methods. This loop is an **agent operationalization**, not a Creswell chapter list: it splits purpose vs questions and methods vs validation because those are the places agents skip or fabricate. Track the current step internally; report progress only when useful and permitted by the output contract. Skip a step only when the user already delivered its artifact and it passes the gate.
 
 1. **Identify the research problem** — hook, evidence the problem exists, who is blocked, deficiencies in current evidence, significance by audience. Template: `assets/research-protocol.md` §1.
-2. **Review the literature** — map clusters, name the gap, place theory. Load `references/literature-theory.md`. If the study *is* an estado del arte / systematic review, this step is the empirical work; still run steps 3–8 around it. For an explicitly requested formal incident study with a local corpus (logs, code, user files), the "literature" is prior incident reports and the relevant spec; still log the search.
-3. **Specify the purpose** — one sentence from `assets/purpose-and-questions.md`. Verbs must match the approach.
-4. **Formulate questions and hypotheses** — central RQ + subquestions; H0/H1 only when the design will test. Mixed studies add an integration question.
-5. **Select the design** — worldview + approach + named strategy. Load `references/approach-selection.md`. Write `Approach = {quant|qual|mixed|dsrm} because {problem need}. Design = {named design}. Worldview = {named worldview}.` If the contribution is an engineering artifact, load `references/dsrm.md` instead of stretching the three approaches. DSRM is Peffers/Hevner, not a Creswell chapter.
-6. **Specify methods** — sampling, instruments, procedures, analysis. Load only the matching track: `references/quantitative.md` / `references/qualitative.md` / `references/mixed-methods.md` / `references/dsrm.md`. Before collecting, load `references/inference-license.md`: search, logs, and coding may produce only evidence that table licenses for the named design. They do not upgrade the inference model. If the reachable corpus cannot license the questions, ship protocol + empty tables + pending fieldwork instead of substituting another design's evidence. Fill instruments and the full consistency matrix when the deliverable is a protocol or thesis chapter (`assets/instruments.md`, `assets/consistency-matrix.md`). On an executed desk study, attach a compact matrix only if it clarifies the claims. Do not fabricate participants, quotes, or statistics.
-7. **Plan and apply validation** — quantitative validity threats, qualitative trustworthiness, mixed integration validity. Ethics in `references/writing-ethics.md`. This step is a gate, not a paragraph of generic humility.
-8. **Write** — deliver the artifact the user asked for. Spine in `references/writing-ethics.md`, scaled by deliverable. Load `references/inference-license.md` before writing Findings: that table is the only license for what Findings may claim. Gate with `assets/quality-checklist.md`. Attach the execution log and, when analysis ran, the replication package (`assets/research-protocol.md` §8 and §11).
+1. **Review the literature** — map clusters, name the gap, place theory. Load `references/literature-theory.md`. If the study *is* an estado del arte / systematic review, this step is the empirical work; still run steps 3–8 around it. For an explicitly requested formal incident study with a local corpus (logs, code, user files), the "literature" is prior incident reports and the relevant spec; still log the search.
+1. **Specify the purpose** — one sentence from `assets/purpose-and-questions.md`. Verbs must match the approach.
+1. **Formulate questions and hypotheses** — central RQ + subquestions; H0/H1 only when the design will test. Mixed studies add an integration question.
+1. **Select the design** — worldview + approach + named strategy. Load `references/approach-selection.md`. Write `Approach = {quant|qual|mixed|dsrm} because {problem need}. Design = {named design}. Worldview = {named worldview}.` If the contribution is an engineering artifact, load `references/dsrm.md` instead of stretching the three approaches. DSRM is Peffers/Hevner, not a Creswell chapter.
+1. **Specify methods** — sampling, instruments, procedures, analysis. Load only the matching track: `references/quantitative.md` / `references/qualitative.md` / `references/mixed-methods.md` / `references/dsrm.md`. Before collecting, load `references/inference-license.md`: search, logs, and coding may produce only evidence that table licenses for the named design. They do not upgrade the inference model. If the reachable corpus cannot license the questions, ship protocol + empty tables + pending fieldwork instead of substituting another design's evidence. Fill instruments and the full consistency matrix when the deliverable is a protocol or thesis chapter (`assets/instruments.md`, `assets/consistency-matrix.md`). On an executed desk study, attach a compact matrix only if it clarifies the claims. Do not fabricate participants, quotes, or statistics.
+1. **Plan and apply validation** — quantitative validity threats, qualitative trustworthiness, mixed integration validity. Ethics in `references/writing-ethics.md`. This step is a gate, not a paragraph of generic humility.
+1. **Write** — deliver the artifact the user asked for. Spine in `references/writing-ethics.md`, scaled by deliverable. Load `references/inference-license.md` before writing Findings: that table is the only license for what Findings may claim. Gate with `assets/quality-checklist.md`. Attach the execution log and, when analysis ran, the replication package (`assets/research-protocol.md` §8 and §11).
 
 Literature collection happens in step 2. Empirical collection happens in step 6. Step 8 reports. There is no license to skip design and "just search." Step-2 literature does not become step-8 Findings unless the named design is a literature-review study.
 
@@ -167,25 +169,25 @@ Use the requested destination and format, with one writer and one format contrac
 **Research reports and study protocols** include the applicable items:
 
 1. Approach line (approach, named design, worldview, because-clause).
-2. Purpose statement matching the approach script.
-3. Central RQ, subquestions, hypotheses if testing.
-4. Findings that answer the questions under the named design's inference license (`references/inference-license.md`), **or** an explicit pending-fieldwork list (protocol + empty tables when the design's data did not run).
-5. Evidence, inference, and recommendation as separate layers.
-6. Validation / trustworthiness plan specific to this design (compact is fine on a desk study).
-7. Sources plus an execution log if any search or analysis ran.
-8. Limitations — what this design cannot claim.
-9. Declared assumptions when nonblocking Gate 1 slots were inferred.
+1. Purpose statement matching the approach script.
+1. Central RQ, subquestions, hypotheses if testing.
+1. Findings that answer the questions under the named design's inference license (`references/inference-license.md`), **or** an explicit pending-fieldwork list (protocol + empty tables when the design's data did not run).
+1. Evidence, inference, and recommendation as separate layers.
+1. Validation / trustworthiness plan specific to this design (compact is fine on a desk study).
+1. Sources plus an execution log if any search or analysis ran.
+1. Limitations — what this design cannot claim.
+1. Declared assumptions when nonblocking Gate 1 slots were inferred.
 
 **Protocol or thesis chapter** (or leftover human/field work the agent cannot run) also ships:
 
-10. Consistency matrix (`assets/consistency-matrix.md`).
-11. Sampling plan (strategy, frame or purposeful logic, planned n as a plan).
-12. Instruments (`assets/instruments.md`) — drafts the user can run.
-13. Analysis plan matched to the questions.
-14. Timeline (cronograma) with the eight steps as phases.
-15. Ethics statement.
-16. Quality checklist completed (`assets/quality-checklist.md`); attach it only when requested.
-17. Replication package when analysis ran (`assets/research-protocol.md` §11).
+1. Consistency matrix (`assets/consistency-matrix.md`).
+1. Sampling plan (strategy, frame or purposeful logic, planned n as a plan).
+1. Instruments (`assets/instruments.md`) — drafts the user can run.
+1. Analysis plan matched to the questions.
+1. Timeline (cronograma) with the eight steps as phases.
+1. Ethics statement.
+1. Quality checklist completed (`assets/quality-checklist.md`); attach it only when requested.
+1. Replication package when analysis ran (`assets/research-protocol.md` §11).
 
 For formal research within this skill's scope, when the required slots are filled: **executed inquiry** — licensed findings first, hybrid only for residual fieldwork. If the named design's data did not run, that lead is the pending-fieldwork list and empty tables, not a substitute synthesis. Default when slots are empty: **Clarification Mode**, not hybrid. A desk study still uses the eight steps; the sample is the corpus the named design licenses, not "whatever search can reach." Attach a compact matrix when it fits in the report; require the full matrix on protocol/thesis work.
 

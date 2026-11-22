@@ -7,12 +7,12 @@ Use this reference to decide *what computation to perform* before deciding how t
 ## Selection sequence
 
 1. Define the input scale and operation mix.
-2. Identify the dominant resource.
-3. Establish the simplest correct baseline.
-4. Search for a change in representation, preprocessing, reuse, or algorithmic family that removes repeated work.
-5. Compare worst-case/expected/amortized behavior and memory.
-6. Account for finite-input constants and machine effects.
-7. Select the candidate that satisfies the full contract, not merely the smallest asymptotic symbol.
+1. Identify the dominant resource.
+1. Establish the simplest correct baseline.
+1. Search for a change in representation, preprocessing, reuse, or algorithmic family that removes repeated work.
+1. Compare worst-case/expected/amortized behavior and memory.
+1. Account for finite-input constants and machine effects.
+1. Select the candidate that satisfies the full contract, not merely the smallest asymptotic symbol.
 
 ## High-value transformations
 
@@ -37,7 +37,7 @@ Prefer bottom-up or compressed-state formulations when they reduce recursion ove
 Do not choose containers by familiarity.
 
 | Need | Typical candidate | Important caveat |
-|---|---|---|
+| --- | --- | --- |
 | append + indexed access | dynamic array/vector | middle insertion/erase moves elements |
 | FIFO | queue/deque | do not emulate by erasing vector front repeatedly |
 | membership, no order | hash set | expected bounds; adversarial hashing and memory overhead matter |

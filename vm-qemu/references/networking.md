@@ -15,7 +15,7 @@ Three ways to configure:
 Common virtual NICs:
 
 | Model | Use Case |
-|-------|----------|
+| --- | --- |
 | `virtio-net-pci` | Para-virtualized, best performance |
 | `virtio-net-ccw` | s390x virtio |
 | `virtio-net-device` | RISC-V / non-PCI virtio |
@@ -31,7 +31,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### User Mode (SLIRP)
 
-```
+```text
 -nic user
 -netdev user,id=net0
 ```
@@ -44,7 +44,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### TAP
 
-```
+```text
 -netdev tap,id=net0 [,ifname=NAME] [,script=FILE] [,downscript=FILE] [,vhost=on|off] [,vnet_hdr=on|off]
 ```
 
@@ -55,7 +55,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### Bridge
 
-```
+```text
 -netdev bridge,id=net0 [,br=BRIDGE] [,helper=HELPER]
 ```
 
@@ -65,7 +65,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### passt
 
-```
+```text
 -netdev passt,id=net0 [,hostfwd=...]
 ```
 
@@ -77,7 +77,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### stream
 
-```
+```text
 -netdev stream,id=net0,addr.type=tcp,addr.host=HOST,addr.port=PORT[,server=on|off]
 -netdev stream,id=net0,addr.type=unix,addr.path=PATH[,server=on|off]
 ```
@@ -88,7 +88,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### dgram
 
-```
+```text
 -netdev dgram,id=net0,local.addr=...,remote.addr=...
 -netdev dgram,id=net0,remote.type=udp,remote.host=HOST,remote.port=PORT,mcast=GROUP:PORT
 ```
@@ -98,7 +98,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### af-xdp
 
-```
+```text
 -netdev af-xdp,id=net0,ifname=eth0 [,start-queue=N] [,queues=N]
 ```
 
@@ -108,7 +108,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### L2TPv3
 
-```
+```text
 -netdev l2tpv3,id=net0,src=SRC,dst=DST [,srcport=N] [,dstport=N] [,udp=on] [,cookie64=...] [,counter=on]
 ```
 
@@ -118,7 +118,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### Socket
 
-```
+```text
 -netdev socket,id=net0,listen=:PORT    # server
 -netdev socket,id=net0,connect=HOST:PORT  # client
 -netdev socket,id=net0,fd=FD             # multicast: mcast=GROUP:PORT
@@ -126,7 +126,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### VDE
 
-```
+```text
 -netdev vde,id=net0 [,sock=PATH] [,port=N] [,group=GROUP] [,mode=MODE]
 ```
 
@@ -135,7 +135,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### vhost-user
 
-```
+```text
 -chardev socket,id=char0,path=/tmp/vhost.sock,server=on,wait=off
 -netdev vhost-user,id=net0,chardev=char0 [,queues=N]
 ```
@@ -146,7 +146,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ### vhost-vdpa
 
-```
+```text
 -netdev vhost-vdpa,id=net0,vhostdev=/dev/vhost-vdpa-0
 ```
 
@@ -156,7 +156,7 @@ Specify with `-nic model=MODEL` or `-device MODEL,...`.
 
 ## MAC Addresses
 
-```
+```text
 -nic ...,mac=52:54:00:XX:XX:XX
 ```
 
@@ -164,7 +164,7 @@ QEMU default uses the OUI `52:54:00` (reserved for QEMU/KVM). Set explicitly for
 
 ## Multi-Queue
 
-```
+```text
 -netdev tap,id=net0,queues=N
 -device virtio-net-pci,netdev=net0,mq=on,vectors=N
 ```
@@ -175,7 +175,7 @@ QEMU default uses the OUI `52:54:00` (reserved for QEMU/KVM). Set explicitly for
 
 ## Offloads (virtio-net)
 
-```
+```text
 -device virtio-net-pci,...,csum=on,gso=on,guest_csum=on,guest_tso4=on,guest_tso6=on,guest_ecn=on,guest_ufo=on,host_tso4=on,host_tso6=on,host_ecn=on,host_ufo=on
 ```
 
@@ -183,7 +183,7 @@ Control checksum offloading, TSO/GSO, and UFO for virtio-net.
 
 ## Filter Drivers
 
-```
+```text
 -netdev tap,id=net0
 -filter-rewriter id=f0,netdev=net0,...   # COLIN filter
 -filter-mirror id=f0,netdev=net0,...     # port mirroring
@@ -194,23 +194,27 @@ Control checksum offloading, TSO/GSO, and UFO for virtio-net.
 ## Examples
 
 User-mode with SSH forwarding:
-```
+
+```bash
 qemu-system-x86_64 -nic user,hostfwd=tcp::2222-:22 vmdisk.qcow2
 ```
 
 TAP bridge (requires setup):
-```
+
+```bash
 qemu-system-x86_64 -netdev tap,id=net0 -device virtio-net-pci,netdev=net0 vmdisk.qcow2
 ```
 
 Multi-queue with vhost:
-```
+
+```bash
 qemu-system-x86_64 -netdev tap,id=net0,queues=4,vhost=on \
   -device virtio-net-pci,netdev=net0,mq=on,vectors=9 vmdisk.qcow2
 ```
 
 L2TPv3 tunnel:
-```
+
+```bash
 qemu-system-x86_64 -netdev l2tpv3,id=net0,src=10.0.0.1,dst=10.0.0.2,udp=on \
   -device virtio-net-pci,netdev=net0 vmdisk.qcow2
 ```

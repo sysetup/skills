@@ -1,5 +1,5 @@
 interface:
   display_name: "prompt-style"
-  short_description: "Rewrite prompts or set a named response style for this chat."
+  short_description: "Restyle a prompt or set a conversation response style"
 policy:
   allow_implicit_invocation: true

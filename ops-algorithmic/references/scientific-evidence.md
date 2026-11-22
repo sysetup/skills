@@ -7,7 +7,7 @@ Use these sources to justify engineering rules without overstating them. Disting
 ## Evidence-to-rule map
 
 | Engineering rule | Evidence and interpretation | Strength / limitation |
-|---|---|---|
+| --- | --- | --- |
 | Prove properties and invariants for nontrivial algorithms | Floyd (1967) and Hoare (1969) established formal frameworks for proving program properties, including assertions, pre/postconditions, and loop reasoning. | Mathematical/theoretical foundation; applicability depends on how formally the artifact is specified. |
 | Treat control-flow complexity as a measurable property, not a full quality oracle | McCabe (1976) defined cyclomatic complexity from the control-flow graph. Lavazza, Morasca & Gatto (2023) found structural measures alone produced understandability models with roughly 30% average prediction error in their study. | Strong definition; empirical limitation shows the metric is incomplete as a human-comprehension proxy. |
 | Prefer semantically descriptive identifiers when they add useful information | Schankin et al. (2018) studied 88 Java developers; descriptive compound identifiers led to semantic defects being found about 14% faster than shorter, less descriptive identifiers. | Controlled web-based experiment; result concerned semantic-defect comprehension, not every naming task. |

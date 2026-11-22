@@ -17,16 +17,16 @@ Pick one primary design from the five. Write procedures that fit that design, no
 Use this sequence, not a generic theme list.
 
 1. State the phenomenon in one phrase. Confirm every participant has lived it (criterion sample).
-2. Researcher epoché / bracketing note — prior beliefs, employment, tool use, expected findings. For an agent, include search and coding bias (`references/writing-ethics.md`).
-3. Data — primarily in-depth interviews (60–90 min), optional documents or artifacts the participant offers. Interview protocol from `assets/instruments.md`.
-4. Analysis (Moustakas-style, name it):
+1. Researcher epoché / bracketing note — prior beliefs, employment, tool use, expected findings. For an agent, include search and coding bias (`references/writing-ethics.md`).
+1. Data — primarily in-depth interviews (60–90 min), optional documents or artifacts the participant offers. Interview protocol from `assets/instruments.md`.
+1. Analysis (Moustakas-style, name it):
    - horizonalization — significant statements
    - meaning units / clusters
    - textural description ("what" was experienced)
    - structural description ("how" the experience unfolded — context, conditions)
    - composite essence
-5. End product is the essence, not five equally weighted "themes" that could fit any topic.
-6. Trustworthiness: member checking of the essence if humans are involved; thick description; bracketing log; audit trail.
+1. End product is the essence, not five equally weighted "themes" that could fit any topic.
+1. Trustworthiness: member checking of the essence if humans are involved; thick description; bracketing log; audit trail.
 
 Do not run grounded-theory axial coding on a phenomenological question. Do not call a single interview a phenomenology.
 
@@ -48,11 +48,11 @@ Saturation is a stopping rule, not a slogan. Define what would count as saturati
 ## Analysis (generic, then design-specific)
 
 1. Organize and store raw materials.
-2. Read for sense; write memos.
-3. Code — in vivo and analytic. Do not pre-load a codebook unless the design is directed qualitative content analysis and you say so.
-4. Build categories or themes. Themes need supporting excerpts.
-5. Interpret against the questions, the literature, and the design's end product.
-6. Represent — description, figures, theory diagram, case vignettes.
+1. Read for sense; write memos.
+1. Code — in vivo and analytic. Do not pre-load a codebook unless the design is directed qualitative content analysis and you say so.
+1. Build categories or themes. Themes need supporting excerpts.
+1. Interpret against the questions, the literature, and the design's end product.
+1. Represent — description, figures, theory diagram, case vignettes.
 
 Design-specific extras
 

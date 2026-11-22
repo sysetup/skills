@@ -4,7 +4,7 @@ Long-lived process that provides disk image functionality without running a VM. 
 
 ## Synopsis
 
-```
+```bash
 qemu-storage-daemon [options]
 ```
 
@@ -26,7 +26,7 @@ Controlled via `--monitor ... mode=control` (there is no `--qmp` flag). Shutdown
 ## Command-Line Options
 
 | Option | Description |
-|--------|-------------|
+| --- | --- |
 | `-h, --help` | Display help |
 | `-V, --version` | Display version |
 | `-T, --trace [...]` | Tracing options |
@@ -43,7 +43,7 @@ Controlled via `--monitor ... mode=control` (there is no `--qmp` flag). Shutdown
 
 ### NBD Export
 
-```
+```text
 --export [type=]nbd,id=ID,node-name=NODE[,name=EXPORT_NAME][,writable=on|off][,bitmap=BITMAP]
 ```
 
@@ -51,7 +51,7 @@ Requires `--nbd-server` to be set first.
 
 ### vhost-user-blk Export
 
-```
+```text
 --export [type=]vhost-user-blk,id=ID,node-name=NODE,addr.type=unix,addr.path=SOCKET[,writable=on|off][,logical-block-size=BYTES][,num-queues=N]
 ```
 
@@ -59,7 +59,7 @@ Accepts connections over a vhost-user UNIX socket.
 
 ### FUSE Export
 
-```
+```text
 --export [type=]fuse,id=ID,node-name=NODE,mountpoint=FILE[,growable=on|off][,writable=on|off][,allow-other=on|off|auto]
 ```
 
@@ -67,7 +67,7 @@ Exports a block node as a regular file via FUSE.
 
 ### vduse-blk Export
 
-```
+```text
 --export [type=]vduse-blk,id=ID,node-name=NODE,name=VDUSE_NAME[,writable=on|off][,num-queues=N][,queue-size=QS][,logical-block-size=BYTES][,serial=SERIAL]
 ```
 
@@ -76,7 +76,8 @@ Creates a VDUSE device; must be added to vDPA bus with `vdpa(8)`.
 ## Examples
 
 Simple NBD export:
-```
+
+```bash
 qemu-storage-daemon \
   --blockdev file,node-name=file,filename=vmdisk.qcow2 \
   --blockdev qcow2,node-name=disk,file=file \
@@ -85,10 +86,11 @@ qemu-storage-daemon \
   --monitor chardev=mon0,mode=control,pretty=on
 ```
 
-(Note: there is no `--qmp` flag; use `--monitor ... mode=control`)`
+(Note: there is no `--qmp` flag; use `--monitor ... mode=control`.)
 
 FUSE export (mount disk image as a file):
-```
+
+```bash
 qemu-storage-daemon \
   --blockdev file,node-name=file,filename=vmdisk.qcow2 \
   --blockdev qcow2,node-name=disk,file=file \
@@ -96,7 +98,8 @@ qemu-storage-daemon \
 ```
 
 With IOThread:
-```
+
+```bash
 qemu-storage-daemon \
   --object iothread,id=iothread0 \
   --blockdev file,node-name=file,filename=vmdisk.qcow2,aio=io_uring,iothread=iothread0 \

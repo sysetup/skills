@@ -77,10 +77,10 @@ Choose composition by default when the goal is behavior reuse, optional capabili
 Consider inheritance only when all are true:
 
 1. There is a meaningful "is-a" subtype relationship from the client's perspective.
-2. The base contract is stable and intentionally extensible.
-3. The subtype can preserve base semantics for all supported operations.
-4. Base-class protected internals are not required for normal extension.
-5. Construction/destruction and copying semantics are safe for polymorphic use.
+1. The base contract is stable and intentionally extensible.
+1. The subtype can preserve base semantics for all supported operations.
+1. Base-class protected internals are not required for normal extension.
+1. Construction/destruction and copying semantics are safe for polymorphic use.
 
 If one fails, prefer composition, delegation, a policy object, an explicit closed set of variants, or the target language's generic mechanism.
 

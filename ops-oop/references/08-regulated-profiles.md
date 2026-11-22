@@ -17,12 +17,12 @@ Use this reference only when the project explicitly has safety, certification, r
 Before applying a regulated profile, establish:
 
 1. governing domain and authority/customer;
-2. exact standard and edition;
-3. required assurance/safety level (for example ASIL, DAL, SIL) if applicable;
-4. project tailoring and approved deviations;
-5. permitted C++ language/version/subset;
-6. qualified/approved toolchain and analysis requirements;
-7. required traceability and evidence artifacts.
+1. exact standard and edition;
+1. required assurance/safety level (for example ASIL, DAL, SIL) if applicable;
+1. project tailoring and approved deviations;
+1. permitted C++ language/version/subset;
+1. qualified/approved toolchain and analysis requirements;
+1. required traceability and evidence artifacts.
 
 If any are unknown, mark them as open. Do not guess compliance obligations.
 

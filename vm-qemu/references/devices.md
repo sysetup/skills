@@ -4,7 +4,7 @@ Attach emulated devices to a VM using `-device`. Devices are instantiated on the
 
 ## PCI Device Addressing
 
-```
+```text
 -device e1000,bus=pci.0,addr=0x6
 -device virtio-blk-pci,bus=pci.0,addr=0x7
 -device vfio-pci,host=0000:01:00.0
@@ -17,7 +17,7 @@ PCIe devices use root ports: `-device pcie-root-port,slot=X,id=rpiX` then `-devi
 The virtio family provides para-virtualized devices. They require virtio drivers in the guest.
 
 | Device | Description |
-|--------|-------------|
+| --- | --- |
 | `virtio-blk-pci` | Block device (storage) |
 | `virtio-scsi-pci` | SCSI controller |
 | `virtio-net-pci` | Network adapter |
@@ -36,7 +36,7 @@ The virtio family provides para-virtualized devices. They require virtio drivers
 
 ### VirtIO Common Properties
 
-```
+```text
 -device virtio-blk-pci,drive=disk0,num-queues=4,queue-size=256,iothread=iothread0
 ```
 
@@ -48,7 +48,7 @@ The virtio family provides para-virtualized devices. They require virtio drivers
 ## PCI Storage Controllers
 
 | Device | Description |
-|--------|-------------|
+| --- | --- |
 | `ahci` | AHCI/SATA controller (Intel ICH9) |
 | `nvme` | NVMe controller (multiple namespaces) |
 | `vhost-user-blk-pci` | vhost-user block device |
@@ -60,7 +60,8 @@ The virtio family provides para-virtualized devices. They require virtio drivers
 USB is provided by a USB controller plus devices on its bus.
 
 Controllers:
-```
+
+```text
 -device usb-ehci,id=ehci      # EHCI (USB 2.0)
 -device nec-usb-xhci,id=xhci  # xHCI (USB 3.0)
 -device piix3-usb-uhci,id=uhci # UHCI (USB 1.1, part of PIIX3)
@@ -68,7 +69,8 @@ Controllers:
 ```
 
 Devices:
-```
+
+```text
 -device usb-tablet            # Absolute pointer (no grab needed)
 -device usb-mouse             # Relative mouse
 -device usb-kbd               # Keyboard
@@ -85,7 +87,7 @@ Devices:
 ## Audio Devices
 
 | Device | Description |
-|--------|-------------|
+| --- | --- |
 | `intel-hda` + `hda-duplex`/`hda-micro`/`hda-output` | Intel HD Audio |
 | `AC97` | Intel 82801AA AC97 |
 | `cs4231a` | Windows Sound System |
@@ -99,12 +101,13 @@ Audio devices take an `audiodev=ID` parameter pointing to an `-audiodev` backend
 
 Pass a physical PCI device to the guest:
 
-```
+```text
 -device vfio-pci,host=0000:01:00.0
 -device vfio-pci,host=0000:01:00.0,x-vga=on   # for GPU passthrough
 ```
 
 Requires:
+
 - `intel_iommu=on` or `amd_iommu=on` kernel parameter
 - VFIO drivers loaded: `modprobe vfio-pci`
 - Device detached from host driver
@@ -114,12 +117,13 @@ Requires:
 
 Userspace virtio data path. Backend processes serve virtqueues over UNIX sockets.
 
-```
+```text
 -chardev socket,id=char0,path=/tmp/vhost-blk.sock,server=on,wait=off
 -device vhost-user-blk-pci,chardev=char0,num-queues=4
 ```
 
 Common backends:
+
 - **SPDK** — vhost-blk/vhost-scsi
 - **DPDK** — vhost-net (via testpmd or vswitch)
 - **virtiofsd** — vhost-user-fs
@@ -129,7 +133,7 @@ Common backends:
 
 Inter-VM shared memory:
 
-```
+```text
 -device ivshmem-plain,memdev=shmem0
 -object memory-backend-file,id=shmem0,size=1M,mem-path=/dev/shm/ivshmem,share=on
 ```
@@ -138,7 +142,7 @@ For interrupt-capable shared memory, use the `ivshmem-doorbell` variant with a s
 
 ## Input Devices
 
-```
+```text
 -device virtio-keyboard-pci   # virtio keyboard
 -device virtio-tablet-pci     # virtio absolute pointer (no grab)
 -device virtio-mouse-pci      # virtio mouse
@@ -153,7 +157,7 @@ For interrupt-capable shared memory, use the `ivshmem-doorbell` variant with a s
 ## Misc Devices
 
 | Device | Description |
-|--------|-------------|
+| --- | --- |
 | `pvpanic` | Panic notification (ISA or PCI) |
 | `vmware-svga` | VMware SVGA II graphics |
 | `bochs-display` | Simple display with Bochs VBE |

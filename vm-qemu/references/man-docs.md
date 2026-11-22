@@ -7,7 +7,7 @@ Reference for QEMU man pages and optional shell completion metadata.
 All QEMU man pages are available on the system (`man -k qemu`):
 
 | Man page | Section | Content |
-|----------|---------|---------|
+| --- | --- | --- |
 | `qemu` | 1 | `qemu-system-x86_64` — canonical system emulator documentation |
 | `qemu-img` | 1 | Disk image utility |
 | `qemu-nbd` | 8 | Network Block Device server |
@@ -23,12 +23,14 @@ All QEMU man pages are available on the system (`man -k qemu`):
 ## Man Page Topics by Section
 
 ### Section 1 (Commands)
+
 - `qemu` — system emulator (x86_64, the canonical page)
 - `qemu-img` — disk image utility
 - `qemu-storage-daemon` — standalone storage daemon
 - `qemu-system-aarch64`, `qemu-system-alpha`, ..., `qemu-system-xtensaeb` — each emulator binary
 
 ### Section 7 (References)
+
 - `qemu-block-drivers` — disk image formats, network protocols, filter drivers
 - `qemu-cpu-models` — CPU model recommendations, features, ABI levels
 - `qemu-ga-ref` — QEMU Guest Agent Protocol (QGA) commands and events
@@ -36,6 +38,7 @@ All QEMU man pages are available on the system (`man -k qemu`):
 - `qemu-storage-daemon-qmp-ref` — storage daemon QMP subset
 
 ### Section 8 (System Administration)
+
 - `qemu-nbd` — NBD server/utility
 - `qemu-pr-helper` — persistent reservation helper daemon
 
@@ -44,6 +47,7 @@ All QEMU man pages are available on the system (`man -k qemu`):
 Use the selected completion framework's documentation; no companion skill is required.
 
 Key QEMU commands that benefit from completion:
+
 - `qemu-system-x86_64` — machine type names (`-machine help`), CPU models (`-cpu help`), device names, block device options
 - `qemu-img` — command names, format types, image filenames
 - `qemu-nbd` — format, cache modes, AIO modes, TLS objects

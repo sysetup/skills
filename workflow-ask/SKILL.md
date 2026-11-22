@@ -8,9 +8,11 @@ description: >
   or disabled. Do not use for ordinary ambiguity or "proceed without questions".
 license: MIT
 metadata:
-  author: "SYSETUP.COM CarlosHRG"
-  short-description: Native upfront blockers.
-  version: "1.2.1"
+  version: "1.2.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
+  short-description: "Native upfront blockers."
 ---
 
 # workflow-ask
@@ -34,8 +36,10 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 | Before asking | [references/question-channel.md](references/question-channel.md) | Apply the selected resource's procedure or contract. |
 | Optional local package check | [scripts/load-skill.sh](scripts/load-skill.sh) | Apply the selected resource's procedure or contract. |
 | Optional JSON validation or text rendering | [scripts/validate-question-set.py](scripts/validate-question-set.py) | Apply the selected resource's procedure or contract. |
+| Validator unit tests (Draft-7 schema parity and bounds) | [scripts/test_validate_question_set.py](scripts/test_validate_question_set.py) | Run after validator or schema edits to confirm parity and input guards. |
 | Logical question-set construction | [assets/question-set.example.json](assets/question-set.example.json) | Apply the selected resource's procedure or contract. |
 | Question-set schema | [schemas/question-set.schema.json](schemas/question-set.schema.json) | Apply the selected resource's procedure or contract. |
+| Schema path and domain sidecar | [schemas/question-set.schema.json.options.md](schemas/question-set.schema.json.options.md) | Inspect exact Draft-7 property domains and runtime validation extras. |
 
 ## Permissions and Authority Boundaries
 
@@ -47,7 +51,7 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 
 ### Path resolution
 
-```
+```text
 SKILL_ROOT     = <directory containing this SKILL.md>
 REFERENCES_DIR = ${SKILL_ROOT}/references
 SCRIPTS_DIR    = ${SKILL_ROOT}/scripts
@@ -87,26 +91,26 @@ Build the inventory internally; the bundled JSON format is optional.
 
 Prefer closed choices. Mark the first label with `(Recommended)`.
 
-```
-python3 ${SCRIPTS_DIR}/validate-question-set.py validate FILE
-python3 ${SCRIPTS_DIR}/validate-question-set.py render-fallback FILE
+```bash
+python3 -B "${SCRIPTS_DIR}/validate-question-set.py" validate FILE
+python3 -B "${SCRIPTS_DIR}/validate-question-set.py" render-fallback FILE
 ```
 
 Empty inventory: `NO_QUESTIONS: proceed` (exit 0). Invalid JSON, unknown `kind`, missing fields, secrets, missing file, or permission denied: exit 1 with `FAIL:`. Zero arguments: usage, exit 2. `--help`: exit 0.
 
 Optional helpers: Python 3.10+ on POSIX; the package checker additionally uses Bash 4.3+ and PyYAML 6.x. Recheck compatibility after tool upgrades; never auto-install. The validator checks logical JSON only; the agent constructs and checks native payloads from live tool contracts. Read only authorized files; optional `--root DIR` checks resolved containment within stable directories. Runtime controls enforce access permissions.
 
-Example: `assets/question-set.example.json`. Schema: `schemas/question-set.schema.json`.
+Example: `assets/question-set.example.json`. Schema: `schemas/question-set.schema.json` (documented in `schemas/question-set.schema.json.options.md`). Maintenance tests: `python3 -I -B "${SCRIPTS_DIR}/test_validate_question_set.py"`.
 
 ### Delivery protocol
 
 1. Inspect authorized context and applicable guidance; skip resolved questions.
-2. Read `references/question-channel.md` and discover permitted user-input tools, current schemas, mode restrictions and answer lifecycle.
-3. Adapt remaining questions to that contract, preserving requiredness, free text, choices and meaning across any necessary batches.
-4. Check the final payload, call the tool and wait for actual answers; continue only work independent of unanswered blockers.
-5. Repair schema errors from the live contract and retry once; an error or timeout does not supply answers or approval.
-6. If native input is unavailable or cannot preserve meaning, ask the same questions in text and await required answers.
-7. Apply actual answers and permitted optional defaults; start dependent work only when its required answers and authority are established.
+1. Read `references/question-channel.md` and discover permitted user-input tools, current schemas, mode restrictions and answer lifecycle.
+1. Adapt remaining questions to that contract, preserving requiredness, free text, choices and meaning across any necessary batches.
+1. Check the final payload, call the tool and wait for actual answers; continue only work independent of unanswered blockers.
+1. Repair schema errors from the live contract and retry once; an error or timeout does not supply answers or approval.
+1. If native input is unavailable or cannot preserve meaning, ask the same questions in text and await required answers.
+1. Apply actual answers and permitted optional defaults; start dependent work only when its required answers and authority are established.
 
 ### User accepts defaults
 

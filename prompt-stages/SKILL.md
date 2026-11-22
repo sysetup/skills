@@ -3,8 +3,10 @@ name: prompt-stages
 description: Produce bounded worker assignments or complete execution packs for defined jobs across fresh sessions. Exclude ordinary task planning, a conversation-state handoff, and direct job execution unless coordination instructions are separately requested. Use when the user requests delegation instructions, parallel work boundaries, phased execution packs, dependencies, integration, checkpoints, recovery, reassignment, or return evidence. Select one assignment or a whole-job pack from the requested scope. Generate the instructions rather than dispatch workers or execute the underlying job.
 license: MIT
 metadata:
-  version: "1.1"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # prompt-stages
@@ -30,8 +32,8 @@ Resolve bundled resources from the verified directory containing this `SKILL.md`
 ## Execution Workflow
 
 1. Select the requested coordination scope and stage boundaries.
-2. Load the matching coordination reference and specify dependencies and handoffs.
-3. Return usable stage instructions without executing their underlying work.
+1. Load the matching coordination reference and specify dependencies and handoffs.
+1. Return usable stage instructions without executing their underlying work.
 
 ### Select the coordination scope
 

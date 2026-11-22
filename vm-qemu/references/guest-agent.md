@@ -4,7 +4,7 @@ In-guest daemon that provides host↔guest communication. Installed inside the V
 
 ## Architecture
 
-```
+```text
 Host (QEMU)  ── virtio-serial / ISA serial / viosock ──►  Guest Agent
 ```
 
@@ -13,36 +13,39 @@ The host sends QGA (QEMU Guest Agent Protocol) commands via a virtio-serial chan
 ## Enabling the Channel
 
 1. Add a virtio-serial device to the VM:
-```
--chardev socket,path=/tmp/qga.sock,server=on,wait=off,id=qga0
--device virtio-serial-pci
--device virtserialport,chardev=qga0,name=org.qemu.guest_agent.0
-```
 
-2. Install and start `qemu-guest-agent` inside the guest:
-```bash
-# apt install qemu-guest-agent   # Debian/Ubuntu
-# systemctl enable --now qemu-guest-agent
-```
+    ```text
+    -chardev socket,path=/tmp/qga.sock,server=on,wait=off,id=qga0
+    -device virtio-serial-pci
+    -device virtserialport,chardev=qga0,name=org.qemu.guest_agent.0
+    ```
 
-3. On the host, connect via `socat` or `qmp-shell`:
-```
-socat unix-connect:/tmp/qga.sock -
-```
+1. Install and start `qemu-guest-agent` inside the guest:
+
+    ```bash
+    # apt install qemu-guest-agent   # Debian/Ubuntu
+    # systemctl enable --now qemu-guest-agent
+    ```
+
+1. On the host, connect via `socat` or `qmp-shell`:
+
+    ```bash
+    socat unix-connect:/tmp/qga.sock -
+    ```
 
 ## Key QGA Commands
 
 ### Initialization
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `guest-sync-delimited` | Sync stream with sentinel byte (0xFF) |
 | `guest-sync` | Simple sync, returns echoed integer |
 
 ### System Information
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `guest-info` | List supported commands |
 | `guest-get-time` | Guest time (nanoseconds) |
 | `guest-set-time` | Sync guest time (requires `-rtc base=utc`) |
@@ -55,13 +58,13 @@ socat unix-connect:/tmp/qga.sock -
 ### Network
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `guest-network-get-interfaces` | Interface name, MAC, IP addresses |
 
 ### Files and Execution
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `guest-exec` | Execute command |
 | `guest-exec-status` | Check exit status |
 | `guest-file-open` | Open file (returns handle) |
@@ -73,7 +76,7 @@ socat unix-connect:/tmp/qga.sock -
 ### FSFREEZE
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `guest-fsfreeze-freeze` | Freeze filesystems |
 | `guest-fsfreeze-thaw` | Thaw filesystems |
 | `guest-fsfreeze-status` | Query freeze state |
@@ -81,14 +84,14 @@ socat unix-connect:/tmp/qga.sock -
 ### Shutdown and Reboot
 
 | Command | Description |
-|---------|-------------|
-| `guest-shutdown` | `mode=powerdown|halt|reboot` |
+| --- | --- |
+| `guest-shutdown` | `mode=powerdown\|halt\|reboot` |
 | `guest-reboot` | Reboot guest |
 
 ### Disk and FS
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `guest-get-disks` | List block devices |
 | `guest-get-fsinfo` | Filesystem info |
 | `guest-get-memory-block-info` | Memory block info |
@@ -97,7 +100,7 @@ socat unix-connect:/tmp/qga.sock -
 ### SUSPEND
 
 | Command | Description |
-|---------|-------------|
+| --- | --- |
 | `guest-suspend-ram` | Suspend to RAM |
 | `guest-suspend-disk` | Hibernate |
 | `guest-suspend-hybrid` | Hybrid suspend |
@@ -106,13 +109,13 @@ socat unix-connect:/tmp/qga.sock -
 
 Guest agent commands are accessed through the `guest-*` prefix via QMP, *not* directly:
 
-```
+```json
 { "execute": "guest-exec", "arguments": { "path": "/bin/echo", "arg": ["hello"] } }
 ```
 
 Or via `guest-agent-*` (depending on QEMU version):
 
-```
+```json
 { "execute": "guest-agent-exec", "arguments": { "path": "/bin/echo", "arg": ["hello"] } }
 ```
 

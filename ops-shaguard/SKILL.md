@@ -10,8 +10,10 @@ description: >
 compatibility: Linux, Bash 4+, sha256sum or BusyBox; manifests also require find, sort, mktemp, dirname, basename, and ln/mv with -T support; creation without -f requires filesystem hard links.
 license: MIT
 metadata:
-  version: "1.1"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # ops-shaguard
@@ -75,9 +77,9 @@ Read the selected subcommand section and exit-status table in [command semantics
 | Check the SHA-256 backend | `bash "$SHAGUARD_SCRIPT" selftest` |
 
 1. Establish read scope, reference digest/manifest, and any output path from the request. `manifest` is the only subcommand creating a persistent artifact. Resolve output and overwrite intent from existing authorization; ask only if either remains ambiguous. Use `-f` only for an authorized replacement. A dry run still uses a temporary file internally.
-2. Keep arguments separate and quoted, including exclusion globs. Run the script as a subprocess, never source it: it changes shell options and installs traps. Treat manifest contents as data, never shell syntax.
-3. Capture stdout, stderr, and the final exit status. Partial hash records or earlier `OK` lines do not establish overall success. In pipelines capture the producer's status too; truncated input can still produce a valid hash.
-4. Classify results with the reference's exit table. Dependency failure is exit 3; report it without installing packages or adding privileges/network access. Preserve path, symlink, duplicate, and overwrite protections.
+1. Keep arguments separate and quoted, including exclusion globs. Run the script as a subprocess, never source it: it changes shell options and installs traps. Treat manifest contents as data, never shell syntax.
+1. Capture stdout, stderr, and the final exit status. Partial hash records or earlier `OK` lines do not establish overall success. In pipelines capture the producer's status too; truncated input can still produce a valid hash.
+1. Classify results with the reference's exit table. Dependency failure is exit 3; report it without installing packages or adding privileges/network access. Preserve path, symlink, duplicate, and overwrite protections.
 
 ### Maintenance resources
 

@@ -4,23 +4,23 @@ SCSI persistent reservations restrict access to block devices to specific initia
 
 ## Synopsis
 
-```
+```bash
 qemu-pr-helper [OPTION]
 ```
 
 ## How It Works
 
 1. QEMU's `scsi-block` or `scsi-generic` device receives a PR command from the guest
-2. Instead of executing it directly (which requires privileges), QEMU forwards it to `qemu-pr-helper` over a UNIX socket
-3. `qemu-pr-helper` executes the PR command on behalf of QEMU
-4. Returns the result to QEMU, which passes it to the guest
+1. Instead of executing it directly (which requires privileges), QEMU forwards it to `qemu-pr-helper` over a UNIX socket
+1. `qemu-pr-helper` executes the PR command on behalf of QEMU
+1. Returns the result to QEMU, which passes it to the guest
 
 This allows unprivileged QEMU processes to use SCSI persistent reservations while the helper runs with elevated privileges.
 
 ## Options
 
 | Option | Description |
-|--------|-------------|
+| --- | --- |
 | `-d, --daemon` | Run in background (creates PID file) |
 | `-q, --quiet` | Decrease verbosity |
 | `-v, --verbose` | Increase verbosity |
@@ -36,7 +36,7 @@ This allows unprivileged QEMU processes to use SCSI persistent reservations whil
 
 Supports socket activation. Example socket unit:
 
-```
+```ini
 [Socket]
 ListenStream=/var/run/qemu-pr-helper.sock
 ```
@@ -45,7 +45,7 @@ ListenStream=/var/run/qemu-pr-helper.sock
 
 In the QEMU command line, configure the PR manager on the block device:
 
-```
+```text
 -object pr-manager-helper,id=pr0,path=/var/run/qemu-pr-helper.sock \
 -drive file=shared.qcow2,if=none,id=drive0,format=qcow2 \
 -device scsi-block,drive=drive0,pr-manager=pr0

@@ -3,8 +3,10 @@ name: prompt-style
 description: Apply one of seven communication styles (Default, Professional, Friendly, Candid, Quirky, Efficient, or Cynical) to a supplied prompt or to assistant responses in the current conversation. Use when the user asks to restyle a prompt, use or switch response styles, reset to Default, or choose a conversation-wide style. Resolve missing or unsupported styles using these seven choices. General prose editing has a different scope.
 license: MIT
 metadata:
-  version: "1.1"
-  author: "SYSETUP.COM CarlosHRG"
+  version: "1.2"
+  author: "Carlos HRG"
+  author-role: "Software Developer"
+  organization: "SYSETUP.COM"
 ---
 
 # prompt-style
@@ -20,9 +22,9 @@ Apply available, applicable host/project requirements within their scope. The st
 ### Select the mode and style
 
 1. Use **Prompt Transformation** when the user supplies or clearly refers to a prompt to rewrite.
-2. Use **Session Style** when the request concerns future assistant responses. A bare supported request such as "Use Professional style" selects this mode when no content is being transformed. During an active session style, `switch to <style>` and "go back to Default" change the session unless specific content is named.
-3. Resolve short references such as "make it Professional" from context. Ask one concise question only when the referent leaves the mode materially ambiguous.
-4. Match style names case-insensitively. If the style is missing or unsupported, ask the user to choose from the seven labels below; do not invent a style or silently approximate one.
+1. Use **Session Style** when the request concerns future assistant responses. A bare supported request such as "Use Professional style" selects this mode when no content is being transformed. During an active session style, `switch to <style>` and "go back to Default" change the session unless specific content is named.
+1. Resolve short references such as "make it Professional" from context. Ask one concise question only when the referent leaves the mode materially ambiguous.
+1. Match style names case-insensitively. If the style is missing or unsupported, ask the user to choose from the seven labels below; do not invent a style or silently approximate one.
 
 ### Style definitions
 
