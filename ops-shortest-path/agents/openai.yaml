@@ -1,0 +1,4 @@
+interface:
+  display_name: "ops-shortest-path"
+  short_description: "Model and solve shortest-path problems across the SDLC."
+  default_prompt: "Use $ops-shortest-path to model this problem as a weighted graph and compute the optimal route."
